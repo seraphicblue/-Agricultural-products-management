@@ -1,17 +1,16 @@
 /*
-  	Date    : 2023.05.08
-	name    : SabController
+  	Date    : 2023.05.06
+	name    : SabService
 	type    : Service
-	ver     : 1.2
-	conect  : SabService
-	content : 구매 판매에 대한 컨트롤러 클래스
+	ver     : 1.0
+	conect  : SabController
+	content : 구매 판매에 대한 서비스 클래스
 	writer  : 김재영
-	api     : 1e31b9ea-18a2-48b3-95f8-d46a3c883d39   ::농사로 api
+	api     : x
 */
 
 package stock_m.controller;
 
-import java.net.URI;
 import java.util.List;
 import java.util.Map;
 
@@ -21,10 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.util.UriComponentsBuilder;
-
 
 import com.google.gson.Gson;
 
@@ -55,39 +51,18 @@ public class SabController {
 		return "normal/index";
 	}
 	
+	@GetMapping("/company/buy")
+	public String buyForm() {
+		return "company/buy";
+	}
+	
 	/*
-	 * @GetMapping("/company/buy") public String buyForm(Model model) {
+	 * @GetMapping("/company/{sno}")
 	 * 
-	 * URI uri = UriComponentsBuilder .fromUriString("http://www.kobis.or.kr")
-	 * .path(
-	 * "/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json")
-	 * .queryParam("key","f5eef3421c602c6cb7ea224104795888")
-	 * .queryParam("targetDt","20230418") .encode() .build() .toUri();
-	 * 
-	 * MovieList list =restTemplate.getForObject(uri, MovieList.class);
-	 * model.addAttribute("boxOfficeList", list); return "movie/boxOffice";
-	 * 
-	 * 
-	 * return "company/buy"; }
+	 * @ResponseBody//view없이 바로 보냄 public String snoSearch(Model m, @PathVariable
+	 * int sno) { int s_volume=sab_service.; Gson gson = new Gson(); String
+	 * elist=gson.toJson(); return elist; }
 	 */
-	
-	@GetMapping("/company/{sno}")
-	@ResponseBody//view없이 바로 보냄
-	public int snoCount(Model m, @PathVariable int sno) {
-		String userid="testcompany1";
-		int count=sab_service.selecCount(userid, sno);	
-		System.out.println(count);
-		return count;
-	}
-	
-	@GetMapping("/company/Vol/{sno}")
-	@ResponseBody//view없이 바로 보냄
-	public int snoSearch(Model m, @PathVariable int sno) {
-		String userid="testcompany1";
-		int Vol=sab_service.selecVol(userid, sno);
-		System.out.println("여기는"+Vol);
-		return Vol;
-	}
 	
 	@GetMapping("/company/sell")
 	public String sellForm(Model m) {

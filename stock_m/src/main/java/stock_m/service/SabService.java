@@ -41,21 +41,9 @@ public class SabService {
 		return stock_dao.selecSval(sno);
 	}
 	
-	public int selecSvol(int sno) {
-		return stock_dao.selecSvol(sno);
-	}
-	
 	public void insertproduct(int sno, String pname, int price, int p_val, int p_count, String userid) {
+		System.out.println("서비스");
 		System.out.println(sno);
 		product_dao.insertproduct(sno,pname,price,p_val,p_count,userid);
 	}
-	
-	public int selecCount(String userid, int sno) {
-		return product_dao.selecCount(userid, sno);
-	}
-	
-	public int selecVol(String userid, int sno) {
-		return product_dao.selecVol(userid, sno);
-	}
-	
 }
