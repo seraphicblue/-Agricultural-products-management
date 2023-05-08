@@ -1,3 +1,13 @@
+<!--      
+   Date    : 2023.05.08
+   name    : marketform
+   type    : form
+   ver     : 1.0
+   conect  : MarketController
+   content : 일반사용자용 구매 메인페이지
+   writer  : 김기덕
+   api     : x
+-->
 <%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -106,9 +116,9 @@
                                 <a href="#"><i class="fa fa-user"></i> Logout</a>
                             </div>
                         </li>
-                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                            <li><a href="cart"><i class="fa fa-shopping-bag"></i> <span>장바구니안에 상품수</span></a></li>
                         </ul>
-                        <div class="header__cart__price">item: <span>$150</span></div>
+                        <div class="header__cart__price">item: <span>$150장바구니안에 상품가격</span></div>
                     </div>
                 </div>
             </div>
@@ -127,29 +137,24 @@
                     <div class="hero__categories">
                         <div class="hero__categories__all">
                             <i class="fa fa-bars"></i>
-                            <span>All departments</span>
+                            <span>전체 분류</span>
                         </div>
                         <ul>
-                            <li><a href="#">육류</a></li>
-                            <li><a href="#">채소</a></li>
-                            <li><a href="#">과일</a></li>
-                            <li><a href="#">Fresh Berries</a></li>
-                            <li><a href="#">Ocean Foods</a></li>
-                            <li><a href="#">Butter & Eggs</a></li>
-                            <li><a href="#">Fastfood</a></li>
-                            <li><a href="#">Fresh Onion</a></li>
-                            <li><a href="#">Papayaya & Crisps</a></li>
-                            <li><a href="#">Oatmeal</a></li>
-                            <li><a href="#">Fresh Bananas</a></li>
+                            <li><a href="search/100">식량작물</a></li>
+                            <li><a href="search/200">채소류</a></li>
+                            <li><a href="search/300">특용작물</a></li>
+                            <li><a href="search/400">과일류</a></li>
+                            <li><a href="search/500">축산물</a></li>
+                            <li><a href="search/600">수산물</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-9">
                     <div class="hero__search">
                         <div class="hero__search__form">
-                            <form method="post">
+                            <form method="post" action="search">
                                 <div class="hero__search__categories">
-                                    All Categories
+                                    모든 카테고리
                                     <span class="arrow_carrot-down"></span>
                                 </div>
                                 <input type="text" placeholder="검색할 상품명" name="pname">
