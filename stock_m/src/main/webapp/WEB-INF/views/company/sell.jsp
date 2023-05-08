@@ -47,6 +47,7 @@
 			</tr>
 		</table>
 		<input type="submit" value="판매">
+		<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 		<script>
 			function check() {
 				var selec = document.getElementById("scontent").selectedIndex;
@@ -57,22 +58,23 @@
 				$.ajax({
 					  url: '/company/'+selectedId,
 					  type: 'get',
-					  dataType: 'json'
+					  dataType: 'text'
 					  })
-					  .done( function(response) {
-						  let ops="<select id='emps'>";
-						  for(let i in response){
-							  ops+="<option value='"+response[i].empno+"'>"+response[i].ename+"</option>";
-							  
-						  }
-						  ops+="</select>"
-						  
-					    $("#second").append(ops);
-					  })
-				
+					  .done(function(response){
+						  document.getElementById("s_volume").value =selectedOption;
+						  if(parseInt(response)>0){
+							  $.ajax({
+								  url: '/company/Vol/'+selectedId,
+								  type: 'get',
+								  dataType: 'text'
+								  })
+								  .done( function(response){
+									  selectedOption=selectedOption-parseInt(response);
+									  document.getElementById("s_volume").value =selectedOption;
+									  })
+								  }
+						  })
 				document.getElementById("sno").value = selectedId;
-				document.getElementById("s_volume").value =selectedOption;
-				 
 			}
 			
 			function checkStock() {
