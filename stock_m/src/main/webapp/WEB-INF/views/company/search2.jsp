@@ -17,31 +17,31 @@
 <title>검색 결과</title>
 </head>
 <body>
-	<form action="search" method="GET">
-		<div class="search">
+	<form action="search2" method="GET">
+		<div class="search2">
 			<input type="text" name="keyword" placehodler="검색할 기업을 입력해주세요ㅕ">
 			<button>검색</button>
 		</div>
 	</form>
 	<div id="center">
-		<h1>${keyword}로검색한결과입니다.</h1>
+		<h1>${keyword}로검색한결과입니다. 222222</h1>
 		<c:if test="${count != 0 }">
 			<table border="1">
 				<tr>
 					<th>no.</th>
-					<th>회사 명</th>
-					<th>회사 홈페이지</th>
-					<th>사업자 번호</th>
-					<th> 추가</th>
+					<th>내 아이디</th>
+					<th>회사 여부</th>
+					<th>회사 이름</th>
+					<th> 삭제</th>
 				</tr>
 				
-				<c:forEach items="${mList}" var="user" varStatus="count">
+				<c:forEach items="${dList}" var="management" varStatus="count">
 					<tr>
 						<td>${count.index+1}</td>
-						<td class="username">${user.username}</td>
-						<td>${user.gender}</td>
-						<td>${user.age}</td>
-						<td><button class="click">추가</button></td>
+						<td >${management.userid}</td>
+						<td>${management.m_val}</td>
+						<td class="m_content">${management.m_content}</td>
+						<td><button class="click">삭제</button></td>
 					</tr>
 				</c:forEach>
 			</table>
@@ -55,8 +55,9 @@
 	<script>
 	$(document).ready(function() {
 	    $('.click').click(function() {
-	    	var username = $(this).parent().siblings('.username').text();
-	    	location.href="/company/insert?id="+username;
+	    	var m_content = $(this).closest('tr').find('.m_content').text();
+	        location.href="/company/delete?m_content="+m_content;
+	    	
 	    });
 	});
 	</script>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="stock_m.dao.ManagementDao">
+	<insert id="insert" parameterType="List">
+	insert into 
+	management(userid,m_val,m_content)
+	values('testcompany1',1,#{username})
+	</insert>
+	
+	<select id ="count" resultType="int">
+		select count(*)from user
+	</select>
+
+	<select id="countSearch" parameterType="String" resultType="int">
+
+		select count(*) from user
+		where username like concat ('%',#{keyword},'%')
+		
+	</select>
+	
+	<select id = "find" parameterType="String" resultType="int">
+		select mno from management
+		where m_content = #{m_content}
+	</select>
+	
+	<select id="UserList" parameterType="map"
+		resultType="stock_m.dto.UserDto">
+
+		select userid, username, age, gender from user
+		where username like concat ('%',#{keyword},'%')
+	</select>
+	
+	<select id="managementList" parameterType="map"
+		resultType="stock_m.dto.ManagementDto">
+
+		select mno, userid, m_val, m_content from management
+		where m_content like concat ('%',#{keyword},'%')
+	</select>
+	
+	<delete id="delete" parameterType="int">
+		delete from management
+		where mno=#{mno}
+	</delete>
+</mapper>
