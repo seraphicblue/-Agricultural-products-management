@@ -41,4 +41,16 @@ public class MarketService {
 		return dao.addCart(cart);
 	}
 	
+	public List<Map<String,Object>> userCart(String userid) {
+		return dao.userCart(userid);
+	}
+	
+	public List<Map<String,Object>> allProduct() {
+		return dao.allProduct();
+	}
+	
+	public int countChange(int count, String userid, int product_pno) {
+		return dao.countChange(count, userid, product_pno);
+	}
+	
 }

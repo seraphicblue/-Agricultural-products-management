@@ -13,13 +13,15 @@ package stock_m.controller;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import stock_m.dto.Cart;
 import stock_m.service.MarketService;
@@ -33,6 +35,13 @@ public class MarketController {
 	@GetMapping("/market")
 	public String mform() {
 		return "normal/marketform";
+	}
+	
+	@GetMapping("/continue")
+	public String csform(Model m) {
+		List<Map<String,Object>> list = service.allProduct();
+		m.addAttribute("list", list);
+		return "normal/shop-grid";
 	}
 	
 	@PostMapping("/search")//받아올건 이름이랑 가격만으로도 됨(pname, price)
@@ -59,16 +68,22 @@ public class MarketController {
 	}
 	
 	@PostMapping("/addcart")
-	public String addcart(Cart cart, Model m) {
+	public String addcart(Cart cart) {
+		//System.out.println(cart);
 		service.addCart(cart);
-		return "normal/shoping-cart";
+		return "normal/shop-details";
 	}
 	
-	@GetMapping("/cart")
-	public String cform() {
+	@GetMapping("/cart/{userid}")
+	public String cform(@PathVariable String userid, Model m) {
+		List<Map<String,Object>> cart = service.userCart(userid);
+		m.addAttribute("cart", cart);
 		return "normal/shoping-cart";
 	}
-	
-	
-	
+		
+	@GetMapping("/countchange")
+	public String cc(@Param("count") int count,@Param("userid") String userid,@Param("product_pno") int product_pno) {
+		service.countChange(count, userid, product_pno);
+		return "normal/shoping-cart";
+	}
 }

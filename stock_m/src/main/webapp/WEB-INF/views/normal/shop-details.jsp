@@ -239,37 +239,42 @@
                         <p>Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam
                             vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet
                             quam vehicula elementum sed sit amet dui. Proin eget tortor risus.</p>
-                        <!-- <form method="post" action="../addcart"> -->
-                        <form method="post" action="../addcart">
+                       
+                        
                         <div class="product__details__quantity">
                             <div class="quantity">
                                 <div class="pro-qty">
-                                    <input type="text" id="count" name="count" value="1">
+                                    <input type="text" id="count" value="1">
                                 </div>
                             </div>
                         </div>                        
-							<input name="userid" value="test1" hidden="hidden">
-							<input name="product_pno" value="${product.pno}" hidden="hidden">
-							<input name="price" value="${product.price}" hidden="hidden">
-							<input name="name" value="${product.pname}" hidden="hidden">
-							<button type="submit" class="primary-btn" onclick="return carton()">장바구니에 담기</button>
+							<input id="userid" value="test1" hidden="hidden">
+							<input id="product_pno" value="${product.pno}" hidden="hidden">
+							<input id="price" value="${product.price}" hidden="hidden">
+							<input id="name" value="${product.pname}" hidden="hidden">
+							<button type="button" class="primary-btn" onclick="return carton()">장바구니에 담기</button>
 							<a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
-						</form>  
+							
 						<script>
 							function carton(){
+								var params = {
+										userid : $("#userid").val()
+					                    , product_pno : $("#product_pno").val()
+					                    , count : $("#count").val()
+					                    , price : $("#price").val()
+					                    , name : $("#name").val()
+					            };
 								$.ajax({
-									type: "post",
+									type:"post",
 									url: "../addcart",
-									
-									
-								})
-								
-								var yn = confirm('장바구니로 이동하시겠습니까?');
-								if(yn){
-									return ;
-								}else{
-									
-								}
+									data:params
+								}).done(function(reponse){
+									if(confirm('장바구니로 이동하시겠습니까?')){
+										window.location.replace('../cart/test1');
+									}else{
+										return false;
+									}
+								});	
 							}
 						</script>                      
                         <ul>

@@ -15,7 +15,9 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import stock_m.dto.Cart;
 
@@ -33,4 +35,13 @@ public interface ProductDao {
 	
 	@Insert("INSERT INTO cart(userid,product_pno,count,price,name) values(#{userid},#{product_pno},#{count},#{price},#{name})")
 	public int addCart(Cart cart);
+	
+	@Select("select * from cart where userid like concat('%',#{userid},'%')")
+	public List<Map<String,Object>> userCart(String userid);
+	
+	@Select("select * from product")
+	public List<Map<String,Object>> allProduct();
+	
+	@Update("update cart set count = #{count} where userid = #{userid} and product_pno = #{product_pno}")
+	public int countChange(@Param("count") int count,@Param("userid") String userid,@Param("product_pno") int product_pno);
 }

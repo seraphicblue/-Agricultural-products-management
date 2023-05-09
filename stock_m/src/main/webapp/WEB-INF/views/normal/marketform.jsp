@@ -116,7 +116,7 @@
                                 <a href="#"><i class="fa fa-user"></i> Logout</a>
                             </div>
                         </li>
-                            <li><a href="cart"><i class="fa fa-shopping-bag"></i> <span>장바구니안에 상품수</span></a></li>
+                            <li><a href="cart/test1"><i class="fa fa-shopping-bag"></i> <span>장바구니안에 상품수</span></a></li>
                         </ul>
                         <div class="header__cart__price">item: <span>$150장바구니안에 상품가격</span></div>
                     </div>
