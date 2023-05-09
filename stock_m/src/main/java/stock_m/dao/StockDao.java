@@ -1,5 +1,16 @@
 package stock_m.dao;
 
-public interface StockDao {
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
+
+@Mapper
+public interface StockDao {
+	@Select("select s_val from stock where sno=#{sno}")
+	int selecSval(@Param("sno")int sno);
+	
+	@Select("select s_volume from stock where sno=#{sno}")
+	int selecSvol(int sno);
 }
+                                 
