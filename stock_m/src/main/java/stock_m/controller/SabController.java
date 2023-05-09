@@ -1,8 +1,8 @@
 /*
-  	Date    : 2023.05.08
+  	Date    : 2023.05.09
 	name    : SabController
 	type    : Service
-	ver     : 1.2
+	ver     : 1.3
 	conect  : SabService
 	content : 구매 판매에 대한 컨트롤러 클래스
 	writer  : 김재영
@@ -15,6 +15,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,12 +48,12 @@ public class SabController {
 	
 	@GetMapping("company/main")
 	public String companyindex() {
-		return "company/index";
+		return "/company/index";
 	}
 	
 	@GetMapping("normal/main")
 	public String normalindex() {
-		return "normal/index";
+		return "/normal/index";
 	}
 	
 	/*
@@ -76,16 +77,14 @@ public class SabController {
 	public int snoCount(Model m, @PathVariable int sno) {
 		String userid="testcompany1";
 		int count=sab_service.selecCount(userid, sno);	
-		System.out.println(count);
 		return count;
 	}
 	
-	@GetMapping("/company/Vol/{sno}")
+	@GetMapping("/company/Vol/{sno}/{p_count}")
 	@ResponseBody//view없이 바로 보냄
-	public int snoSearch(Model m, @PathVariable int sno) {
+	public int snoSearch(Model m, @PathVariable int sno,@PathVariable int p_count) {
 		String userid="testcompany1";
 		int Vol=sab_service.selecVol(userid, sno);
-		System.out.println("여기는"+Vol);
 		return Vol;
 	}
 	
@@ -99,10 +98,10 @@ public class SabController {
 	
 	@PostMapping("/company/sell")
 	public String sellpost(int sno, String pname, int price, int p_count) {
-		int p_val= sab_service.selecSval(sno);
-		String userid="testcompany1";
-		sab_service.insertproduct(sno,pname,price,p_val,p_count,userid);
-		return "company/sell";
+		
+		sab_service.updateAndInsert(sno,pname,price,p_count);
+		
+		return "company/index";
 	}
 	
 }

@@ -64,7 +64,7 @@
 						  document.getElementById("s_volume").value =selectedOption;
 						  if(parseInt(response)>0){
 							  $.ajax({
-								  url: '/company/Vol/'+selectedId,
+								  url: '/company/Vol/'+selectedId+'/'+selectedOption,
 								  type: 'get',
 								  dataType: 'text'
 								  })
@@ -82,27 +82,36 @@
 				var price = parseInt(document.getElementById("price").value);
 				var stock = parseInt(document.getElementById("s_volume").value);
 				var select = parseInt(document.getElementById("scontent").value);
+				var scontent = $("#scontent option:checked").text();
+				$('select[name=pname]').attr('value',scontent);
+				
 				if (scontent == "------------------") {
 					alert("물품 정보를 선택해주세요.");
+					
 					return false;
 				}
 				
-				if (stock <= 0) {
+				else if (stock <= 0) {
 					alert("재고 정보를 입력해주세요.");
+					
 					return false;
 				}
 				
-				if (stock > select) {
+				else if (stock > select) {
 					alert("재고량을 넘는 입력입니다.");
+					
 					return false;
 				}
 				
-				if (price <=0) {
+				else if (price <=0) {
 					alert("가격 정보를 선택해주세요.");
+					
 					return false;
 				}
+				else{
+					return true;
+				}
 				
-				return true;
 			}
 		</script>
 	</form>
