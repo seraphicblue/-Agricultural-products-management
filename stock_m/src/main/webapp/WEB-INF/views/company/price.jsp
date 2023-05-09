@@ -11,10 +11,5 @@
     <h1>도소매 가격</h1>
     	
     	
-    	<c:forEach items="${boxOfficeList.boxOfficeResult.dailyBoxOfficeList}"
-		var="movie">
-			${movie.rank }위 :<a href="movieinfo?movieCd=${movie.movieCd }">${movie.movieNm }</a><br>
-	</c:forEach>
-    	
 </body>
-</html>s
+</html>
