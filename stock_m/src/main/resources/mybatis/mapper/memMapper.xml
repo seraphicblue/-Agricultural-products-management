@@ -10,13 +10,22 @@
 	</insert>
 	
 	<select id ="count" resultType="int">
-		select count(*)from user
+		select count(*)from management
+	</select>
+	
+	<select id ="check" parameterType="String" resultType="int">
+		select count(*) from management
+		where m_content = #{id}
 	</select>
 
+	<select id ="count1" resultType="int">
+		select count(*)from user where role='업체'
+	</select>
+	
 	<select id="countSearch" parameterType="String" resultType="int">
 
 		select count(*) from user
-		where username like concat ('%',#{keyword},'%')
+		where username like concat ('%',#{keyword},'%') and role = '업체'
 		
 	</select>
 	
@@ -24,12 +33,18 @@
 		select mno from management
 		where m_content = #{m_content}
 	</select>
-	
+
+	<select id="UList" parameterType="map"
+		resultType="stock_m.dto.UserDto">
+
+		select userid, username, age, gender from user where role='업체'
+	</select>
+		
 	<select id="UserList" parameterType="map"
 		resultType="stock_m.dto.UserDto">
 
 		select userid, username, age, gender from user
-		where username like concat ('%',#{keyword},'%')
+		where username like concat ('%',#{keyword},'%') and role = '업체'
 	</select>
 	
 	<select id="managementList" parameterType="map"
@@ -37,6 +52,12 @@
 
 		select mno, userid, m_val, m_content from management
 		where m_content like concat ('%',#{keyword},'%')
+	</select>
+	
+	<select id="maList" parameterType="map"
+		resultType="stock_m.dto.ManagementDto">
+
+		select mno, userid, m_val, m_content from management
 	</select>
 	
 	<delete id="delete" parameterType="int">

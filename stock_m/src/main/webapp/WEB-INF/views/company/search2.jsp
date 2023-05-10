@@ -13,8 +13,8 @@
    writer  : 고상원
    api     : x
   -->
-  
-<title>검색 결과</title>
+
+<title>선호 업체 삭제 검색 결과</title>
 </head>
 <body>
 	<form action="search2" method="GET">
@@ -24,7 +24,7 @@
 		</div>
 	</form>
 	<div id="center">
-		<h1>${keyword}로검색한결과입니다. 222222</h1>
+		<h1>${keyword}로검색한결과입니다.222222</h1>
 		<c:if test="${count != 0 }">
 			<table border="1">
 				<tr>
@@ -32,13 +32,13 @@
 					<th>내 아이디</th>
 					<th>회사 여부</th>
 					<th>회사 이름</th>
-					<th> 삭제</th>
+					<th>삭제</th>
 				</tr>
-				
+
 				<c:forEach items="${dList}" var="management" varStatus="count">
 					<tr>
 						<td>${count.index+1}</td>
-						<td >${management.userid}</td>
+						<td>${management.userid}</td>
 						<td>${management.m_val}</td>
 						<td class="m_content">${management.m_content}</td>
 						<td><button class="click">삭제</button></td>
@@ -49,17 +49,21 @@
 		<c:if test="${count == 0 }">
 		검색 조건에 맞는 글이 없습니다.
 		</c:if>
-	
+
 	</div>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
-	$(document).ready(function() {
-	    $('.click').click(function() {
-	    	var m_content = $(this).closest('tr').find('.m_content').text();
-	        location.href="/company/delete?m_content="+m_content;
-	    	
-	    });
-	});
+		$(document).ready(
+				function() {
+					$('.click').click(
+							function() {
+								var m_content = $(this).closest('tr').find(
+										'.m_content').text();
+								location.href = "/company/delete?m_content="
+										+ m_content;
+
+							});
+				});
 	</script>
 </body>
 </html>

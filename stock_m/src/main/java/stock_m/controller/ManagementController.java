@@ -17,8 +17,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import stock_m.dto.ManagementDto;
@@ -32,13 +34,73 @@ public class ManagementController {
 	ManagementService service;
 
 	@GetMapping("/company/test")
-	public String test() {
-		return "/company/test";
+	public String insertmain(@RequestParam(name = "page", defaultValue = "1") int page, Model m) {
+
+		// 글이 있는지 체크
+		int count =service.count1();
+		System.out.println(count);
+
+		if (count > 0) {
+
+			int perPage = 5; // 한 페이지에 보일 글의 갯수
+			int startRow = (page - 1) * perPage;
+
+			List<UserDto> UList = service.UList(startRow); 
+			System.out.println(UList);
+			m.addAttribute("UList", UList);
+			
+			int pageNum = 5;
+			int totalPages = count / perPage + (count % perPage > 0 ? 1 : 0); // 전체 페이지 수
+
+			int begin = (page - 1) / pageNum * pageNum + 1;
+			int end = begin + pageNum - 1;
+			if (end > totalPages) {
+				end = totalPages;
+			}
+			m.addAttribute("begin", begin);
+			m.addAttribute("end", end);
+			m.addAttribute("pageNum", pageNum);
+			m.addAttribute("totalPages", totalPages);
+
+		}
+
+		m.addAttribute("count", count);
+		return "company/test";
 	}
 	
 	@GetMapping("/company/test2")
-	public String test2() {
-		return "/company/test2";
+	public String deletemain(@RequestParam(name = "page", defaultValue = "1") int page, Model m) {
+
+		// 글이 있는지 체크
+		int count =service.count();
+		System.out.println(count);
+
+		if (count > 0) {
+
+			int perPage = 5; // 한 페이지에 보일 글의 갯수
+			int startRow = (page - 1) * perPage;
+
+			List<ManagementDto> maList = service.maList(startRow); 
+			System.out.println(maList);
+			m.addAttribute("maList", maList);
+			
+			int pageNum = 5;
+			int totalPages = count / perPage + (count % perPage > 0 ? 1 : 0); // 전체 페이지 수
+
+			int begin = (page - 1) / pageNum * pageNum + 1;
+			int end = begin + pageNum - 1;
+			if (end > totalPages) {
+				end = totalPages;
+			}
+			m.addAttribute("begin", begin);
+			m.addAttribute("end", end);
+			m.addAttribute("pageNum", pageNum);
+			m.addAttribute("totalPages", totalPages);
+
+		}
+
+		m.addAttribute("count", count);
+		return "company/test2";
 	}
 
 	@RequestMapping("/company/search")
@@ -74,7 +136,7 @@ public class ManagementController {
 
 		m.addAttribute("count", count);
 		
-		return "/company/search1";
+		return "company/search1";
 	}
 
 	@RequestMapping("/company/search2")
@@ -108,13 +170,13 @@ public class ManagementController {
 		}
 
 		m.addAttribute("count", count);
-		return "/company/search2";
+		return "company/search2";
 	}
 	
 	@RequestMapping("/company/insert") 
 	public String insert(@RequestParam("id") String id) {
 		service.insert(id); 
-		return "redirect:/comapny/test";
+		return "redirect:/company/test2";
 	 }
 	
 	@RequestMapping("/company/delete") 
@@ -123,7 +185,17 @@ public class ManagementController {
 		int mno= service.find(m_content);
 		System.out.println(mno);
 		service.delete(mno); 
-		return "redirect:/comapny/test";
+		return "redirect:/company/test2";
 	 }
-	 
+	
+	@PostMapping("/company/check")
+	@ResponseBody
+	public boolean check(String username) {
+		int count =service.check(username);
+		if(count == 0) {
+			return true;
+		}else {
+			return false;
+		}
+	}	
 }

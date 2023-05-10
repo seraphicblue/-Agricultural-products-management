@@ -13,7 +13,7 @@
    writer  : 고상원
    api     : x
   -->
-  
+
 <title>검색 결과</title>
 </head>
 <body>
@@ -32,9 +32,9 @@
 					<th>회사 명</th>
 					<th>회사 홈페이지</th>
 					<th>사업자 번호</th>
-					<th> 추가</th>
+					<th>추가</th>
 				</tr>
-				
+
 				<c:forEach items="${mList}" var="user" varStatus="count">
 					<tr>
 						<td>${count.index+1}</td>
@@ -49,16 +49,29 @@
 		<c:if test="${count == 0 }">
 		검색 조건에 맞는 글이 없습니다.
 		</c:if>
-	
+
 	</div>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
-	$(document).ready(function() {
-	    $('.click').click(function() {
-	    	var username = $(this).parent().siblings('.username').text();
-	    	location.href="/company/insert?id="+username;
-	    });
-	});
+		$(document).ready(function() {
+			$(".click").click(function() {				
+				var username = $(this).parent().siblings('.username').text();
+				alert(username);
+				$.ajax({
+				      type: 'POST',
+				      url: '/company/check',
+				      data: {'username':username},
+				      success: function(result) {
+				        if (result === false) {
+				          alert('중복된 값이 존재합니다.');
+				        } else {
+				          location.href = "/company/insert?id=" + username;
+				        }
+				      }
+				      
+				});
+			});	
+		});
 	</script>
 </body>
 </html>

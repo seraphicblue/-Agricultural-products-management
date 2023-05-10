@@ -26,44 +26,65 @@ import stock_m.dto.UserDto;
 public class ManagementService {
 	@Autowired
 	ManagementDao dao;
-		
-	public List<ManagementDto> managementList(int start, String keyword){
-		Map<String, Object> m =new HashMap<String,Object>();
+
+	public List<ManagementDto> managementList(int start, String keyword) {
+		Map<String, Object> m = new HashMap<String, Object>();
 		m.put("start", start);
 		m.put("count", 5);
 		m.put("keyword", keyword);
 		return dao.managementList(m);
 	}
 
-	
+	public List<ManagementDto> maList(int start) {
+		Map<String, Object> m = new HashMap<String, Object>();
+		m.put("start", start);
+		m.put("count", 5);
+		return dao.maList(m);
+	}
+
 	public int countSearch(String keyword) {
 		return dao.countSearch(keyword);
 	}
 
+	public int insert(String id) {
+		return dao.insert(id);
 
-	
-	  public int insert(String id) { 
-		  return dao.insert(id);
-	  
-	 }
-	  
-	 public int find(String m_content) {
-		 return dao.find(m_content);
-	 }
-	 
-	  public int delete(int mno) {
-		  return dao.delete(mno);
-	  }
+	}
+
+	public int find(String m_content) {
+		return dao.find(m_content);
+	}
+
+	public int delete(int mno) {
+		return dao.delete(mno);
+	}
+
+	public int count() {
+		return dao.count();
+	}
 
 	public List<UserDto> UserList(int startRow, String keyword) {
-		Map<String, Object> m =new HashMap<String,Object>();
+		Map<String, Object> m = new HashMap<String, Object>();
 		m.put("start", startRow);
 		m.put("count", 5);
 		m.put("keyword", keyword);
 		return dao.UserList(m);
 	}
-	 
 
+	public List<UserDto> UList(int startRow) {
+		Map<String, Object> m = new HashMap<String, Object>();
+		m.put("start", startRow);
+		m.put("count", 5);
+		return dao.UList(m);
+	}
 
+	public int count1() {
+		return dao.count1();
+	}
 
+	
+	public int check(String id) {
+		return dao.check(id);
+		
+	}
 }
