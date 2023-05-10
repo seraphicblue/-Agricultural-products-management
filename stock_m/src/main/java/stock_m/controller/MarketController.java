@@ -1,8 +1,8 @@
 /*
-   Date    : 2023.05.08
+   Date    : 2023.05.10
    name    : MarketController
    type    : Controller
-   ver     : 1.0
+   ver     : 2.0
    conect  : MarketService
    content : 판매사이트 컨트롤러
    writer  : 김기덕
@@ -68,9 +68,9 @@ public class MarketController {
 	}
 	
 	@PostMapping("/addcart")
-	public String addcart(Cart cart) {
+	public String addcart(Cart cart, int product_pno, String userid, int count) {
 		//System.out.println(cart);
-		service.addCart(cart);
+		service.addCart(cart, product_pno, userid, count);
 		return "normal/shop-details";
 	}
 	
@@ -84,6 +84,18 @@ public class MarketController {
 	@GetMapping("/countchange")
 	public String cc(@Param("count") int count,@Param("userid") String userid,@Param("product_pno") int product_pno) {
 		service.countChange(count, userid, product_pno);
+		return "normal/shoping-cart";
+	}
+	
+	@GetMapping("/checkout")
+	public String co(@Param("userid") String userid) {
+		service.checkOut(userid);
+		return "normal/shoping-cart";
+	}
+	
+	@GetMapping("/delete")
+	public String dc(@Param("product_pno") int product_pno, @Param("userid") String userid) {
+		service.deleteCart(product_pno, userid);
 		return "normal/shoping-cart";
 	}
 }

@@ -1,8 +1,8 @@
 /*
-   Date    : 2023.05.08
+   Date    : 2023.05.10
    name    : ProductDao
    type    : Dao
-   ver     : 1.0
+   ver     : 2.0
    conect  : MarketService
    content : 상품 Dao
    writer  : 김기덕
@@ -13,11 +13,13 @@ package stock_m.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+import org.springframework.web.bind.annotation.DeleteMapping;
 
 import stock_m.dto.Cart;
 
@@ -43,5 +45,20 @@ public interface ProductDao {
 	public List<Map<String,Object>> allProduct();
 	
 	@Update("update cart set count = #{count} where userid = #{userid} and product_pno = #{product_pno}")
-	public int countChange(@Param("count") int count,@Param("userid") String userid,@Param("product_pno") int product_pno);
+	public int countChange(Map<String, Object> map);
+	
+	@Select("select count(*) from cart where product_pno = #{product_pno} and userid = #{userid}")
+	public int cartCheck(Map<String, Object> cmap);
+	
+	@Update("update cart set count = #{count} where userid = #{userid} and product_pno = #{product_pno}")
+	public int countAdd(@Param("count") int count, @Param("userid") String userid, @Param("product_pno") int product_pno);
+	
+	@Select("select count from cart where product_pno = #{product_pno} and userid = #{userid}")
+	public int countCheck(@Param("product_pno") int product_pno, @Param("userid") String userid);
+	
+	@Delete("delete from cart where userid = #{userid}")
+	public int checkOut(@Param("userid") String userid);
+	
+	@Delete("delete from cart where userid = #{userid} and product_pno = #{product_pno}")
+	public int deleteCart(@Param("product_pno") int product_pno, @Param("userid") String userid);
 }

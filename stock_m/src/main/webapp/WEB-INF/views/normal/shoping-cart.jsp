@@ -1,8 +1,8 @@
 <!-- 
-   Date    : 2023.05.08
+   Date    : 2023.05.10
    name    : shoping-cart
    type    : form
-   ver     : 1.0
+   ver     : 2.0
    conect  : MarketController
    content : 장바구니 페이지
    writer  : 김기덕
@@ -155,7 +155,7 @@
                 <div class="col-lg-9">
                     <div class="hero__search">
                         <div class="hero__search__form">
-                            <form method="post" action="search">
+                            <form method="post" action="../search">
                                 <div class="hero__search__categories">
                                     모든 카테고리
                                     <span class="arrow_carrot-down"></span>
@@ -178,10 +178,10 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>Shopping Cart</h2>
+                        <h2>장바구니</h2>
                         <div class="breadcrumb__option">
-                            <a href="../market">Home</a>
-                            <span>Shopping Cart</span>
+                            <a href="../market">홈</a>
+                            <span>장바구니</span>
                         </div>
                     </div>
                 </div>
@@ -199,10 +199,10 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th class="shoping__product">Products</th>
-                                    <th>Price</th>
-                                    <th>Quantity</th>
-                                    <th>Total</th>
+                                    <th class="shoping__product">상품</th>
+                                    <th>가격</th>
+                                    <th>수량</th>
+                                    <th>총액</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -215,14 +215,15 @@
                                         <h5>${cart.name}</h5>
                                     </td>
                                     <td class="shoping__cart__price" id="${cart.product_pno}price">
-                                        ${cart.price}
+                                        ${cart.price}원
                                     </td>
                                     <td class="shoping__cart__quantity">
                                         <div class="quantity">
                                             <div class="pro-qty1">
                                             <span class="dec qtybtn" id="${cart.product_pno} -" onclick="vi('${cart.product_pno} -')">-</span>
-                                                <input type="text" class="count" value="${cart.count}" id="${cart.product_pno}" onchange="cchange(this.value)">                                                
+                                                <input type="text" class="count" value="${cart.count}" id="${cart.product_pno}" onchange="cchange(this)">                                                
                                             <span class="inc qtybtn" id="${cart.product_pno} +" onclick="vi('${cart.product_pno} +')">+</span>
+                                            	<input id="${cart.product_pno}oldcount" value="${cart.count}" hidden="hidden">
                                             </div>
                                         </div>
                                     </td>
@@ -230,10 +231,11 @@
                                         ${cart.price*cart.count}원                                        
                                     </td>
                                     <td class="shoping__cart__item__close">
-                                        <span class="icon_close"></span>
+                                        <span class="icon_close" id="${cart.product_pno} delete" onclick="dcart(this)"></span>
                                     </td>
                                 </tr>
                                 <input id="userid" value="test1" hidden="hidden">
+                                <c:set var="total" value="${total + cart.price*cart.count}"/>
                             </c:forEach>                          
                                 
                             </tbody>                            
@@ -244,17 +246,24 @@
                         		var str = obj;
                         		let idc = str.split(' ');                        		
                         		if(idc[1] == '+'){
-                        			document.getElementById(idc[0]).value=parseInt(document.getElementById(idc[0]).value)+parseInt(1);                        			
+                        			document.getElementById(idc[0]).value=parseInt(document.getElementById(idc[0]).value)+parseInt(1);    
+                        			document.getElementById("total").textContent = parseInt(document.getElementById("total").textContent) + parseInt(document.getElementById(idc[0]+"price").textContent)+"원";                       
+                                	console.log(document.getElementById("total").textContent);
                         		}else if(idc[1] == '-'){
                         			if(parseInt(document.getElementById(idc[0]).value) > 0){
-                        				document.getElementById(idc[0]).value=parseInt(document.getElementById(idc[0]).value)-parseInt(1);                           			
+                        				document.getElementById(idc[0]).value=parseInt(document.getElementById(idc[0]).value)-parseInt(1);
+                        				document.getElementById("total").textContent = parseInt(document.getElementById("total").textContent) - parseInt(document.getElementById(idc[0]+"price").textContent)+"원";
                         			}else {
                         				parseInt(document.getElementById(idc[0]).value) = 0;
                         			}   
                         			
                         		}                        		
-                        		document.getElementById(idc[0]+"total").textContent = document.getElementById(idc[0]).value * document.getElementById(idc[0]+"price").value;
-                        		console.log(document.getElementById(idc[0]+"total").textContent);
+                        		document.getElementById(idc[0]+"total").textContent = parseInt(document.getElementById(idc[0]).value) * parseInt(document.getElementById(idc[0]+"price").textContent)+"원"; 
+                       	
+                        		
+                        		document.getElementById("total").textContent = document.getElementById("total").textContent;
+                        		
+                        		//console.log(document.getElementById("total").textContent)
                         		var params = {
 										userid : $("#userid").val()
 					                    , count : document.getElementById(idc[0]).value
@@ -266,13 +275,29 @@
                         			data: params
                         		});
                         		
-                        		
-                        	}
+              
+                    		}
                         	
                         	function cchange(obj){
+                        		var oid = obj.getAttribute("id")
+                        		var ocount = document.getElementById(oid+"oldcount").value;
+                        		var ncount = obj.value;
+                        		var id = obj.getAttribute("id");  
+                       			if(ncount >= 0) {                      				
+                       				document.getElementById(id+"total").textContent = parseInt(ncount) * parseInt(document.getElementById(id+"price").textContent)+"원";
+                       			}else if(ncount < 0){
+                       				ncount = 0;
+                       			}
+                       			if(document.getElementById(id+"total").textContent == "NaN원"){   				
+                       				document.getElementById(id+"total").textContent = 0 +"원";
+                       			}
+                       			document.getElementById(id).value = ncount; 
+                       			document.getElementById("total").textContent = parseInt(document.getElementById("total").textContent) + parseInt(document.getElementById(id+"price").textContent)*(ncount - ocount) +"원";
+                       			document.getElementById(oid+"oldcount").value = ncount;
+                        		document.getElementById("total").textContent = document.getElementById("total").textContent;
                         		var params = {
 										userid : $("#userid").val()
-					                    , count : obj.value
+					                    , count : ncount
 					                    , product_pno : obj.getAttribute("id")
 					            };                        	
                         		
@@ -282,6 +307,26 @@
                         			data: params
                         		});
                         	}
+                        	
+                        	function dcart(obj){
+                        		if(confirm('상품을 장바구니에서 삭제하시겠습니까?')){
+                        			var str = obj.getAttribute("id");
+                            		let idc = str.split(' ');
+                            		var params = {
+    										userid : $("#userid").val()
+    					                    , product_pno : idc[0]
+    					            };                        	
+                            		
+                            		$.ajax({
+                            			type:"get",
+                            			url: "../delete",
+                            			data: params
+                            		});
+                            		location.reload();
+    							}else{
+    								return false
+    							}                        		
+                        	}
                         </script>
                     </div>
                 </div>
@@ -289,20 +334,46 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="shoping__cart__btns">
-                        <a href="../continue"  class="primary-btn cart-btn cart-btn-right">CONTINUE SHOPPING</a>
+                        <a href="../continue"  class="primary-btn cart-btn cart-btn-right">계속 쇼핑하기</a>
                         
                     </div>
                 </div>
 
                 <div class="col-lg-12">
                     <div class="shoping__checkout">
-                        <h5>Cart Total</h5>
+                        <h5>장바구니 총액</h5>
                         <ul>
-                            <li>Total <span>$454.98</span></li>
+                            <li>총액 <span id="total" >                            
+                            <c:if test="${total eq null}">0원</c:if> 
+                            <c:if test="${total ne null}"><c:out value="${total}"/>원</c:if>
+                            </span></li>
                         </ul>
-                        <a href="#" class="primary-btn">PROCEED TO CHECKOUT</a>
+                        <a href="#" class="primary-btn" onclick="checkout()">결제</a>
                     </div>
                 </div>
+                
+                <script>
+                	function checkout(){
+                		if(confirm('결제하시겠습니까?')){
+							if(confirm('결제 완료')){
+								var params = {
+										userid : $("#userid").val()
+					            };                        		
+                        		$.ajax({
+                        			type:"get",
+                        			url: "../checkout",
+                        			data: params
+                        		});
+                        		location.reload();
+							}else{
+								return false
+							}
+						}else{
+							return false;
+						}
+                	}
+                </script>
+                
             </div>
         </div>
     </section>

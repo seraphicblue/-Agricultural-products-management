@@ -1,8 +1,8 @@
 <!--      
-   Date    : 2023.05.08
+   Date    : 2023.05.10
    name    : marketform
    type    : form
-   ver     : 1.0
+   ver     : 2.0
    conect  : MarketController
    content : 일반사용자용 구매 메인페이지
    writer  : 김기덕

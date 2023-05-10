@@ -1,8 +1,8 @@
 <!--      
-   Date    : 2023.05.08
+   Date    : 2023.05.10
    name    : shop-grid
    type    : form
-   ver     : 1.0
+   ver     : 2.0
    conect  : MarketController
    content : 상품 검색으로 넘어오는 페이지
    writer  : 김기덕
