@@ -39,7 +39,6 @@
 	$(document).ready(function() {
 		$(".click").click(function() {				
 			var username = $(this).parent().siblings('.username').text();
-			alert(username);
 			$.ajax({
 			      type: 'POST',
 			      url: '/company/check',

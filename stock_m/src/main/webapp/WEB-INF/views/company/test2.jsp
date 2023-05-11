@@ -16,18 +16,19 @@
 		<thead>
 			<tr>
 				<th>no.</th>
-				<th>내 아이디</th>
-				<th>회사 여부</th>
 				<th>회사 이름</th>
+				<th>회사 여부</th>
 				<th>삭제</th>
+				<th>상태 변경</th>
 			</tr>
 			<c:forEach items="${maList}" var="management" varStatus="count">
 				<tr>
 					<td>${count.index+1}</td>
-					<td>${management.userid}</td>
-					<td>${management.m_val}</td>
 					<td class="m_content">${management.m_content}</td>
+					<td>${management.m_val}</td>
+
 					<td><button class="click">삭제</button></td>
+					<th><button class="click2">변경</button>
 				</tr>
 			</c:forEach>
 		</thead>
@@ -44,6 +45,28 @@
 										+ m_content;
 
 							});
+				});
+		
+		$(document).ready(
+				function(){
+					$('.click2').click(
+						function(){
+							var m_content=$(this).closest('tr').find('.m_content').text();
+							console.log(m_content);
+							$.ajax({
+							      type: 'POST',
+							      url: '/company/check2',
+							      data: {'m_content' : m_content },
+							      success: function(result) {
+							        if (result === 1) {
+							          location.href = "/company/update?m_content="+m_content;
+							        } else {
+							          location.href = "/company/update2?m_content="+m_content;
+							        }
+							      }
+							      
+							});
+						});
 				});
 	</script>
 </body>

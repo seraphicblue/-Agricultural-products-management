@@ -64,4 +64,16 @@
 		delete from management
 		where mno=#{mno}
 	</delete>
+	
+	<update id="update" parameterType="String">
+		update management set m_val=2 where m_content=#{m_content}
+	</update>
+	
+	<update id="update2" parameterType="String">
+		update management set m_val=1 where m_content=#{m_content}
+	</update>
+	
+	<select id="check2" parameterType="String" resultType="int">
+		select m_val from management where m_content=#{m_content}
+	</select>
 </mapper>

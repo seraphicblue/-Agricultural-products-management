@@ -1,10 +1,10 @@
 /*
-   Date    : 2023.05.06
+   Date    : 2023.05.11
    name    : management
    type    : java
-   ver     : 1.0
+   ver     : 1.1
    conect  : managementService
-   content : 유의 업체 받아올 정보 형태
+   content : 회사 유의 업체 구분 변경
    writer  : 고상원
    api     : x
   */
@@ -85,6 +85,20 @@ public class ManagementService {
 	
 	public int check(String id) {
 		return dao.check(id);
-		
 	}
+	
+
+	public int update(String m_content) {
+		return dao.update(m_content);
+	}
+	
+
+	public int update2(String m_content) {
+		return dao.update2(m_content);
+	}
+
+	public int check2(String m_content) {
+		return dao.check2(m_content);
+	}
+
 }

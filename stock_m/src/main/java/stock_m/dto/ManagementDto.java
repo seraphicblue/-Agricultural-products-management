@@ -8,5 +8,4 @@ public class ManagementDto {
 	private String userid;
 	private int m_val;
 	private String m_content;
-
 }

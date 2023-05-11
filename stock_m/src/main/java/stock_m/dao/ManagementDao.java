@@ -1,10 +1,10 @@
 /*
-   Date    : 2023.05.06
+   Date    : 2023.05.11
    name    : management
    type    : java
-   ver     : 1.0
+   ver     : 1.1
    conect  : managementDao
-   content : 유의 업체 정보 저장
+   content : 회사 유의 업체 구분 변경
    writer  : 고상원
    api     : x
   */
@@ -26,12 +26,18 @@ public interface ManagementDao {
 		int countSearch(String keyword);
 		int insert(String id);
 		int find(String m_content);
+		int delete(int find); // insert,update,delete는 리턴 값 int
+		int count1();
+		int check(String id);
+		int update(String m_content);
+		int update2(String m_content);
+		int check2(String m_content);
 		List<ManagementDto>managementList(Map<String,Object> m);
 		List<ManagementDto>maList(Map<String,Object> m);
 		List<UserDto> UserList(Map<String, Object> m);
 		List<UserDto> UList(Map<String, Object> m);
-		int delete(int find); // insert,update,delete는 리턴 값 int
-		int count1();
-		int check(String id);
+		
+		
+		
 
 }

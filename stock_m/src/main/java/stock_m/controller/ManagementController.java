@@ -1,10 +1,10 @@
 /*
-   Date    : 2023.05.06
+   Date    : 2023.05.11
    name    : management
    type    : java
-   ver     : 1.0
+   ver     : 1.1
    conect  : managementController
-   content : 유의 업체 검색 결과 추가 및 삭제
+   content : 회사 유의 업체 구분 변경
    writer  : 고상원
    api     : x
   */
@@ -198,4 +198,24 @@ public class ManagementController {
 			return false;
 		}
 	}	
+
+	@GetMapping("/company/update")
+	public String update(@RequestParam("m_content") String m_content) {
+		service.update(m_content);
+		return "redirect:/company/test2";
+	}
+	
+	@GetMapping("/company/update2")
+	public String update2(@RequestParam("m_content") String m_content) {
+		service.update2(m_content);
+		return "redirect:/company/test2";
+	}
+	
+	@PostMapping("/company/check2")
+	@ResponseBody
+	public int check2(String m_content) {
+		int m_val =service.check2(m_content);
+		System.out.println(m_val);
+		return m_val;
+	}
 }
