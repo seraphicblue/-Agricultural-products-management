@@ -1,8 +1,8 @@
 <!-- 
-   Date    : 2023.05.10
+   Date    : 2023.05.11
    name    : shoping-cart
    type    : form
-   ver     : 2.0
+   ver     : 3.0
    conect  : MarketController
    content : 장바구니 페이지
    writer  : 김기덕
@@ -208,7 +208,7 @@
                             </thead>
                             <tbody>
                             
-                            <c:forEach items="${cart}" var="cart">	
+                            <c:forEach items="${cart}" var="cart" varStatus="status">	
                                 <tr>
                                     <td class="shoping__cart__item">
                                         <img src="../img/cart/cart-1.jpg" alt="">
@@ -235,7 +235,14 @@
                                     </td>
                                 </tr>
                                 <input id="userid" value="test1" hidden="hidden">
+                                <input id="${status.count}suserid" value="${cart.userid}" hidden="hidden">
+                                <input id="${status.count}pno" value="${cart.product_pno}" hidden="hidden">
+                                <input id="${status.count}price" value="${cart.price}" hidden="hidden">
+                                <input id="${status.count}bcount" value="${cart.count}" name="${cart.product_pno}bcount" hidden="hidden">
+                                <input id="${status.count}s_volume" value="${cart.s_volume}" hidden="hidden">
+                                <input id="${status.count}p_count" value="${cart.p_count}" hidden="hidden">
                                 <c:set var="total" value="${total + cart.price*cart.count}"/>
+                                <c:set var="fina" value="${status.count}"/>
                             </c:forEach>                          
                                 
                             </tbody>                            
@@ -247,18 +254,22 @@
                         		let idc = str.split(' ');                        		
                         		if(idc[1] == '+'){
                         			document.getElementById(idc[0]).value=parseInt(document.getElementById(idc[0]).value)+parseInt(1);    
-                        			document.getElementById("total").textContent = parseInt(document.getElementById("total").textContent) + parseInt(document.getElementById(idc[0]+"price").textContent)+"원";                       
-                                	console.log(document.getElementById("total").textContent);
+                        			document.getElementById("total").textContent = parseInt(document.getElementById("total").textContent) + parseInt(document.getElementById(idc[0]+"price").value)+"원";
+                        			document.getElementsByName(idc[0] + "bcount")[0].value = document.getElementById(idc[0]).value;
                         		}else if(idc[1] == '-'){
                         			if(parseInt(document.getElementById(idc[0]).value) > 0){
                         				document.getElementById(idc[0]).value=parseInt(document.getElementById(idc[0]).value)-parseInt(1);
-                        				document.getElementById("total").textContent = parseInt(document.getElementById("total").textContent) - parseInt(document.getElementById(idc[0]+"price").textContent)+"원";
+                        				document.getElementById("total").textContent = parseInt(document.getElementById("total").textContent) - parseInt(document.getElementById(idc[0]+"price").value)+"원";
+                        				document.getElementsByName(idc[0] + "bcount")[0].value = document.getElementById(idc[0]).value;
                         			}else {
                         				parseInt(document.getElementById(idc[0]).value) = 0;
+                        				document.getElementsByName(idc[0] + "bcount")[0].value = 0;
                         			}   
                         			
-                        		}                        		
-                        		document.getElementById(idc[0]+"total").textContent = parseInt(document.getElementById(idc[0]).value) * parseInt(document.getElementById(idc[0]+"price").textContent)+"원"; 
+                        		}              
+                        		console.log(parseInt(document.getElementById(idc[0]).value));
+                        		console.log(parseInt(document.getElementById(idc[0]+"price").value));
+                        		document.getElementById(idc[0]+"total").textContent = parseInt(document.getElementById(idc[0]).value) * parseInt(document.getElementById(idc[0]+"price").value)+"원"; 
                        	
                         		
                         		document.getElementById("total").textContent = document.getElementById("total").textContent;
@@ -348,13 +359,13 @@
                             <c:if test="${total ne null}"><c:out value="${total}"/>원</c:if>
                             </span></li>
                         </ul>
-                        <a href="#" class="primary-btn" onclick="checkout()">결제</a>
+                        <a href="#" class="primary-btn" onclick="checkout()">구매</a>
                     </div>
                 </div>
                 
-                <script>
-                	function checkout(){
-                		if(confirm('결제하시겠습니까?')){
+                <script>         
+                	function checkout(){                		              		
+                		if(confirm('구매하시겠습니까?')){
 							if(confirm('결제 완료')){
 								var params = {
 										userid : $("#userid").val()
@@ -363,7 +374,43 @@
                         			type:"get",
                         			url: "../checkout",
                         			data: params
-                        		});
+                        		});//결제완료
+                        		function getFormatDate(date){
+                        		    var year = date.getFullYear();              //yyyy
+                        		    var month = (1 + date.getMonth());          //M
+                        		    month = month >= 10 ? month : '0' + month;  //month 두자리로 저장
+                        		    var day = date.getDate();                   //d
+                        		    day = day >= 10 ? day : '0' + day;          //day 두자리로 저장
+                        		    return  year + '' + month + '' + day;       //'-' 추가하여 yyyy-mm-dd 형태 생성 가능
+                        		}
+                        		
+                        		
+                        		
+                        		var now = new Date()
+                        		now = getFormatDate(now); 
+                        		var fin = "${fina}"; 
+                        		for(var i = 1; i < parseInt(fin)+1; i++){
+                        			var buy = {
+                        					userid : $("#userid").val()
+                        					, suserid : document.getElementById(i+"suserid").value
+        				                    , bcount : document.getElementById(i+"bcount").value
+        				                    , pno : document.getElementById(i+"pno").value
+        				                    , price : document.getElementById(i+"price").value
+        				                    , bdate : now
+        				                    , s_volume : document.getElementById(i+"s_volume").value
+        				                    , p_count : document.getElementById(i+"p_count").value
+                        			};
+                        			(function(i) {
+                			            	$.ajax({
+                			            		type:"post"
+                			            		,url: "../addbuy"
+                			            		,data: buy
+                			            		,success:function(result){
+                			           	    		console.log(i);
+                			           	  		}
+                			        		})
+                			    	})(i);
+                        		}//결제후 구매내역 저장                         	
                         		location.reload();
 							}else{
 								return false
@@ -371,7 +418,7 @@
 						}else{
 							return false;
 						}
-                	}
+                	};
                 </script>
                 
             </div>

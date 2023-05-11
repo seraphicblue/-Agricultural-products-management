@@ -1,8 +1,8 @@
 /*
-   Date    : 2023.05.10
+   Date    : 2023.05.11
    name    : ProductDao
    type    : Dao
-   ver     : 2.0
+   ver     : 3.0
    conect  : MarketService
    content : 상품 Dao
    writer  : 김기덕
@@ -38,7 +38,7 @@ public interface ProductDao {
 	@Insert("INSERT INTO cart(userid,product_pno,count,price,name) values(#{userid},#{product_pno},#{count},#{price},#{name})")
 	public int addCart(Cart cart);
 	
-	@Select("select * from cart where userid like concat('%',#{userid},'%')")
+	@Select("select product_pno, count, product.price, name, stock.userid, s_volume, p_count from cart inner join stock inner join product on cart.product_pno = stock.sno and cart.product_pno = product.pno where cart.userid = #{userid}")
 	public List<Map<String,Object>> userCart(String userid);
 	
 	@Select("select * from product")
@@ -61,4 +61,17 @@ public interface ProductDao {
 	
 	@Delete("delete from cart where userid = #{userid} and product_pno = #{product_pno}")
 	public int deleteCart(@Param("product_pno") int product_pno, @Param("userid") String userid);
+	
+	@Insert("INSERT INTO buy(pno,userid,bdate,price,bcount) values(#{pno},#{userid},#{bdate},#{price},#{bcount})")
+	public int addbuy(Map<String, Object> abmap);
+	
+	@Insert("INSERT INTO sell(product_pno,userid,sdate,price,scount) values(#{pno},#{suserid},#{bdate},#{price},#{bcount})")
+	public int addsell(Map<String, Object> asmap);
+	
+	@Update("update stock set s_volume = #{s_volume}-#{bcount} where sno = #{pno} and userid = #{suserid}")
+	public int updateStock(Map<String, Object> usmap);
+	
+	@Update("update product set p_count = #{p_count}-#{bcount} where pno = #{pno}")
+	public int updateProduck(Map<String, Object> upmap);
+	
 }

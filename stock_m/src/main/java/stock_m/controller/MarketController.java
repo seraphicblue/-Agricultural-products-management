@@ -1,8 +1,8 @@
 /*
-   Date    : 2023.05.10
+   Date    : 2023.05.11
    name    : MarketController
    type    : Controller
-   ver     : 2.0
+   ver     : 3.0
    conect  : MarketService
    content : 판매사이트 컨트롤러
    writer  : 김기덕
@@ -10,18 +10,18 @@
 */
 package stock_m.controller;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 
 import stock_m.dto.Cart;
 import stock_m.service.MarketService;
@@ -97,5 +97,14 @@ public class MarketController {
 	public String dc(@Param("product_pno") int product_pno, @Param("userid") String userid) {
 		service.deleteCart(product_pno, userid);
 		return "normal/shoping-cart";
+	}
+	
+	@PostMapping("/addbuy")
+	public String ab(@Param("pno") int pno,@Param("suserid") String suserid, @Param("userid") String userid, @DateTimeFormat(pattern = "yyyyMMdd") @Param("bdate") Date bdate, @Param("price") int price, @Param("bcount") int bcount, @Param("s_volume") int s_volume, @Param("p_count") int p_count) {
+		service.addbuy(pno, userid, bdate, price, bcount);
+		service.addsell(pno, suserid, bdate, price, bcount);
+		service.updateStock(pno, suserid, bcount, s_volume);
+		service.updateProduck(pno, bcount, p_count);
+		return "nomal/shoping-cart";
 	}
 }

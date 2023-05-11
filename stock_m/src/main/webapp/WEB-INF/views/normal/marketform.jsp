@@ -1,8 +1,8 @@
 <!--      
-   Date    : 2023.05.10
+   Date    : 2023.05.11
    name    : marketform
    type    : form
-   ver     : 2.0
+   ver     : 3.0
    conect  : MarketController
    content : 일반사용자용 구매 메인페이지
    writer  : 김기덕
@@ -118,7 +118,7 @@
                         </li>
                             <li><a href="cart/test1"><i class="fa fa-shopping-bag"></i> <span>장바구니안에 상품수</span></a></li>
                         </ul>
-                        <div class="header__cart__price">item: <span>$150장바구니안에 상품가격</span></div>
+                        <div class="header__cart__price">item: <span>$150</span></div>
                     </div>
                 </div>
             </div>
