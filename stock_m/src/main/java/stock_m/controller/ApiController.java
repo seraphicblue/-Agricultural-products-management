@@ -17,25 +17,23 @@ public class ApiController {
 
     @GetMapping("company/price")
     public String showPrice(Model model) {
-    	String priceData = kamisApiCaller.getDailyPriceByCategoryList();
-        JSONObject json = new JSONObject(priceData);
+        JSONObject json = kamisApiCaller.getDailyPriceByCategoryList();
         JSONArray items = json.getJSONObject("document").getJSONObject("data").getJSONArray("item");
-        System.out.println("여기는"+items);
-        for (int i = 0; i < items.length(); i++) {
-            JSONObject item = items.getJSONObject(i);
-            String itemName = item.getString("item_name");
-            String unit = item.getString("unit");
-            String dpr1 = item.getString("dpr2");
-            
-            // 가격 정보를 문자열로 합칩니다.
-            String prices = String.format("%s(%s): %s", 
-                itemName, unit, dpr1);
-            
-            // JSP 모델에 가격 정보를 추가합니다.
-            model.addAttribute("priceData", prices);
-            System.out.println(prices);
-        }
-        
+		/*
+		 * JSONArray arr = new JSONArray(); for (int i = 0; i < items.length(); i++) {
+		 * JSONObject item = items.getJSONObject(i); String itemName =
+		 * item.getString("item_name"); String unit = item.getString("unit"); String
+		 * dpr1 = item.getString("dpr3");
+		 * 
+		 * 
+		 * 
+		 * // 가격 정보를 문자열로 합칩니다. String prices = String.format("%s(%s): %s", itemName,
+		 * unit, dpr1); System.out.println("this is data : " + prices); arr.put(prices);
+		 * 
+		 * // JSP 모델에 가격 정보를 추가합니다. //System.out.println("저기는 : "+prices); }
+		 */
+        model.addAttribute("priceData", items);
+        System.out.println("controller END");
         return "company/price";
     }
 }

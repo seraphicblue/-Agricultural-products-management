@@ -11,4 +11,5 @@ public class SellDto {
 	private int product_pno;
 	private Date sdate;
 	private int price;
+	private int scount;
 }
