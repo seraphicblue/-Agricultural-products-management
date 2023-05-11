@@ -35,6 +35,7 @@ public class SabService {
 	public List<NameAndPrice_sabDto> namePrice(String userid) {
 		userid="testcompany1";
 		return sab_dao.namePrice(userid);
+		
 	}
 	
 	public int selecSval(int sno) {
