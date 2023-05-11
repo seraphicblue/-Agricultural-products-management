@@ -4,76 +4,109 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="stock_m.dao.ManagementDao">
 	<insert id="insert" parameterType="List">
-	insert into 
-	management(userid,m_val,m_content)
-	values('testcompany1',1,#{username})
+		insert into
+		management(userid,m_val,m_content)
+		values('testcompany1',true,#{username})
 	</insert>
-	
-	<select id ="count" resultType="int">
+
+	<insert id="insert2" parameterType="List">
+		insert into
+		management(userid,m_val,m_content)
+		values('testcompany1',false,#{username})
+	</insert>
+
+	<select id="count" resultType="int">
 		select count(*)from management
 	</select>
-	
-	<select id ="check" parameterType="String" resultType="int">
-		select count(*) from management
+
+	<select id="check" parameterType="String" resultType="int">
+		select
+		count(*) from management
 		where m_content = #{id}
 	</select>
 
-	<select id ="count1" resultType="int">
-		select count(*)from user where role='업체'
+	<select id="count1" resultType="int">
+		select count(*)from user where
+		role='업체'
 	</select>
-	
+
 	<select id="countSearch" parameterType="String" resultType="int">
 
 		select count(*) from user
-		where username like concat ('%',#{keyword},'%') and role = '업체'
-		
+		where username like concat
+		('%',#{keyword},'%') and role = '업체'
+
 	</select>
-	
-	<select id = "find" parameterType="String" resultType="int">
-		select mno from management
+
+	<select id="find" parameterType="String" resultType="int">
+		select mno
+		from management
 		where m_content = #{m_content}
 	</select>
 
 	<select id="UList" parameterType="map"
 		resultType="stock_m.dto.UserDto">
 
-		select userid, username, age, gender from user where role='업체'
+		select userid, username, age, gender from user where
+		role='업체'
 	</select>
-		
+
 	<select id="UserList" parameterType="map"
 		resultType="stock_m.dto.UserDto">
 
 		select userid, username, age, gender from user
-		where username like concat ('%',#{keyword},'%') and role = '업체'
+		where
+		username like concat ('%',#{keyword},'%') and role = '업체'
 	</select>
-	
+
 	<select id="managementList" parameterType="map"
 		resultType="stock_m.dto.ManagementDto">
 
 		select mno, userid, m_val, m_content from management
-		where m_content like concat ('%',#{keyword},'%')
+		where
+		m_content like concat ('%',#{keyword},'%')
 	</select>
-	
+
+	<select id="mainList" parameterType="map"
+		resultType="stock_m.dto.ManagementDto">
+
+		select mno, userid, m_val, m_content from management where
+		m_val=true
+	</select>
+
 	<select id="maList" parameterType="map"
 		resultType="stock_m.dto.ManagementDto">
 
-		select mno, userid, m_val, m_content from management
+		select mno, userid, m_val, m_content from management where
+		m_val=false
 	</select>
-	
+
 	<delete id="delete" parameterType="int">
 		delete from management
-		where mno=#{mno}
+		where
+		mno=#{mno}
 	</delete>
-	
+
 	<update id="update" parameterType="String">
-		update management set m_val=2 where m_content=#{m_content}
+		update management set
+		m_val=false where m_content=#{m_content}
 	</update>
-	
+
 	<update id="update2" parameterType="String">
-		update management set m_val=1 where m_content=#{m_content}
+		update management set
+		m_val=true where m_content=#{m_content}
 	</update>
-	
-	<select id="check2" parameterType="String" resultType="int">
-		select m_val from management where m_content=#{m_content}
+
+	<select id="check2" parameterType="String" resultType="boolean">
+		select
+		m_val from management where m_content=#{m_content}
 	</select>
+
+	<update id="switch1" parameterType="String">
+		UPDATE user broadcast
+		JOIN management
+		ON user broadcast.userid = management.userid
+		SET user broadcast.user_aram = !user_aram
+		WHERE user broadcast.userid = #{userid}
+	</update>
 </mapper>

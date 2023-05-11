@@ -56,14 +56,13 @@
 		$(document).ready(function() {
 			$(".click").click(function() {				
 				var username = $(this).parent().siblings('.username').text();
-				alert(username);
 				$.ajax({
 				      type: 'POST',
 				      url: '/company/check',
 				      data: {'username':username},
 				      success: function(result) {
 				        if (result === false) {
-				          alert('중복된 값이 존재합니다.');
+				          alert('이미 추가된 업체입니다.');
 				        } else {
 				          location.href = "/company/insert?id=" + username;
 				        }

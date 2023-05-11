@@ -41,7 +41,7 @@
 						<td class="m_content">${management.m_content}</td>
 						<td class="m_val">${management.m_val}</td>	
 						<td><button class="click">삭제</button></td>
-						<th><button class="click2">변경</button>
+						<th><button class="click2">변경</button></th>
 					</tr>
 				</c:forEach>
 			</table>
@@ -70,19 +70,17 @@
 				$('.click2').click(
 					function(){
 						var m_content=$(this).closest('tr').find('.m_content').text();
-						console.log(m_content);
 						$.ajax({
 						      type: 'POST',
 						      url: '/company/check2',
 						      data: {'m_content' : m_content },
 						      success: function(result) {
-						        if (result === 1) {
+						        if (result === true) {
 						          location.href = "/company/update?m_content="+m_content;
 						        } else {
 						          location.href = "/company/update2?m_content="+m_content;
 						        }
 						      }
-						      
 						});
 					});
 			});

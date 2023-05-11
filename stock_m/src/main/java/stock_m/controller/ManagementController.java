@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import jakarta.servlet.http.HttpServletRequest;
 import stock_m.dto.ManagementDto;
 import stock_m.dto.UserDto;
 import stock_m.service.ManagementService;
@@ -32,44 +33,9 @@ import stock_m.service.ManagementService;
 public class ManagementController {
 	@Autowired
 	ManagementService service;
-
-	@GetMapping("/company/test")
-	public String insertmain(@RequestParam(name = "page", defaultValue = "1") int page, Model m) {
-
-		// 글이 있는지 체크
-		int count =service.count1();
-		System.out.println(count);
-
-		if (count > 0) {
-
-			int perPage = 5; // 한 페이지에 보일 글의 갯수
-			int startRow = (page - 1) * perPage;
-
-			List<UserDto> UList = service.UList(startRow); 
-			System.out.println(UList);
-			m.addAttribute("UList", UList);
-			
-			int pageNum = 5;
-			int totalPages = count / perPage + (count % perPage > 0 ? 1 : 0); // 전체 페이지 수
-
-			int begin = (page - 1) / pageNum * pageNum + 1;
-			int end = begin + pageNum - 1;
-			if (end > totalPages) {
-				end = totalPages;
-			}
-			m.addAttribute("begin", begin);
-			m.addAttribute("end", end);
-			m.addAttribute("pageNum", pageNum);
-			m.addAttribute("totalPages", totalPages);
-
-		}
-
-		m.addAttribute("count", count);
-		return "company/test";
-	}
 	
-	@GetMapping("/company/test2")
-	public String deletemain(@RequestParam(name = "page", defaultValue = "1") int page, Model m) {
+	@GetMapping("/company/management2")
+	public String main2(@RequestParam(name = "page", defaultValue = "1") int page, Model m) {
 
 		// 글이 있는지 체크
 		int count =service.count();
@@ -100,11 +66,72 @@ public class ManagementController {
 		}
 
 		m.addAttribute("count", count);
-		return "company/test2";
+		return "company/management2";
+	}
+
+	/*
+	 * @GetMapping("/company/test") public String insertmain(@RequestParam(name =
+	 * "page", defaultValue = "1") int page, Model m) {
+	 * 
+	 * // 글이 있는지 체크 int count = service.count1(); System.out.println(count);
+	 * 
+	 * if (count > 0) {
+	 * 
+	 * int perPage = 5; // 한 페이지에 보일 글의 갯수 int startRow = (page - 1) * perPage;
+	 * 
+	 * List<UserDto> UList = service.UList(startRow); System.out.println(UList);
+	 * m.addAttribute("UList", UList);
+	 * 
+	 * int pageNum = 5; int totalPages = count / perPage + (count % perPage > 0 ? 1
+	 * : 0); // 전체 페이지 수
+	 * 
+	 * int begin = (page - 1) / pageNum * pageNum + 1; int end = begin + pageNum -
+	 * 1; if (end > totalPages) { end = totalPages; } m.addAttribute("begin",
+	 * begin); m.addAttribute("end", end); m.addAttribute("pageNum", pageNum);
+	 * m.addAttribute("totalPages", totalPages);
+	 * 
+	 * }
+	 * 
+	 * m.addAttribute("count", count); return "company/test"; }
+	 */
+	
+	@GetMapping("/company/management1")
+	public String main1(@RequestParam(name = "page", defaultValue = "1") int page, Model m) {
+
+		// 글이 있는지 체크
+		int count =service.count();
+		System.out.println(count);
+
+		if (count > 0) {
+
+			int perPage = 5; // 한 페이지에 보일 글의 갯수
+			int startRow = (page - 1) * perPage;
+
+			List<ManagementDto> mainList = service.mainList(startRow); 
+			System.out.println(mainList);
+			m.addAttribute("mainList", mainList);
+			
+			int pageNum = 5;
+			int totalPages = count / perPage + (count % perPage > 0 ? 1 : 0); // 전체 페이지 수
+
+			int begin = (page - 1) / pageNum * pageNum + 1;
+			int end = begin + pageNum - 1;
+			if (end > totalPages) {
+				end = totalPages;
+			}
+			m.addAttribute("begin", begin);
+			m.addAttribute("end", end);
+			m.addAttribute("pageNum", pageNum);
+			m.addAttribute("totalPages", totalPages);
+
+		}
+
+		m.addAttribute("count", count);
+		return "company/management1";
 	}
 
 	@RequestMapping("/company/search")
-	public String list(@RequestParam(name = "page", defaultValue = "1") int page, Model m, String keyword) {
+	public String search1(@RequestParam(name = "page", defaultValue = "1") int page, Model m, String keyword) {
 
 		// 글이 있는지 체크
 		int count = service.countSearch(keyword);
@@ -136,7 +163,7 @@ public class ManagementController {
 
 		m.addAttribute("count", count);
 		
-		return "company/search1";
+		return "company/usersearch";
 	}
 
 	@RequestMapping("/company/search2")
@@ -170,22 +197,27 @@ public class ManagementController {
 		}
 
 		m.addAttribute("count", count);
-		return "company/search2";
+		return "company/managementsearch";
 	}
 	
 	@RequestMapping("/company/insert") 
 	public String insert(@RequestParam("id") String id) {
 		service.insert(id); 
-		return "redirect:/company/test2";
+		return "redirect:/company/management1";
+	 }
+	
+	@RequestMapping("/company/insert2") 
+	public String insert2(@RequestParam("id") String id) {
+		service.insert2(id); 
+		return "redirect:/company/management1";
 	 }
 	
 	@RequestMapping("/company/delete") 
-	public String delete(@RequestParam("m_content") String m_content) {
-		System.out.println(m_content);
+	public String delete(@RequestParam("m_content") String m_content,  HttpServletRequest request) {
 		int mno= service.find(m_content);
-		System.out.println(mno);
+		String url = request.getHeader("Referer");
 		service.delete(mno); 
-		return "redirect:/company/test2";
+		return "redirect:"+url;
 	 }
 	
 	@PostMapping("/company/check")
@@ -200,22 +232,31 @@ public class ManagementController {
 	}	
 
 	@GetMapping("/company/update")
-	public String update(@RequestParam("m_content") String m_content) {
+	public String update(@RequestParam("m_content") String m_content, HttpServletRequest request) {
 		service.update(m_content);
-		return "redirect:/company/test2";
+		String url = request.getHeader("Referer");
+		return "redirect:"+url;
 	}
 	
 	@GetMapping("/company/update2")
-	public String update2(@RequestParam("m_content") String m_content) {
+	public String update2(@RequestParam("m_content") String m_content,  HttpServletRequest request) {
 		service.update2(m_content);
-		return "redirect:/company/test2";
+		String url = request.getHeader("Referer");
+		return "redirect:"+url;
 	}
 	
 	@PostMapping("/company/check2")
 	@ResponseBody
-	public int check2(String m_content) {
-		int m_val =service.check2(m_content);
+	public boolean check2(String m_content) {
+		boolean m_val =service.check2(m_content);
 		System.out.println(m_val);
 		return m_val;
+	}
+	
+	@PostMapping("/company/switch")
+	@ResponseBody
+	public boolean switch1(String m_content) {
+		boolean user_aram = service.switch1(m_content);
+		return user_aram;
 	}
 }

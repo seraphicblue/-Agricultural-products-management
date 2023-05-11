@@ -35,6 +35,13 @@ public class ManagementService {
 		return dao.managementList(m);
 	}
 
+	public List<ManagementDto> mainList(int startRow) {
+		Map<String, Object> m = new HashMap<String, Object>();
+		m.put("start", startRow);
+		m.put("count", 5);
+		return dao.mainList(m);
+	}
+	
 	public List<ManagementDto> maList(int start) {
 		Map<String, Object> m = new HashMap<String, Object>();
 		m.put("start", start);
@@ -49,6 +56,10 @@ public class ManagementService {
 	public int insert(String id) {
 		return dao.insert(id);
 
+	}
+
+	public int insert2(String id) {
+		return dao.insert2(id);
 	}
 
 	public int find(String m_content) {
@@ -97,8 +108,15 @@ public class ManagementService {
 		return dao.update2(m_content);
 	}
 
-	public int check2(String m_content) {
+	public boolean check2(String m_content) {
 		return dao.check2(m_content);
 	}
+
+	public boolean switch1(String m_content) {
+		return dao.switch1(m_content);
+	}
+
+	
+	
 
 }

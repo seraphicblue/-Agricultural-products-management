@@ -6,6 +6,6 @@ import lombok.Data;
 public class ManagementDto {
 	private int mno;
 	private String userid;
-	private int m_val;
+	private boolean m_val;
 	private String m_content;
 }

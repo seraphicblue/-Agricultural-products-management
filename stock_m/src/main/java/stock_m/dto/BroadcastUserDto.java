@@ -1,5 +1,12 @@
 package stock_m.dto;
 
-public class BroadcastUserDto {
+import lombok.Data;
 
+@Data
+public class BroadcastUserDto {
+	private String userid;
+	private String com_selec;
+	private String user_selec;
+	private String user_price;
+	private boolean user_aram;
 }
