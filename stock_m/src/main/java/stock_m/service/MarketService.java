@@ -36,6 +36,14 @@ public class MarketService {
 		return dao.detailProduct(pno);
 	}
 	
+	public int cartCount(String userid) {
+		return dao.cartCount(userid);
+	}
+	
+	public int cartPrice(String userid) {
+		return dao.cartPrice(userid);
+	}
+	
 	public List<Map<String,Object>> searchP_val(int p_val) {
 		return dao.searchP_val(p_val);
 	}
@@ -116,6 +124,16 @@ public class MarketService {
 		upmap.put("p_count", p_count);
 		upmap.put("bcount", bcount);
 		return dao.updateProduck(upmap);
+	}
+	
+	public int updateRevenue(int ssum, int profit, int price, int bcount, String suserid) {
+		Map<String, Object> urmap = new HashMap<>();
+		urmap.put("ssum", ssum);
+		urmap.put("profit", profit);
+		urmap.put("price", price);
+		urmap.put("bcount", bcount);
+		urmap.put("suserid", suserid);
+		return dao.updateRevenue(urmap);
 	}
 	
 }

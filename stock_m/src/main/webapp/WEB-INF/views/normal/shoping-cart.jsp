@@ -44,7 +44,7 @@
     <div class="humberger__menu__overlay"></div>
     <div class="humberger__menu__wrapper">
         <div class="humberger__menu__logo">
-            <a href="#"><img src="img/logo.png" alt=""></a>
+            <a href="#"><img src="../img/logo.png" alt=""></a>
         </div>
         <div class="humberger__menu__cart">
             <ul>
@@ -119,9 +119,9 @@
                                     <a href="#"><i class="fa fa-user"></i> Logout</a>
                                 </div>
                             </li>
-                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                            <li><a href="../cart/test1"><i class="fa fa-shopping-bag"></i> <span id="ccount">${ccount}</span></a></li>
                         </ul>
-                        <div class="header__cart__price">item: <span>$150</span></div>
+                        <div class="header__cart__price">총 액: <span id="cprice">${cprice}원</span></div>
                     </div>
                 </div>
             </div>
@@ -211,8 +211,10 @@
                             <c:forEach items="${cart}" var="cart" varStatus="status">	
                                 <tr>
                                     <td class="shoping__cart__item">
+                                        <a href="../details/${cart.product_pno}">
                                         <img src="../img/cart/cart-1.jpg" alt="">
                                         <h5>${cart.name}</h5>
+                                        </a>
                                     </td>
                                     <td class="shoping__cart__price" id="${cart.product_pno}price">
                                         ${cart.price}원
@@ -235,12 +237,14 @@
                                     </td>
                                 </tr>
                                 <input id="userid" value="test1" hidden="hidden">
-                                <input id="${status.count}suserid" value="${cart.userid}" hidden="hidden">
-                                <input id="${status.count}pno" value="${cart.product_pno}" hidden="hidden">
-                                <input id="${status.count}price" value="${cart.price}" hidden="hidden">
-                                <input id="${status.count}bcount" value="${cart.count}" name="${cart.product_pno}bcount" hidden="hidden">
-                                <input id="${status.count}s_volume" value="${cart.s_volume}" hidden="hidden">
-                                <input id="${status.count}p_count" value="${cart.p_count}" hidden="hidden">
+                                <input id="h${status.count}suserid" value="${cart.userid}" hidden="hidden">
+                                <input id="h${status.count}pno" value="${cart.product_pno}" hidden="hidden">
+                                <input id="h${status.count}price" value="${cart.price}" hidden="hidden">
+                                <input id="h${status.count}bcount" value="${cart.count}" name="${cart.product_pno}bcount" hidden="hidden">
+                                <input id="h${status.count}s_volume" value="${cart.s_volume}" hidden="hidden">
+                                <input id="h${status.count}p_count" value="${cart.p_count}" hidden="hidden">
+                                <input id="h${status.count}ssum" value="${cart.ssum}" hidden="hidden">
+                                <input id="h${status.count}profit" value="${cart.profit}" hidden="hidden">
                                 <c:set var="total" value="${total + cart.price*cart.count}"/>
                                 <c:set var="fina" value="${status.count}"/>
                             </c:forEach>                          
@@ -251,27 +255,25 @@
                         <script>
                         	function vi(obj){
                         		var str = obj;
-                        		let idc = str.split(' ');                        		
+                        		let idc = str.split(' ');
                         		if(idc[1] == '+'){
-                        			document.getElementById(idc[0]).value=parseInt(document.getElementById(idc[0]).value)+parseInt(1);    
-                        			document.getElementById("total").textContent = parseInt(document.getElementById("total").textContent) + parseInt(document.getElementById(idc[0]+"price").value)+"원";
+                        			document.getElementById(idc[0]).value=parseInt(document.getElementById(idc[0]).value)+parseInt(1);   
+                        			
+                        			document.getElementById("total").textContent = parseInt(document.getElementById("total").textContent) + parseInt(document.getElementById(idc[0]+"price").textContent)+"원";
                         			document.getElementsByName(idc[0] + "bcount")[0].value = document.getElementById(idc[0]).value;
                         		}else if(idc[1] == '-'){
                         			if(parseInt(document.getElementById(idc[0]).value) > 0){
                         				document.getElementById(idc[0]).value=parseInt(document.getElementById(idc[0]).value)-parseInt(1);
-                        				document.getElementById("total").textContent = parseInt(document.getElementById("total").textContent) - parseInt(document.getElementById(idc[0]+"price").value)+"원";
+                        				document.getElementById("total").textContent = parseInt(document.getElementById("total").textContent) - parseInt(document.getElementById(idc[0]+"price").textContent)+"원";
                         				document.getElementsByName(idc[0] + "bcount")[0].value = document.getElementById(idc[0]).value;
                         			}else {
                         				parseInt(document.getElementById(idc[0]).value) = 0;
                         				document.getElementsByName(idc[0] + "bcount")[0].value = 0;
                         			}   
                         			
-                        		}              
-                        		console.log(parseInt(document.getElementById(idc[0]).value));
-                        		console.log(parseInt(document.getElementById(idc[0]+"price").value));
-                        		document.getElementById(idc[0]+"total").textContent = parseInt(document.getElementById(idc[0]).value) * parseInt(document.getElementById(idc[0]+"price").value)+"원"; 
-                       	
-                        		
+                        		}
+                        		document.getElementById(idc[0]+"total").textContent = parseInt(document.getElementById(idc[0]).value) * parseInt(document.getElementById(idc[0]+"price").textContent)+"원";                       	
+                        		document.getElementById(idc[0]+"oldcount").value = document.getElementById(idc[0]).value;
                         		document.getElementById("total").textContent = document.getElementById("total").textContent;
                         		
                         		//console.log(document.getElementById("total").textContent)
@@ -305,7 +307,12 @@
                        			document.getElementById(id).value = ncount; 
                        			document.getElementById("total").textContent = parseInt(document.getElementById("total").textContent) + parseInt(document.getElementById(id+"price").textContent)*(ncount - ocount) +"원";
                        			document.getElementById(oid+"oldcount").value = ncount;
-                        		document.getElementById("total").textContent = document.getElementById("total").textContent;
+                       			document.getElementById("total").textContent = document.getElementById("total").textContent;
+                       			var fin = "${fina}"; 
+                        		for(var i = 1; i < parseInt(fin)+1; i++){
+                        			document.getElementById("h"+i+"bcount").value = ncount
+                        		}                        			
+                        		
                         		var params = {
 										userid : $("#userid").val()
 					                    , count : ncount
@@ -392,13 +399,15 @@
                         		for(var i = 1; i < parseInt(fin)+1; i++){
                         			var buy = {
                         					userid : $("#userid").val()
-                        					, suserid : document.getElementById(i+"suserid").value
-        				                    , bcount : document.getElementById(i+"bcount").value
-        				                    , pno : document.getElementById(i+"pno").value
-        				                    , price : document.getElementById(i+"price").value
+                        					, suserid : document.getElementById("h"+i+"suserid").value
+        				                    , bcount : document.getElementById("h"+i+"bcount").value
+        				                    , pno : document.getElementById("h"+i+"pno").value
+        				                    , price : document.getElementById("h"+i+"price").value
         				                    , bdate : now
-        				                    , s_volume : document.getElementById(i+"s_volume").value
-        				                    , p_count : document.getElementById(i+"p_count").value
+        				                    , s_volume : document.getElementById("h"+i+"s_volume").value
+        				                    , p_count : document.getElementById("h"+i+"p_count").value
+        				                    , ssum : document.getElementById("h"+i+"ssum").value
+        				                    , profit : document.getElementById("h"+i+"profit").value
                         			};
                         			(function(i) {
                 			            	$.ajax({

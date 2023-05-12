@@ -9,6 +9,7 @@
    api     : x
 -->
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -39,7 +40,6 @@
     <div id="preloder">
         <div class="loader"></div>
     </div>
-    
     <!-- Humberger Begin -->
     <div class="humberger__menu__overlay"></div>
     <div class="humberger__menu__wrapper">
@@ -103,7 +103,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="market"><img src="img/logo.png" alt=""></a>
+                        <a href="/market"><img src="img/logo.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -112,13 +112,13 @@
                     <div class="header__cart">
                         <ul>
                             <li>
-                            <div class="header__top__right__auth">
-                                <a href="#"><i class="fa fa-user"></i> Logout</a>
-                            </div>
-                        </li>
-                            <li><a href="cart/test1"><i class="fa fa-shopping-bag"></i> <span>장바구니안에 상품수</span></a></li>
+                            	<div class="header__top__right__auth">
+                               		<a href="#"><i class="fa fa-user"></i> Logout</a>
+                           	 	</div>
+                       		</li>
+                            <li><a href="cart/test1"><i class="fa fa-shopping-bag"></i> <span id="ccount">${ccount}</span></a></li>
                         </ul>
-                        <div class="header__cart__price">item: <span>$150</span></div>
+                        <div class="header__cart__price">총 액: <span id="cprice">${cprice}원</span></div>
                     </div>
                 </div>
             </div>
@@ -127,6 +127,8 @@
             </div>
         </div>
     </header>
+    
+    
     <!-- Header Section End -->
 
     <!-- Hero Section Begin -->
@@ -181,31 +183,15 @@
         <div class="container">
             <div class="row">
                 <div class="categories__slider owl-carousel">
+                <c:forEach items="${list}" var="p">
                     <div class="col-lg-3">
+                    	<a href="../details/${p.pno}">
                         <div class="categories__item set-bg" data-setbg="img/categories/cat-1.jpg">
-                            <h5><a href="#">Fresh Fruit</a></h5>
+                            <h5>${p.pname}</h5>
                         </div>
+                        </a>
                     </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="img/categories/cat-2.jpg">
-                            <h5><a href="#">Dried Fruit</a></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="img/categories/cat-3.jpg">
-                            <h5><a href="#">Vegetables</a></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="img/categories/cat-4.jpg">
-                            <h5><a href="#">drink fruits</a></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="img/categories/cat-5.jpg">
-                            <h5><a href="#">drink fruits</a></h5>
-                        </div>
-                    </div>
+                </c:forEach>    
                 </div>
             </div>
         </div>
@@ -250,8 +236,22 @@
     <script src="js/jquery.slicknav.js"></script>
     <script src="js/mixitup.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
-
+    <script src="js/main.js"></script>	
+    <!-- <script>
+        $('document').ready(function () {
+        	console.log("aaa");
+            $.ajax({
+                type: "get",	
+                url: "/cartcount"   
+                
+            }).done(function(response){  
+            	
+            	document.getElementById("ccount").textContent = reponse.ccount;
+            	document.getElementById("cprice").textContent = reponse.cprice;
+            });
+            console.log(document.getElementById("ccount").textContent);
+        });
+    </script> -->
     
 
 </body>

@@ -110,9 +110,9 @@
                                     <a href="../#"><i class="fa fa-user"></i> Logout</a>
                                 </div>
                             </li>
-                            <li><a href="../#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                            <li><a href="../cart/test1"><i class="fa fa-shopping-bag"></i> <span id="ccount">${ccount}</span></a></li>
                         </ul>
-                        <div class="header__cart__price">item: <span>$150</span></div>
+                        <div class="header__cart__price">총 액: <span id="cprice">${cprice}원</span></div>
                     </div>
                 </div>
             </div>

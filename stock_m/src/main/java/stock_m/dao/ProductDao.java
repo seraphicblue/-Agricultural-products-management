@@ -32,13 +32,19 @@ public interface ProductDao {
 	@Select("select * from product where pno = #{pno}")
 	public Map<String,Object> detailProduct(int pno);
 	
+	@Select("select count(userid) from cart where userid = #{userid}")
+	public int cartCount(String userid);
+	
+	@Select("select sum(count*price) from cart where userid = #{userid}")
+	public int cartPrice(String userid);
+	
 	@Select("select * from product where p_val = #{p_val}")
 	public List<Map<String,Object>> searchP_val(int p_val);
 	
 	@Insert("INSERT INTO cart(userid,product_pno,count,price,name) values(#{userid},#{product_pno},#{count},#{price},#{name})")
 	public int addCart(Cart cart);
 	
-	@Select("select product_pno, count, product.price, name, stock.userid, s_volume, p_count from cart inner join stock inner join product on cart.product_pno = stock.sno and cart.product_pno = product.pno where cart.userid = #{userid}")
+	@Select("select product_pno, count, product.price, name, stock.userid, s_volume, p_count, ssum, profit from cart inner join stock inner join product inner join revenue on cart.product_pno = stock.sno and cart.product_pno = product.pno and stock.userid = revenue.userid  where cart.userid = #{userid}")
 	public List<Map<String,Object>> userCart(String userid);
 	
 	@Select("select * from product")
@@ -73,5 +79,8 @@ public interface ProductDao {
 	
 	@Update("update product set p_count = #{p_count}-#{bcount} where pno = #{pno}")
 	public int updateProduck(Map<String, Object> upmap);
+	
+	@Update("update revenue set ssum = #{ssum}+(#{price}*#{bcount}), profit = #{profit}+(#{price}*#{bcount}) where userid = #{suserid}")
+	public int updateRevenue(Map<String, Object> urmap);
 	
 }
