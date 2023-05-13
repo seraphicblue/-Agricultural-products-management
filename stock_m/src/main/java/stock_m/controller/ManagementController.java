@@ -36,8 +36,11 @@ public class ManagementController {
 	
 	@GetMapping("/company/management2")
 	public String main2(@RequestParam(name = "page", defaultValue = "1") int page, Model m) {
+	//업체 리스트 받아오기 controller들
+	//main1 ,main2, countSearch
+	//위 컨트롤러들은 매핑된 경로로 요청이 들어오면 실행 됩니다.
 
-		// 글이 있는지 체크
+		// 글이 있는지 체크하기위해 service에 count메서드를 실행
 		int count =service.count();
 		System.out.println(count);
 
@@ -45,7 +48,7 @@ public class ManagementController {
 
 			int perPage = 5; // 한 페이지에 보일 글의 갯수
 			int startRow = (page - 1) * perPage;
-
+			//출력될 글의 수에 맞게 maList를 추가
 			List<ManagementDto> maList = service.maList(startRow); 
 			System.out.println(maList);
 			m.addAttribute("maList", maList);
@@ -66,6 +69,7 @@ public class ManagementController {
 		}
 
 		m.addAttribute("count", count);
+		//실행이 완료되면 company/management2 페이지로 
 		return "company/management2";
 	}
 
@@ -133,7 +137,7 @@ public class ManagementController {
 	@RequestMapping("/company/search")
 	public String search1(@RequestParam(name = "page", defaultValue = "1") int page, Model m, String keyword) {
 
-		// 글이 있는지 체크
+		// 글이 있는지 체크 해당요청에서는 keyword를 글이 있는지를 
 		int count = service.countSearch(keyword);
 
 		if (count > 0) {
@@ -202,7 +206,9 @@ public class ManagementController {
 	
 	@RequestMapping("/company/insert") 
 	public String insert(@RequestParam("id") String id) {
+		//요청 파라미터 값 id를 받아오고 service에 넘겨줌
 		service.insert(id); 
+		//redirec:/+url를 사용해서 현재 페이지를 다시 요청
 		return "redirect:/company/management1";
 	 }
 	
@@ -215,6 +221,7 @@ public class ManagementController {
 	@RequestMapping("/company/delete") 
 	public String delete(@RequestParam("m_content") String m_content,  HttpServletRequest request) {
 		int mno= service.find(m_content);
+		//HttpServletRequest을 이용해 현재 페이지의 접속 경로를 받아 저장
 		String url = request.getHeader("Referer");
 		service.delete(mno); 
 		return "redirect:"+url;
@@ -225,6 +232,7 @@ public class ManagementController {
 	public boolean check(String username) {
 		int count =service.check(username);
 		if(count == 0) {
+			//ajax에서 result타입을 boolean type으로 받기 때문에 필요한 boolean 타입을 return
 			return true;
 		}else {
 			return false;

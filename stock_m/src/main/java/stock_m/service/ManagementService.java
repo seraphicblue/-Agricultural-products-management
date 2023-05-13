@@ -21,7 +21,7 @@ import org.springframework.stereotype.Service;
 import stock_m.dao.ManagementDao;
 import stock_m.dto.ManagementDto;
 import stock_m.dto.UserDto;
-
+//dao(bean)객체에 mapper를 이용해 받아온 값들을 저장
 @Service
 public class ManagementService {
 	@Autowired

@@ -18,7 +18,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import stock_m.dto.ManagementDto;
 import stock_m.dto.UserDto;
-
+// db에 접근하기 위한 객체 생성 
 @Mapper
 public interface ManagementDao {
 
