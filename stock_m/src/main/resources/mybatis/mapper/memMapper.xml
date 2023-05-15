@@ -6,7 +6,7 @@
 	<insert id="insert" parameterType="List">
 		insert into
 		management(userid,m_val,m_content)
-		values('testcompany1',true,#{username})
+		values('testcompany2',true,#{username})
 	</insert>
 
 	<insert id="insert2" parameterType="List">
@@ -41,7 +41,7 @@
 	<select id="find" parameterType="String" resultType="int">
 		select mno
 		from management
-		where m_content = #{m_content}
+		where m_content = #{m_content} and userid=#{userid}
 	</select>
 
 	<select id="UList" parameterType="map"
@@ -71,8 +71,8 @@
 		resultType="stock_m.dto.ManagementDto">
 
 		select mno, userid, m_val, m_content from management where
-		m_val=true
-	</select>
+		m_val=true 	
+		</select>
 
 	<select id="maList" parameterType="map"
 		resultType="stock_m.dto.ManagementDto">
@@ -84,22 +84,22 @@
 	<delete id="delete" parameterType="int">
 		delete from management
 		where
-		mno=#{mno}
+		mno=#{mno} 
 	</delete>
 
 	<update id="update" parameterType="String">
 		update management set
-		m_val=false where m_content=#{m_content}
+		m_val=false where m_content=#{m_content} and userid=#{userid}
 	</update>
 
 	<update id="update2" parameterType="String">
 		update management set
-		m_val=true where m_content=#{m_content}
+		m_val=true where m_content=#{m_content} and userid=#{userid}
 	</update>
 
 	<select id="check2" parameterType="String" resultType="boolean">
 		select
-		m_val from management where m_content=#{m_content}
+		m_val from management where m_content=#{m_content} and userid=#{userid}
 	</select>
 
 	<update id="switch1" parameterType="String">
@@ -109,4 +109,5 @@
 		SET user broadcast.user_aram = !user_aram
 		WHERE user broadcast.userid = #{userid}
 	</update>
+	
 </mapper>

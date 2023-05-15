@@ -219,8 +219,9 @@ public class ManagementController {
 	 }
 	
 	@RequestMapping("/company/delete") 
-	public String delete(@RequestParam("m_content") String m_content,  HttpServletRequest request) {
-		int mno= service.find(m_content);
+	public String delete(@RequestParam("m_content") String m_content, @RequestParam("userid") String userid, HttpServletRequest request) {
+		System.out.println(userid);
+		int mno= service.find(m_content, userid);
 		//HttpServletRequest을 이용해 현재 페이지의 접속 경로를 받아 저장
 		String url = request.getHeader("Referer");
 		service.delete(mno); 
@@ -240,26 +241,28 @@ public class ManagementController {
 	}	
 
 	@GetMapping("/company/update")
-	public String update(@RequestParam("m_content") String m_content, HttpServletRequest request) {
-		service.update(m_content);
+	public String update(@RequestParam("m_content") String m_content,@RequestParam("userid") String userid, HttpServletRequest request) {
+		service.update(m_content,userid);
 		String url = request.getHeader("Referer");
 		return "redirect:"+url;
 	}
 	
 	@GetMapping("/company/update2")
-	public String update2(@RequestParam("m_content") String m_content,  HttpServletRequest request) {
-		service.update2(m_content);
+	public String update2(@RequestParam("m_content") String m_content,@RequestParam("userid") String userid, HttpServletRequest request) {
+		service.update2(m_content, userid);
 		String url = request.getHeader("Referer");
 		return "redirect:"+url;
 	}
 	
 	@PostMapping("/company/check2")
 	@ResponseBody
-	public boolean check2(String m_content) {
-		boolean m_val =service.check2(m_content);
+	public boolean check2(String m_content, String userid) {
+		System.out.println(m_content);
+		boolean m_val =service.check2(m_content, userid);
 		System.out.println(m_val);
 		return m_val;
 	}
+	
 	
 	@PostMapping("/company/switch")
 	@ResponseBody

@@ -12,14 +12,17 @@ import stock_m.component.KamisApiCaller;
 @Controller
 public class ApiController {
 
-    @Autowired
-    private KamisApiCaller kamisApiCaller;
+	@Autowired
+	private KamisApiCaller kamisApiCaller;
 
-    @GetMapping("company/price")
-    public String showPrice(Model model) {
-        JSONObject json = kamisApiCaller.getDailyPriceByCategoryList();
-        JSONArray items = json.getJSONObject("document").getJSONObject("data").getJSONArray("item");
+	@GetMapping("company/price")
+	public String showPrice(Model model) throws Exception {
+		
 		/*
+		 * kamisApiCaller.getDailyPriceByCategoryList(); JSONObject json =
+		 * kamisApiCaller.getDailyPriceByCategoryList(); JSONArray items =
+		 * json.getJSONObject("document").getJSONObject("data").getJSONArray("item");
+		 * 
 		 * JSONArray arr = new JSONArray(); for (int i = 0; i < items.length(); i++) {
 		 * JSONObject item = items.getJSONObject(i); String itemName =
 		 * item.getString("item_name"); String unit = item.getString("unit"); String
@@ -27,13 +30,16 @@ public class ApiController {
 		 * 
 		 * 
 		 * 
-		 * // 가격 정보를 문자열로 합칩니다. String prices = String.format("%s(%s): %s", itemName,
+		 *  가격 정보를 문자열로 합칩니다. String prices = String.format("%s(%s): %s", itemName,
 		 * unit, dpr1); System.out.println("this is data : " + prices); arr.put(prices);
 		 * 
-		 * // JSP 모델에 가격 정보를 추가합니다. //System.out.println("저기는 : "+prices); }
-		 */
-        model.addAttribute("priceData", items);
-        System.out.println("controller END");
-        return "company/price";
-    }
+		 *  JSP 모델에 가격 정보를 추가합니다. //System.out.println("저기는 : "+prices); }
+		 * 
+		 *  model.addAttribute("priceData", items);
+		 */ 
+		kamisApiCaller.DailyPriceByCategoryList();
+		System.out.println("controller END");
+		return "company/price";
+	}
+
 }
