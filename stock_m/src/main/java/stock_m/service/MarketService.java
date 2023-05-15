@@ -1,8 +1,8 @@
 /*
-   Date    : 2023.05.11
+   Date    : 2023.05.15
    name    : MarketService
    type    : Service
-   ver     : 3.0
+   ver     : 4.0
    conect  : MarketController,ProductDao
    content : 판매사이트 서비스
    writer  : 김기덕
@@ -30,6 +30,10 @@ public class MarketService {
 	
 	public List<Map<String,Object>> searchPname(String pname) {
 		return dao.searchPname(pname);
+	}
+	
+	public int countProduct(String pname) {
+		return dao.countProduct(pname);
 	}
 	
 	public Map<String,Object> detailProduct(int pno) {

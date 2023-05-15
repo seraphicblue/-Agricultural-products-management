@@ -29,6 +29,9 @@ public interface ProductDao {
 	//@Select("select * from product")
 	public List<Map<String,Object>> searchPname(String pname);
 	
+	@Select("select count(*) from product where pname like concat('%',#{pname},'%')")
+	public int countProduct(String pname);
+	
 	@Select("select * from product where pno = #{pno}")
 	public Map<String,Object> detailProduct(int pno);
 	
@@ -48,7 +51,7 @@ public interface ProductDao {
 	public List<Map<String,Object>> userCart(String userid);
 	
 	@Select("select * from product")
-	public List<Map<String,Object>> allProduct();
+	public List<Map<String,Object>> allProduct();	
 	
 	@Update("update cart set count = #{count} where userid = #{userid} and product_pno = #{product_pno}")
 	public int countChange(Map<String, Object> map);
