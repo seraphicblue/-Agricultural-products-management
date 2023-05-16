@@ -1,8 +1,8 @@
 <%--      
-   Date    : 2023.05.15
+   Date    : 2023.05.16
    name    : shop-details
    type    : form
-   ver     : 4.0
+   ver     : 5.0
    conect  : MarketController
    content : 상품의 상세페이지
    writer  : 김기덕
@@ -56,7 +56,7 @@
                                     <a href="#"><i class="fa fa-user"></i> Logout</a>
                                 </div>
                             </li>
-                            <li><a href="../cart/test1"><i class="fa fa-shopping-bag"></i> <span id="ccount">${ccount}</span></a></li>
+                            <li><a href="../cart/${nuserid}"><i class="fa fa-shopping-bag"></i> <span id="ccount">${ccount}</span></a></li>
                         </ul>
                         <div class="header__cart__price">총 액: <span id="cprice">${cprice}원</span></div>
                     </div>
@@ -180,7 +180,7 @@
                                 </div>
                             </div>
                         </div>                        
-							<input id="userid" value="test1" hidden="hidden">
+							<input id="userid" value="${nuserid}" hidden="hidden">
 							<input id="product_pno" value="${product.pno}" hidden="hidden">
 							<input id="price" value="${product.price}" hidden="hidden">
 							<input id="name" value="${product.pname}" hidden="hidden">
@@ -188,7 +188,7 @@
 							<a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
 							
 						<script>
-							function carton(){								
+							function carton(){
 								var params = {
 										userid : $("#userid").val()
 					                    , product_pno : $("#product_pno").val()
@@ -203,7 +203,7 @@
 										data:params
 									}).done(function(reponse){
 										if(confirm('장바구니로 이동하시겠습니까?')){
-											window.location.replace('../cart/test1');
+											window.location.replace('../cart/${nuserid}');
 										}else{
 											return false;
 										}

@@ -8,9 +8,9 @@ import stock_m.dto.UserDto;
 
 @Mapper
 public interface UserDao {
-	@Select("select * from users where userid = #{userid}")
-	UserDto findById(String id);
+	@Select("select * from user where userid = #{userid}")
+	UserDto findById(String userid);
 	
-	@Insert("insert into users values (#{userid}, #{userpw}, #{gender}, #{age}, #{username},#{role},#{enabled})")
+	@Insert("insert into user values (#{userid}, #{userpw}, #{gender}, #{age}, #{username},#{role},#{enabled})")
 	int insertUser(UserDto user);
 }

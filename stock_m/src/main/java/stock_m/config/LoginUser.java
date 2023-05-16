@@ -8,18 +8,18 @@ import stock_m.dto.UserDto;
 public class LoginUser extends User{
 	private static final long serialVersionUID = 1L;
 	
-	private UserDto users;
+	private UserDto user;
 	
-	public LoginUser(UserDto users) {
-	    super(users.getUserid(), users.getUserpw(), AuthorityUtils.createAuthorityList(users.getRole().toString()));
-	    this.users = users;
+	public LoginUser(UserDto user) {
+	    super(user.getUserid(), "{noop}"+user.getUserpw(), AuthorityUtils.createAuthorityList(user.getRole().toString()));
+	    this.user = user;
 	}
 	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 	
-	public UserDto getUsers() {
-		return users;
+	public UserDto getUser() {
+		return user;
 	}
 }

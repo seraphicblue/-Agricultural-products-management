@@ -1,8 +1,8 @@
 /**
-   Date    : 2023.05.15
+   Date    : 2023.05.16
    name    : MarketController
    type    : Controller
-   ver     : 4.0
+   ver     : 5.0
    conect  : MarketService
    content : 판매사이트 컨트롤러
    writer  : 김기덕
@@ -10,13 +10,12 @@
 */
 package stock_m.controller;
 
+import java.security.Principal;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -24,9 +23,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import stock_m.dto.Cart;
 import stock_m.service.MarketService;
 
@@ -34,30 +33,33 @@ import stock_m.service.MarketService;
 public class MarketController {
 	
 	@Autowired
-	MarketService service;
+	MarketService service;		
 	
-	@GetMapping("/market") //판매사이트 로그인시 메인화면
-	public String mform(String userid, Model m) {
-		List<Map<String,Object>> list = service.allProduct();
-		m.addAttribute("list", list);
-		int cprice =0;
-		int ccount = service.cartCount("test1");
-		m.addAttribute("ccount", ccount);
-		if(ccount == 0) {
-			cprice = 0;
-		}
-		else if(ccount > 0) {
-			cprice = service.cartPrice("test1");
-		}			
-		m.addAttribute("cprice", cprice);
-		return "normal/marketform";
+	@GetMapping("/market") // 판매사이트 로그인시 메인화면
+	public String mform(Model m, HttpServletRequest request, Principal principal) {
+		String userid = principal.getName();
+		HttpSession session = request.getSession();
+		session.setAttribute("userid", userid);
+
+	    List<Map<String, Object>> list = service.allProduct();
+	    m.addAttribute("list", list);
+	    int cprice = 0;
+	    int ccount = service.cartCount(userid);
+	    m.addAttribute("ccount", ccount);
+	    if (ccount == 0) {
+	        cprice = 0;
+	    } else if (ccount > 0) {
+	        cprice = service.cartPrice(userid);
+	    }
+	    m.addAttribute("cprice", cprice);
+	    return "normal/marketform";
 	}
 	
 	/*
 	 * @GetMapping("/cartcount")
 	 * 
 	 * @ResponseBody() public String mlform(String userid) { int ccount =
-	 * service.cartCount("test1"); int cprice = service.cartPrice("test1");
+	 * service.cartCount("${nuserid}"); int cprice = service.cartPrice("${nuserid}");
 	 * Map<String, Object> map = new HashMap<>(); map.put("ccount", ccount);
 	 * map.put("cprice", cprice); JSONObject jo = new JSONObject(map); return
 	 * jo.toString(); }
@@ -71,19 +73,24 @@ public class MarketController {
 	}
 	
 	@PostMapping("/search")// 메인화면 검색기능, 받아올건 이름이랑 가격만으로도 됨(pname, price)
-	public String sform(String userid, String pname, Model m) {
+	public String sform(String pname, Model m, HttpServletRequest request, Principal principal) {
+		String userid = principal.getName();
+		HttpSession session = request.getSession();
+		session.setAttribute("userid", userid);
+        
 		int cprice =0;
-		int ccount = service.cartCount("test1");
+		int ccount = service.cartCount(userid);
 		m.addAttribute("ccount", ccount);
 		if(ccount == 0) {
 			cprice = 0;
 		}
 		else if(ccount > 0) {
-			cprice = service.cartPrice("test1");
-		}			
+			cprice = service.cartPrice(userid);
+		}				
 		m.addAttribute("cprice", cprice);
 		m.addAttribute("pname", pname);
-		int cproduct = service.countProduct(pname);
+		int p_val = 0;
+		int cproduct = service.countProduct(pname, p_val);
 		m.addAttribute("cproduct", cproduct);
 		List<Map<String,Object>> list = service.searchPname(pname);
 		m.addAttribute("list", list);
@@ -91,19 +98,26 @@ public class MarketController {
 	}
 	
 	@GetMapping("/search/{p_val}")// 상품분류코드 별로 검색 기능, 받아올건 이름이랑 가격만으로도 됨(pname, price)
-	public String svform(String userid, String pname, @PathVariable int p_val, Model m) {
+	public String svform(String pname, @PathVariable int p_val, Model m, HttpServletRequest request, Principal principal) {
+		String userid = principal.getName();
+		HttpSession session = request.getSession();
+		session.setAttribute("nuserid", userid);
+        
 		int cprice =0;
-		int ccount = service.cartCount("test1");
+		int ccount = service.cartCount(userid);
 		m.addAttribute("ccount", ccount);
 		if(ccount == 0) {
 			cprice = 0;
 		}
 		else if(ccount > 0) {
-			cprice = service.cartPrice("test1");
-		}			
+			cprice = service.cartPrice(userid);
+		}				
 		m.addAttribute("cprice", cprice);
 		m.addAttribute("p_val", p_val);
-		int cproduct = service.countProduct(pname);
+		System.out.println(p_val);
+		int cproduct = service.countProduct(pname, p_val);
+		System.out.println(pname);
+		System.out.println(cproduct);
 		m.addAttribute("cproduct", cproduct);
 		List<Map<String,Object>> list = service.searchP_val(p_val);
 		m.addAttribute("list", list);
@@ -111,15 +125,19 @@ public class MarketController {
 	}
 	
 	@GetMapping("/details/{pno}") // 특정상품 클릭시 그 상품 상세페이지로 이동
-	public String sdform(String userid, @PathVariable int pno, Model m) {
+	public String sdform(@PathVariable int pno, Model m, HttpServletRequest request, Principal principal) {
+		String userid = principal.getName();
+		HttpSession session = request.getSession();
+		session.setAttribute("userid", userid);
+        
 		int cprice =0;
-		int ccount = service.cartCount("test1");
+		int ccount = service.cartCount(userid);
 		m.addAttribute("ccount", ccount);
 		if(ccount == 0) {
 			cprice = 0;
 		}
 		else if(ccount > 0) {
-			cprice = service.cartPrice("test1");
+			cprice = service.cartPrice(userid);
 		}			
 		m.addAttribute("cprice", cprice);
 		Map<String,Object> product = service.detailProduct(pno);
@@ -134,15 +152,19 @@ public class MarketController {
 	}
 	
 	@GetMapping("/cart/{userid}") // 유저아이디로 그 유저의 카트 목록을 가져오는 기능
-	public String cform(@PathVariable String userid, Model m) {
+	public String cform(Model m, HttpServletRequest request, Principal principal) {
+		String userid = principal.getName();
+		HttpSession session = request.getSession();
+		session.setAttribute("userid", userid);
+        
 		int cprice =0;
-		int ccount = service.cartCount("test1");
+		int ccount = service.cartCount(userid);
 		m.addAttribute("ccount", ccount);
 		if(ccount == 0) {
 			cprice = 0;
 		}
 		else if(ccount > 0) {
-			cprice = service.cartPrice("test1");
+			cprice = service.cartPrice(userid);
 		}			
 		m.addAttribute("cprice", cprice);
 		List<Map<String,Object>> cart = service.userCart(userid);

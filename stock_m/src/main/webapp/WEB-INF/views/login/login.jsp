@@ -45,7 +45,7 @@
                                     <form class="user" method="post">
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user"
-                                                id="exampleInputEmail" name="userid" aria-describedby="emailHelp"
+                                                id="exampleInputEmail" name="username" aria-describedby="emailHelp"
                                                 placeholder="아이디">
                                         </div>
                                         <div class="form-group">

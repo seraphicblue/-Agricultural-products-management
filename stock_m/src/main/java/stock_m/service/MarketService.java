@@ -1,8 +1,8 @@
 /*
-   Date    : 2023.05.15
+   Date    : 2023.05.16
    name    : MarketService
    type    : Service
-   ver     : 4.0
+   ver     : 5.0
    conect  : MarketController,ProductDao
    content : 판매사이트 서비스
    writer  : 김기덕
@@ -15,7 +15,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,20 +31,23 @@ public class MarketService {
 		return dao.searchPname(pname);
 	}
 	
-	public int countProduct(String pname) {
-		return dao.countProduct(pname);
+	public int countProduct(String pname, int p_val) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("pname", pname);
+		map.put("p_val", p_val);
+		return dao.countProduct(map);
 	}
 	
 	public Map<String,Object> detailProduct(int pno) {
 		return dao.detailProduct(pno);
 	}
 	
-	public int cartCount(String userid) {
-		return dao.cartCount(userid);
+	public int cartCount(String memberId) {
+		return dao.cartCount(memberId);
 	}
 	
-	public int cartPrice(String userid) {
-		return dao.cartPrice(userid);
+	public int cartPrice(String memberId) {
+		return dao.cartPrice(memberId);
 	}
 	
 	public List<Map<String,Object>> searchP_val(int p_val) {

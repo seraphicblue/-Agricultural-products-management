@@ -1,8 +1,8 @@
 /*
-   Date    : 2023.05.11
+   Date    : 2023.05.16
    name    : ProductDao
    type    : Dao
-   ver     : 3.0
+   ver     : 5.0
    conect  : MarketService
    content : 상품 Dao
    writer  : 김기덕
@@ -19,7 +19,6 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-import org.springframework.web.bind.annotation.DeleteMapping;
 
 import stock_m.dto.Cart;
 
@@ -29,17 +28,17 @@ public interface ProductDao {
 	//@Select("select * from product")
 	public List<Map<String,Object>> searchPname(String pname);
 	
-	@Select("select count(*) from product where pname like concat('%',#{pname},'%')")
-	public int countProduct(String pname);
+	@Select("select count(*) from product where pname like concat('%',#{pname},'%') or p_val = #{p_val}")
+	public int countProduct(Map<String, Object> map);
 	
 	@Select("select * from product where pno = #{pno}")
 	public Map<String,Object> detailProduct(int pno);
 	
 	@Select("select count(userid) from cart where userid = #{userid}")
-	public int cartCount(String userid);
+	public int cartCount(String memberId);
 	
 	@Select("select sum(count*price) from cart where userid = #{userid}")
-	public int cartPrice(String userid);
+	public int cartPrice(String memberId);
 	
 	@Select("select * from product where p_val = #{p_val}")
 	public List<Map<String,Object>> searchP_val(int p_val);

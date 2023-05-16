@@ -1,8 +1,8 @@
 <!--      
-   Date    : 2023.05.15
+   Date    : 2023.05.16
    name    : shop-grid
    type    : form
-   ver     : 4.0
+   ver     : 5.0
    conect  : MarketController
    content : 상품 검색으로 넘어오는 페이지
    writer  : 김기덕
@@ -56,7 +56,7 @@
                                     <a href="../#"><i class="fa fa-user"></i> Logout</a>
                                 </div>
                             </li>
-                            <li><a href="../cart/test1"><i class="fa fa-shopping-bag"></i> <span id="ccount">${ccount}</span></a></li>
+                            <li><a href="../cart/${nuserid}"><i class="fa fa-shopping-bag"></i> <span id="ccount">${ccount}</span></a></li>
                         </ul>
                         <div class="header__cart__price">총 액: <span id="cprice">${cprice}원</span></div>
                     </div>

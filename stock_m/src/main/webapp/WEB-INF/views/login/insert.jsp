@@ -38,95 +38,59 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>                                
                             </div>
-                            <form class="user">
+                            <form class="user" method="post">
                             
-                            <div class="form-group row">
+                            	<div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <select>
+                                        <select onchange="cselect()" id="select" name="role">
                                         	<option selected disabled hidden="">사용자의 유형을 선택해 주세요.</option>
-                            				<option value="company">업체</option>
-                            				<option value="normal">일반인</option> 
+                            				<option value="ROLE_COMPANY">업체</option>
+                            				<option value="ROLE_NORMAL">일반인</option> 
                             			</select>
-                                    </div>
-                                </div>    
-                                                  
-                            <c:if test="true" >
-                            	<div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                                            placeholder="업체/일반사용자">
+                            			<input name="enabled" value="3" hidden="">
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control form-control-user" id="exampleLastName"
-                                            placeholder="성별">
+                                         name="gender"   placeholder="성별">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                                            placeholder="이름">
+                                         name="username"   placeholder="이름">
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control form-control-user" id="exampleLastName"
-                                            placeholder="나이">
+                                         name="age"   placeholder="나이">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="exampleInputEmail"
-                                        placeholder="아이디">
+                                     name="userid"   placeholder="아이디">
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="password" class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="비밀번호">
+                                         name="userpw"   id="exampleInputPassword" placeholder="비밀번호">
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="password" class="form-control form-control-user"
                                             id="exampleRepeatPassword" placeholder="비밀번호 확인">
                                     </div>
                                 </div>
-                            </c:if>
                             
-                            <c:if test="true">
-                            	<div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                                            placeholder="업체/일반사용자">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user" id="exampleLastName"
-                                            placeholder="성별">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                                            placeholder="이름">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user" id="exampleLastName"
-                                            placeholder="나이">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control form-control-user" id="exampleInputEmail"
-                                        placeholder="아이디">
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="password" class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="비밀번호">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input type="password" class="form-control form-control-user"
-                                            id="exampleRepeatPassword" placeholder="비밀번호 확인">
-                                    </div>
-                                </div>
-                            </c:if>
+                            <script>
+                            	function cselect(){
+                            		var select = document.getElementById("select").value;
+                            		if(select == "company") {
+                            			
+                            		}
+                            	}
+                            </script>
                             
-                                <a href="login.html" class="btn btn-primary btn-user btn-block">
-                                    Register Account
-                                </a>
+                                <button type="submit" class="btn btn-primary btn-user btn-block">
+                                    회원가입
+                                </button>
                                 <hr>
                                 <a href="index.html" class="btn btn-google btn-user btn-block">
                                     <i class="fab fa-google fa-fw"></i> Register with Google

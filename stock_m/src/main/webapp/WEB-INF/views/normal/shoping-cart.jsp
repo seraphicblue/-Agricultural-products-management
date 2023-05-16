@@ -1,8 +1,8 @@
 <%-- 
-   Date    : 2023.05.15
+   Date    : 2023.05.16
    name    : shoping-cart
    type    : form
-   ver     : 4.0
+   ver     : 5.0
    conect  : MarketController
    content : 장바구니 페이지
    writer  : 김기덕
@@ -55,7 +55,7 @@
                                     <a href="#"><i class="fa fa-user"></i> Logout</a>
                                 </div>
                             </li>
-                            <li><a href="../cart/test1"><i class="fa fa-shopping-bag"></i> <span id="ccount">${ccount}</span></a></li>
+                            <li><a href="../cart/${nuserid}"><i class="fa fa-shopping-bag"></i> <span id="ccount">${ccount}</span></a></li>
                         </ul>
                         <div class="header__cart__price">총 액: <span id="cprice">${cprice}원</span></div>
                     </div>
@@ -115,6 +115,7 @@
                         <div class="breadcrumb__option">
                             <a href="../market">홈</a>
                             <span>장바구니</span>
+                            <input id="userid" value="${nuserid}" hidden="hidden">
                         </div>
                     </div>
                 </div>
@@ -169,7 +170,6 @@
                                         <span class="icon_close" id="${cart.product_pno} delete" onclick="dcart(this)"></span>
                                     </td>
                                 </tr>
-                                <input id="userid" value="test1" hidden="hidden">
                                 <input id="h${status.count}suserid" value="${cart.userid}" hidden="hidden">
                                 <input id="h${status.count}pno" value="${cart.product_pno}" hidden="hidden">
                                 <input id="h${status.count}price" value="${cart.price}" hidden="hidden">
@@ -268,6 +268,7 @@
                         		if(confirm('상품을 장바구니에서 삭제하시겠습니까?')){
                         			var str = obj.getAttribute("id");
                             		let idc = str.split(' ');
+                            		alert(${nuserid});
                             		var params = {
     										userid : $("#userid").val()
     					                    , product_pno : idc[0]

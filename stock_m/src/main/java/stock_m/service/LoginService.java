@@ -1,7 +1,7 @@
 package stock_m.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import stock_m.dao.UserDao;
@@ -13,17 +13,17 @@ public class LoginService {
 	@Autowired
 	UserDao dao;
 	
-	@Autowired
-	private PasswordEncoder encoder;
+	//@Autowired
+	//private PasswordEncoder encoder;
 	
-	public int insertUser(UserDto users) {
+	public int insertUser(UserDto user) {
 		
 		//암호화(BCrypt 알고리즘 )
-		users.setUserpw(encoder.encode(users.getUserpw()));
+		//users.setUserpw(encoder.encode(users.getUserpw()));
 	
-		users.setRole(LoginRole.ROLE_ADMIN);
+		//user.setRole(LoginRole.ROLE_ADMIN);
 		
-		int i = dao.insertUser(users);
+		int i = dao.insertUser(user);
 		System.out.println(i);
 		
 		return i;

@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import jakarta.servlet.http.HttpSession;
 import stock_m.dto.UserDto;
 import stock_m.service.LoginService;
 
@@ -14,11 +16,10 @@ public class LoginController {
 	@Autowired
 	LoginService service;
 	
-	@GetMapping("/")
-	public String index() {
-		System.out.println("index 요청입니다.");
-		return "index";
-	}
+	/*
+	 * @GetMapping("/") public String index() { System.out.println("index 요청입니다.");
+	 * return "index"; }
+	 */
 
 	@GetMapping("/member")
 	public void forMember() {
@@ -38,19 +39,28 @@ public class LoginController {
 	@GetMapping("/login/login")
 	public void login() {
 	}
-
-	@GetMapping("/loginSuccess")
+	
+	@GetMapping("/login/loginSuccess")
 	public void loginSuccess() {
+	}
+	
+	@GetMapping("/login/accessDenied")
+	public void accessDenied() {		
 	}
 	
 	@GetMapping("/login/insert")
 	public void insert() {}
 	
 	
-	@PostMapping("/insert")
-	public String insert(UserDto users) {
-		service.insertUser(users);
+	@PostMapping("/login/insert")
+	public String insert(UserDto user) {
+		service.insertUser(user);
 				
-		return "redirect:/";
+		return "redirect:/login/login";
+	}
+	
+	@GetMapping("/admin/test1")
+	public String ins() {
+		return "admin/test1";
 	}
 }
