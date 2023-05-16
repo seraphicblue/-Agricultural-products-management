@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class PriceDto {
 
-	String pum_nm_a;
-	int pum_cd;
+	String PUM_NM_A;
+	 int PUM_CD;
+	 
 }
