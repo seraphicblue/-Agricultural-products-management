@@ -54,6 +54,21 @@ dependencies {
 	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mail
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
 	
+	////infinspan
+	//// https://mvnrepository.com/artifact/org.infinispan/infinispan-core
+	//testImplementation group: 'org.infinispan', name: 'infinispan-core', version: '12.0.1.Final'
+    //// https://mvnrepository.com/artifact/org.infinispan/infinispan-commons
+	//testImplementation group: 'org.infinispan', name: 'infinispan-commons', version: '12.0.1.Final'
+    //// https://mvnrepository.com/artifact/org.infinispan/infinispan-marshaller-protostuff
+	//implementation group: 'org.infinispan', name: 'infinispan-marshaller-protostuff', version: '12.0.1.Final'
+	//// https://mvnrepository.com/artifact/org.jboss.marshalling/jboss-marshalling-osgi
+	//implementation group: 'org.jboss.marshalling', name: 'jboss-marshalling-osgi', version: '2.0.10.Final'
+	
+	// https://mvnrepository.com/artifact/io.swagger/swagger-annotations
+	implementation group: 'io.swagger', name: 'swagger-annotations', version: '1.5.22'
+	
+
+	
 }
 
 tasks.named('test') {

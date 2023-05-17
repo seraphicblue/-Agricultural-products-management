@@ -3,9 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Insert title here</title>
+<title>sse 페이지</title>
+
 </head>
 <body>
-test2
+	
 </body>
 </html>

@@ -1,5 +1,11 @@
 package stock_m.dto;
 
-public class ManagementDto {
+import lombok.Data;
 
+@Data
+public class ManagementDto {
+	private int mno;
+	private String userid;
+	private boolean m_val;
+	private String m_content;
 }
