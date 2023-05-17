@@ -35,6 +35,7 @@ public class SabService {
 	public List<NameAndPrice_sabDto> namePrice(String userid) {
 		userid="testcompany1";
 		return sab_dao.namePrice(userid);
+		
 	}
 	
 	public int selecSval(int sno) {
@@ -58,12 +59,12 @@ public class SabService {
 		int p_val= stock_dao.selecSval(sno);
 		String userid="testcompany1";
 		int count=product_dao.selecCount(userid, sno);
-		int Vol=product_dao.selecVol(userid, sno);
 		
 		if(count==0) {
 			product_dao.insertproduct(sno,pname,price,p_val,p_count,userid);
 		}
 		else if(count==1) {
+			int Vol=product_dao.selecVol(userid, sno);
 			p_count = Vol+p_count;
 			product_dao.updateproduct(price,p_count, userid, sno);
 		}
