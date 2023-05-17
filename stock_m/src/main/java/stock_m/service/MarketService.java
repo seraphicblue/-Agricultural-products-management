@@ -1,8 +1,8 @@
 /*
-   Date    : 2023.05.10
+   Date    : 2023.05.16
    name    : MarketService
    type    : Service
-   ver     : 2.0
+   ver     : 5.0
    conect  : MarketController,ProductDao
    content : 판매사이트 서비스
    writer  : 김기덕
@@ -10,11 +10,11 @@
 */
 package stock_m.service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,8 +31,23 @@ public class MarketService {
 		return dao.searchPname(pname);
 	}
 	
+	public int countProduct(String pname, int p_val) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("pname", pname);
+		map.put("p_val", p_val);
+		return dao.countProduct(map);
+	}
+	
 	public Map<String,Object> detailProduct(int pno) {
 		return dao.detailProduct(pno);
+	}
+	
+	public int cartCount(String memberId) {
+		return dao.cartCount(memberId);
+	}
+	
+	public int cartPrice(String memberId) {
+		return dao.cartPrice(memberId);
 	}
 	
 	public List<Map<String,Object>> searchP_val(int p_val) {
@@ -47,9 +62,6 @@ public class MarketService {
 			dao.addCart(cart);
 		}else {
 			count = dao.countCheck(product_pno, userid) + count;
-			System.out.println(userid);
-			System.out.println(count);
-			System.out.println(product_pno);
 			Map<String, Object> map = new HashMap<>();
 			map.put("product_pno", product_pno);
 			map.put("userid", userid);
@@ -81,6 +93,53 @@ public class MarketService {
 	
 	public int deleteCart(int product_pno, String userid) {
 		return dao.deleteCart(product_pno, userid);
+	}
+	
+	public int addbuy(int pno, String userid, Date bdate, int price, int bcount) {
+		Map<String, Object> abmap = new HashMap<>();
+		abmap.put("pno", pno);
+		abmap.put("userid", userid);
+		abmap.put("bdate", bdate);
+		abmap.put("price", price);
+		abmap.put("bcount", bcount);
+		return dao.addbuy(abmap);
+	}
+	
+	public int addsell(int pno, String suserid, Date bdate, int price, int bcount) {
+		Map<String, Object> asmap = new HashMap<>();
+		asmap.put("pno", pno);
+		asmap.put("suserid", suserid);
+		asmap.put("bdate", bdate);
+		asmap.put("price", price);
+		asmap.put("bcount", bcount);
+		return dao.addsell(asmap);
+	}
+	
+	public int updateStock(int pno, String suserid, int bcount, int s_volume) {
+		Map<String, Object> usmap = new HashMap<>();
+		usmap.put("pno", pno);
+		usmap.put("suserid", suserid);
+		usmap.put("s_volume", s_volume);
+		usmap.put("bcount", bcount);
+		return dao.updateStock(usmap);
+	}
+	
+	public int updateProduck(int pno, int bcount, int p_count) {
+		Map<String, Object> upmap = new HashMap<>();
+		upmap.put("pno", pno);
+		upmap.put("p_count", p_count);
+		upmap.put("bcount", bcount);
+		return dao.updateProduck(upmap);
+	}
+	
+	public int updateRevenue(int ssum, int profit, int price, int bcount, String suserid) {
+		Map<String, Object> urmap = new HashMap<>();
+		urmap.put("ssum", ssum);
+		urmap.put("profit", profit);
+		urmap.put("price", price);
+		urmap.put("bcount", bcount);
+		urmap.put("suserid", suserid);
+		return dao.updateRevenue(urmap);
 	}
 	
 }
