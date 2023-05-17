@@ -24,14 +24,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="../market/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="../market/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="../market/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="../market/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="../market/css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="../market/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="../market/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="../market/css/style.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/style.css" type="text/css">
 </head>
 
 <body>
@@ -42,7 +42,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="../market"><img src="../market/img/logo.png" alt=""></a>
+                        <a href="../market"><img src="../../market/img/logo.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -52,7 +52,7 @@
                         <ul>
                             <li>
                                 <div class="header__top__right__auth">
-                                    <a href="#"><i class="fa fa-user"></i> Logout</a>
+                                    <a href="../logout"><i class="fa fa-user"></i> Logout</a>
                                 </div>
                             </li>
                             <li><a href="../cart/${userid}"><i class="fa fa-shopping-bag"></i> <span id="ccount">${ccount}</span></a></li>
@@ -106,7 +106,7 @@
     <!-- Hero Section End -->
 
     <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="../market/img/breadcrumb.jpg">
+    <section class="breadcrumb-section set-bg" data-setbg="../../market/img/breadcrumb.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -385,14 +385,14 @@
     <!-- Footer Section End -->
 
     <!-- Js Plugins -->
-    <script src="../market/js/jquery-3.3.1.min.js"></script>
-    <script src="../market/js/bootstrap.min.js"></script>
-    <script src="../market/js/jquery.nice-select.min.js"></script>
-    <script src="../market/js/jquery-ui.min.js"></script>
-    <script src="../market/js/jquery.slicknav.js"></script>
-    <script src="../market/js/mixitup.min.js"></script>
-    <script src="../market/js/owl.carousel.min.js"></script>
-    <script src="../market/js/main.js"></script>
+    <script src="../../market/js/jquery-3.3.1.min.js"></script>
+    <script src="../../market/js/bootstrap.min.js"></script>
+    <script src="../../market/js/jquery.nice-select.min.js"></script>
+    <script src="../../market/js/jquery-ui.min.js"></script>
+    <script src="../../market/js/jquery.slicknav.js"></script>
+    <script src="../../market/js/mixitup.min.js"></script>
+    <script src="../../market/js/owl.carousel.min.js"></script>
+    <script src="../../market/js/main.js"></script>
 
 
 </body>

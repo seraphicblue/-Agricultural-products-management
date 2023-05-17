@@ -25,14 +25,14 @@
     <link href="../market/https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="../market/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="../market/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="../market/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="../market/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="../market/css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="../market/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="../market/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="../market/css/style.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/style.css" type="text/css">
 </head>
 
 <body>
@@ -43,7 +43,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="../market"><img src="../market/img/logo.png" alt=""></a>
+                        <a href="../market"><img src="../../market/img/logo.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -53,7 +53,7 @@
                         <ul>
                             <li>
                                 <div class="header__top__right__auth">
-                                    <a href="../#"><i class="fa fa-user"></i> Logout</a>
+                                    <a href="../logout"><i class="fa fa-user"></i> Logout</a>
                                 </div>
                             </li>
                             <li><a href="../cart/${userid}"><i class="fa fa-shopping-bag"></i> <span id="ccount">${ccount}</span></a></li>
@@ -70,22 +70,7 @@
     <section class="hero hero-normal">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3">
-                    <div class="hero__categories">
-                        <div class="hero__categories__all">
-                            <i class="fa fa-bars"></i>
-                            <span>전체 분류</span>
-                        </div>
-                        <ul>
-                            <li><a href="../search/100">식량작물</a></li>
-                            <li><a href="../search/200">채소류</a></li>
-                            <li><a href="../search/300">특용작물</a></li>
-                            <li><a href="../search/400">과일류</a></li>
-                            <li><a href="../search/500">축산물</a></li>
-                            <li><a href="../search/600">수산물</a></li>
-                        </ul>
-                    </div>
-                </div>
+                
                 <div class="col-lg-9">
                     <div class="hero__search">
                         <div class="hero__search__form">
@@ -106,7 +91,7 @@
     <!-- Hero Section End -->
 
     <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="../market/img/breadcrumb.jpg">
+    <section class="breadcrumb-section set-bg" data-setbg="../../market/img/breadcrumb.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -132,12 +117,12 @@
                         <div class="sidebar__item">
                             <h4>분류</h4>
                             <ul>
-                                <li><a href="../search/100">식량작물</a></li>
-                            	<li><a href="../search/200">채소류</a></li>
-                            	<li><a href="../search/300">특용작물</a></li>
-                            	<li><a href="../search/400">과일류</a></li>
-                            	<li><a href="../search/500">축산물</a></li>
-                            	<li><a href="../search/600">수산물</a></li>
+                                <li><a href="/normal/search/100">식량작물</a></li>
+                            	<li><a href="/normal/search/200">채소류</a></li>
+                            	<li><a href="/normal/search/300">특용작물</a></li>
+                            	<li><a href="/normal/search/400">과일류</a></li>
+                            	<li><a href="/normal/search/500">축산물</a></li>
+                            	<li><a href="/normal/search/600">수산물</a></li>
                             </ul>
                         </div>
                 </div>
@@ -148,7 +133,7 @@
                     	<c:forEach items="${list}" var="p">                    
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="../market/img/product/product-1.jpg">
+                                <div class="product__item__pic set-bg" data-setbg="../../market/img/product/product-1.jpg">
                                     <ul class="product__item__pic__hover">
                                         <li><a href="../#"><i class="fa fa-heart"></i></a></li>
                                         <li><a href="../#"><i class="fa fa-retweet"></i></a></li>
@@ -185,14 +170,14 @@
     <!-- Footer Section End -->
 
     <!-- Js Plugins -->
-    <script src="../market/js/jquery-3.3.1.min.js"></script>
-    <script src="../market/js/bootstrap.min.js"></script>
-    <script src="../market/js/jquery.nice-select.min.js"></script>
-    <script src="../market/js/jquery-ui.min.js"></script>
-    <script src="../market/js/jquery.slicknav.js"></script>
-    <script src="../market/js/mixitup.min.js"></script>
-    <script src="../market/js/owl.carousel.min.js"></script>
-    <script src="../market/js/main.js"></script>
+    <script src="../../market/js/jquery-3.3.1.min.js"></script>
+    <script src="../../market/js/bootstrap.min.js"></script>
+    <script src="../../market/js/jquery.nice-select.min.js"></script>
+    <script src="../../market/js/jquery-ui.min.js"></script>
+    <script src="../../market/js/jquery.slicknav.js"></script>
+    <script src="../../market/js/mixitup.min.js"></script>
+    <script src="../../market/js/owl.carousel.min.js"></script>
+    <script src="../../market/js/main.js"></script>
 
 
 
