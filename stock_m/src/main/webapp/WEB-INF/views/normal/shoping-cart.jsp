@@ -259,8 +259,6 @@
                         			
                         		}                        		
                         		document.getElementById(idc[0]+"total").textContent = parseInt(document.getElementById(idc[0]).value) * parseInt(document.getElementById(idc[0]+"price").textContent)+"원"; 
-                       	
-                        		
                         		document.getElementById("total").textContent = document.getElementById("total").textContent;
                         		
                         		//console.log(document.getElementById("total").textContent)

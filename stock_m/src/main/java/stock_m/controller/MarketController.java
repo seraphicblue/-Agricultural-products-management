@@ -70,6 +70,7 @@ public class MarketController {
 	@PostMapping("/addcart")
 	public String addcart(Cart cart, int product_pno, String userid, int count) {
 		//System.out.println(cart);
+		userid="testcompany1";
 		service.addCart(cart, product_pno, userid, count);
 		return "normal/shop-details";
 	}

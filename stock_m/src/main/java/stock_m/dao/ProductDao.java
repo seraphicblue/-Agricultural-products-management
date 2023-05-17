@@ -19,7 +19,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-import org.springframework.web.bind.annotation.DeleteMapping;
+
 
 import stock_m.dto.Cart;
 
@@ -73,4 +73,9 @@ public interface ProductDao {
 	
 	@Update("UPDATE product SET p_count = #{p_count},price = #{price} where userid=#{userid} AND sno=#{sno}")
 	void updateproduct(@Param("price")int price, @Param("p_count")int p_count, @Param("userid")String userid, @Param("sno")int sno);
+	
+	@Select("select pno from product where userid=#{userid} AND sno=#{sno}")
+	int broadprice(@Param("userid")String userid, @Param("sno")int sno);
+
+
 }
