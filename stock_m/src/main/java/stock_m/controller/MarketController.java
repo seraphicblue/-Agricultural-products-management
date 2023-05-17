@@ -36,13 +36,11 @@ public class MarketController {
 	MarketService service;		
 	
 	@GetMapping("/market") // 판매사이트 로그인시 메인화면
-	public String mform(Model m, HttpServletRequest request, Principal principal) {
-		String userid = principal.getName();
-		HttpSession session = request.getSession();
-		session.setAttribute("userid", userid);
-
+	public String mform(Model m, HttpSession session) {		
+		String userid = (String) session.getAttribute("userid");
 	    List<Map<String, Object>> list = service.allProduct();
 	    m.addAttribute("list", list);
+	    
 	    int cprice = 0;
 	    int ccount = service.cartCount(userid);
 	    m.addAttribute("ccount", ccount);
@@ -73,10 +71,8 @@ public class MarketController {
 	}
 	
 	@PostMapping("/search")// 메인화면 검색기능, 받아올건 이름이랑 가격만으로도 됨(pname, price)
-	public String sform(String pname, Model m, HttpServletRequest request, Principal principal) {
-		String userid = principal.getName();
-		HttpSession session = request.getSession();
-		session.setAttribute("userid", userid);
+	public String sform(String pname, Model m, HttpSession session) {		
+		String userid = (String) session.getAttribute("userid");
         
 		int cprice =0;
 		int ccount = service.cartCount(userid);
@@ -98,10 +94,8 @@ public class MarketController {
 	}
 	
 	@GetMapping("/search/{p_val}")// 상품분류코드 별로 검색 기능, 받아올건 이름이랑 가격만으로도 됨(pname, price)
-	public String svform(String pname, @PathVariable int p_val, Model m, HttpServletRequest request, Principal principal) {
-		String userid = principal.getName();
-		HttpSession session = request.getSession();
-		session.setAttribute("nuserid", userid);
+	public String svform(String pname, @PathVariable int p_val, Model m, HttpSession session) {		
+		String userid = (String) session.getAttribute("userid");
         
 		int cprice =0;
 		int ccount = service.cartCount(userid);
@@ -125,10 +119,8 @@ public class MarketController {
 	}
 	
 	@GetMapping("/details/{pno}") // 특정상품 클릭시 그 상품 상세페이지로 이동
-	public String sdform(@PathVariable int pno, Model m, HttpServletRequest request, Principal principal) {
-		String userid = principal.getName();
-		HttpSession session = request.getSession();
-		session.setAttribute("userid", userid);
+	public String sdform(@PathVariable int pno, Model m, HttpSession session) {		
+		String userid = (String) session.getAttribute("userid");
         
 		int cprice =0;
 		int ccount = service.cartCount(userid);
@@ -152,10 +144,8 @@ public class MarketController {
 	}
 	
 	@GetMapping("/cart/{userid}") // 유저아이디로 그 유저의 카트 목록을 가져오는 기능
-	public String cform(Model m, HttpServletRequest request, Principal principal) {
-		String userid = principal.getName();
-		HttpSession session = request.getSession();
-		session.setAttribute("userid", userid);
+	public String cform(Model m, HttpSession session) {		
+		String userid = (String) session.getAttribute("userid");
         
 		int cprice =0;
 		int ccount = service.cartCount(userid);

@@ -8,6 +8,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import jakarta.servlet.http.HttpSession;
+
 @Configuration
 public class LoginConfig {
 
@@ -15,7 +17,7 @@ public class LoginConfig {
     private LoginUserDetailService loginUserDetailService;
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity security) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity security,HttpSession session) throws Exception {
 
         security.authorizeHttpRequests()
             .requestMatchers("/normal/**").authenticated()
@@ -25,11 +27,16 @@ public class LoginConfig {
             .and().formLogin().loginPage("/login/login").defaultSuccessUrl("/")
             .successHandler((request, response, authentication) -> {
                 // 로그인 성공 후 권한에 따라 다른 URI로 리다이렉트
+            	
+            	session.setAttribute("userid", authentication.getName().toString());
                 if (authentication.getAuthorities().toString().equals("[COMPANY]")) {
+                	System.out.println(authentication.getName());
                     response.sendRedirect("/test");
                 } else if (authentication.getAuthorities().toString().equals("[ROLE_ADMIN]")) {
+                	System.out.println(authentication.getName());
                     response.sendRedirect("/login/loginSuccess");
                 } else {
+                	System.out.println(authentication.getName());
                     response.sendRedirect("/market");
                 }
             })
