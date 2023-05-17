@@ -14,10 +14,10 @@
     <div>
     작물 종류
     </div>
-    <select id ="s_content">
+    <select id ="a_content">
     
    	<c:forEach var="priceData" items="${priceDataList}" varStatus="count">
-    <option value = "${priceData.PUM_NM_A}" id = "${(count.index)*100}">${priceData.PUM_NM_A}</option>
+    <option value = "${priceData.PUM_NM_A}" id = "${priceData.PAV_P_A}">${priceData.PUM_NM_A}</option>
     </c:forEach>
     </select>
     
@@ -32,11 +32,19 @@
 					function rand(min, max) {
 						  return Math.floor(Math.random() * (max - min + 1)) + min;
 						}
-					var s_content = $('#s_content').val();
-					var s_val = rand(1,5)*100;
-					alert(s_val+s_content);
-				});
+					var a_content = $('#a_content').val();
+					var a_val = rand(1,5)*100;
+					var a_volum= parseInt($('#a_content option:selected').attr('id')/10);
+
+					$.ajax({
+					      type: 'POST',
+					      url: '/company/inserta',
+					      data: {'a_content':a_content, "a_val":a_val, "a_volum":a_volum},
+					  	
+					});
+				
     });
+});
     </script>
 </body>
 </html>

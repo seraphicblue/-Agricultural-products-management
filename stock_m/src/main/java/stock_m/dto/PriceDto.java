@@ -6,6 +6,6 @@ import lombok.Data;
 public class PriceDto {
 
 	String PUM_NM_A;
-	 int PUM_CD;
+	 int PAV_P_A;
 	 
 }

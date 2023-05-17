@@ -7,15 +7,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import stock_m.component.KamisApiCaller;
 import stock_m.dto.PriceDto;
+import stock_m.service.SabService;
 
 @Controller
 public class ApiController {
 
 	@Autowired
 	private KamisApiCaller kamisApiCaller;
+	
+	@Autowired
+	SabService service;
 
 	@GetMapping("company/price")
 	public String showPrice(Model model) throws Exception {
@@ -34,6 +40,12 @@ public class ApiController {
 		
 		System.out.println("controller END");
 		return "company/price";
+	}
+
+	@PostMapping("company/inserta")
+	public String inserta(@RequestParam("a_content") String a_content, @RequestParam("a_val") int a_val, @RequestParam("a_volum") int a_volum) {	
+		service.inserta(a_content, a_val, a_volum);
+		return "redirect:/comapny/price";
 	}
 
 }

@@ -110,10 +110,5 @@
 		WHERE user broadcast.userid = #{userid}
 	</update>
 	
-	<insert id ="inserts">
-		insert into
-		stock(userid, s_val, s_content, s_volune, s_date)
-		values('testcompany2',#{PUM_CD},#{PUM_NM_A},#{s_volune},#{date})
-	</insert>
-	
+
 </mapper>

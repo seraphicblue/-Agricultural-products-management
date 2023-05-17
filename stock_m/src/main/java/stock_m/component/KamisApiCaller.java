@@ -73,7 +73,7 @@ public class KamisApiCaller {
 		/* System.out.println("Json String: " + jsonString); */
 		Gson gson = new Gson();
 		PriceLists price = gson.fromJson(jsonString, PriceLists.class);
-		int pageidx = price.getLists().getList_total_count() / 10+1;
+		int pageidx = price.getLists().getList_total_count() / 10  + ( price.getLists().getList_total_count() % 10  == 0 ? 0:1 );
 		System.out.println(pageidx);
 
 		return pageidx;
@@ -117,7 +117,7 @@ public class KamisApiCaller {
 			  sb2.append(line2); 
 			  } //연결 종료
 		  br2.close(); 
-		  conn2.disconnect(); 
+		  conn2.disconnect();    
 		  
 		  //받아온 값들을 저장하고 json object로 변환 
 		  String xmlString2 = sb2.toString(); 
