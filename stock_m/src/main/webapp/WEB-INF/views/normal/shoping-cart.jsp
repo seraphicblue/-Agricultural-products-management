@@ -222,22 +222,27 @@
               
                     		}
                         	
-                        	function cchange(obj){                        		
+                        	function cchange(obj){ 
+                        		
+                        		var inputValue = $(obj).val();
+                        		  
+                        		if (/^\d+$/.test(inputValue) || inputValue < 0) {
+                        		    // 입력된 값이 숫자인 경우
+                        		    // 원하는 작업을 수행하세요.
+                        		  
                         		var oid = obj.getAttribute("id")
                         		var ocount = document.getElementById(oid+"oldcount").value;
                         		var ncount = obj.value;
                         		var id = obj.getAttribute("id"); 
-                        		if(Number.isNaN(parseInt(ncount))) {
-                        			alert("0이상의 숫자만 입력할 수 있습니다.");
-                        			location.reload();
-                        		}
+                        		
                        			if(ncount >= 0) {                      				
                        				document.getElementById(id+"total").textContent = parseInt(ncount) * parseInt(document.getElementById(id+"price").textContent)+"원";
                        			}else if(ncount < 0){
-                       				ncount = 0;
+                       				ncount = 1;
+                       				document.getElementById(id+"total").textContent = parseInt(document.getElementById(id+"price").textContent) +"원";
                        			}
                        			if(document.getElementById(id+"total").textContent == "NaN원"){   				
-                       				document.getElementById(id+"total").textContent = 0 +"원";
+                       				document.getElementById(id+"total").textContent = parseInt(document.getElementById(id+"price").textContent) +"원";
                        			}
                        			document.getElementById(id).value = ncount; 
                        			document.getElementById("total").textContent = parseInt(document.getElementById("total").textContent) + parseInt(document.getElementById(id+"price").textContent)*(ncount - ocount) +"원";
@@ -259,6 +264,11 @@
                         			url: "../countchange",
                         			data: params
                         		});
+                        		} else {
+                          		   // 입력된 값이 숫자가 아닌 경우
+                          		   alert("1이상의 숫자만 입력해주세요!");
+                          		   $(obj).val(""); // 입력된 값을 비워줍니다.
+                          		}
                         	}
                         	
                         	function dcart(obj){
@@ -287,7 +297,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="shoping__cart__btns">
-                        <a href="../continue"  class="primary-btn cart-btn cart-btn-right">계속 쇼핑하기</a>
+                        <a href="/normal/search?pname="  class="primary-btn cart-btn cart-btn-right">계속 쇼핑하기</a>
                         
                     </div>
                 </div>

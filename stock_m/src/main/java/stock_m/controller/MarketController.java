@@ -10,7 +10,6 @@
 */
 package stock_m.controller;
 
-import java.security.Principal;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -62,31 +61,6 @@ public class MarketController {
 	 * map.put("cprice", cprice); JSONObject jo = new JSONObject(map); return
 	 * jo.toString(); }
 	 */
-	
-	@GetMapping("/normal/continue") // 장바구니에서 쇼핑계속하기 버튼
-	public String csform(Model m, HttpSession session) {		
-		String userid = (String) session.getAttribute("userid");
-		
-		List<Map<String,Object>> list = service.allProduct();
-		m.addAttribute("list", list);
-		
-		int cprice = 0;
-	    int ccount = service.cartCount(userid);
-	    m.addAttribute("ccount", ccount);
-	    if (ccount == 0) {
-	        cprice = 0;
-	    } else if (ccount > 0) {
-	        cprice = service.cartPrice(userid);
-	    }
-	    m.addAttribute("cprice", cprice);
-
-		int p_val = 0;
-		String pname = "";
-		int cproduct = service.countProduct(pname, p_val);
-		m.addAttribute("cproduct", cproduct);
-		
-		return "normal/shop-grid";
-	}
 	
 	@GetMapping("/normal/search")// 메인화면 검색기능, 받아올건 이름이랑 가격만으로도 됨(pname, price)
 	public String sform(String pname, Model m, HttpSession session, @RequestParam(name = "p", defaultValue = "1") int page) {		

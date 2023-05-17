@@ -211,14 +211,17 @@
 								}																	
 							}
 							
-							function cchange(obj){                        		
-                        		var oid = obj.getAttribute("id")
-                        		var ncount = obj.value;
-                        		console.log(Number.isNaN(parseInt(ncount)))
-                        		if(Number.isNaN(parseInt(ncount)) || ncount < 0) {
-                        			alert("1이상의 숫자만 입력해 주세요.");
-                        			obj.value = 1;
-                        		}
+							function cchange(obj){
+								var inputValue = $(obj).val();
+								  
+								  if (/^\d+$/.test(inputValue)) {
+								    // 입력된 값이 숫자인 경우
+								    // 원하는 작업을 수행하세요.
+								  } else {
+								    // 입력된 값이 숫자가 아닌 경우
+								    alert("1이상의 숫자만 입력해 주세요.");
+								    $(obj).val(""); // 입력된 값을 비워줍니다.
+								  }
 							}
 						</script>                      
                         <ul>
