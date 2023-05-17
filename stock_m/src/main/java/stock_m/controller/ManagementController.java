@@ -1,14 +1,3 @@
-/*
-   Date    : 2023.05.11
-   name    : management
-   type    : java
-   ver     : 1.1
-   conect  : managementController
-   content : 회사 유의 업체 구분 변경
-   writer  : 고상원
-   api     : x
-  */
-
 package stock_m.controller;
 
 import java.util.List;

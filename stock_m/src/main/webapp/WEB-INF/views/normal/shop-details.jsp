@@ -56,7 +56,7 @@
                                     <a href="#"><i class="fa fa-user"></i> Logout</a>
                                 </div>
                             </li>
-                            <li><a href="../cart/${nuserid}"><i class="fa fa-shopping-bag"></i> <span id="ccount">${ccount}</span></a></li>
+                            <li><a href="../cart/${userid}"><i class="fa fa-shopping-bag"></i> <span id="ccount">${ccount}</span></a></li>
                         </ul>
                         <div class="header__cart__price">총 액: <span id="cprice">${cprice}원</span></div>
                     </div>
@@ -180,7 +180,7 @@
                                 </div>
                             </div>
                         </div>                        
-							<input id="userid" value="${nuserid}" hidden="hidden">
+							<input id="userid" value="${userid}" hidden="hidden">
 							<input id="product_pno" value="${product.pno}" hidden="hidden">
 							<input id="price" value="${product.price}" hidden="hidden">
 							<input id="name" value="${product.pname}" hidden="hidden">
@@ -203,7 +203,7 @@
 										data:params
 									}).done(function(reponse){
 										if(confirm('장바구니로 이동하시겠습니까?')){
-											window.location.replace('../cart/${nuserid}');
+											window.location.replace('../cart/${userid}');
 										}else{
 											return false;
 										}

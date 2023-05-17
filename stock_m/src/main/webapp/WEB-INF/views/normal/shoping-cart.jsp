@@ -55,7 +55,7 @@
                                     <a href="#"><i class="fa fa-user"></i> Logout</a>
                                 </div>
                             </li>
-                            <li><a href="../cart/${nuserid}"><i class="fa fa-shopping-bag"></i> <span id="ccount">${ccount}</span></a></li>
+                            <li><a href="../cart/${userid}"><i class="fa fa-shopping-bag"></i> <span id="ccount">${ccount}</span></a></li>
                         </ul>
                         <div class="header__cart__price">총 액: <span id="cprice">${cprice}원</span></div>
                     </div>
@@ -115,7 +115,7 @@
                         <div class="breadcrumb__option">
                             <a href="../market">홈</a>
                             <span>장바구니</span>
-                            <input id="userid" value="${nuserid}" hidden="hidden">
+                            <input id="userid" value="${userid}" hidden="hidden">
                         </div>
                     </div>
                 </div>
@@ -268,7 +268,6 @@
                         		if(confirm('상품을 장바구니에서 삭제하시겠습니까?')){
                         			var str = obj.getAttribute("id");
                             		let idc = str.split(' ');
-                            		alert(${nuserid});
                             		var params = {
     										userid : $("#userid").val()
     					                    , product_pno : idc[0]
