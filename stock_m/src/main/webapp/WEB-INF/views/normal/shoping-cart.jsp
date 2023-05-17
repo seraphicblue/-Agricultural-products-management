@@ -1,13 +1,13 @@
-<!-- 
-   Date    : 2023.05.10
+<%-- 
+   Date    : 2023.05.16
    name    : shoping-cart
    type    : form
-   ver     : 2.0
+   ver     : 5.0
    conect  : MarketController
    content : 장바구니 페이지
    writer  : 김기덕
    api     : x
--->
+--%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -24,89 +24,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="../css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="../css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="../css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="../css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="../css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="../css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="../css/style.css" type="text/css">
+    <link rel="stylesheet" href="../market/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="../market/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="../market/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="../market/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="../market/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="../market/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="../market/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="../market/css/style.css" type="text/css">
 </head>
 
 <body>
-    <!-- Page Preloder -->
-    <div id="preloder">
-        <div class="loader"></div>
-    </div>
-
-    <!-- Humberger Begin -->
-    <div class="humberger__menu__overlay"></div>
-    <div class="humberger__menu__wrapper">
-        <div class="humberger__menu__logo">
-            <a href="#"><img src="img/logo.png" alt=""></a>
-        </div>
-        <div class="humberger__menu__cart">
-            <ul>
-                <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
-            </ul>
-            <div class="header__cart__price">item: <span>$150.00</span></div>
-        </div>
-        <div class="humberger__menu__widget">
-            <div class="header__top__right__language">
-                <img src="../img/language.png" alt="">
-                <div>English</div>
-                <span class="arrow_carrot-down"></span>
-                <ul>
-                    <li><a href="#">Spanis</a></li>
-                    <li><a href="#">English</a></li>
-                </ul>
-            </div>
-            <div class="header__top__right__auth">
-                <a href="#"><i class="fa fa-user"></i> Login</a>
-            </div>
-        </div>
-        <nav class="humberger__menu__nav mobile-menu">
-            <ul>
-                <li class="active"><a href="../maket">Home</a></li>
-                <li><a href="./shop-grid.html">Shop</a></li>
-                <li><a href="#">Pages</a>
-                    <ul class="header__menu__dropdown">
-                        <li><a href="./shop-details.html">Shop Details</a></li>
-                        <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                        <li><a href="./checkout.html">Check Out</a></li>
-                        <li><a href="./blog-details.html">Blog Details</a></li>
-                    </ul>
-                </li>
-                <li><a href="./blog.html">Blog</a></li>
-                <li><a href="./contact.html">Contact</a></li>
-            </ul>
-        </nav>
-        <div id="mobile-menu-wrap"></div>
-        <div class="header__top__right__social">
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-linkedin"></i></a>
-            <a href="#"><i class="fa fa-pinterest-p"></i></a>
-        </div>
-        <div class="humberger__menu__contact">
-            <ul>
-                <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-                <li>Free Shipping for all Order of $99</li>
-            </ul>
-        </div>
-    </div>
-    <!-- Humberger End -->
-
-    <!-- Header Section Begin -->
+<!-- Header Section Begin -->
     <header class="header">
        
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="../market"><img src="../img/logo.png" alt=""></a>
+                        <a href="../market"><img src="../market/img/logo.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -119,15 +55,12 @@
                                     <a href="#"><i class="fa fa-user"></i> Logout</a>
                                 </div>
                             </li>
-                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                            <li><a href="../cart/${nuserid}"><i class="fa fa-shopping-bag"></i> <span id="ccount">${ccount}</span></a></li>
                         </ul>
-                        <div class="header__cart__price">item: <span>$150</span></div>
+                        <div class="header__cart__price">총 액: <span id="cprice">${cprice}원</span></div>
                     </div>
                 </div>
-            </div>
-            <div class="humberger__open">
-                <i class="fa fa-bars"></i>
-            </div>
+            </div>            
         </div>
     </header>
     <!-- Header Section End -->
@@ -173,7 +106,7 @@
     <!-- Hero Section End -->
 
     <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="../img/breadcrumb.jpg">
+    <section class="breadcrumb-section set-bg" data-setbg="../market/img/breadcrumb.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -182,6 +115,7 @@
                         <div class="breadcrumb__option">
                             <a href="../market">홈</a>
                             <span>장바구니</span>
+                            <input id="userid" value="${nuserid}" hidden="hidden">
                         </div>
                     </div>
                 </div>
@@ -208,11 +142,13 @@
                             </thead>
                             <tbody>
                             
-                            <c:forEach items="${cart}" var="cart">	
+                            <c:forEach items="${cart}" var="cart" varStatus="status">	
                                 <tr>
                                     <td class="shoping__cart__item">
-                                        <img src="../img/cart/cart-1.jpg" alt="">
+                                        <a href="../details/${cart.product_pno}">
+                                        <img src="../market/img/cart/cart-1.jpg" alt="">
                                         <h5>${cart.name}</h5>
+                                        </a>
                                     </td>
                                     <td class="shoping__cart__price" id="${cart.product_pno}price">
                                         ${cart.price}원
@@ -234,8 +170,17 @@
                                         <span class="icon_close" id="${cart.product_pno} delete" onclick="dcart(this)"></span>
                                     </td>
                                 </tr>
-                                <input id="userid" value="test1" hidden="hidden">
+                                <input id="h${status.count}suserid" value="${cart.userid}" hidden="hidden">
+                                <input id="h${status.count}pno" value="${cart.product_pno}" hidden="hidden">
+                                <input id="h${status.count}price" value="${cart.price}" hidden="hidden">
+                                <input id="h${status.count}bcount" value="${cart.count}" name="${cart.product_pno}bcount" hidden="hidden">
+                                <input id="h${status.count}s_volume" value="${cart.s_volume}" hidden="hidden">
+                                <input id="h${status.count}p_count" value="${cart.p_count}" hidden="hidden">
+                                <input id="h${status.count}ssum" value="${cart.ssum}" hidden="hidden">
+                                <input id="h${status.count}profit" value="${cart.profit}" hidden="hidden">
+                                <input id="h${status.count}name" value="${cart.name}" hidden="hidden">
                                 <c:set var="total" value="${total + cart.price*cart.count}"/>
+                                <c:set var="fina" value="${status.count}"/>
                             </c:forEach>                          
                                 
                             </tbody>                            
@@ -244,23 +189,25 @@
                         <script>
                         	function vi(obj){
                         		var str = obj;
-                        		let idc = str.split(' ');                        		
+                        		let idc = str.split(' ');
                         		if(idc[1] == '+'){
-                        			document.getElementById(idc[0]).value=parseInt(document.getElementById(idc[0]).value)+parseInt(1);    
-                        			document.getElementById("total").textContent = parseInt(document.getElementById("total").textContent) + parseInt(document.getElementById(idc[0]+"price").textContent)+"원";                       
-                                	console.log(document.getElementById("total").textContent);
+                        			document.getElementById(idc[0]).value=parseInt(document.getElementById(idc[0]).value)+parseInt(1);   
+                        			
+                        			document.getElementById("total").textContent = parseInt(document.getElementById("total").textContent) + parseInt(document.getElementById(idc[0]+"price").textContent)+"원";
+                        			document.getElementsByName(idc[0] + "bcount")[0].value = document.getElementById(idc[0]).value;
                         		}else if(idc[1] == '-'){
                         			if(parseInt(document.getElementById(idc[0]).value) > 0){
                         				document.getElementById(idc[0]).value=parseInt(document.getElementById(idc[0]).value)-parseInt(1);
                         				document.getElementById("total").textContent = parseInt(document.getElementById("total").textContent) - parseInt(document.getElementById(idc[0]+"price").textContent)+"원";
+                        				document.getElementsByName(idc[0] + "bcount")[0].value = document.getElementById(idc[0]).value;
                         			}else {
                         				parseInt(document.getElementById(idc[0]).value) = 0;
+                        				document.getElementsByName(idc[0] + "bcount")[0].value = 0;
                         			}   
                         			
-                        		}                        		
-                        		document.getElementById(idc[0]+"total").textContent = parseInt(document.getElementById(idc[0]).value) * parseInt(document.getElementById(idc[0]+"price").textContent)+"원"; 
-                       	
-                        		
+                        		}
+                        		document.getElementById(idc[0]+"total").textContent = parseInt(document.getElementById(idc[0]).value) * parseInt(document.getElementById(idc[0]+"price").textContent)+"원";                       	
+                        		document.getElementById(idc[0]+"oldcount").value = document.getElementById(idc[0]).value;
                         		document.getElementById("total").textContent = document.getElementById("total").textContent;
                         		
                         		//console.log(document.getElementById("total").textContent)
@@ -278,11 +225,15 @@
               
                     		}
                         	
-                        	function cchange(obj){
+                        	function cchange(obj){                        		
                         		var oid = obj.getAttribute("id")
                         		var ocount = document.getElementById(oid+"oldcount").value;
                         		var ncount = obj.value;
-                        		var id = obj.getAttribute("id");  
+                        		var id = obj.getAttribute("id"); 
+                        		if(Number.isNaN(parseInt(ncount))) {
+                        			alert("숫자만 입력할 수 있습니다.");
+                        			location.reload();
+                        		}
                        			if(ncount >= 0) {                      				
                        				document.getElementById(id+"total").textContent = parseInt(ncount) * parseInt(document.getElementById(id+"price").textContent)+"원";
                        			}else if(ncount < 0){
@@ -294,7 +245,12 @@
                        			document.getElementById(id).value = ncount; 
                        			document.getElementById("total").textContent = parseInt(document.getElementById("total").textContent) + parseInt(document.getElementById(id+"price").textContent)*(ncount - ocount) +"원";
                        			document.getElementById(oid+"oldcount").value = ncount;
-                        		document.getElementById("total").textContent = document.getElementById("total").textContent;
+                       			document.getElementById("total").textContent = document.getElementById("total").textContent;
+                       			var fin = "${fina}"; 
+                        		for(var i = 1; i < parseInt(fin)+1; i++){
+                        			document.getElementById("h"+i+"bcount").value = ncount
+                        		}                        			
+                        		
                         		var params = {
 										userid : $("#userid").val()
 					                    , count : ncount
@@ -312,6 +268,7 @@
                         		if(confirm('상품을 장바구니에서 삭제하시겠습니까?')){
                         			var str = obj.getAttribute("id");
                             		let idc = str.split(' ');
+                            		alert(${nuserid});
                             		var params = {
     										userid : $("#userid").val()
     					                    , product_pno : idc[0]
@@ -348,13 +305,21 @@
                             <c:if test="${total ne null}"><c:out value="${total}"/>원</c:if>
                             </span></li>
                         </ul>
-                        <a href="#" class="primary-btn" onclick="checkout()">결제</a>
+                        <a href="#" class="primary-btn" onclick="checkout()">구매</a>
                     </div>
                 </div>
                 
-                <script>
-                	function checkout(){
-                		if(confirm('결제하시겠습니까?')){
+                <script>         
+                	function checkout(){                		              		
+                		if(confirm('구매하시겠습니까?')){
+                			var fin = "${fina}"; 
+                    		for(var i = 1; i < parseInt(fin)+1; i++){
+                    			if(document.getElementById("h"+i+"p_count").value < document.getElementById("h"+i+"bcount").value){
+                    				alert("준비된 상품갯수를 초과했습니다.");
+                    				alert(document.getElementById("h"+i+"name").value + "의 남은 갯수 " + document.getElementById("h"+i+"p_count").value+"개");
+                    				return false;
+                    			}
+                    		}
 							if(confirm('결제 완료')){
 								var params = {
 										userid : $("#userid").val()
@@ -363,7 +328,44 @@
                         			type:"get",
                         			url: "../checkout",
                         			data: params
-                        		});
+                        		});//결제완료
+                        		function getFormatDate(date){
+                        		    var year = date.getFullYear();              //yyyy
+                        		    var month = (1 + date.getMonth());          //M
+                        		    month = month >= 10 ? month : '0' + month;  //month 두자리로 저장
+                        		    var day = date.getDate();                   //d
+                        		    day = day >= 10 ? day : '0' + day;          //day 두자리로 저장
+                        		    return  year + '' + month + '' + day;       //'-' 추가하여 yyyy-mm-dd 형태 생성 가능
+                        		}
+                        		
+                        		
+                        		
+                        		var now = new Date()
+                        		now = getFormatDate(now); 
+                        		for(var i = 1; i < parseInt(fin)+1; i++){
+                        			var buy = {
+                        					userid : $("#userid").val()
+                        					, suserid : document.getElementById("h"+i+"suserid").value
+        				                    , bcount : document.getElementById("h"+i+"bcount").value
+        				                    , pno : document.getElementById("h"+i+"pno").value
+        				                    , price : document.getElementById("h"+i+"price").value
+        				                    , bdate : now
+        				                    , s_volume : document.getElementById("h"+i+"s_volume").value
+        				                    , p_count : document.getElementById("h"+i+"p_count").value
+        				                    , ssum : document.getElementById("h"+i+"ssum").value
+        				                    , profit : document.getElementById("h"+i+"profit").value
+                        			};
+                        			(function(i) {
+                			            	$.ajax({
+                			            		type:"post"
+                			            		,url: "../addbuy"
+                			            		,data: buy
+                			            		,success:function(result){
+                			           	    		console.log(i);
+                			           	  		}
+                			        		})
+                			    	})(i);
+                        		}//결제후 구매내역 저장                         	
                         		location.reload();
 							}else{
 								return false
@@ -371,7 +373,7 @@
 						}else{
 							return false;
 						}
-                	}
+                	};
                 </script>
                 
             </div>
@@ -384,14 +386,14 @@
     <!-- Footer Section End -->
 
     <!-- Js Plugins -->
-    <script src="../js/jquery-3.3.1.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/jquery.nice-select.min.js"></script>
-    <script src="../js/jquery-ui.min.js"></script>
-    <script src="../js/jquery.slicknav.js"></script>
-    <script src="../js/mixitup.min.js"></script>
-    <script src="../js/owl.carousel.min.js"></script>
-    <script src="../js/main.js"></script>
+    <script src="../market/js/jquery-3.3.1.min.js"></script>
+    <script src="../market/js/bootstrap.min.js"></script>
+    <script src="../market/js/jquery.nice-select.min.js"></script>
+    <script src="../market/js/jquery-ui.min.js"></script>
+    <script src="../market/js/jquery.slicknav.js"></script>
+    <script src="../market/js/mixitup.min.js"></script>
+    <script src="../market/js/owl.carousel.min.js"></script>
+    <script src="../market/js/main.js"></script>
 
 
 </body>
