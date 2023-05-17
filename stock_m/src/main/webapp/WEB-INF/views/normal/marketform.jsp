@@ -42,7 +42,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="/market"><img src="../market/img/logo.png" alt=""></a>
+                        <a href="/normal/market"><img src="../market/img/logo.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -52,7 +52,7 @@
                         <ul>
                             <li>
                             	<div class="header__top__right__auth">
-                               		<a href="../logout"><i class="fa fa-user"></i> Logout</a>
+                               		<a href="/logout"><i class="fa fa-user"></i> Logout</a>
                            	 	</div>
                        		</li>
                             <li><a href="cart/${userid}"><i class="fa fa-shopping-bag"></i> <span id="ccount">${ccount}</span></a></li>
@@ -76,23 +76,20 @@
                             <span>전체 분류</span>
                         </div>
                         <ul>
-                            <li><a href="search/100">식량작물</a></li>
-                            <li><a href="search/200">채소류</a></li>
-                            <li><a href="search/300">특용작물</a></li>
-                            <li><a href="search/400">과일류</a></li>
-                            <li><a href="search/500">축산물</a></li>
-                            <li><a href="search/600">수산물</a></li>
+                            <li><a href="/normal/p_val?p_val=100">식량작물</a></li>
+                            <li><a href="/normal/p_val?p_val=200">채소류</a></li>
+                            <li><a href="/normal/p_val?p_val=300">특용작물</a></li>
+                            <li><a href="/normal/p_val?p_val=400">과일류</a></li>
+                            <li><a href="/normal/p_val?p_val=500">축산물</a></li>
+                            <li><a href="/normal/p_val?p_val=600">수산물</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-9">
                     <div class="hero__search">
                         <div class="hero__search__form">
-                            <form method="post" action="/normal/search/0">
-                                <div class="hero__search__categories">
-                                    모든 카테고리
-                                    <span class="arrow_carrot-down"></span>
-                                </div>
+                            <form action="/normal/search">
+                                
                                 <input type="text" placeholder="검색할 상품명" name="pname">
                                 <button type="submit" class="site-btn">검색</button>
                             </form>

@@ -24,9 +24,9 @@ import stock_m.dto.Cart;
 
 @Mapper
 public interface ProductDao {
-	@Select("select * from product where pname like concat('%',#{pname},'%')")
+	@Select("select * from product where pname like concat('%',#{pname},'%') limit #{start} , #{count}")
 	//@Select("select * from product")
-	public List<Map<String,Object>> searchPname(String pname);
+	public List<Map<String,Object>> searchPname(Map<String, Object> m);
 	
 	@Select("select count(*) from product where pname like concat('%',#{pname},'%') or p_val = #{p_val}")
 	public int countProduct(Map<String, Object> map);
@@ -40,8 +40,8 @@ public interface ProductDao {
 	@Select("select sum(count*price) from cart where userid = #{userid}")
 	public int cartPrice(String memberId);
 	
-	@Select("select * from product where p_val = #{p_val}")
-	public List<Map<String,Object>> searchP_val(int p_val);
+	@Select("select * from product where p_val = #{p_val} limit #{start} , #{count}")
+	public List<Map<String,Object>> searchP_val(Map<String, Object> m);
 	
 	@Insert("INSERT INTO cart(userid,product_pno,count,price,name) values(#{userid},#{product_pno},#{count},#{price},#{name})")
 	public int addCart(Cart cart);

@@ -27,8 +27,12 @@ public class MarketService {
 	@Autowired
 	ProductDao dao;
 	
-	public List<Map<String,Object>> searchPname(String pname) {
-		return dao.searchPname(pname);
+	public List<Map<String,Object>> searchPname(String pname, int start) {
+		Map<String, Object> m = new HashMap<String, Object>();
+		m.put("pname", pname);
+		m.put("start", start);
+		m.put("count", 9);
+		return dao.searchPname(m);
 	}
 	
 	public int countProduct(String pname, int p_val) {
@@ -50,8 +54,12 @@ public class MarketService {
 		return dao.cartPrice(memberId);
 	}
 	
-	public List<Map<String,Object>> searchP_val(int p_val) {
-		return dao.searchP_val(p_val);
+	public List<Map<String,Object>> searchP_val(int p_val, int start) {
+		Map<String, Object> m = new HashMap<String, Object>();
+		m.put("p_val", p_val);
+		m.put("start", start);
+		m.put("count", 9);
+		return dao.searchP_val(m);
 	}
 	
 	public void addCart(Cart cart, int product_pno, String userid, int count) {

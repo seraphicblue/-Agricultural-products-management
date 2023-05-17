@@ -24,6 +24,10 @@ public class LoginService {
 		//user.setRole(LoginRole.ROLE_ADMIN);
 		
 		int i = dao.insertUser(user);
+		if(user.getRole().toString().equals("ROLE_COMPANY")) {
+			int l = dao.insertRevenue(user);
+			System.out.println(l);
+		}		
 		System.out.println(i);
 		
 		return i;

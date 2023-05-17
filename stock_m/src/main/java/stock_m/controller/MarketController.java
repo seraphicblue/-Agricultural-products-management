@@ -23,8 +23,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import stock_m.dto.Cart;
 import stock_m.service.MarketService;
@@ -88,8 +88,8 @@ public class MarketController {
 		return "normal/shop-grid";
 	}
 	
-	@PostMapping("/normal/search/0")// 메인화면 검색기능, 받아올건 이름이랑 가격만으로도 됨(pname, price)
-	public String sform(String pname, Model m, HttpSession session) {		
+	@GetMapping("/normal/search")// 메인화면 검색기능, 받아올건 이름이랑 가격만으로도 됨(pname, price)
+	public String sform(String pname, Model m, HttpSession session, @RequestParam(name = "p", defaultValue = "1") int page) {		
 		String userid = (String) session.getAttribute("userid");
         
 		int cprice =0;
@@ -106,13 +106,37 @@ public class MarketController {
 		int p_val = 0;
 		int cproduct = service.countProduct(pname, p_val);
 		m.addAttribute("cproduct", cproduct);
-		List<Map<String,Object>> list = service.searchPname(pname);
-		m.addAttribute("list", list);
+		//List<Map<String,Object>> list = service.searchPname(pname);
+		//m.addAttribute("list", list);
+		
+		
+		if (cproduct > 0) {
+			int perPage = 10; // 한 페이지에 보일 글의 갯수
+			int startRow = (page - 1) * perPage;
+			//int endRow = page * perPage;
+			
+			List<Map<String,Object>> list = service.searchPname(pname, startRow);			
+			m.addAttribute("list", list);
+			
+			int pageNum = 5;//보여줄 페이지 번호 갯수
+			int totalPages = cproduct / perPage + (cproduct % perPage > 0 ? 1 : 0); //전체 페이지 수
+			
+			int begin = (page - 1) / pageNum * pageNum + 1;
+			int end = begin + pageNum - 1;
+			if (end > totalPages) {
+				end = totalPages;
+			}
+			m.addAttribute("begin", begin);
+			m.addAttribute("pageNum", pageNum);
+			m.addAttribute("totalPages", totalPages);
+			m.addAttribute("end", end);
+		}
+		
 		return "normal/shop-grid";
 	}
 	
-	@GetMapping("/normal/search/{p_val}")// 상품분류코드 별로 검색 기능, 받아올건 이름이랑 가격만으로도 됨(pname, price)
-	public String svform(String pname, @PathVariable int p_val, Model m, HttpSession session) {		
+	@GetMapping("/normal/p_val")// 상품분류코드 별로 검색 기능, 받아올건 이름이랑 가격만으로도 됨(pname, price)
+	public String svform(String pname, int p_val, Model m, HttpSession session, @RequestParam(name = "p", defaultValue = "1") int page) {		
 		String userid = (String) session.getAttribute("userid");
         
 		int cprice =0;
@@ -128,8 +152,33 @@ public class MarketController {
 		m.addAttribute("p_val", p_val);
 		int cproduct = service.countProduct(pname, p_val);
 		m.addAttribute("cproduct", cproduct);
-		List<Map<String,Object>> list = service.searchP_val(p_val);
-		m.addAttribute("list", list);
+		//List<Map<String,Object>> list = service.searchP_val(p_val);
+		//m.addAttribute("list", list);
+		
+		
+		if (cproduct > 0) {
+			int perPage = 10; // 한 페이지에 보일 글의 갯수
+			int startRow = (page - 1) * perPage;
+			//int endRow = page * perPage;
+			
+			List<Map<String,Object>> list = service.searchP_val(p_val, startRow);			
+			m.addAttribute("list", list);
+			
+			int pageNum = 5;//보여줄 페이지 번호 갯수
+			int totalPages = cproduct / perPage + (cproduct % perPage > 0 ? 1 : 0); //전체 페이지 수
+			
+			int begin = (page - 1) / pageNum * pageNum + 1;
+			int end = begin + pageNum - 1;
+			if (end > totalPages) {
+				end = totalPages;
+			}
+			m.addAttribute("begin", begin);
+			m.addAttribute("pageNum", pageNum);
+			m.addAttribute("totalPages", totalPages);
+			m.addAttribute("end", end);
+		}
+		
+		
 		return "normal/shop-grid";
 	}
 	
@@ -205,7 +254,7 @@ public class MarketController {
 		return "nomal/shoping-cart";
 	}
 	
-	@GetMapping("/normal/logout")
+	@GetMapping("/logout")
     public String logout(HttpSession session) {
         // 세션에서 사용자 정보 제거
         session.removeAttribute("userid");

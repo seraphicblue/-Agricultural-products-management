@@ -42,7 +42,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="../market"><img src="../../market/img/logo.png" alt=""></a>
+                        <a href="/normal/market"><img src="../../market/img/logo.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -52,10 +52,10 @@
                         <ul>
                             <li>
                                 <div class="header__top__right__auth">
-                                    <a href="../logout"><i class="fa fa-user"></i> Logout</a>
+                                    <a href="/logout"><i class="fa fa-user"></i> Logout</a>
                                 </div>
                             </li>
-                            <li><a href="../cart/${userid}"><i class="fa fa-shopping-bag"></i> <span id="ccount">${ccount}</span></a></li>
+                            <li><a href="/normal/cart/${userid}"><i class="fa fa-shopping-bag"></i> <span id="ccount">${ccount}</span></a></li>
                         </ul>
                         <div class="header__cart__price">총 액: <span id="cprice">${cprice}원</span></div>
                     </div>
@@ -76,23 +76,20 @@
                             <span>전체 분류</span>
                         </div>
                         <ul>
-                            <li><a href="../search/100">식량작물</a></li>
-                            <li><a href="../search/200">채소류</a></li>
-                            <li><a href="../search/300">특용작물</a></li>
-                            <li><a href="../search/400">과일류</a></li>
-                            <li><a href="../search/500">축산물</a></li>
-                            <li><a href="../search/600">수산물</a></li>
+                            <li><a href="/normal/p_val?p_val=100">식량작물</a></li>
+                            <li><a href="/normal/p_val?p_val=200">채소류</a></li>
+                            <li><a href="/normal/p_val?p_val=300">특용작물</a></li>
+                            <li><a href="/normal/p_val?p_val=400">과일류</a></li>
+                            <li><a href="/normal/p_val?p_val=500">축산물</a></li>
+                            <li><a href="/normal/p_val?p_val=600">수산물</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-9">
                     <div class="hero__search">
                         <div class="hero__search__form">
-                            <form method="post" action="../search">
-                                <div class="hero__search__categories">
-                                    모든 카테고리
-                                    <span class="arrow_carrot-down"></span>
-                                </div>
+                            <form action="/normal/search">
+                                
                                 <input type="text" placeholder="검색할 상품명" name="pname">
                                 <button type="submit" class="site-btn">검색</button>
                             </form>
@@ -113,7 +110,7 @@
                     <div class="breadcrumb__text">
                         <h2>장바구니</h2>
                         <div class="breadcrumb__option">
-                            <a href="../market">홈</a>
+                            <a href="/normal/market">홈</a>
                             <span>장바구니</span>
                             <input id="userid" value="${userid}" hidden="hidden">
                         </div>
@@ -146,7 +143,7 @@
                                 <tr>
                                     <td class="shoping__cart__item">
                                         <a href="../details/${cart.product_pno}">
-                                        <img src="../market/img/cart/cart-1.jpg" alt="">
+                                        <img src="../../market/img/cart/cart-1.jpg" alt="">
                                         <h5>${cart.name}</h5>
                                         </a>
                                     </td>
@@ -231,7 +228,7 @@
                         		var ncount = obj.value;
                         		var id = obj.getAttribute("id"); 
                         		if(Number.isNaN(parseInt(ncount))) {
-                        			alert("숫자만 입력할 수 있습니다.");
+                        			alert("0이상의 숫자만 입력할 수 있습니다.");
                         			location.reload();
                         		}
                        			if(ncount >= 0) {                      				
@@ -313,9 +310,9 @@
                 		if(confirm('구매하시겠습니까?')){
                 			var fin = "${fina}"; 
                     		for(var i = 1; i < parseInt(fin)+1; i++){
-                    			if(document.getElementById("h"+i+"p_count").value < document.getElementById("h"+i+"bcount").value){
+                    			if(parseInt(document.getElementById("h"+i+"p_count").value) < parseInt(document.getElementById("h"+i+"bcount").value)){
                     				alert("준비된 상품갯수를 초과했습니다.");
-                    				alert(document.getElementById("h"+i+"name").value + "의 남은 갯수 " + document.getElementById("h"+i+"p_count").value+"개");
+                    				alert(document.getElementById("h"+i+"name").value + "의 남은 수량은 " + document.getElementById("h"+i+"p_count").value+"개 입니다.");
                     				return false;
                     			}
                     		}
