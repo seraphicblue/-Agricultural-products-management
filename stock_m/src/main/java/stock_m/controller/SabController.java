@@ -48,7 +48,7 @@ public class SabController {
 
 	@GetMapping("company/main")
 	public String companyindex() {
-		return "/company/index";
+		return "/company/test";
 	}
 
 	@GetMapping("normal/main")

@@ -10,8 +10,8 @@
 <body>
 	<h3><font color="red">로그인 인증을 성공하셨습니다.^^</font></h3>
 	<h5><a href="/">INDEX 페이지로 이동</a></h5>
-	<h5><a href="/market">Member 페이지로 이동</a></h5>
-	<h5><a href="/company">Manager 전용 페이지로 이동</a></h5>
+	<h5><a href="/normal/market">Member 페이지로 이동</a></h5>
+	<h5><a href="/company/main">Manager 전용 페이지로 이동</a></h5>
 	<h5><a href="/admin/test1">Admin 전용 페이지로 이동</a></h5>	
 </body>
 </html>
