@@ -230,7 +230,7 @@ public class MarketController {
 		service.updateProduck(pno, bcount, p_count);
 		service.updateRevenue(ssum, profit, price, bcount, suserid);
 		return "nomal/shoping-cart";
-	}
+	} 
 	
 	@GetMapping("/logout")
     public String logout(HttpSession session) {
