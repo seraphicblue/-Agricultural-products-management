@@ -61,9 +61,10 @@ public class MarketController {
 	 * map.put("cprice", cprice); JSONObject jo = new JSONObject(map); return
 	 * jo.toString(); }
 	 */
-	
+
 	@GetMapping("/normal/search")// 메인화면 검색기능, 받아올건 이름이랑 가격만으로도 됨(pname, price)
 	public String sform(String pname, Model m, HttpSession session, @RequestParam(name = "p", defaultValue = "1") int page) {		
+
 		String userid = (String) session.getAttribute("userid");
         
 		int cprice =0;
@@ -184,7 +185,7 @@ public class MarketController {
 	@GetMapping("/normal/cart/{userid}") // 유저아이디로 그 유저의 카트 목록을 가져오는 기능
 	public String cform(Model m, HttpSession session) {		
 		String userid = (String) session.getAttribute("userid");
-        
+        System.out.println("this is userid cart/{userid} : "+userid);
 		int cprice =0;
 		int ccount = service.cartCount(userid);
 		m.addAttribute("ccount", ccount);
@@ -197,6 +198,7 @@ public class MarketController {
 		m.addAttribute("cprice", cprice);
 		List<Map<String,Object>> cart = service.userCart(userid);
 		m.addAttribute("cart", cart);
+		System.out.println(cart);
 		return "normal/shoping-cart";
 	}
 		
