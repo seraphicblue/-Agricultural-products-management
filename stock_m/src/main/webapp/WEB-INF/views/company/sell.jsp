@@ -17,19 +17,25 @@
 <html>
 <head>
 <title>판매 페이지</title>
+<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../../../js/sell.js"></script>
+<script src="../../js/webSocket.js"></script>
 
 </head>
 <body>
 	<form action="sell" method="post" id="sellform" onsubmit="return checkStock();">
-	<input type="hidden" name="sno" id="sno" value=0>
-	
+		<input type="hidden" name="sno" id="val" value=0>
+		<input type="hidden" name="pname" id="pname">
+		<input type="hidden" name="command" id="command" value="price">
+		
+
 		<table>
 			<tr>
 				<td><h2>판매</h2></td>
 			</tr>
 			<tr>
 				<td>상품명</td>
-				<td><select id="scontent" onchange="check()" name="pname">
+				<td><select id="scontent" onchange="check()" >
 						<option>--------------------</option>
 						<c:forEach items="${npList}" var="np">
 							<option value="${np.s_volume}" id="${np.sno}">${np.scontent}</option>
@@ -42,78 +48,12 @@
 			</tr>
 			<tr>
 				<td>수량</td>
-				<td><input name="p_count" id="s_volume" value=0> 
-				</td>
+				<td><input name="p_count" id="s_volume" value=0></td>
 			</tr>
 		</table>
 		<input type="submit" value="판매">
-		<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
-		<script>
-			function check() {
-				var selec = document.getElementById("scontent").selectedIndex;
-				var arr = document.getElementById("scontent").options;
-				var selectedOption = arr[selec].value;
-				var selectedId = arr[selec].id;
-				
-				$.ajax({
-					  url: '/company/'+selectedId,
-					  type: 'get',
-					  dataType: 'text'
-					  })
-					  .done(function(response){
-						  document.getElementById("s_volume").value =selectedOption;
-						  if(parseInt(response)>0){
-							  $.ajax({
-								  url: '/company/Vol/'+selectedId+'/'+selectedOption,
-								  type: 'get',
-								  dataType: 'text'
-								  })
-								  .done( function(response){
-									  selectedOption=selectedOption-parseInt(response);
-									  document.getElementById("s_volume").value =selectedOption;
-									  })
-								  }
-						  })
-				document.getElementById("sno").value = selectedId;
-			}
-			
-			function checkStock() {
-				var scontent = document.getElementById("scontent").value;
-				var price = parseInt(document.getElementById("price").value);
-				var stock = parseInt(document.getElementById("s_volume").value);
-				var select = parseInt(document.getElementById("scontent").value);
-				var scontent = $("#scontent option:checked").text();
-				$('select[name=pname]').attr('value',scontent);
-				
-				if (scontent == "------------------") {
-					alert("물품 정보를 선택해주세요.");
-					
-					return false;
-				}
-				
-				else if (stock <= 0) {
-					alert("재고 정보를 입력해주세요.");
-					
-					return false;
-				}
-				
-				else if (stock > select) {
-					alert("재고량을 넘는 입력입니다.");
-					
-					return false;
-				}
-				
-				else if (price <=0) {
-					alert("가격 정보를 선택해주세요.");
-					
-					return false;
-				}
-				else{
-					return true;
-				}
-				
-			}
-		</script>
+
+
 	</form>
 </body>
 </html>

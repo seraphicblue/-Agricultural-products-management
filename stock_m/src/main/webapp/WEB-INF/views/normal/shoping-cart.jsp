@@ -341,6 +341,9 @@
                     				return false;
                     			}
                     			if(parseInt(document.getElementById("h"+i+"p_count").value) < parseInt(document.getElementById("h"+i+"bcount").value)){
+                    				console.log(document.getElementById("h"+i+"p_count").value);
+                    				console.log(document.getElementById("h"+i+"bcount").value);
+
                     				alert("준비된 상품갯수를 초과했습니다.");
                     				alert(document.getElementById("h"+i+"name").value + "의 남은 수량은 " + document.getElementById("h"+i+"p_count").value+"개 입니다.");
                     				return false;
@@ -392,8 +395,9 @@
                 			           	  		}
                 			        		})
                 			    	})(i);
-                        		}//결제후 구매내역 저장                         	
-                        		location.reload();
+                        		}//결제후 구매내역 저장
+                        		
+                        		//location.reload();
 							}else{
 								return false
 							}
@@ -421,6 +425,7 @@
     <script src="../../market/js/mixitup.min.js"></script>
     <script src="../../market/js/owl.carousel.min.js"></script>
     <script src="../../market/js/main.js"></script>
+
 
 
 </body>
