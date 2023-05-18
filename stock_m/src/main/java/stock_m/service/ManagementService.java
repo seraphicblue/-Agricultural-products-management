@@ -21,7 +21,7 @@ import org.springframework.stereotype.Service;
 import stock_m.dao.ManagementDao;
 import stock_m.dto.ManagementDto;
 import stock_m.dto.UserDto;
-
+//dao(bean)객체에 mapper를 이용해 받아온 값들을 저장
 @Service
 public class ManagementService {
 	@Autowired
@@ -62,8 +62,8 @@ public class ManagementService {
 		return dao.insert2(id);
 	}
 
-	public int find(String m_content) {
-		return dao.find(m_content);
+	public int find(String m_content, String userid) {
+		return dao.find(m_content, userid);
 	}
 
 	public int delete(int mno) {
@@ -99,24 +99,21 @@ public class ManagementService {
 	}
 	
 
-	public int update(String m_content) {
-		return dao.update(m_content);
+	public int update(String m_content, String userid) {
+		return dao.update(m_content, userid);
 	}
 	
 
-	public int update2(String m_content) {
-		return dao.update2(m_content);
+	public int update2(String m_content, String userid) {
+		return dao.update2(m_content, userid);
 	}
 
-	public boolean check2(String m_content) {
-		return dao.check2(m_content);
+	public boolean check2(String m_content, String userid) {
+		return dao.check2(m_content, userid);
 	}
 
 	public boolean switch1(String m_content) {
 		return dao.switch1(m_content);
 	}
-
-	
-	
 
 }

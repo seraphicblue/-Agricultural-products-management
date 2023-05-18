@@ -12,9 +12,11 @@ package stock_m.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import stock_m.dao.AdminstockDao;
 import stock_m.dao.NameAndPrice_sabDao;
 import stock_m.dao.ProductDao;
 import stock_m.dao.StockDao;
@@ -32,6 +34,11 @@ public class SabService {
 	@Autowired
 	ProductDao product_dao;
 	
+
+	@Autowired
+	AdminstockDao admin_dao;
+
+
 	
 	public List<NameAndPrice_sabDto> namePrice(String userid) {
 		userid="testcompany1";
@@ -74,5 +81,10 @@ public class SabService {
 			product_dao.updateproduct(price,p_count, userid, sno);
 		}
 	}
+
+	public int inserta(@Param("a_content") String a_content,@Param("a_val") int a_val,@Param("a_volum") int a_volum) {
+		return admin_dao.inserta(a_content,a_val,a_volum);	
+	}
+
 	
 }
