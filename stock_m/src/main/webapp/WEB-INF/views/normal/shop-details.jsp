@@ -25,14 +25,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="../market/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="../market/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="../market/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="../market/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="../market/css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="../market/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="../market/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="../market/css/style.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/style.css" type="text/css">
 </head>
 
 <body>
@@ -42,7 +42,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="../market"><img src="../market/img/logo.png" alt=""></a>
+                        <a href="/normal/market"><img src="../../market/img/logo.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -53,10 +53,10 @@
                         <ul>
                             <li>
                                 <div class="header__top__right__auth">  
-                                    <a href="#"><i class="fa fa-user"></i> Logout</a>
+                                    <a href="/logout"><i class="fa fa-user"></i> Logout</a>
                                 </div>
                             </li>
-                            <li><a href="../cart/${userid}"><i class="fa fa-shopping-bag"></i> <span id="ccount">${ccount}</span></a></li>
+                            <li><a href="/normal/cart/${userid}"><i class="fa fa-shopping-bag"></i> <span id="ccount">${ccount}</span></a></li>
                         </ul>
                         <div class="header__cart__price">총 액: <span id="cprice">${cprice}원</span></div>
                     </div>
@@ -77,23 +77,20 @@
                             <span>전체 분류</span>
                         </div>
                         <ul>
-                            <li><a href="../search/100">식량작물</a></li>
-                            <li><a href="../search/200">채소류</a></li>
-                            <li><a href="../search/300">특용작물</a></li>
-                            <li><a href="../search/400">과일류</a></li>
-                            <li><a href="../search/500">축산물</a></li>
-                            <li><a href="../search/600">수산물</a></li>
+                            <li><a href="/normal/p_val?p_val=100">식량작물</a></li>
+                            	<li><a href="/normal/p_val?p_val=200">채소류</a></li>
+                            	<li><a href="/normal/p_val?p_val=300">특용작물</a></li>
+                            	<li><a href="/normal/p_val?p_val=400">과일류</a></li>
+                            	<li><a href="/normal/p_val?p_val=500">축산물</a></li>
+                            	<li><a href="/normal/p_val?p_val=600">수산물</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-9">
                     <div class="hero__search">
                         <div class="hero__search__form">
-                            <form method="post" action="../search">
-                                <div class="hero__search__categories">
-                                    모든 카테고리
-                                    <span class="arrow_carrot-down"></span>
-                                </div>
+                            <form action="/normal/search">
+                                
                                 <input type="text" placeholder="검색할 상품명" name="pname">
                                 <button type="submit" class="site-btn">검색</button>
                             </form>
@@ -106,25 +103,23 @@
     <!-- Hero Section End -->
 
     <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="../market/img/breadcrumb.jpg">
+    <section class="breadcrumb-section set-bg" data-setbg="../../market/img/breadcrumb.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
                         <h2>${product.pname}</h2>
                         <div class="breadcrumb__option">
-                            <a href="../market">홈</a>
-                            <a href="./index.html">
+                            <a href="/normal/market">홈</a>
                             <c:choose>
-                            	<c:when test="${product.p_val eq 100}">식량작물</c:when>
-                            	<c:when test="${product.p_val eq 200}">채소류</c:when>
-                            	<c:when test="${product.p_val eq 300}">특용작물</c:when>
-                            	<c:when test="${product.p_val eq 400}">과일류</c:when>
-                            	<c:when test="${product.p_val eq 500}">축산물</c:when>
-                            	<c:when test="${product.p_val eq 600}">수산물</c:when>
+                            	<c:when test="${product.p_val eq 100}"><a href="/normal/p_val?p_val=100">식량작물</a></c:when>
+                            	<c:when test="${product.p_val eq 200}"><a href="/normal/p_val?p_val=200">채소류</a></c:when>
+                            	<c:when test="${product.p_val eq 300}"><a href="/normal/p_val?p_val=300">특용작물</a></c:when>
+                            	<c:when test="${product.p_val eq 400}"><a href="/normal/p_val?p_val=400">과일류</a></c:when>
+                            	<c:when test="${product.p_val eq 500}"><a href="/normal/p_val?p_val=500">축산물</a></c:when>
+                            	<c:when test="${product.p_val eq 600}"><a href="/normal/p_val?p_val=600">수산물</a></c:when>
                             	<c:otherwise>없는분류코드입니다.</c:otherwise>
                             </c:choose>
-                            </a>
                             <span>${product.pname}</span>
                         </div>
                     </div>
@@ -142,17 +137,17 @@
                     <div class="product__details__pic">
                         <div class="product__details__pic__item">
                             <img class="product__details__pic__item--large"
-                                src="../market/img/product/details/product-details-1.jpg" alt="">
+                                src="../../market/img/product/details/product-details-1.jpg" alt="">
                         </div>
                         <div class="product__details__pic__slider owl-carousel">
-                            <img data-imgbigurl="../market/img/product/details/product-details-2.jpg"
-                                src="../market/img/product/details/thumb-1.jpg" alt="">
-                            <img data-imgbigurl="../market/img/product/details/product-details-3.jpg"
-                                src="../market/img/product/details/thumb-2.jpg" alt="">
-                            <img data-imgbigurl="../market/img/product/details/product-details-5.jpg"
-                                src="../market/img/product/details/thumb-3.jpg" alt="">
-                            <img data-imgbigurl="../market/img/product/details/product-details-4.jpg"
-                                src="../market/img/product/details/thumb-4.jpg" alt="">
+                            <img data-imgbigurl="../../market/img/product/details/product-details-2.jpg"
+                                src="../../market/img/product/details/thumb-1.jpg" alt="">
+                            <img data-imgbigurl="../../market/img/product/details/product-details-3.jpg"
+                                src="../../market/img/product/details/thumb-2.jpg" alt="">
+                            <img data-imgbigurl="../../market/img/product/details/product-details-5.jpg"
+                                src="../../market/img/product/details/thumb-3.jpg" alt="">
+                            <img data-imgbigurl="../../market/img/product/details/product-details-4.jpg"
+                                src="../../market/img/product/details/thumb-4.jpg" alt="">
                         </div>
                     </div>
                 </div>
@@ -176,7 +171,7 @@
                         <div class="product__details__quantity">
                             <div class="quantity">
                                 <div class="pro-qty">
-                                    <input type="text" id="count" value="1">
+                                    <input type="text" id="count" value="1" onchange="cchange(this)">
                                 </div>
                             </div>
                         </div>                        
@@ -196,7 +191,7 @@
 					                    , price : $("#price").val()
 					                    , name : $("#name").val()
 					            };
-								if(${product.p_count} >= $("#count").val()){
+								if(${product.p_count} >= $("#count").val() && $("#count").val() > 0){
 									$.ajax({
 										type:"post",
 										url: "../addcart",
@@ -208,9 +203,25 @@
 											return false;
 										}
 									});
-								}else{
-									alert("준비된 상품갯수를 초과했습니다.")
-								}									
+								}else if(${product.p_count} < $("#count").val()){
+									alert("준비된 상품갯수를 초과했습니다.");
+									alert("${product.pname}" + "의 남은 수량은 " + ${product.p_count} +"개 입니다.");									
+								}else {
+									alert("1이상의 숫자만 입력해 주세요.");
+								}																	
+							}
+							
+							function cchange(obj){
+								var inputValue = $(obj).val();
+								  
+								  if (/^\d+$/.test(inputValue)) {
+								    // 입력된 값이 숫자인 경우
+								    // 원하는 작업을 수행하세요.
+								  } else {
+								    // 입력된 값이 숫자가 아닌 경우
+								    alert("1이상의 숫자만 입력해 주세요.");
+								    $(obj).val(""); // 입력된 값을 비워줍니다.
+								  }
 							}
 						</script>                      
                         <ul>
@@ -326,7 +337,7 @@
             <div class="row">
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="../market/img/product/product-1.jpg">
+                        <div class="product__item__pic set-bg" data-setbg="../../market/img/product/product-1.jpg">
                             <ul class="product__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -341,7 +352,7 @@
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="../market/img/product/product-2.jpg">
+                        <div class="product__item__pic set-bg" data-setbg="../../market/img/product/product-2.jpg">
                             <ul class="product__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -356,7 +367,7 @@
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="../market/img/product/product-3.jpg">
+                        <div class="product__item__pic set-bg" data-setbg="../../market/img/product/product-3.jpg">
                             <ul class="product__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -371,7 +382,7 @@
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="../market/img/product/product-7.jpg">
+                        <div class="product__item__pic set-bg" data-setbg="../../market/img/product/product-7.jpg">
                             <ul class="product__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -390,14 +401,14 @@
     <!-- Related Product Section End -->
 
     <!-- Js Plugins -->
-    <script src="../market/js/jquery-3.3.1.min.js"></script>
-    <script src="../market/js/bootstrap.min.js"></script>
-    <script src="../market/js/jquery.nice-select.min.js"></script>
-    <script src="../market/js/jquery-ui.min.js"></script>
-    <script src="../market/js/jquery.slicknav.js"></script>
-    <script src="../market/js/mixitup.min.js"></script>
-    <script src="../market/js/owl.carousel.min.js"></script>
-    <script src="../market/js/main.js"></script>
+    <script src="../../market/js/jquery-3.3.1.min.js"></script>
+    <script src="../../market/js/bootstrap.min.js"></script>
+    <script src="../../market/js/jquery.nice-select.min.js"></script>
+    <script src="../../market/js/jquery-ui.min.js"></script>
+    <script src="../../market/js/jquery.slicknav.js"></script>
+    <script src="../../market/js/mixitup.min.js"></script>
+    <script src="../../market/js/owl.carousel.min.js"></script>
+    <script src="../../market/js/main.js"></script>
 
 
 </body>

@@ -24,14 +24,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="../market/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="../market/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="../market/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="../market/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="../market/css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="../market/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="../market/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="../market/css/style.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/style.css" type="text/css">
 </head>
 
 <body>
@@ -42,7 +42,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="../market"><img src="../market/img/logo.png" alt=""></a>
+                        <a href="/normal/market"><img src="../../market/img/logo.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -52,10 +52,10 @@
                         <ul>
                             <li>
                                 <div class="header__top__right__auth">
-                                    <a href="#"><i class="fa fa-user"></i> Logout</a>
+                                    <a href="/logout"><i class="fa fa-user"></i> Logout</a>
                                 </div>
                             </li>
-                            <li><a href="../cart/${userid}"><i class="fa fa-shopping-bag"></i> <span id="ccount">${ccount}</span></a></li>
+                            <li><a href="/normal/cart/${userid}"><i class="fa fa-shopping-bag"></i> <span id="ccount">${ccount}</span></a></li>
                         </ul>
                         <div class="header__cart__price">총 액: <span id="cprice">${cprice}원</span></div>
                     </div>
@@ -76,23 +76,20 @@
                             <span>전체 분류</span>
                         </div>
                         <ul>
-                            <li><a href="../search/100">식량작물</a></li>
-                            <li><a href="../search/200">채소류</a></li>
-                            <li><a href="../search/300">특용작물</a></li>
-                            <li><a href="../search/400">과일류</a></li>
-                            <li><a href="../search/500">축산물</a></li>
-                            <li><a href="../search/600">수산물</a></li>
+                            <li><a href="/normal/p_val?p_val=100">식량작물</a></li>
+                            <li><a href="/normal/p_val?p_val=200">채소류</a></li>
+                            <li><a href="/normal/p_val?p_val=300">특용작물</a></li>
+                            <li><a href="/normal/p_val?p_val=400">과일류</a></li>
+                            <li><a href="/normal/p_val?p_val=500">축산물</a></li>
+                            <li><a href="/normal/p_val?p_val=600">수산물</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-9">
                     <div class="hero__search">
                         <div class="hero__search__form">
-                            <form method="post" action="../search">
-                                <div class="hero__search__categories">
-                                    모든 카테고리
-                                    <span class="arrow_carrot-down"></span>
-                                </div>
+                            <form action="/normal/search">
+                                
                                 <input type="text" placeholder="검색할 상품명" name="pname">
                                 <button type="submit" class="site-btn">검색</button>
                             </form>
@@ -106,14 +103,14 @@
     <!-- Hero Section End -->
 
     <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="../market/img/breadcrumb.jpg">
+    <section class="breadcrumb-section set-bg" data-setbg="../../market/img/breadcrumb.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
                         <h2>장바구니</h2>
                         <div class="breadcrumb__option">
-                            <a href="../market">홈</a>
+                            <a href="/normal/market">홈</a>
                             <span>장바구니</span>
                             <input id="userid" value="${userid}" hidden="hidden">
                         </div>
@@ -146,7 +143,7 @@
                                 <tr>
                                     <td class="shoping__cart__item">
                                         <a href="../details/${cart.product_pno}">
-                                        <img src="../market/img/cart/cart-1.jpg" alt="">
+                                        <img src="../../market/img/cart/cart-1.jpg" alt="">
                                         <h5>${cart.name}</h5>
                                         </a>
                                     </td>
@@ -225,22 +222,27 @@
               
                     		}
                         	
-                        	function cchange(obj){                        		
+                        	function cchange(obj){ 
+                        		
+                        		var inputValue = $(obj).val();
+                        		  
+                        		if (/^\d+$/.test(inputValue) || inputValue < 0) {
+                        		    // 입력된 값이 숫자인 경우
+                        		    // 원하는 작업을 수행하세요.
+                        		  
                         		var oid = obj.getAttribute("id")
                         		var ocount = document.getElementById(oid+"oldcount").value;
                         		var ncount = obj.value;
                         		var id = obj.getAttribute("id"); 
-                        		if(Number.isNaN(parseInt(ncount))) {
-                        			alert("숫자만 입력할 수 있습니다.");
-                        			location.reload();
-                        		}
+                        		
                        			if(ncount >= 0) {                      				
                        				document.getElementById(id+"total").textContent = parseInt(ncount) * parseInt(document.getElementById(id+"price").textContent)+"원";
                        			}else if(ncount < 0){
-                       				ncount = 0;
+                       				ncount = 1;
+                       				document.getElementById(id+"total").textContent = parseInt(document.getElementById(id+"price").textContent) +"원";
                        			}
                        			if(document.getElementById(id+"total").textContent == "NaN원"){   				
-                       				document.getElementById(id+"total").textContent = 0 +"원";
+                       				document.getElementById(id+"total").textContent = parseInt(document.getElementById(id+"price").textContent) +"원";
                        			}
                        			document.getElementById(id).value = ncount; 
                        			document.getElementById("total").textContent = parseInt(document.getElementById("total").textContent) + parseInt(document.getElementById(id+"price").textContent)*(ncount - ocount) +"원";
@@ -262,6 +264,11 @@
                         			url: "../countchange",
                         			data: params
                         		});
+                        		} else {
+                          		   // 입력된 값이 숫자가 아닌 경우
+                          		   alert("1이상의 숫자만 입력해주세요!");
+                          		   $(obj).val(""); // 입력된 값을 비워줍니다.
+                          		}
                         	}
                         	
                         	function dcart(obj){
@@ -290,7 +297,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="shoping__cart__btns">
-                        <a href="../continue"  class="primary-btn cart-btn cart-btn-right">계속 쇼핑하기</a>
+                        <a href="/normal/search?pname="  class="primary-btn cart-btn cart-btn-right">계속 쇼핑하기</a>
                         
                     </div>
                 </div>
@@ -316,8 +323,9 @@
                     			if(parseInt(document.getElementById("h"+i+"p_count").value) < parseInt(document.getElementById("h"+i+"bcount").value)){
                     				console.log(document.getElementById("h"+i+"p_count").value);
                     				console.log(document.getElementById("h"+i+"bcount").value);
+
                     				alert("준비된 상품갯수를 초과했습니다.");
-                    				alert(document.getElementById("h"+i+"name").value + "의 남은 갯수 " + document.getElementById("h"+i+"p_count").value+"개");
+                    				alert(document.getElementById("h"+i+"name").value + "의 남은 수량은 " + document.getElementById("h"+i+"p_count").value+"개 입니다.");
                     				return false;
                     			}
                     		}
@@ -388,15 +396,15 @@
     <!-- Footer Section End -->
 
     <!-- Js Plugins -->
-    <script src="../market/js/jquery-3.3.1.min.js"></script>
-    <script src="../market/js/bootstrap.min.js"></script>
-    <script src="../market/js/jquery.nice-select.min.js"></script>
-    <script src="../market/js/jquery-ui.min.js"></script>
-    <script src="../market/js/jquery.slicknav.js"></script>
-    <script src="../market/js/mixitup.min.js"></script>
-    <script src="../market/js/owl.carousel.min.js"></script>
-    <script src="../market/js/main.js"></script>
-    <script src="../../js/webSocket.js"></script>
+    <script src="../../market/js/jquery-3.3.1.min.js"></script>
+    <script src="../../market/js/bootstrap.min.js"></script>
+    <script src="../../market/js/jquery.nice-select.min.js"></script>
+    <script src="../../market/js/jquery-ui.min.js"></script>
+    <script src="../../market/js/jquery.slicknav.js"></script>
+    <script src="../../market/js/mixitup.min.js"></script>
+    <script src="../../market/js/owl.carousel.min.js"></script>
+    <script src="../../market/js/main.js"></script>
+
 
 
 </body>

@@ -55,7 +55,6 @@ public class LoginController {
 	@PostMapping("/login/insert")
 	public String insert(UserDto user) {
 		service.insertUser(user);
-				
 		return "redirect:/login/login";
 	}
 	

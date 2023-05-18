@@ -29,15 +29,12 @@ public class LoginConfig {
                 // 로그인 성공 후 권한에 따라 다른 URI로 리다이렉트
             	
             	session.setAttribute("userid", authentication.getName().toString());
-                if (authentication.getAuthorities().toString().equals("[COMPANY]")) {
-                	System.out.println(authentication.getName());
+                if (authentication.getAuthorities().toString().equals("[ROLE_COMPANY]")) {
                     response.sendRedirect("/test");
                 } else if (authentication.getAuthorities().toString().equals("[ROLE_ADMIN]")) {
-                	System.out.println(authentication.getName());
                     response.sendRedirect("/login/loginSuccess");
                 } else {
-                	System.out.println(authentication.getName());
-                    response.sendRedirect("/market");
+                    response.sendRedirect("/normal/market");
                 }
             })
             .and().exceptionHandling().accessDeniedPage("/login/accessDenied")

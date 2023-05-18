@@ -13,4 +13,7 @@ public interface UserDao {
 	
 	@Insert("insert into user values (#{userid}, #{userpw}, #{gender}, #{age}, #{username},#{role},#{enabled})")
 	int insertUser(UserDto user);
+	
+	@Insert("INSERT INTO revenue(userid,revenuelimit,bsum,ssum,profit) values(#{userid}, 0, 0, 0, 0)")
+	int insertRevenue(UserDto user);
 }

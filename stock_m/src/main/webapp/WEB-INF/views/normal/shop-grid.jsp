@@ -25,14 +25,14 @@
     <link href="../market/https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="../market/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="../market/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="../market/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="../market/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="../market/css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="../market/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="../market/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="../market/css/style.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/style.css" type="text/css">
 </head>
 
 <body>
@@ -43,7 +43,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="../market"><img src="../market/img/logo.png" alt=""></a>
+                        <a href="/normal/market"><img src="../../market/img/logo.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -53,10 +53,10 @@
                         <ul>
                             <li>
                                 <div class="header__top__right__auth">
-                                    <a href="../#"><i class="fa fa-user"></i> Logout</a>
+                                    <a href="/logout"><i class="fa fa-user"></i> Logout</a>
                                 </div>
                             </li>
-                            <li><a href="../cart/${userid}"><i class="fa fa-shopping-bag"></i> <span id="ccount">${ccount}</span></a></li>
+                            <li><a href="/normal/cart/${userid}"><i class="fa fa-shopping-bag"></i> <span id="ccount">${ccount}</span></a></li>
                         </ul>
                         <div class="header__cart__price">총 액: <span id="cprice">${cprice}원</span></div>
                     </div>
@@ -77,23 +77,20 @@
                             <span>전체 분류</span>
                         </div>
                         <ul>
-                            <li><a href="../search/100">식량작물</a></li>
-                            <li><a href="../search/200">채소류</a></li>
-                            <li><a href="../search/300">특용작물</a></li>
-                            <li><a href="../search/400">과일류</a></li>
-                            <li><a href="../search/500">축산물</a></li>
-                            <li><a href="../search/600">수산물</a></li>
+                            <li><a href="/normal/p_val?p_val=100">식량작물</a></li>
+                            <li><a href="/normal/p_val?p_val=200">채소류</a></li>
+                            <li><a href="/normal/p_val?p_val=300">특용작물</a></li>
+                            <li><a href="/normal/p_val?p_val=400">과일류</a></li>
+                            <li><a href="/normal/p_val?p_val=500">축산물</a></li>
+                            <li><a href="/normal/p_val?p_val=600">수산물</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-9">
                     <div class="hero__search">
                         <div class="hero__search__form">
-                            <form method="post" action="../search">
-                                <div class="hero__search__categories">
-                                    모든 카테고리
-                                    <span class="arrow_carrot-down"></span>
-                                </div>
+                            <form action="/normal/search">
+                                
                                 <input type="text" placeholder="검색할 상품명" name="pname">
                                 <button type="submit" class="site-btn">검색</button>
                             </form>
@@ -106,15 +103,15 @@
     <!-- Hero Section End -->
 
     <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="../market/img/breadcrumb.jpg">
+    <section class="breadcrumb-section set-bg" data-setbg="../../market/img/breadcrumb.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>Organi Shop</h2>
+                        <h2>유기농 샵</h2>
                         <div class="breadcrumb__option">
-                            <a href="../market">Home</a>
-                            <span>Shop</span>
+                            <a href="/normal/market">홈</a>
+                            <span>샵</span>
                         </div>
                     </div>
                 </div>
@@ -132,23 +129,23 @@
                         <div class="sidebar__item">
                             <h4>분류</h4>
                             <ul>
-                                <li><a href="../search/100">식량작물</a></li>
-                            	<li><a href="../search/200">채소류</a></li>
-                            	<li><a href="../search/300">특용작물</a></li>
-                            	<li><a href="../search/400">과일류</a></li>
-                            	<li><a href="../search/500">축산물</a></li>
-                            	<li><a href="../search/600">수산물</a></li>
+                                <li><a href="/normal/p_val?p_val=100">식량작물</a></li>
+                            	<li><a href="/normal/p_val?p_val=200">채소류</a></li>
+                            	<li><a href="/normal/p_val?p_val=300">특용작물</a></li>
+                            	<li><a href="/normal/p_val?p_val=400">과일류</a></li>
+                            	<li><a href="/normal/p_val?p_val=500">축산물</a></li>
+                            	<li><a href="/normal/p_val?p_val=600">수산물</a></li>
                             </ul>
                         </div>
-                </div>
-            </div>
+                	</div>
+            	</div>
                 <div class="col-lg-9 col-md-7">                            
                     <div class="row">
                     <c:if test="${cproduct > 0}">
                     	<c:forEach items="${list}" var="p">                    
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="../market/img/product/product-1.jpg">
+                                <div class="product__item__pic set-bg" data-setbg="../../market/img/product/product-1.jpg">
                                     <ul class="product__item__pic__hover">
                                         <li><a href="../#"><i class="fa fa-heart"></i></a></li>
                                         <li><a href="../#"><i class="fa fa-retweet"></i></a></li>
@@ -156,24 +153,54 @@
                                     </ul>
                                 </div>
                                 <div class="product__item__text">
-                                    <h6><a href="../details/${p.pno}">${p.pname}</a></h6>
+                                    <h6><a href="/normal/details/${p.pno}">${p.pname}</a></h6>
                                     <h5>${p.price}원</h5>
                                 </div>
                             </div>
                         </div><!-- 상품1개 -->   
                         </c:forEach>
+                        
+                        
                     </c:if>   
                     <c:if test="${cproduct == 0}">
                     <br><br>
                     	검색한 상품이 없습니다.
                     </c:if>               
                     </div>
-                    <div class="product__pagination">
+                    <c:if test="${cproduct > 0}">
+                    <c:if test="${p_val == null}">
+                    <div class="product__pagination" id="page">
+						<c:if test="${begin > pageNum }">
+							<a href="search?pname=${pname}&p=${begin-1 }">[이전]</a>
+						</c:if>
+						<c:forEach begin="${begin }" end="${end}" var="i">
+							<a href="search?pname=${pname}&p=${i}">${i}</a>
+						</c:forEach>
+						<c:if test="${end < totalPages }">
+							<a href="search?pname=${pname}&p=${end+1}">[다음]</a>
+						</c:if>
+					</div>
+					</c:if>
+					<c:if test="${p_val > 0}">
+                    <div class="product__pagination" id="page">
+						<c:if test="${begin > pageNum }">
+							<a href="p_val?p_val=${p_val}&p=${begin-1 }">[이전]</a>
+						</c:if>
+						<c:forEach begin="${begin }" end="${end}" var="i">
+							<a href="p_val?p_val=${p_val}&p=${i}">${i}</a>
+						</c:forEach>
+						<c:if test="${end < totalPages }">
+							<a href="p_val?p_val=${p_val}&p=${end+1}">[다음]</a>
+						</c:if>
+					</div>
+					</c:if>
+					</c:if>
+                    <!-- <div class="product__pagination">
                         <a href="../#">1</a>
                         <a href="../#">2</a>
                         <a href="../#">3</a>
                         <a href="../#"><i class="fa fa-long-arrow-right"></i></a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -185,14 +212,14 @@
     <!-- Footer Section End -->
 
     <!-- Js Plugins -->
-    <script src="../market/js/jquery-3.3.1.min.js"></script>
-    <script src="../market/js/bootstrap.min.js"></script>
-    <script src="../market/js/jquery.nice-select.min.js"></script>
-    <script src="../market/js/jquery-ui.min.js"></script>
-    <script src="../market/js/jquery.slicknav.js"></script>
-    <script src="../market/js/mixitup.min.js"></script>
-    <script src="../market/js/owl.carousel.min.js"></script>
-    <script src="../market/js/main.js"></script>
+    <script src="../../market/js/jquery-3.3.1.min.js"></script>
+    <script src="../../market/js/bootstrap.min.js"></script>
+    <script src="../../market/js/jquery.nice-select.min.js"></script>
+    <script src="../../market/js/jquery-ui.min.js"></script>
+    <script src="../../market/js/jquery.slicknav.js"></script>
+    <script src="../../market/js/mixitup.min.js"></script>
+    <script src="../../market/js/owl.carousel.min.js"></script>
+    <script src="../../market/js/main.js"></script>
 
 
 
