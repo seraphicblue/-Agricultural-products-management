@@ -15,5 +15,5 @@ public interface BroadcastDao {
 	@Select("select userid from pricebroadcast where pno = #{pno} AND param <= #{param}")
 	public List<String> broadPriceCheck(@Param("pno")int pno, @Param("param")int param);
 	
-	 
+	  
 }
