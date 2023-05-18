@@ -123,9 +123,9 @@ public class MarketService {
 		return dao.addsell(asmap);
 	}
 	
-	public int updateStock(int pno, String suserid, int bcount, int s_volume) {
+	public int updateStock(int sno, String suserid, int bcount, int s_volume) {
 		Map<String, Object> usmap = new HashMap<>();
-		usmap.put("pno", pno);
+		usmap.put("sno", sno);
 		usmap.put("suserid", suserid);
 		usmap.put("s_volume", s_volume);
 		usmap.put("bcount", bcount);

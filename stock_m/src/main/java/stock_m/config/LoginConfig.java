@@ -30,7 +30,7 @@ public class LoginConfig {
             	
             	session.setAttribute("userid", authentication.getName().toString());
                 if (authentication.getAuthorities().toString().equals("[ROLE_COMPANY]")) {
-                    response.sendRedirect("/test");
+                    response.sendRedirect("/company/main");
                 } else if (authentication.getAuthorities().toString().equals("[ROLE_ADMIN]")) {
                     response.sendRedirect("/login/loginSuccess");
                 } else {

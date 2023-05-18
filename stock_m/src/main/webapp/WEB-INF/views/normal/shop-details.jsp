@@ -36,7 +36,7 @@
 </head>
 
 <body>
-<!-- Header Section Begin -->
+<!-- Header Section Begin --> <%-- ------------------------- 다른 페이지들과 공통부분 시작 ------------------------- --%>
     <header class="header">
         <div class="container">
             <div class="row">
@@ -100,13 +100,14 @@
             </div>
         </div>
     </section>
-    <!-- Hero Section End -->
+    <!-- Hero Section End --> <%-- ------------------------- 다른 페이지들과 공통부분 끝 ------------------------- --%>
 
     <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-section set-bg" data-setbg="../../market/img/breadcrumb.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
+                	<%-- 장바구니 페이지의 중단부에 토마토 부분 해당 상품의 분류 코드에 따라 링크 변경 및 출력 텍스트 변경--%>
                     <div class="breadcrumb__text">
                         <h2>${product.pname}</h2>
                         <div class="breadcrumb__option">
@@ -152,6 +153,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
+                	<%-- 상품명 및 별점(삭제할생각) --%>
                     <div class="product__details__text">
                         <h3>${product.pname}</h3>
                         <div class="product__details__rating">
@@ -162,6 +164,7 @@
                             <i class="fa fa-star-half-o"></i>
                             <span>(18 reviews)</span>
                         </div>
+                        <%-- 상품가격 및 상품 정보(정보를 판매자가 작성하게 할 생각 그렇게되면 상품 테이블에 상품설명 컬럼을 추가해야함) --%>
                         <div class="product__details__price">${product.price}원</div>
                         <p>Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam
                             vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet
@@ -170,10 +173,12 @@
                         
                         <div class="product__details__quantity">
                             <div class="quantity">
+                            	<%-- 구입할 상품의 수량을 +,-버튼 또는 직접입력하여 변경 --%>
                                 <div class="pro-qty">
                                     <input type="text" id="count" value="1" onchange="cchange(this)">
                                 </div>
                             </div>
+                        <%-- 사용자의 userid, 상품의 상품번호,  --%>    
                         </div>                        
 							<input id="userid" value="${userid}" hidden="hidden">
 							<input id="product_pno" value="${product.pno}" hidden="hidden">
