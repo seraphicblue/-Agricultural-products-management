@@ -178,7 +178,7 @@
                                     <input type="text" id="count" value="1" onchange="cchange(this)">
                                 </div>
                             </div>
-                        <%-- 사용자의 userid, 상품의 상품번호,  --%>    
+                        <%-- 사용자의 userid, 상품의 상품번호, 가격, 상품명 받아오는 부분 --%>    
                         </div>                        
 							<input id="userid" value="${userid}" hidden="hidden">
 							<input id="product_pno" value="${product.pno}" hidden="hidden">
