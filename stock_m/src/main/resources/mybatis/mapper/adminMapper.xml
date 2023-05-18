@@ -11,4 +11,7 @@
 		values(#{a_content},#{a_val},#{a_volum})
 	</insert>
 	
+	<select id ="option" resultType="Map">
+	select *  from adminstock
+	</select>
 </mapper>

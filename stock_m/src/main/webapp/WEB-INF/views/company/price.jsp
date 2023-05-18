@@ -20,6 +20,7 @@
     <option value = "${priceData.PUM_NM_A}" id = "${priceData.PAV_P_A}">${priceData.PUM_NM_A}</option>
     </c:forEach>
     </select>
+    <input type="text" id ="a_val">
     
    <button class="click">제출</button>
     
@@ -29,11 +30,8 @@
     $(document).ready(function(){
     	$('.click').click(
 				function() {
-					function rand(min, max) {
-						  return Math.floor(Math.random() * (max - min + 1)) + min;
-						}
 					var a_content = $('#a_content').val();
-					var a_val = rand(1,5)*100;
+					var a_val = $('#a_val').val();
 					var a_volum= parseInt($('#a_content option:selected').attr('id')/10);
 
 					$.ajax({
