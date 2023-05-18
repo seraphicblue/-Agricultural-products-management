@@ -35,7 +35,7 @@
 </head>
 
 <body>
-<!-- Header Section Begin -->
+<!-- Header Section Begin --> <%-- ------------------------- 다른 페이지들과 공통부분 시작 ------------------------- --%>
     <header class="header">
        
         <div class="container">
@@ -100,18 +100,20 @@
             </div>
         </div>
     </section>
-    <!-- Hero Section End -->
+    <!-- Hero Section End --> <%-- ------------------------- 다른 페이지들과 공통부분 끝 ------------------------- --%>
 
     <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-section set-bg" data-setbg="../../market/img/breadcrumb.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
+                	<%-- 장바구니 페이지의 중단부에 토마토 부분 --%>
                     <div class="breadcrumb__text">
                         <h2>장바구니</h2>
                         <div class="breadcrumb__option">
                             <a href="/normal/market">홈</a>
                             <span>장바구니</span>
+                            <%-- MarketController에서 받은 userid를 받아놓은 부분 --%>
                             <input id="userid" value="${userid}" hidden="hidden">
                         </div>
                     </div>
@@ -139,6 +141,7 @@
                             </thead>
                             <tbody>
                             
+                            <%-- 해당 유저 cart테이블에 저장된 상품 정보를 반복문으로 출력 --%>
                             <c:forEach items="${cart}" var="cart" varStatus="status">	
                                 <tr>
                                     <td class="shoping__cart__item">
@@ -167,7 +170,10 @@
                                         <span class="icon_close" id="${cart.product_pno} delete" onclick="dcart(this)"></span>
                                     </td>
                                 </tr>
+                                
+                                <%-- 해당 상품의 판매자 userid, 판매자 장부정보, 판매수량, 재고수량 등 받아놓은 부분 --%> <%-- 이부분을 효율적으로 바꿀 방법 찾는중 --%>
                                 <input id="h${status.count}suserid" value="${cart.userid}" hidden="hidden">
+                                <input id="h${status.count}sno" value="${cart.sno}" hidden="hidden">
                                 <input id="h${status.count}pno" value="${cart.product_pno}" hidden="hidden">
                                 <input id="h${status.count}price" value="${cart.price}" hidden="hidden">
                                 <input id="h${status.count}bcount" value="${cart.count}" name="${cart.product_pno}bcount" hidden="hidden">
@@ -181,9 +187,10 @@
                             </c:forEach>                          
                                 
                             </tbody>                            
-                        </table>
+                        </table>                        
                         
                         <script>
+                       		<%-- 장바구니에 +,-버튼 클릭시 발생하는 이벤트 상품수 증감 --%>
                         	function vi(obj){
                         		var str = obj;
                         		let idc = str.split(' ');
@@ -222,6 +229,7 @@
               
                     		}
                         	
+                        	<%-- +,-버튼을 사용하지 않고 상품수를 직접입력시 상품수의 변화가 생길시 발생하는 이벤트 --%>
                         	function cchange(obj){ 
                         		
                         		var inputValue = $(obj).val();
@@ -271,6 +279,7 @@
                           		}
                         	}
                         	
+                        	<%-- 상품 오른쪽 X를 클릭시 발생하는 이벤트 해당상품 삭제 --%>
                         	function dcart(obj){
                         		if(confirm('상품을 장바구니에서 삭제하시겠습니까?')){
                         			var str = obj.getAttribute("id");
@@ -296,6 +305,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-12">
+                	<%-- 계속 쇼핑하기 클릭시 상품으로 등록된 모든 상품의 정보를 shop-grid로 이동해 출력 --%>
                     <div class="shoping__cart__btns">
                         <a href="/normal/search?pname="  class="primary-btn cart-btn cart-btn-right">계속 쇼핑하기</a>
                         
@@ -304,6 +314,7 @@
 
                 <div class="col-lg-12">
                     <div class="shoping__checkout">
+                    	<%-- 장바구니에 담긴 모든 상품 총액 출력 --%>
                         <h5>장바구니 총액</h5>
                         <ul>
                             <li>총액 <span id="total" >                            
@@ -315,11 +326,20 @@
                     </div>
                 </div>
                 
+                <%-- 구매버튼 클릭시 발생하는 이벤트 결제완료시 해당 유저의 장바구니 상품을 모두 삭제 및 해당상품 판매자의 장부, 판매,구매 정보에 반영 --%>
                 <script>         
                 	function checkout(){                		              		
                 		if(confirm('구매하시겠습니까?')){
+                			if(${ccount} == 0){
+                				alert("구매할 상품이 없습니다. 장바구니에 상품을 추가해주세요.");
+                				return false;
+                			}
                 			var fin = "${fina}"; 
                     		for(var i = 1; i < parseInt(fin)+1; i++){
+                    			if(parseInt(document.getElementById("h"+i+"bcount").value) <= 0){
+                    				alert(document.getElementById("h"+i+"name").value + "의 구매 수량을 1개 이상으로 해주세요.");                    				
+                    				return false;
+                    			}
                     			if(parseInt(document.getElementById("h"+i+"p_count").value) < parseInt(document.getElementById("h"+i+"bcount").value)){
                     				alert("준비된 상품갯수를 초과했습니다.");
                     				alert(document.getElementById("h"+i+"name").value + "의 남은 수량은 " + document.getElementById("h"+i+"p_count").value+"개 입니다.");
@@ -353,6 +373,7 @@
                         					userid : $("#userid").val()
                         					, suserid : document.getElementById("h"+i+"suserid").value
         				                    , bcount : document.getElementById("h"+i+"bcount").value
+        				                    , sno : document.getElementById("h"+i+"sno").value
         				                    , pno : document.getElementById("h"+i+"pno").value
         				                    , price : document.getElementById("h"+i+"price").value
         				                    , bdate : now
