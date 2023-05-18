@@ -47,7 +47,7 @@ public interface ProductDao {
 	public int addCart(Cart cart);
 	
 	@Select("select product_pno, count, product.price, name, stock.userid, s_volume, p_count, ssum, profit from cart inner join stock inner join product inner join revenue on cart.product_pno = stock.sno and cart.product_pno = product.pno and stock.userid = revenue.userid  where cart.userid = #{userid}")
-	public List<Map<String,Object>> userCart(String userid);
+	public List<Map<String,Object>> userCart(@Param("userid")String userid);
 	
 	@Select("select * from product")
 	public List<Map<String,Object>> allProduct();	
@@ -98,5 +98,7 @@ public interface ProductDao {
 	
 	@Update("UPDATE product SET p_count = #{p_count},price = #{price} where userid=#{userid} AND sno=#{sno}")
 	void updateproduct(@Param("price")int price, @Param("p_count")int p_count, @Param("userid")String userid, @Param("sno")int sno);
-
+	
+	@Select("select pno from product where userid=#{userid} AND sno=#{sno}")
+	int broadprice(@Param("userid")String userid, @Param("sno")int sno);
 }

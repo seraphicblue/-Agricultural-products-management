@@ -43,7 +43,7 @@ public class SabController {
 
 	@GetMapping("event2")
 	public String event() {
-		return "/test";
+		return "test";
 	}
 
 	@GetMapping("company/main")
