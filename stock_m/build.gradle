@@ -19,7 +19,7 @@ repositories {
 }
 
 dependencies {
-	//implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.0'
 	implementation 'org.springframework.session:spring-session-core'
@@ -28,13 +28,13 @@ dependencies {
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	//testImplementation 'org.springframework.security:spring-security-test'
+	testImplementation 'org.springframework.security:spring-security-test'
 	
 	implementation group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version: '10.1.7'
 	implementation group: 'org.glassfish.web', name: 'jakarta.servlet.jsp.jstl', version: '3.0.1'
 	implementation group: 'jakarta.servlet.jsp.jstl', name: 'jakarta.servlet.jsp.jstl-api', version: '3.0.0'
 	// https://mvnrepository.com/artifact/org.springframework.security/spring-security-taglibs
-	//implementation group: 'org.springframework.security', name: 'spring-security-taglibs', version: '6.0.3'
+	implementation group: 'org.springframework.security', name: 'spring-security-taglibs', version: '6.0.3'
 	//xml to json parse
 	// https://mvnrepository.com/artifact/org.json/json
 	implementation group: 'org.json', name: 'json', version: '20160810'
@@ -54,19 +54,9 @@ dependencies {
 	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mail
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
 	
-	////infinspan
-	//// https://mvnrepository.com/artifact/org.infinispan/infinispan-core
-	//testImplementation group: 'org.infinispan', name: 'infinispan-core', version: '12.0.1.Final'
-    //// https://mvnrepository.com/artifact/org.infinispan/infinispan-commons
-	//testImplementation group: 'org.infinispan', name: 'infinispan-commons', version: '12.0.1.Final'
-    //// https://mvnrepository.com/artifact/org.infinispan/infinispan-marshaller-protostuff
-	//implementation group: 'org.infinispan', name: 'infinispan-marshaller-protostuff', version: '12.0.1.Final'
-	//// https://mvnrepository.com/artifact/org.jboss.marshalling/jboss-marshalling-osgi
-	//implementation group: 'org.jboss.marshalling', name: 'jboss-marshalling-osgi', version: '2.0.10.Final'
-	
-	// https://mvnrepository.com/artifact/io.swagger/swagger-annotations
-	implementation group: 'io.swagger', name: 'swagger-annotations', version: '1.5.22'
-	
+	//소켓 추가
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-websocket
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-websocket', version: '2.4.9'
 
 	
 }

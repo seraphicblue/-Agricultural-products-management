@@ -34,8 +34,11 @@ public class SabService {
 	@Autowired
 	ProductDao product_dao;
 	
+
 	@Autowired
 	AdminstockDao admin_dao;
+
+
 	
 	public List<NameAndPrice_sabDto> namePrice(String userid) {
 		userid="testcompany1";
@@ -58,7 +61,11 @@ public class SabService {
 	public int selecVol(String userid, int sno) {
 		return product_dao.selecVol(userid, sno);
 	}
-
+	
+	public int broadprice(String userid, int sno) {
+		return product_dao.broadprice(userid, sno);
+	}
+	
 	
 	public void updateAndInsert(int sno, String pname, int price, int p_count) {
 		int p_val= stock_dao.selecSval(sno);
