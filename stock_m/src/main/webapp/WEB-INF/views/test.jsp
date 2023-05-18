@@ -8,7 +8,7 @@
 <body>
 	<input type="hidden" name="command" id="command" value="price"> 
         
-	<h1>가격 알림</h1>
+	<h1>가격 알림</h1> 
 	<div>
 		<label for="val">Message:</label> <input type="text" id="val" /> <br>
 		<label for="userid">UserId : </label> <input type="text" id="userid" />

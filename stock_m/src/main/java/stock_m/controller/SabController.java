@@ -30,6 +30,7 @@ import stock_m.service.SabService;
 import stock_m.service.StockService;
 
 @Controller
+
 public class SabController {
 
 	@Autowired
@@ -43,12 +44,12 @@ public class SabController {
 
 	@GetMapping("event2")
 	public String event() {
-		return "/test";
+		return "test";
 	}
 
 	@GetMapping("company/main")
 	public String companyindex() {
-		return "/company/index";
+		return "/company/test";
 	}
 
 	@GetMapping("normal/main")

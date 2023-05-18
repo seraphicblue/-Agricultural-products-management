@@ -1,8 +1,8 @@
 /*
-   Date    : 2023.05.10
+   Date    : 2023.05.16
    name    : ProductDao
    type    : Dao
-   ver     : 2.0
+   ver     : 5.0
    conect  : MarketService
    content : 상품 Dao
    writer  : 김기덕
@@ -20,29 +20,37 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-
 import stock_m.dto.Cart;
 
 @Mapper
 public interface ProductDao {
-	@Select("select * from product where pname like concat('%',#{pname},'%')")
+	@Select("select * from product where pname like concat('%',#{pname},'%') limit #{start} , #{count}")
 	//@Select("select * from product")
-	public List<Map<String,Object>> searchPname(String pname);
+	public List<Map<String,Object>> searchPname(Map<String, Object> m);
+	
+	@Select("select count(*) from product where pname like concat('%',#{pname},'%') or p_val = #{p_val}")
+	public int countProduct(Map<String, Object> map);
 	
 	@Select("select * from product where pno = #{pno}")
 	public Map<String,Object> detailProduct(int pno);
 	
-	@Select("select * from product where p_val = #{p_val}")
-	public List<Map<String,Object>> searchP_val(int p_val);
+	@Select("select count(userid) from cart where userid = #{userid}")
+	public int cartCount(String memberId);
+	
+	@Select("select sum(count*price) from cart where userid = #{userid}")
+	public int cartPrice(String memberId);
+	
+	@Select("select * from product where p_val = #{p_val} limit #{start} , #{count}")
+	public List<Map<String,Object>> searchP_val(Map<String, Object> m);
 	
 	@Insert("INSERT INTO cart(userid,product_pno,count,price,name) values(#{userid},#{product_pno},#{count},#{price},#{name})")
 	public int addCart(Cart cart);
 	
-	@Select("select * from cart where userid like concat('%',#{userid},'%')")
-	public List<Map<String,Object>> userCart(String userid);
+	@Select("select product_pno, count, product.price, name, stock.userid, s_volume, p_count, ssum, profit from cart inner join stock inner join product inner join revenue on product.sno = stock.sno and cart.product_pno = product.pno and stock.userid = revenue.userid  where cart.userid = #{userid}")
+	public List<Map<String,Object>> userCart(@Param("userid")String userid);
 	
 	@Select("select * from product")
-	public List<Map<String,Object>> allProduct();
+	public List<Map<String,Object>> allProduct();	
 	
 	@Update("update cart set count = #{count} where userid = #{userid} and product_pno = #{product_pno}")
 	public int countChange(Map<String, Object> map);
@@ -61,7 +69,22 @@ public interface ProductDao {
 	
 	@Delete("delete from cart where userid = #{userid} and product_pno = #{product_pno}")
 	public int deleteCart(@Param("product_pno") int product_pno, @Param("userid") String userid);
-	 
+
+	@Insert("INSERT INTO buy(pno,userid,bdate,price,bcount) values(#{pno},#{userid},#{bdate},#{price},#{bcount})")
+	public int addbuy(Map<String, Object> abmap);
+	
+	@Insert("INSERT INTO sell(product_pno,userid,sdate,price,scount) values(#{pno},#{suserid},#{bdate},#{price},#{bcount})")
+	public int addsell(Map<String, Object> asmap);
+	
+	@Update("update stock set s_volume = #{s_volume}-#{bcount} where sno = #{pno} and userid = #{suserid}")
+	public int updateStock(Map<String, Object> usmap);
+	
+	@Update("update product set p_count = #{p_count}-#{bcount} where pno = #{pno}")
+	public int updateProduck(Map<String, Object> upmap);
+	
+	@Update("update revenue set ssum = #{ssum}+(#{price}*#{bcount}), profit = #{profit}+(#{price}*#{bcount}) where userid = #{suserid}")
+	public int updateRevenue(Map<String, Object> urmap);
+	
 	@Select("select count(*) from product where userid=#{userid} AND sno=#{sno}")
 	int selecCount(@Param("userid")String userid, @Param("sno")int sno);
 	
@@ -76,6 +99,4 @@ public interface ProductDao {
 	
 	@Select("select pno from product where userid=#{userid} AND sno=#{sno}")
 	int broadprice(@Param("userid")String userid, @Param("sno")int sno);
-
-
 }
