@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import stock_m.dao.UserDao;
-import stock_m.dto.LoginRole;
+//import stock_m.dto.LoginRole;
 import stock_m.dto.UserDto;
 
 @Service
