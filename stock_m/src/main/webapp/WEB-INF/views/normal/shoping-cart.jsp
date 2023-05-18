@@ -397,7 +397,7 @@
                 			    	})(i);
                         		}//결제후 구매내역 저장
                         		
-                        		//location.reload();
+                        		location.reload();
 							}else{
 								return false
 							}
