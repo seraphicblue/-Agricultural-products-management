@@ -15,10 +15,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import stock_m.dto.ManagementDto;
 import stock_m.dto.UserDto;
-
+// db에 접근하기 위한 객체 생성 
 @Mapper
 public interface ManagementDao {
 
@@ -26,13 +27,13 @@ public interface ManagementDao {
 		int countSearch(String keyword);
 		int insert(String id);
 		int insert2(String id);
-		int find(String m_content);
+		int find(@Param("m_content")String m_content,@Param("userid") String userid);
 		int delete(int find); // insert,update,delete는 리턴 값 int
 		int count1();
 		int check(String id);
-		int update(String m_content);
-		int update2(String m_content);
-		boolean check2(String m_content);
+		int update(@Param("m_content")String m_content,@Param("userid") String userid);
+		int update2(@Param("m_content")String m_content,@Param("userid") String userid);
+		boolean check2(@Param("m_content")String m_content,@Param("userid") String userid);
 		List<ManagementDto>managementList(Map<String,Object> m);
 		List<ManagementDto>maList(Map<String,Object> m);
 		List<UserDto> UserList(Map<String, Object> m);

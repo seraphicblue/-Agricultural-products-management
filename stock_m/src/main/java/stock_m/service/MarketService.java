@@ -27,6 +27,7 @@ public class MarketService {
 	@Autowired
 	ProductDao dao;
 	
+	//pname(상품명)으로 상품 검색 pname : 검색 때 입력한 문자열, start : 시작할 상품순서, count : 한페이지에 보여줄 상품수 
 	public List<Map<String,Object>> searchPname(String pname, int start) {
 		Map<String, Object> m = new HashMap<String, Object>();
 		m.put("pname", pname);
@@ -123,9 +124,9 @@ public class MarketService {
 		return dao.addsell(asmap);
 	}
 	
-	public int updateStock(int pno, String suserid, int bcount, int s_volume) {
+	public int updateStock(int sno, String suserid, int bcount, int s_volume) {
 		Map<String, Object> usmap = new HashMap<>();
-		usmap.put("pno", pno);
+		usmap.put("sno", sno);
 		usmap.put("suserid", suserid);
 		usmap.put("s_volume", s_volume);
 		usmap.put("bcount", bcount);

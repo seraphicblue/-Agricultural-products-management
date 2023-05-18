@@ -52,11 +52,14 @@
                         <ul>
                             <li>
                             	<div class="header__top__right__auth">
-                               		<a href="/logout"><i class="fa fa-user"></i> Logout</a>
+                            	<%-- logout기능 클릭시 MarketController에 logout메서드로 세션에 저장된 userid 정보를 삭제 --%>
+                               		<a href="/logout"><i class="fa fa-user"></i> Logout</a> 
                            	 	</div>
                        		</li>
-                            <li><a href="cart/${userid}"><i class="fa fa-shopping-bag"></i> <span id="ccount">${ccount}</span></a></li>
+                       		<%-- 장바구니에 저장된 상품수 출력 및 클릭시 MarketController에 cform메서드로 해당유저의 장바구니로 이동 --%>
+                            <li><a href="cart/${userid}"><i class="fa fa-shopping-bag"></i> <span id="ccount">${ccount}</span></a></li> 
                         </ul>
+                        <%-- 장바구니에 저장된 상품들의 가격 총합 출력 --%>
                         <div class="header__cart__price">총 액: <span id="cprice">${cprice}원</span></div>
                     </div>
                 </div>
@@ -75,6 +78,7 @@
                             <i class="fa fa-bars"></i>
                             <span>전체 분류</span>
                         </div>
+                        <%-- 상품을 분류코드로 분류하여 분류코드 별 상품정보를 MarketController에 pvform메서드로 shop-grid.jsp에 출력 --%>
                         <ul>
                             <li><a href="/normal/p_val?p_val=100">식량작물</a></li>
                             <li><a href="/normal/p_val?p_val=200">채소류</a></li>
@@ -88,11 +92,13 @@
                 <div class="col-lg-9">
                     <div class="hero__search">
                         <div class="hero__search__form">
-                            <form action="/normal/search">
-                                
+                        	
+                        	<%-- 상품을 상품명으로 검색하여 상품정보를 MarketController에 sform메서드로 shop-grid.jsp에 출력 --%>
+                            <form action="/normal/search">                                
                                 <input type="text" placeholder="검색할 상품명" name="pname">
                                 <button type="submit" class="site-btn">검색</button>
                             </form>
+                            
                         </div>
                     </div>
                     <div class="hero__item set-bg" data-setbg="../market/img/hero/banner.jpg">
@@ -114,6 +120,8 @@
         <div class="container">
             <div class="row">
                 <div class="categories__slider owl-carousel">
+                
+                <%-- MarketController에 mform메서드로 Product테이블에 저장된 모든 상품 정보를 list로 받아서 출력 --%>
                 <c:forEach items="${list}" var="p">
                     <div class="col-lg-3">
                     	<a href="/normal/details/${p.pno}">
