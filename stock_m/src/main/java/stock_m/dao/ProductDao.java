@@ -46,10 +46,8 @@ public interface ProductDao {
 	@Insert("INSERT INTO cart(userid,product_pno,count,price,name) values(#{userid},#{product_pno},#{count},#{price},#{name})")
 	public int addCart(Cart cart);
 	
-
 	@Select("select stock.sno, product_pno, count, product.price, name, stock.userid, s_volume, p_count, ssum, profit from cart inner join stock inner join product inner join revenue on product.sno = stock.sno and cart.product_pno = product.pno and stock.userid = revenue.userid  where cart.userid = #{userid}")
 	public List<Map<String,Object>> userCart(String userid);
-
 	
 	@Select("select * from product")
 	public List<Map<String,Object>> allProduct();	

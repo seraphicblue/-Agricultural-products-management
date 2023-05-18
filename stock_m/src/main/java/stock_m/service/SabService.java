@@ -17,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import stock_m.dao.AdminstockDao;
-import stock_m.dao.BroadcastDao;
 import stock_m.dao.NameAndPrice_sabDao;
 import stock_m.dao.ProductDao;
 import stock_m.dao.StockDao;
@@ -38,9 +37,8 @@ public class SabService {
 
 	@Autowired
 	AdminstockDao admin_dao;
-	
-	@Autowired
-	BroadcastDao broad_dao;
+
+
 	
 	public List<NameAndPrice_sabDto> namePrice(String userid) {
 		userid="testcompany1";
@@ -65,9 +63,9 @@ public class SabService {
 	}
 	
 	public int broadprice(String userid, int sno) {
-		return broad_dao.broadprice(userid, sno);
+		return product_dao.broadprice(userid, sno);
 	}
-	   
+	
 	
 	public void updateAndInsert(int sno, String pname, int price, int p_count) {
 		int p_val= stock_dao.selecSval(sno);
