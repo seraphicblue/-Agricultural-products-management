@@ -61,7 +61,7 @@ public interface ProductDao {
 	
 	@Delete("delete from cart where userid = #{userid} and product_pno = #{product_pno}")
 	public int deleteCart(@Param("product_pno") int product_pno, @Param("userid") String userid);
-	
+	 
 	@Select("select count(*) from product where userid=#{userid} AND sno=#{sno}")
 	int selecCount(@Param("userid")String userid, @Param("sno")int sno);
 	
