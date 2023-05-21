@@ -38,7 +38,7 @@ public class StockController {
 	@PostMapping("/company/checks")
 	@ResponseBody
 	public void checks(int s_price, String scontent, @RequestParam("s_volume") int s_volume, int s_val ) {
-		int a =r_service.checks();
+		int a = r_service.checks();
 		if(a> s_price) {
 			service.checki(scontent, s_volume, s_val);
 		}

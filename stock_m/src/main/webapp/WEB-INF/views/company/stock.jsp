@@ -38,19 +38,20 @@
 	 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
 		function selectedoption(selectElement) {
-			var selectedvolume = parseInt(selectElement.getAttribute("data-volume"));
-			var s_volume = document.getElementById("s_volume").value;
-			var selectedval = selectElement.getAttribute("data-val").value;
+			var selectElement = document.querySelector('select');
+			var selectedoption = selectElement.options[selectElement.selectedIndex];
+			var selectedvolume = selectedoption.getAttribute("data-volume");
+			var selectedval = selectedoption.getAttribute("data-val"); 
+			document.getElementById("selectedprice").textContent = document.getElementById("selectedvolume").textContent*s_volume;
 			document.getElementById("selectedvolume").textContent = selectedvolume;
-			document.getElementById("selectedprice").textContent = selectedvolume * s_volume;
 			document.getElementById("s_val").textContent = selectedval;
 		}
 		
 		function changeprice(selectElement){
-			var s_volume = document.getElementById("s_volume").value;
-			
+			var s_volume = parseInt(document.getElementById("s_volume").value);
+			console.log(s_volume);
 			if(!isNaN(s_volume)&& s_volume >= 0){
-			document.getElementById("selectedprice").textContent = document.getElementById("selectedvolume").textContent*s_volume;
+				document.getElementById("selectedprice").textContent = parseInt(document.getElementById("selectedvolume").textContent) * s_volume;
 			}else{
 				alert("수량은 양수만 입력이 가능합니다");
 				$("#s_volume").empty();
@@ -62,7 +63,9 @@
 			var selectElement = document.querySelector('select');
 			var selectedoption = selectElement.options[selectElement.selectedIndex];
 			var selectedvolume = selectedoption.getAttribute("data-volume");
+			var selectedval = selectedoption.getAttribute("data-val"); 
 			document.getElementById("selectedvolume").textContent = selectedvolume;
+			document.getElementById("s_val").textContent = selectedval;
 		});
 		
 		$(document).ready(function(){
@@ -72,7 +75,8 @@
 						var scontent = selectElement.options[selectElement.selectedIndex].value;
 						var s_price = parseInt(document.getElementById("selectedprice").textContent);
 						var s_volume = document.getElementById("s_volume").value;
-						var s_val = document.getElementById("s_val").value;
+						var s_val = parseInt(document.getElementById("s_val").textContent);
+						console.log(s_val);
 						$.ajax({
 						      type: 'POST',
 						      url: '/company/checks',
