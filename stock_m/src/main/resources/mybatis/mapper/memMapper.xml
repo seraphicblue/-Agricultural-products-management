@@ -27,14 +27,14 @@
 
 	<select id="count1" resultType="int">
 		select count(*)from user where
-		role='업체'
+		role= [ROLE_COMPANY]
 	</select>
 
 	<select id="countSearch" parameterType="String" resultType="int">
 
 		select count(*) from user
 		where username like concat
-		('%',#{keyword},'%') and role = '업체'
+		('%',#{keyword},'%') and role = [ROLE_COMPANY]
 
 	</select>
 
@@ -48,7 +48,7 @@
 		resultType="stock_m.dto.UserDto">
 
 		select userid, username, age, gender from user where
-		role='업체'
+		role='[ROLE_COMPANY]
 	</select>
 
 	<select id="UserList" parameterType="map"
@@ -56,7 +56,7 @@
 
 		select userid, username, age, gender from user
 		where
-		username like concat ('%',#{keyword},'%') and role = '업체'
+		username like concat ('%',#{keyword},'%') and role = [ROLE_COMPANY]
 	</select>
 
 	<select id="managementList" parameterType="map"

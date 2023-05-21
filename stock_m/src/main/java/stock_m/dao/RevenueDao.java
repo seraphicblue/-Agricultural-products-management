@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Select;
 @Mapper
 public interface RevenueDao {
 	
-	@Select("select `limit` from revenue where userid = 'testcompany'")
+	@Select("select profit from revenue where userid = 'testcompany1'")
 	int checks();
- 
+	 
 }

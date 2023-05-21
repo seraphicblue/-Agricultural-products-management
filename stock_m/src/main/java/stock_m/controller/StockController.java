@@ -24,7 +24,7 @@ public class StockController {
 	StockService service;
 	
 	@Autowired
-	RevenueService r_serivce;
+	RevenueService r_service;
 	
 	@GetMapping("/company/stock")
 	public String option(Model m) {
@@ -37,18 +37,20 @@ public class StockController {
 	
 	@PostMapping("/company/checks")
 	@ResponseBody
-	public boolean checks(int s_price) {
-
-		int a = r_serivce.checks();
-		return a>=s_price;
+	public void checks(int s_price, String scontent, @RequestParam("s_volume") int s_volume, int s_val ) {
+		int a =r_service.checks();
+		if(a> s_price) {
+			service.checki(scontent, s_volume, s_val);
+		}
+		
 	}
 	
-	@GetMapping("/company/inserts")
-	public String inserts(@RequestParam("scontent") String scontent, @RequestParam("s_volume") int s_volume) {
-		System.out.println(scontent);
-		Date now = new Date();
-		SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
-		service.inserts(scontent,s_volume,format.format(now));
-		 return "redirect:/company/stock"; 
-	}
+	/*
+	 * @GetMapping("/company/inserts") public String
+	 * inserts(@RequestParam("scontent") String scontent, @RequestParam("s_volume")
+	 * int s_volume) { System.out.println(scontent); Date now = new Date();
+	 * SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+	 * service.inserts(scontent,s_volume,format.format(now)); return
+	 * "redirect:/company/stock"; }
+	 */
 }

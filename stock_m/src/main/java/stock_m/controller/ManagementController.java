@@ -103,7 +103,7 @@ public class ManagementController {
 			List<ManagementDto> mainList = service.mainList(startRow); 
 			System.out.println(mainList);
 			m.addAttribute("mainList", mainList);
-			
+
 			int pageNum = 5;
 			int totalPages = count / perPage + (count % perPage > 0 ? 1 : 0); // 전체 페이지 수
 

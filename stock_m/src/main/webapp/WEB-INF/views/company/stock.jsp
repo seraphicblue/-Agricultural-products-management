@@ -10,6 +10,7 @@
 	<table border="1">
 		<thead>
 			<tr>
+				<th>재고 번호</th>
 				<th>수량</th>
 				<th>재고 물품</th>
 				<th>가격</th>
@@ -19,11 +20,12 @@
 		</thead>
 		<tbody>
 			<tr>
+				<td id = "s_val"></td>
 				<td><input type="text" id ="s_volume" onchange="changeprice(this)"></td>
 				<td><select onchange="selectedoption(this)">
 						<c:forEach items="${adminstockList}" var="option">
 							<option value="${option.acontent}"
-								data-volume="${option.a_volume}">${option.acontent}</option>
+								data-volume="${option.a_volume}" data-val="${option.a_val}">${option.acontent}</option>
 						</c:forEach>
 				</select></td>
 				<td id="selectedvolume"></td>
@@ -36,14 +38,17 @@
 	 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
 		function selectedoption(selectElement) {
-			var selectedvolume = selectedoption.getAttribute("data-volume");
+			var selectedvolume = parseInt(selectElement.getAttribute("data-volume"));
 			var s_volume = document.getElementById("s_volume").value;
-			document.getElementById("selectedvolume").textContent
-			document.getElementById("selectedprice").textContent = document.getElementById("selectedvolume").textContent*s_volume;
+			var selectedval = selectElement.getAttribute("data-val").value;
+			document.getElementById("selectedvolume").textContent = selectedvolume;
+			document.getElementById("selectedprice").textContent = selectedvolume * s_volume;
+			document.getElementById("s_val").textContent = selectedval;
 		}
 		
 		function changeprice(selectElement){
 			var s_volume = document.getElementById("s_volume").value;
+			
 			if(!isNaN(s_volume)&& s_volume >= 0){
 			document.getElementById("selectedprice").textContent = document.getElementById("selectedvolume").textContent*s_volume;
 			}else{
@@ -67,20 +72,12 @@
 						var scontent = selectElement.options[selectElement.selectedIndex].value;
 						var s_price = parseInt(document.getElementById("selectedprice").textContent);
 						var s_volume = document.getElementById("s_volume").value;
+						var s_val = document.getElementById("s_val").value;
 						$.ajax({
 						      type: 'POST',
 						      url: '/company/checks',
 						      
-						      data: {'s_price': s_price, 'scontent': scontent, 's_volume': s_volume},
-						      success: function(result) {
-						        if (result == true) {
-						          location.href = "/company/inserts?scontent="
-										+ scontent+"&s_volume="+s_volume;
-						        } else {
-						          alert("현재 남은 한도보다 많습니다.");
-						        }
-						      }
-						      
+						      data: {'s_price': s_price, 'scontent': scontent, 's_volume': s_volume, 's_val' : s_val}	      
 						});
 					
 	    });
