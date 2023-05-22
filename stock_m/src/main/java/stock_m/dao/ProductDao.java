@@ -46,7 +46,7 @@ public interface ProductDao {
 	@Insert("INSERT INTO cart(userid,product_pno,count,price,name) values(#{userid},#{product_pno},#{count},#{price},#{name})")
 	public int addCart(Cart cart);
 	
-	@Select("select product_pno, count, product.price, name, stock.userid, s_volume, p_count, ssum, profit from cart inner join stock inner join product inner join revenue on product.sno = stock.sno and cart.product_pno = product.pno and stock.userid = revenue.userid  where cart.userid = #{userid}")
+	@Select("select stock.sno, product_pno, count, product.price, name, stock.userid, s_volume, p_count, ssum, profit from cart inner join stock inner join product inner join revenue on product.sno = stock.sno and cart.product_pno = product.pno and stock.userid = revenue.userid  where cart.userid = #{userid}")
 	public List<Map<String,Object>> userCart(@Param("userid")String userid);
 	
 	@Select("select * from product")
@@ -69,7 +69,6 @@ public interface ProductDao {
 	
 	@Delete("delete from cart where userid = #{userid} and product_pno = #{product_pno}")
 	public int deleteCart(@Param("product_pno") int product_pno, @Param("userid") String userid);
-	
 
 	@Insert("INSERT INTO buy(pno,userid,bdate,price,bcount) values(#{pno},#{userid},#{bdate},#{price},#{bcount})")
 	public int addbuy(Map<String, Object> abmap);
@@ -86,7 +85,6 @@ public interface ProductDao {
 	@Update("update revenue set ssum = #{ssum}+(#{price}*#{bcount}), profit = #{profit}+(#{price}*#{bcount}) where userid = #{suserid}")
 	public int updateRevenue(Map<String, Object> urmap);
 	
-
 	@Select("select count(*) from product where userid=#{userid} AND sno=#{sno}")
 	int selecCount(@Param("userid")String userid, @Param("sno")int sno);
 	

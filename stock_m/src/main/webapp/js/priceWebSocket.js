@@ -6,6 +6,7 @@ socket.onopen = function(event) {
 };
 
 socket.onmessage = function(event) {
+	
 	console.log("WebSocket message received:", event.data);
 
 	const newWindow = window.open('', 'New Window', "top=1000,left=1500,width=400,height=100");
@@ -17,7 +18,7 @@ socket.onmessage = function(event) {
 	// 새 창에 내용 삽입
 	newWindow.document.write(content);
 
-	// 창 닫기 버튼 추가
+	// 창 닫기 버튼 추가 
 	newWindow.document.write("<br><button onclick='window.close()'>Close</button>");
 };
 

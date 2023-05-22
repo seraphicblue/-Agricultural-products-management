@@ -23,14 +23,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 
+
 import stock_m.dto.AdminstockDto;
 import stock_m.dto.BroadcastPriceDto;
+
 import stock_m.dto.NameAndPrice_sabDto;
 import stock_m.service.BroadcastService;
 import stock_m.service.SabService;
 import stock_m.service.StockService;
 
 @Controller
+
 public class SabController {
 
 	@Autowired
@@ -47,6 +50,7 @@ public class SabController {
 		return "test";
 	}
 
+
 	@GetMapping("company/main")
 	public String companyindex(Model m) {
 		List<AdminstockDto> adminstockList = stock_service.option();
@@ -54,6 +58,7 @@ public class SabController {
 		m.addAttribute("adminstockList",adminstockList);
 		return "company/index";
 	}
+
 
 	@GetMapping("normal/main")
 	public String normalindex() {
