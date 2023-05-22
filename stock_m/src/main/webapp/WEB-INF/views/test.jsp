@@ -13,7 +13,7 @@
 		<label for="val">Message:</label> <input type="text" id="val" /> <br>
 		<label for="userid">UserId : </label> <input type="text" id="userid" />
 
-
+  
 		<br> <label for="param">Param : </label> <input type="text"
 			id="param" />
 		<button onclick="sendMessage()">Send</button>
@@ -22,7 +22,7 @@
 
 
 	<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script src="../../js/webSocket.js"></script>
+	<script src="../../js/priceWebSocket.js"></script>
 
 
 </body>

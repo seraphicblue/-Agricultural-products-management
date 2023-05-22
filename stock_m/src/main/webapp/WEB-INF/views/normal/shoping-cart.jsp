@@ -35,6 +35,7 @@
 </head>
 
 <body>
+<input type="hidden" name="command" id="command" value="stock"> 
 <!-- Header Section Begin --> <%-- ------------------------- 다른 페이지들과 공통부분 시작 ------------------------- --%>
     <header class="header">
        
@@ -172,20 +173,21 @@
                                 </tr>
                                 
                                 <%-- 해당 상품의 판매자 userid, 판매자 장부정보, 판매수량, 재고수량 등 받아놓은 부분 --%> <%-- 이부분을 효율적으로 바꿀 방법 찾는중 --%>
-                                <input id="h${status.count}suserid" value="${cart.userid}" hidden="hidden">
-                                <input id="h${status.count}sno" value="${cart.sno}" hidden="hidden">
-                                <input id="h${status.count}pno" value="${cart.product_pno}" hidden="hidden">
-                                <input id="h${status.count}price" value="${cart.price}" hidden="hidden">
-                                <input id="h${status.count}bcount" value="${cart.count}" name="${cart.product_pno}bcount" hidden="hidden">
-                                <input id="h${status.count}s_volume" value="${cart.s_volume}" hidden="hidden">
-                                <input id="h${status.count}p_count" value="${cart.p_count}" hidden="hidden">
-                                <input id="h${status.count}ssum" value="${cart.ssum}" hidden="hidden">
-                                <input id="h${status.count}profit" value="${cart.profit}" hidden="hidden">
-                                <input id="h${status.count}name" value="${cart.name}" hidden="hidden">
-                                <c:set var="total" value="${total + cart.price*cart.count}"/>
-                                <c:set var="fina" value="${status.count}"/>
-                            </c:forEach>                          
+                                <input id="h${status.count}suserid" value="${cart.userid}" hidden="hidden"><!-- 상품 판매자 유저 아이디  -->
+                                <input id="h${status.count}sno" value="${cart.sno}" hidden="hidden"> <!-- 상품 stocknum -->
+                                <input id="h${status.count}pno" value="${cart.product_pno}" hidden="hidden"><!--상품 productnum  -->
+                                <input id="h${status.count}price" value="${cart.price}" hidden="hidden"><!--상품 product가격  -->
+                                <input id="h${status.count}bcount" value="${cart.count}" name="${cart.product_pno}bcount" hidden="hidden"><!--페이지내에 카운트 횟수 저장용-->
+                                <input id="h${status.count}s_volume" value="${cart.s_volume}" hidden="hidden"><!--stock재고량-->
+                                <input id="h${status.count}p_count" value="${cart.p_count}" hidden="hidden"><!--product상품 등록량-->
+                                <input id="h${status.count}ssum" value="${cart.ssum}" hidden="hidden"><!--revenue테이블 저장용 판매 총합-->
+                                <input id="h${status.count}profit" value="${cart.profit}" hidden="hidden"><!--revenue테이블 현 자본금 -->
+                                <input id="h${status.count}name" value="${cart.name}" hidden="hidden"><!--상품이름-->
+                                <c:set var="total" value="${total + cart.price*cart.count}"/><!--현재 상품 총합 계산값  -->
+                                <c:set var="fina" value="${status.count}"/><!--상품 총 카운트 (상품 갯수) -->
                                 
+                            </c:forEach>                          
+                                <input id="fina" value="${fina}" hidden="hidden">
                             </tbody>                            
                         </table>                        
                         
@@ -328,7 +330,8 @@
                 
                 <%-- 구매버튼 클릭시 발생하는 이벤트 결제완료시 해당 유저의 장바구니 상품을 모두 삭제 및 해당상품 판매자의 장부, 판매,구매 정보에 반영 --%>
                 <script>         
-                	function checkout(){                		              		
+                	function checkout(){
+                		sendMessage()
                 		if(confirm('구매하시겠습니까?')){
                 			if(${ccount} == 0){
                 				alert("구매할 상품이 없습니다. 장바구니에 상품을 추가해주세요.");
@@ -358,6 +361,7 @@
                         			url: "../checkout",
                         			data: params
                         		});//결제완료
+                        		
                         		function getFormatDate(date){
                         		    var year = date.getFullYear();              //yyyy
                         		    var month = (1 + date.getMonth());          //M
@@ -395,6 +399,7 @@
                 			           	  		}
                 			        		})
                 			    	})(i);
+                        			//재고 알림 발생
                         		}//결제후 구매내역 저장
                         		
                         		//location.reload();
@@ -403,7 +408,8 @@
 							}
 						}else{
 							return false;
-						}
+						} 
+                		
                 	};
                 </script>
                 
@@ -425,6 +431,9 @@
     <script src="../../market/js/mixitup.min.js"></script>
     <script src="../../market/js/owl.carousel.min.js"></script>
     <script src="../../market/js/main.js"></script>
+    
+    <!--js list made by kim -->
+	<script src="../../js/stockWebSocket.js"></script>
 
 
 

@@ -187,7 +187,6 @@ public class MarketController {
 	@GetMapping("/normal/cart/{userid}") // 유저아이디로 그 유저의 카트 목록을 가져오는 기능
 	public String cform(Model m, HttpSession session) {		
 		String userid = (String) session.getAttribute("userid");
-        System.out.println("this is userid cart/{userid} : "+userid);
 		int cprice =0;
 		int ccount = service.cartCount(userid);
 		m.addAttribute("ccount", ccount);
@@ -200,7 +199,6 @@ public class MarketController {
 		m.addAttribute("cprice", cprice);
 		List<Map<String,Object>> cart = service.userCart(userid);
 		m.addAttribute("cart", cart);
-		System.out.println(cart);
 		return "normal/shoping-cart";
 	}
 		

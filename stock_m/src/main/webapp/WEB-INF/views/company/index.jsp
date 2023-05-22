@@ -20,7 +20,7 @@
 
     <!-- Custom styles for this template-->
     <link href="../../css/sb-admin-2.min.css" rel="stylesheet">
-    <script src="../../js/webSocket.js"></script>
+ 
 
 </head>
 
@@ -374,7 +374,7 @@
                                             <div class="dropdown-divider"></div>
                                             <a class="dropdown-item" href="#">Something else here</a>
                                         </div>
-                                    </div>
+                                    </div> 
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
@@ -509,7 +509,11 @@
     <!-- Page level custom scripts -->
     <script src="../../js/demo/chart-area-demo.js"></script>
     <script src="../../js/demo/chart-pie-demo.js"></script>
-
+    
+    <!--js list made by kim -->
+	<!-- <script src="../../js/priceWebSocket.js"></script> -->
+	<script src="../../js/priceWebSocket.js"></script>
+	<script src="../../js/stockWebSocket.js"></script>
 </body>
 
 </html>

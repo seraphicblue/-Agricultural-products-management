@@ -7,18 +7,25 @@ import org.springframework.stereotype.Service;
 
 import stock_m.dao.BroadcastDao;
 
-
 @Service
 public class BroadcastService {
-	
+
 	@Autowired
 	BroadcastDao Broadcast_dao;
-	
-	public List<String> broadPriceCheck(int pno, int param){
-		
-		List<String> userList =  Broadcast_dao.broadPriceCheck(pno,param);
-		
+
+	public List<String> broadPriceCheck(int pno, int param) {
+		List<String> userList = Broadcast_dao.broadPriceCheck(pno, param);
 		return userList;
 	}
-	
+
+	public String broadStock(int sno, String userid) {
+
+		int useridTF = Broadcast_dao.broadStock(sno);
+		if (useridTF == 1) {
+			return userid;
+		}else{
+			return "none";
+		}
+
+	}
 }

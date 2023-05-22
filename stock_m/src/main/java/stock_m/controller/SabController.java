@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 
-import stock_m.dto.BroadcastPriceDto;
 import stock_m.dto.NameAndPrice_sabDto;
 import stock_m.service.BroadcastService;
 import stock_m.service.SabService;
@@ -45,11 +44,6 @@ public class SabController {
 	@GetMapping("event2")
 	public String event() {
 		return "test";
-	}
-
-	@GetMapping("company/main")
-	public String companyindex() {
-		return "/company/test";
 	}
 
 	@GetMapping("normal/main")
