@@ -1,8 +1,8 @@
 <%-- 
-   Date    : 2023.05.16
+   Date    : 2023.05.22
    name    : shoping-cart
    type    : form
-   ver     : 5.0
+   ver     : 6.0
    conect  : MarketController
    content : 장바구니 페이지
    writer  : 김기덕

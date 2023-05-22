@@ -1,8 +1,8 @@
 <%--      
-   Date    : 2023.05.16
+   Date    : 2023.05.22
    name    : shop-details
    type    : form
-   ver     : 5.0
+   ver     : 6.0
    conect  : MarketController
    content : 상품의 상세페이지
    writer  : 김기덕
