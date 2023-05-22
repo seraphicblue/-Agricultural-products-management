@@ -10,6 +10,7 @@
 	<table border="1">
 		<thead>
 			<tr>
+				<th>no</th>
 				<th>재고 번호</th>
 				<th>수량</th>
 				<th>재고 물품</th>
@@ -19,86 +20,90 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<td id = "s_val"></td>
-				<td><input type="text" id ="s_volume" onchange="changeprice(this)"></td>
-				<td><select onchange="selectedoption(this)">
-						<c:forEach items="${adminstockList}" var="option">
-							<option value="${option.acontent}"
-								data-volume="${option.a_volume}" data-val="${option.a_val}">${option.acontent}</option>
-						</c:forEach>
-				</select></td>
-				<td id="selectedvolume"></td>
-				<td id ="selectedprice"></td>
-				<td><button class="click">추가</button></td>
-			</tr>
+			<c:forEach var="i" begin="1" end="5">
+				<tr>
+					<td>${i}</td>
+					<td class="s_val"></td>
+					<td><input type="text" class="s_volume" onchange="changeprice(this)"></td>
+					<td>
+						<select class="select_option" onchange="selectedoption(this)">
+							<option value="">선택하세요</option>
+							<c:forEach items="${adminstockList}" var="option">
+								<option value="${option.acontent}"
+									data-volume="${option.a_volume}" data-val="${option.a_val}">${option.acontent}</option>
+							</c:forEach>
+						</select>
+					</td>
+					<td class="selectedvolume"></td>
+					<td class="selectedprice"></td>
+					<td><button class="click">추가</button></td>
+				</tr>
+			</c:forEach>
 		</tbody>
 	</table>
-	</form>
-	 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
 		function selectedoption(selectElement) {
-			var selectElement = document.querySelector('select');
-			var selectedoption = selectElement.options[selectElement.selectedIndex];
-			var selectedvolume = selectedoption.getAttribute("data-volume");
-			var selectedval = selectedoption.getAttribute("data-val"); 
-			document.getElementById("s_volume").value= '0';
-				if(!isNaN(parseInt(document.getElementById("selectedvolume").textContent*s_volume))){
-					document.getElementById("selectedprice").textContent=parseInt(document.getElementById("selectedvolume").textContent*s_volume);
-				}else{
-					document.getElementById("selectedprice").textContent=0;
-				}
-			document.getElementById("selectedvolume").textContent = selectedvolume;
-			document.getElementById("s_val").textContent = selectedval;
+			var selectedOption = selectElement.options[selectElement.selectedIndex];
+			var selectedVolume = selectedOption.getAttribute("data-volume");
+			var selectedVal = selectedOption.getAttribute("data-val");
+			var s_volume = selectElement.parentNode.parentNode.getElementsByClassName("s_volume")[0].value;
+			var selectedPrice = selectElement.parentNode.parentNode.getElementsByClassName("selectedvolume")[0];
+			var totalPrice = selectElement.parentNode.parentNode.getElementsByClassName("selectedprice")[0];
+
+			selectElement.parentNode.parentNode.getElementsByClassName("s_volume")[0].value = '0';
+
+			if (!isNaN(parseInt(selectedPrice.textContent) * s_volume)) {
+				totalPrice.textContent = parseInt(selectedPrice.textContent) * s_volume;
+			} else {
+				totalPrice.textContent = 0;
+			}
+
+			selectedPrice.textContent = selectedVolume;
+			selectElement.parentNode.parentNode.getElementsByClassName("s_val")[0].textContent = selectedVal;
 		}
-		
-		function changeprice(selectElement){
-			var s_volume = parseInt(document.getElementById("s_volume").value);
-			console.log(s_volume);
-			if(!isNaN(s_volume)&& s_volume >= 0){
-				document.getElementById("selectedprice").textContent = parseInt(document.getElementById("selectedvolume").textContent) * s_volume;
-			}else{
+
+		function changeprice(selectElement) {
+			var s_volume = parseInt(selectElement.value);
+			var selectedPrice = selectElement.parentNode.parentNode.getElementsByClassName("selectedvolume")[0];
+			var totalPrice = selectElement.parentNode.parentNode.getElementsByClassName("selectedprice")[0];
+
+			if (!isNaN(s_volume) && s_volume >= 0) {
+				totalPrice.textContent = parseInt(selectedPrice.textContent) * s_volume;
+			} else {
 				alert("수량은 양수만 입력이 가능합니다");
-				$("#s_volume").empty();
-				document.getElementById("s_volume").value = "";
+				selectElement.value = "";
 			}
 		}
-		
-		window.addEventListener('DOMContentLoaded', function() {
-			var selectElement = document.querySelector('select');
-			var selectedoption = selectElement.options[selectElement.selectedIndex];
-			var selectedvolume = selectedoption.getAttribute("data-volume");
-			var selectedval = selectedoption.getAttribute("data-val"); 
-			document.getElementById("selectedvolume").textContent = selectedvolume;
-			document.getElementById("s_val").textContent = selectedval;
+
+		$(document).ready(function() {
+			$('.click').click(function() {
+				var scontent = $(this).closest('tr').find('.select_option').val();
+				var selectedPrice = $(this).closest('tr').find('.selectedprice').text();
+				var s_volume = $(this).closest('tr').find('.s_volume').val();
+				var s_val = parseInt($(this).closest('tr').find('.s_val').text());
+
+				$.ajax({
+					type: 'POST',
+					url: '/company/checks',
+					data: {
+						's_price': selectedPrice,
+						'scontent': scontent,
+						's_volume': s_volume,
+						's_val': s_val
+					},
+					success: function(result) {
+						if (result == true) {
+							location.reload();
+						} else {
+							alert("한도 부족입니다.");
+							location.reload();
+						}
+					}
+				});
+			});
 		});
-		
-		$(document).ready(function(){
-	    	$('.click').click(
-					function() {
-						var selectElement = document.querySelector('select');
-						var scontent = selectElement.options[selectElement.selectedIndex].value;
-						var s_price = parseInt(document.getElementById("selectedprice").textContent);
-						var s_volume = document.getElementById("s_volume").value;
-						var s_val = parseInt(document.getElementById("s_val").textContent);
-						console.log(s_val);
-						$.ajax({
-						      type: 'POST',
-						      url: '/company/checks',
-						      
-						      data: {'s_price': s_price, 'scontent': scontent, 's_volume': s_volume, 's_val' : s_val},
-						      success: function(result) {
-							        if (result == true) {
-							        	location.reload();
-							        } else {
-							          alert("한도 부족입니다.");
-							          location.reload();
-							        }
-							      }
-						});
-					
-	    });
-	});
 	</script>
 </body>
 </html>

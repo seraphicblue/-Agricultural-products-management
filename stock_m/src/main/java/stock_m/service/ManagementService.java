@@ -35,7 +35,7 @@ public class ManagementService {
 		return dao.managementList(m);
 	}
 
-	public List<ManagementDto> mainList(int startRow, String userid) {
+	public List<ManagementDto> mainList(int startRow) {
 		Map<String, Object> m = new HashMap<String, Object>();
 		m.put("start", startRow);
 		m.put("count", 5);
@@ -53,8 +53,8 @@ public class ManagementService {
 		return dao.countSearch(keyword);
 	}
 
-	public int insert(String userid, String id) {
-		return dao.insert(userid,id);
+	public int insert(String userid, String username) {
+		return dao.insert(userid,username);
 
 	}
 

@@ -24,14 +24,13 @@ public class StockController {
 	@Autowired
 	RevenueService r_service;
 	
-	@GetMapping("/company/stock")
-	public String option(Model m) {
-		
-		List<AdminstockDto> adminstockList = service.option();
-		System.out.println(adminstockList);
-		m.addAttribute("adminstockList",adminstockList);
-		return "company/stock";
-	}
+	/*
+	 * @GetMapping("/company/main") public String option(Model m) {
+	 * 
+	 * List<AdminstockDto> adminstockList = service.option();
+	 * System.out.println(adminstockList);
+	 * m.addAttribute("adminstockList",adminstockList); return "company/index"; }
+	 */
 	
 	@PostMapping("/company/checks")
 	@ResponseBody

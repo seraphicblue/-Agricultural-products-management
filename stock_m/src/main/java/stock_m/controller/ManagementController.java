@@ -39,7 +39,7 @@ public class ManagementController {
 			int perPage = 5; // 한 페이지에 보일 글의 갯수
 			int startRow = (page - 1) * perPage;
 			//출력될 글의 수에 맞게 maList를 추가
-			List<ManagementDto> maList = service.maList(startRow,userid); 
+			List<ManagementDto> maList = service.mainList(startRow); 
 			System.out.println(maList);
 			m.addAttribute("maList", maList);
 			
@@ -60,7 +60,7 @@ public class ManagementController {
 
 		m.addAttribute("count", count);
 		//실행이 완료되면 company/management2 페이지로 
-		return "company/management2";
+		return "company/notice";
 	}
 
 	/*
@@ -89,7 +89,7 @@ public class ManagementController {
 	 * m.addAttribute("count", count); return "company/test"; }
 	 */
 	
-	@GetMapping("/company/management1")
+	@GetMapping("/company/interest")
 	public String main1(@RequestParam(name = "page", defaultValue = "1") int page, Model m,HttpSession session) {
 		String userid = (String) session.getAttribute("userid");
 		// 글이 있는지 체크
@@ -101,7 +101,7 @@ public class ManagementController {
 			int perPage = 5; // 한 페이지에 보일 글의 갯수
 			int startRow = (page - 1) * perPage;
 
-			List<ManagementDto> mainList = service.mainList(startRow,userid); 
+			List<ManagementDto> mainList = service.mainList(startRow); 
 			System.out.println(mainList);
 			m.addAttribute("mainList", mainList);
 
@@ -121,7 +121,7 @@ public class ManagementController {
 		}
 
 		m.addAttribute("count", count);
-		return "company/management1";
+		return "company/interest";
 	}
 
 	@RequestMapping("/company/search")
@@ -195,12 +195,12 @@ public class ManagementController {
 	}
 	
 	@RequestMapping("/company/insert") 
-	public String insert(@RequestParam("id") String id, HttpSession session) {
+	public String insert(@RequestParam("id") String username, HttpSession session) {
 		//요청 파라미터 값 id를 받아오고 service에 넘겨줌
 		String userid = (String) session.getAttribute("userid"); 
-		service.insert(userid,id); 
+		service.insert(userid,username); 
 		//redirec:/+url를 사용해서 현재 페이지를 다시 요청
-		return "redirect:/company/management1";
+		return "redirect:/company/interest";
 	 }
 	
 	@RequestMapping("/company/insert2") 
