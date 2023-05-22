@@ -53,7 +53,7 @@
                         <ul>
                             <li>
                                 <div class="header__top__right__auth">  
-                                    <a href="/logout"><i class="fa fa-user"></i> Logout</a>
+                                    <a href="/logout"><i class="fa fa-user"></i> 로그아웃</a>
                                 </div>
                             </li>
                             <li><a href="/normal/cart/${userid}"><i class="fa fa-shopping-bag"></i> <span id="ccount">${ccount}</span></a></li>
@@ -137,10 +137,28 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__pic">
                         <div class="product__details__pic__item">
+                        <c:if test="${product.pname == '감자'}">
                             <img class="product__details__pic__item--large"
-                                src="../../market/img/product/details/product-details-1.jpg" alt="">
+                                src="../../market/img/product/potato.jpg" height="360" width="330"alt="">
+                        </c:if>
+                        <c:if test="${product.pname == '양파'}">
+                            <img class="product__details__pic__item--large"
+                                src="../../market/img/product/onion.jpg" height="360" width="330"alt="">
+                        </c:if>
+                        <c:if test="${product.pname == '가지'}">
+                            <img class="product__details__pic__item--large"
+                                src="../../market/img/product/eggplant.jpg" height="360" width="330"alt="">
+                        </c:if>
+                        <c:if test="${product.pname == '토마토'}">
+                            <img class="product__details__pic__item--large"
+                                src="../../market/img/product/tomato.jpg" height="360" width="330"alt="">
+                        </c:if>
+                        <c:if test="${product.pname == '당근'}">
+                            <img class="product__details__pic__item--large"
+                                src="../../market/img/product/carrot.jpg" height="360" width="330"alt="">
+                        </c:if>
                         </div>
-                        <div class="product__details__pic__slider owl-carousel">
+                        <!-- <div class="product__details__pic__slider owl-carousel">
                             <img data-imgbigurl="../../market/img/product/details/product-details-2.jpg"
                                 src="../../market/img/product/details/thumb-1.jpg" alt="">
                             <img data-imgbigurl="../../market/img/product/details/product-details-3.jpg"
@@ -149,7 +167,7 @@
                                 src="../../market/img/product/details/thumb-3.jpg" alt="">
                             <img data-imgbigurl="../../market/img/product/details/product-details-4.jpg"
                                 src="../../market/img/product/details/thumb-4.jpg" alt="">
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">

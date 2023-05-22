@@ -53,7 +53,7 @@
                         <ul>
                             <li>
                                 <div class="header__top__right__auth">
-                                    <a href="/logout"><i class="fa fa-user"></i> Logout</a>
+                                    <a href="/logout"><i class="fa fa-user"></i> 로그아웃</a>
                                 </div>
                             </li>
                             <li><a href="/normal/cart/${userid}"><i class="fa fa-shopping-bag"></i> <span id="ccount">${ccount}</span></a></li>
@@ -142,10 +142,10 @@
                 <div class="col-lg-9 col-md-7">                            
                     <div class="row">
                     <c:if test="${cproduct > 0}">
-                    	<c:forEach items="${list}" var="p">                    
+                    	<c:forEach items="${list}" var="p" varStatus="status">                    
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="../../market/img/product/product-1.jpg">
+                                <div class="product__item__pic set-bg" id="${status.count}pimg" data-setbg="">
                                     <ul class="product__item__pic__hover">
                                         <li><a href="../#"><i class="fa fa-heart"></i></a></li>
                                         <li><a href="../#"><i class="fa fa-retweet"></i></a></li>
@@ -153,12 +153,31 @@
                                     </ul>
                                 </div>
                                 <div class="product__item__text">
-                                    <h6><a href="/normal/details/${p.pno}">${p.pname}</a></h6>
+                                    <h6><a href="/normal/details/${p.pno}" id="${status.count}pname">${p.pname}</a></h6>
                                     <h5>${p.price}원</h5>
                                 </div>
                             </div>
-                        </div><!-- 상품1개 -->   
+                        </div><!-- 상품1개 -->  
+                        <c:set var="fina" value="${status.count}"/>
                         </c:forEach>
+                        <script>
+                        window.onload = function(){
+                        	var fin = "${fina}"; 
+                    		for(var i = 1; i < parseInt(fin)+1; i++){
+                    			if(document.getElementById(i+"pname").textContent == "감자"){
+                    				document.getElementById(i+"pimg").setAttribute("style", "background-image: url('../../market/img/product/potato.jpg');");
+                    			}else if(document.getElementById(i+"pname").textContent == "양파"){
+                    				document.getElementById(i+"pimg").setAttribute("style", "background-image: url('../../market/img/product/onion.jpg');");
+                    			}else if(document.getElementById(i+"pname").textContent == "가지"){
+                    				document.getElementById(i+"pimg").setAttribute("style", "background-image: url('../../market/img/product/eggplant.jpg');");
+                    			}else if(document.getElementById(i+"pname").textContent == "토마토"){
+                    				document.getElementById(i+"pimg").setAttribute("style", "background-image: url('../../market/img/product/tomato.jpg');");
+                    			}else if(document.getElementById(i+"pname").textContent == "당근"){
+                    				document.getElementById(i+"pimg").setAttribute("style", "background-image: url('../../market/img/product/carrot.jpg');");
+                    			}
+                    		}
+                        }
+                        </script>
                         
                         
                     </c:if>   

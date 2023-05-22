@@ -53,7 +53,7 @@
                             <li>
                             	<div class="header__top__right__auth">
                             	<%-- logout기능 클릭시 MarketController에 logout메서드로 세션에 저장된 userid 정보를 삭제 --%>
-                               		<a href="/logout"><i class="fa fa-user"></i> Logout</a> 
+                               		<a href="/logout"><i class="fa fa-user"></i> 로그아웃</a> 
                            	 	</div>
                        		</li>
                        		<%-- 장바구니에 저장된 상품수 출력 및 클릭시 MarketController에 cform메서드로 해당유저의 장바구니로 이동 --%>
@@ -116,25 +116,7 @@
     <!-- Hero Section End -->
 
     <!-- Categories Section Begin -->
-    <section class="categories">
-        <div class="container">
-            <div class="row">
-                <div class="categories__slider owl-carousel">
-                
-                <%-- MarketController에 mform메서드로 Product테이블에 저장된 모든 상품 정보를 list로 받아서 출력 --%>
-                <c:forEach items="${list}" var="p">
-                    <div class="col-lg-3">
-                    	<a href="/normal/details/${p.pno}">
-                        <div class="categories__item set-bg" data-setbg="../market/img/categories/cat-1.jpg">
-                            <h5>${p.pname}</h5>
-                        </div>
-                        </a>
-                    </div>
-                </c:forEach>    
-                </div>
-            </div>
-        </div>
-    </section>
+    
     <!-- Categories Section End -->
 
     <!-- Featured Section Begin -->
@@ -175,23 +157,7 @@
     <script src="../market/js/jquery.slicknav.js"></script>
     <script src="../market/js/mixitup.min.js"></script>
     <script src="../market/js/owl.carousel.min.js"></script>
-    <script src="../market/js/main.js"></script>	
-    <!-- <script>
-        $('document').ready(function () {
-        	console.log("aaa");
-            $.ajax({
-                type: "get",	
-                url: "/cartcount"   
-                
-            }).done(function(response){  
-            	
-            	document.getElementById("ccount").textContent = reponse.ccount;
-            	document.getElementById("cprice").textContent = reponse.cprice;
-            });
-            console.log(document.getElementById("ccount").textContent);
-        });
-    </script> -->
-    
+    <script src="../market/js/main.js"></script>    
 
 </body>
 
