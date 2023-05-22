@@ -42,7 +42,12 @@
 			var selectedoption = selectElement.options[selectElement.selectedIndex];
 			var selectedvolume = selectedoption.getAttribute("data-volume");
 			var selectedval = selectedoption.getAttribute("data-val"); 
-			document.getElementById("selectedprice").textContent = document.getElementById("selectedvolume").textContent*s_volume;
+			document.getElementById("s_volume").value= '0';
+				if(!isNaN(parseInt(document.getElementById("selectedvolume").textContent*s_volume))){
+					document.getElementById("selectedprice").textContent=parseInt(document.getElementById("selectedvolume").textContent*s_volume);
+				}else{
+					document.getElementById("selectedprice").textContent=0;
+				}
 			document.getElementById("selectedvolume").textContent = selectedvolume;
 			document.getElementById("s_val").textContent = selectedval;
 		}
@@ -81,7 +86,15 @@
 						      type: 'POST',
 						      url: '/company/checks',
 						      
-						      data: {'s_price': s_price, 'scontent': scontent, 's_volume': s_volume, 's_val' : s_val}	      
+						      data: {'s_price': s_price, 'scontent': scontent, 's_volume': s_volume, 's_val' : s_val},
+						      success: function(result) {
+							        if (result == true) {
+							        	location.reload();
+							        } else {
+							          alert("한도 부족입니다.");
+							          location.reload();
+							        }
+							      }
 						});
 					
 	    });

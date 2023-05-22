@@ -1,18 +1,16 @@
 package stock_m.controller;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import jakarta.servlet.http.HttpSession;
 import stock_m.dto.AdminstockDto;
 import stock_m.service.RevenueService;
 import stock_m.service.StockService;
@@ -37,10 +35,15 @@ public class StockController {
 	
 	@PostMapping("/company/checks")
 	@ResponseBody
-	public void checks(int s_price, String scontent, @RequestParam("s_volume") int s_volume, int s_val ) {
-		int a = r_service.checks();
+	public boolean checks(int s_price, String scontent, @RequestParam("s_volume") int s_volume, int s_val ,HttpSession session) {
+		String userid = (String) session.getAttribute("userid"); 
+		int a = r_service.checks(userid);
+		System.out.println(a);
 		if(a> s_price) {
-			service.checki(scontent, s_volume, s_val);
+			service.checki(s_price,scontent, s_volume, s_val,userid);
+			return true;
+		}else {
+			return false;
 		}
 		
 	}

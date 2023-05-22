@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import stock_m.dao.AdminstockDao;
+import stock_m.dao.RevenueDao;
 import stock_m.dao.StockDao;
 import stock_m.dto.AdminstockDto;
 
@@ -22,6 +23,10 @@ public class StockService {
 	@Autowired
 	AdminstockDao admindao;
 	
+	@Autowired
+	RevenueDao rdao;
+	
+	
 	public List<AdminstockDto>option(){
 		Map<String, Object> m =new HashMap<String, Object>();
 		return admindao.option(m);
@@ -33,14 +38,18 @@ public class StockService {
 	 * dao.inserts(scontent,s_volume, s_date); }
 	 */
 
-	public int checki(String scontent, int s_volume, int s_val) {
-		int s = dao.checki(scontent);
+	public int checki(int s_price, String scontent, int s_volume, int s_val, String userid) {
+		System.out.println(userid);
+		int s = dao.checki(scontent,userid);
+		System.out.println(s);
 		if(s>0) {
-			 return dao.updates(scontent,s_volume,s_val);
+			rdao.updater(s_price,userid);
+			 return dao.updates(scontent,s_volume,s_val,userid);
 		}else {
-			Date now = new Date();
+			Date now = new	 Date();
 			SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
-			return dao.inserts(scontent,s_volume,format.format(now), s_val);
+			rdao.updater(s_price,userid);
+			return dao.inserts(scontent,s_volume,format.format(now), s_val,userid);
 		}
 	}
 }

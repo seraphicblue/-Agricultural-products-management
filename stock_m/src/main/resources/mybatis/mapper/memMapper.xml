@@ -6,13 +6,13 @@
 	<insert id="insert" parameterType="List">
 		insert into
 		management(userid,m_val,m_content)
-		values('testcompany2',true,#{username})
+		values(#{userid},true,#{username})
 	</insert>
 
 	<insert id="insert2" parameterType="List">
 		insert into
 		management(userid,m_val,m_content)
-		values('testcompany1',false,#{username})
+		values(#{userid},false,#{username})
 	</insert>
 
 	<select id="count" resultType="int">
@@ -71,20 +71,20 @@
 		resultType="stock_m.dto.ManagementDto">
 
 		select mno, userid, m_val, m_content from management where
-		m_val=true 	
+		m_val=true and userid=#{userid}
 		</select>
 
 	<select id="maList" parameterType="map"
 		resultType="stock_m.dto.ManagementDto">
 
 		select mno, userid, m_val, m_content from management where
-		m_val=false
+		m_val=false userid=#{userid}
 	</select>
 
 	<delete id="delete" parameterType="int">
 		delete from management
 		where
-		mno=#{mno} 
+		mno=#{mno}
 	</delete>
 
 	<update id="update" parameterType="String">
