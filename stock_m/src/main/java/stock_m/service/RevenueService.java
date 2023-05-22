@@ -10,8 +10,8 @@ public class RevenueService {
 	@Autowired
 	RevenueDao dao;
 	
-	public int checks() {
-		return dao.checks();
+	public int checks(String userid) {
+		return dao.checks(userid);
 	}
 
 }
