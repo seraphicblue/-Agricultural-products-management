@@ -26,16 +26,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.servlet.http.HttpSession;
 import stock_m.dto.Cart;
+import stock_m.dto.ManagementDto;
+import stock_m.service.ManagementService;
 import stock_m.service.MarketService;
 
 @Controller
 public class MarketController {
 	
 	@Autowired
-	MarketService service;		
+	MarketService service;
+	
+	@Autowired
+	ManagementService m_service;
 	
 	@GetMapping("/normal/market") // 판매사이트 로그인시 메인화면
-	public String mform(Model m, HttpSession session) {		
+	public String mform(@RequestParam(name = "page", defaultValue = "1") int page,Model m, HttpSession session) {		
 		String userid = (String) session.getAttribute("userid");	//세션의 userid정보를 받아옴
 	    List<Map<String, Object>> list = service.allProduct();		//상품 테이블에 모든 정보를 list에 저장
 	    m.addAttribute("list", list);
@@ -49,6 +54,36 @@ public class MarketController {
 	        cprice = service.cartPrice(userid);
 	    }
 	    m.addAttribute("cprice", cprice);
+	    
+	    int count =m_service.count();
+		System.out.println(count);
+
+		if (count > 0) {
+
+			int perPage = 5; // 한 페이지에 보일 글의 갯수
+			int startRow = (page - 1) * perPage;
+
+			List<ManagementDto> mainList = m_service.mainList(startRow,userid);
+			m.addAttribute("userid", userid);
+			System.out.println(mainList);
+			m.addAttribute("mainList", mainList);
+
+			int pageNum = 5;
+			int totalPages = count / perPage + (count % perPage > 0 ? 1 : 0); // 전체 페이지 수
+
+			int begin = (page - 1) / pageNum * pageNum + 1;
+			int end = begin + pageNum - 1;
+			if (end > totalPages) {
+				end = totalPages;
+			}
+			m.addAttribute("begin", begin);
+			m.addAttribute("end", end);
+			m.addAttribute("pageNum", pageNum);
+			m.addAttribute("totalPages", totalPages);
+
+		}
+
+		m.addAttribute("count", count);
 	    return "normal/marketform";
 	}
 	

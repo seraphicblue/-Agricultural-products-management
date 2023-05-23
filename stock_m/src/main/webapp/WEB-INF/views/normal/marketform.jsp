@@ -37,6 +37,68 @@
     <link rel="stylesheet" href="../market/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="../market/css/style.css" type="text/css">
      
+     <style>
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 60px;
+	height: 34px;
+}
+
+.switch input {
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+.slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #ccc;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+
+.slider:before {
+	position: absolute;
+	content: "";
+	height: 26px;
+	width: 26px;
+	left: 4px;
+	bottom: 4px;
+	background-color: white;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+
+input:checked+.slider {
+	background-color: #2196F3;
+}
+
+input:focus+.slider {
+	box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+	-webkit-transform: translateX(26px);
+	-ms-transform: translateX(26px);
+	transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+	border-radius: 34px;
+}
+
+.slider.round:before {
+	border-radius: 50%;
+}
+</style>
+     
      
 </head>
 
@@ -156,23 +218,42 @@
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
-                    <div class="col-lg-3">
                     <div class="hero__categories">
                         <div class="hero__categories__all">
                             <i class="fa fa-bars"></i>
-                            <span>전체 분류</span>
+                            <span>관심 업체</span>
                         </div>
-                        <%-- 상품을 분류코드로 분류하여 분류코드 별 상품정보를 MarketController에 pvform메서드로 shop-grid.jsp에 출력 --%>
-                        <ul >
-                            <li><a href="/normal/p_val?p_val=100">식량작물</a></li>
-                            <li><a href="/normal/p_val?p_val=200">채소류</a></li>
-                            <li><a href="/normal/p_val?p_val=300">특용작물</a></li>
-                            <li><a href="/normal/p_val?p_val=400">과일류</a></li>
-                            <li><a href="/normal/p_val?p_val=500">축산물</a></li>
-                            <li><a href="/normal/p_val?p_val=600">수산물</a></li>
-                        </ul>
+                        <div class="shoping__cart__table">
+                        <table>
+									<thead>
+										<tr>
+											<th>no.</th>
+											<th>회사 이름</th>
+											<th>회사 여부</th>
+											<th>알림 설정</th>
+											<th>삭제</th>
+											<th>상태 변경</th>
+										</tr>
+									</thead>
+									<c:forEach items="${mainList}" var="management"
+										varStatus="count">
+										<tr>
+											<th>${count.index+1}</th>
+											<th class="m_content">${management.m_content}</th>
+											<th>${management.m_val}</th>
+											<th><label class="switch"> <input
+													type="checkbox"> <span class="slider round"></span>
+											</label></th>
+											<th><button class="click"
+													data-userid="${management.userid}">삭제</button></th>
+											<th><button class="click2"
+													data-userid="${management.userid}">변경</button></th>
+										</tr>
+									</c:forEach>
+									</tbody>
+								</table>
+                        </div>
                     </div>
-                </div>
                 </div>
             </div>
         </div>
