@@ -20,10 +20,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Ogani | Template</title>
-
+	
+	
+	
+	
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
-
+	
     <!-- Css Styles -->
     <link rel="stylesheet" href="../market/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="../market/css/font-awesome.min.css" type="text/css">
@@ -33,6 +36,70 @@
     <link rel="stylesheet" href="../market/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="../market/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="../market/css/style.css" type="text/css">
+     
+     <style>
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 60px;
+	height: 34px;
+}
+
+.switch input {
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+.slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #ccc;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+
+.slider:before {
+	position: absolute;
+	content: "";
+	height: 26px;
+	width: 26px;
+	left: 4px;
+	bottom: 4px;
+	background-color: white;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+
+input:checked+.slider {
+	background-color: #2196F3;
+}
+
+input:focus+.slider {
+	box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+	-webkit-transform: translateX(26px);
+	-ms-transform: translateX(26px);
+	transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+	border-radius: 34px;
+}
+
+.slider.round:before {
+	border-radius: 50%;
+}
+</style>
+     
+     
 </head>
 
 <body>
@@ -133,8 +200,41 @@
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
-                    <div class="banner__pic">
-                        <img src="../market/img/banner/banner-2.jpg" alt="">
+                    <div class="hero__categories">
+                        <div class="hero__categories__all">
+                            <i class="fa fa-bars"></i>
+                            <span>관심 업체</span>
+                        </div>
+                        <div class="shoping__cart__table">
+                        <table>
+									<thead>
+										<tr>
+											<th>no.</th>
+											<th>회사 이름</th>
+											<th>회사 여부</th>
+											<th>알림 설정</th>
+											<th>삭제</th>
+											<th>상태 변경</th>
+										</tr>
+									</thead>
+									<c:forEach items="${mainList}" var="management"
+										varStatus="count">
+										<tr>
+											<th>${count.index+1}</th>
+											<th class="m_content">${management.m_content}</th>
+											<th>${management.m_val}</th>
+											<th><label class="switch"> <input
+													type="checkbox"> <span class="slider round"></span>
+											</label></th>
+											<th><button class="click"
+													data-userid="${management.userid}">삭제</button></th>
+											<th><button class="click2"
+													data-userid="${management.userid}">변경</button></th>
+										</tr>
+									</c:forEach>
+									</tbody>
+								</table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -157,7 +257,26 @@
     <script src="../market/js/jquery.slicknav.js"></script>
     <script src="../market/js/mixitup.min.js"></script>
     <script src="../market/js/owl.carousel.min.js"></script>
-    <script src="../market/js/main.js"></script>    
+    <script src="../market/js/main.js"></script>	
+    <!--js list made by kim -->
+	<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="../../js/priceWebSocket.js"></script>
+    <!-- <script>
+        $('document').ready(function () {
+        	console.log("aaa");
+            $.ajax({
+                type: "get",	
+                url: "/cartcount"   
+                
+            }).done(function(response){    
+            	
+            	document.getElementById("ccount").textContent = reponse.ccount;
+            	document.getElementById("cprice").textContent = reponse.cprice;
+            });
+            console.log(document.getElementById("ccount").textContent);
+        });
+    </script> -->
+
 
 </body>
 

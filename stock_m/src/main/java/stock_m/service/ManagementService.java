@@ -27,25 +27,28 @@ public class ManagementService {
 	@Autowired
 	ManagementDao dao;
 
-	public List<ManagementDto> managementList(int start, String keyword) {
+	public List<ManagementDto> managementList(int start, String keyword, String userid) {
 		Map<String, Object> m = new HashMap<String, Object>();
 		m.put("start", start);
 		m.put("count", 5);
 		m.put("keyword", keyword);
+		m.put("userid", userid);
 		return dao.managementList(m);
 	}
 
-	public List<ManagementDto> mainList(int startRow) {
+	public List<ManagementDto> mainList(int startRow, String userid) {
 		Map<String, Object> m = new HashMap<String, Object>();
+		m.put("userid", userid);
 		m.put("start", startRow);
 		m.put("count", 5);
 		return dao.mainList(m);
 	}
 	
-	public List<ManagementDto> maList(int start) {
+	public List<ManagementDto> maList(int start, String userid) {
 		Map<String, Object> m = new HashMap<String, Object>();
 		m.put("start", start);
 		m.put("count", 5);
+		m.put("userid", userid);
 		return dao.maList(m);
 	}
 
@@ -53,13 +56,13 @@ public class ManagementService {
 		return dao.countSearch(keyword);
 	}
 
-	public int insert(String id) {
-		return dao.insert(id);
+	public int insert(String userid, String username) {
+		return dao.insert(userid,username);
 
 	}
 
-	public int insert2(String id) {
-		return dao.insert2(id);
+	public int insert2(String userid,String id) {
+		return dao.insert2(userid,id);
 	}
 
 	public int find(String m_content, String userid) {
@@ -114,6 +117,14 @@ public class ManagementService {
 
 	public boolean switch1(String m_content) {
 		return dao.switch1(m_content);
+	}
+
+	public List<ManagementDto> managementListall(int startRow, String userid) {
+		Map<String, Object> m = new HashMap<String, Object>();
+		m.put("start", startRow);
+		m.put("count", 5);
+		m.put("userid", userid);
+		return dao.managementListall(m);
 	}
 
 }
