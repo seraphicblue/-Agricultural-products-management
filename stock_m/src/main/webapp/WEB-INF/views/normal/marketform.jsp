@@ -220,8 +220,8 @@ input:checked+.slider:before {
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="hero__categories">
                         <div class="hero__categories__all">
-                            <i class="fa fa-bars"></i>
-                            <span>관심 업체</span>
+                        <!--hero__categories__all 이 부분 변경 필요 -->
+                            <span >관심 업체</span>
                         </div>
                         <div class="shoping__cart__table">
                         <table>
@@ -229,7 +229,6 @@ input:checked+.slider:before {
 										<tr>
 											<th>no.</th>
 											<th>회사 이름</th>
-											<th>회사 여부</th>
 											<th>알림 설정</th>
 											<th>삭제</th>
 											<th>상태 변경</th>
@@ -240,7 +239,6 @@ input:checked+.slider:before {
 										<tr>
 											<th>${count.index+1}</th>
 											<th class="m_content">${management.m_content}</th>
-											<th>${management.m_val}</th>
 											<th><label class="switch"> <input
 													type="checkbox"> <span class="slider round"></span>
 											</label></th>
@@ -252,6 +250,7 @@ input:checked+.slider:before {
 									</c:forEach>
 									</tbody>
 								</table>
+								<div class="header__cart"><div class="site-btn"><a href="interest"> 전체 보기</a></div></div>
                         </div>
                     </div>
                 </div>
@@ -294,7 +293,102 @@ input:checked+.slider:before {
             console.log(document.getElementById("ccount").textContent);
         });
     </script> -->
-    
+    <script>
+				$(document)
+						.ready(
+								function() {
+									$('.click')
+											.click(
+													function() {
+														var userid = $(this)
+																.data('userid');
+														var m_content = $(this)
+																.closest('tr')
+																.find(
+																		'.m_content')
+																.text();
+														var m_content = $(this)
+																.closest('tr')
+																.find(
+																		'.m_content')
+																.text();
+														location.href = "/company/delete?m_content="
+																+ m_content
+																+ "&userid="
+																+ userid;
+
+													});
+								});
+
+				$(document)
+						.ready(
+								function() {
+									$('.click2')
+											.click(
+													function() {
+														var userid = $(this)
+																.data('userid');
+														var m_content = $(this)
+																.closest('tr')
+																.find(
+																		'.m_content')
+																.text();
+														console.log(m_content);
+														$
+																.ajax({
+																	type : 'POST',
+																	url : '/normal/check2',
+																	data : {
+																		'm_content' : m_content,
+																		"userid" : userid
+																	},
+																	success : function(
+																			result) {
+																		if (result == true) {
+																			location.href = "/normal/update?m_content="
+																					+ m_content
+																					+ "&userid="
+																					+ userid;
+																		} else {
+																			location.href = "/normal/update2?m_content="
+																					+ m_content
+																					+ "&userid="
+																					+ userid;
+																		}
+																	}
+
+																});
+													});
+								});
+
+				$(document).ready(
+						function() {
+							$('.switch input').change(
+									function() {
+										var Checked = $(this).is(":checked");
+										var userid = $(this).closest('tr')
+												.find('.userid').val();
+										console.log("슬라이드 바 상태: " + Checked);
+										console.log(userid);
+										$.ajax({
+											type : 'POST',
+											url : '/normal/switch',
+											data : {
+												Checked : Checked,
+												'userid' : userid
+											},
+											success : function(result) {
+												if (result == true) {
+
+												} else {
+
+												}
+											}
+
+										});
+									});
+						});
+			</script>
 
 </body>
 

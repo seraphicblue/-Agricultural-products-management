@@ -42,8 +42,7 @@
 
 			<!-- Sidebar - Brand -->
 			<!-- 홈화면 링크 부분-->
-			<a
-				class="sidebar-brand d-flex align-items-center justify-content-center"
+			<a class="sidebar-brand d-flex align-items-center justify-content-center"
 				href="index.html">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-laugh-wink"></i>
@@ -463,7 +462,6 @@
 								aria-describedby="dataTable_info" style="width: 100%;">
 								<thead>
 								<tr>
-									<th>no</th>
 									<th>재고 번호</th>
 									<th>수량</th>
 									<th>재고 물품</th>
@@ -473,9 +471,8 @@
 								</tr>
 								</thead>
 								<tbody>
-									<c:forEach var="i" begin="1" end="5">
+									
 										<tr>
-											<td>${i}</td>
 											<td class="s_val"></td>
 											<td><input type="text" class="s_volume"
 												onchange="changeprice(this)"></td>
@@ -492,7 +489,6 @@
 											<td class="selectedprice"></td>
 											<td><button class="click">추가</button></td>
 										</tr>
-									</c:forEach>
 								</tbody>
 							</table>
 						</div>
@@ -626,11 +622,17 @@
 										's_val' : s_val
 									},
 									success : function(result) {
+										$(".s_val").text("");
+										$(".select_option").val("");
+										$(".s_volume").val("");
+										$(".selectedvolume").text("");
+										$(".selectedprice").text("");
+										$(".s_val").trigger("change");
+										$(".selectedvolume").trigger("change");
+										$(".selectedprice").trigger("change");
 										if (result == true) {
-											location.reload();
 										} else {
 											alert("한도 부족입니다.");
-											location.reload();
 										}
 									}
 								});

@@ -13,6 +13,7 @@ import stock_m.dao.AdminstockDao;
 import stock_m.dao.RevenueDao;
 import stock_m.dao.StockDao;
 import stock_m.dto.AdminstockDto;
+import stock_m.dto.BuyDto;
 
 @Service
 public class StockService {
@@ -25,6 +26,7 @@ public class StockService {
 	
 	@Autowired
 	RevenueDao rdao;
+	
 	
 	
 	public List<AdminstockDto>option(){
@@ -43,12 +45,16 @@ public class StockService {
 		int s = dao.checki(scontent,userid);
 		System.out.println(s);
 		if(s>0) {
+			Date now = new	 Date();
+			SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+			rdao.insertb(s_val,userid,format.format(now),s_price);
 			rdao.updater(s_price,userid);
 			 return dao.updates(scontent,s_volume,s_val,userid);
 		}else {
 			Date now = new	 Date();
 			SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
 			rdao.updater(s_price,userid);
+			rdao.insertb(s_val,userid,format.format(now),s_price);
 			return dao.inserts(scontent,s_volume,format.format(now), s_val,userid);
 		}
 	}
