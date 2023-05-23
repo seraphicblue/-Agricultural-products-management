@@ -1,8 +1,8 @@
 <%-- 
-   Date    : 2023.05.16
+   Date    : 2023.05.22
    name    : shoping-cart
    type    : form
-   ver     : 5.0
+   ver     : 6.0
    conect  : MarketController
    content : 장바구니 페이지
    writer  : 김기덕
@@ -53,7 +53,7 @@
                         <ul>
                             <li>
                                 <div class="header__top__right__auth">
-                                    <a href="/logout"><i class="fa fa-user"></i> Logout</a>
+                                    <a href="/logout"><i class="fa fa-user"></i> 로그아웃</a>
                                 </div>
                             </li>
                             <li><a href="/normal/cart/${userid}"><i class="fa fa-shopping-bag"></i> <span id="ccount">${ccount}</span></a></li>
@@ -147,7 +147,7 @@
                                 <tr>
                                     <td class="shoping__cart__item">
                                         <a href="../details/${cart.product_pno}">
-                                        <img src="../../market/img/cart/cart-1.jpg" alt="">
+                                        <img src="" id="h${status.count}img" alt="">
                                         <h5>${cart.name}</h5>
                                         </a>
                                     </td>
@@ -192,6 +192,23 @@
                         </table>                        
                         
                         <script>
+                        window.onload = function(){
+                        	var fin = "${fina}"; 
+                    		for(var i = 1; i < parseInt(fin)+1; i++){
+                            	console.log(document.getElementById("h"+i+"name").value);
+                    			if(document.getElementById("h"+i+"name").value == "감자"){
+                    				document.getElementById("h"+i+"img").setAttribute("src", "../../market/img/cart/potato.jpg");
+                    			}else if(document.getElementById("h"+i+"name").value == "양파"){
+                    				document.getElementById("h"+i+"img").setAttribute("src", "../../market/img/cart/onion.jpg");
+                    			}else if(document.getElementById("h"+i+"name").value == "가지"){
+                    				document.getElementById("h"+i+"img").setAttribute("src", "../../market/img/cart/eggplant.jpg");
+                    			}else if(document.getElementById("h"+i+"name").value == "토마토"){
+                    				document.getElementById("h"+i+"img").setAttribute("src", "../../market/img/cart/tomato.jpg");
+                    			}else if(document.getElementById("h"+i+"name").value == "당근"){
+                    				document.getElementById("h"+i+"img").setAttribute("src", "../../market/img/cart/carrot.jpg");
+                    			}
+                    		}
+                        }
                        		<%-- 장바구니에 +,-버튼 클릭시 발생하는 이벤트 상품수 증감 --%>
                         	function vi(obj){
                         		var str = obj;
@@ -344,9 +361,6 @@
                     				return false;
                     			}
                     			if(parseInt(document.getElementById("h"+i+"p_count").value) < parseInt(document.getElementById("h"+i+"bcount").value)){
-                    				console.log(document.getElementById("h"+i+"p_count").value);
-                    				console.log(document.getElementById("h"+i+"bcount").value);
-
                     				alert("준비된 상품갯수를 초과했습니다.");
                     				alert(document.getElementById("h"+i+"name").value + "의 남은 수량은 " + document.getElementById("h"+i+"p_count").value+"개 입니다.");
                     				return false;
@@ -402,7 +416,7 @@
                         			//재고 알림 발생
                         		}//결제후 구매내역 저장
                         		
-                        		//location.reload();
+                        		location.reload();
 							}else{
 								return false
 							}

@@ -120,9 +120,10 @@ public class MarketController {
 		//List<Map<String,Object>> list = service.searchPname(pname);
 		//m.addAttribute("list", list);
 		
-		
+
 		if (cproduct > 0) {													//검색 페이지 하단에 표시할 페이지수 
 			int perPage = 10; // 한 페이지에 보일 상품의 갯수
+
 			int startRow = (page - 1) * perPage;
 			//int endRow = page * perPage;
 			
