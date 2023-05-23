@@ -1,29 +1,28 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="zxx">
+<!-- col-lg-6클래스 태그 css스타일 특정 영역 차지 크기  -->
 <head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="Ogani, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ogani | Template</title>
 
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="">
-<meta name="author" content="">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
-<title>SB Admin 2 - Dashboard</title>
+    <!-- Css Styles -->
+   <link rel="stylesheet" href="../market/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="../market/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="../market/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="../market/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="../market/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="../market/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="../market/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="../market/css/style.css" type="text/css">
 
-<!-- Custom fonts for this template-->
-<link href="../../vendor/fontawesome-free/css/all.min.css"
-	rel="stylesheet" type="text/css">
-<link
-	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-	rel="stylesheet">
-
-<!-- Custom styles for this template-->
-<link href="../../css/sb-admin-2.min.css" rel="stylesheet">
-<script src="../../js/webSocket.js"></script>
 <style>
 .switch {
 	position: relative;
@@ -88,301 +87,214 @@ input:checked+.slider:before {
 
 </head>
 
-<body id="page-top">
+<body>
+<input type="hidden" name="command" id="command" value="stock"> 
+<!-- Header Section Begin --> <%-- ------------------------- 다른 페이지들과 공통부분 시작 ------------------------- --%>
+    <header class="header">
+       
+        <div class="container">
+            <div class="row">
+            
+                <div class="col-lg-3">
+                    <div class="header__logo">
+                        <a href="/normal/market"><img src="../../market/img/logo.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                </div>
+                <div class="col-lg-3">
+                    <div class="header__cart">
+                        <ul>
+                            <li>
+                                <div class="header__top__right__auth">
+                                    <a href="/logout"><i class="fa fa-user"></i> Logout</a>
+                                </div>
+                            </li>
+                            <li><a href="/normal/cart/${userid}"><i class="fa fa-shopping-bag"></i> <span id="ccount">${ccount}</span></a></li>
+                        </ul>
+                        <div class="header__cart__price">총 액: <span id="cprice">${cprice}원</span></div>
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </header>
+    <!-- Header Section End -->
 
-	<!-- Page Wrapper -->
-	<div id="wrapper">
+    <!-- Hero Section Begin -->
+    <section class="hero hero-normal">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="hero__categories">
+                        <div class="hero__categories__all">
+                            <i class="fa fa-bars"></i>
+                            <span>전체 분류</span>
+                        </div>
+                        <ul>
+                            <li><a href="/normal/p_val?p_val=100">식량작물</a></li>
+                            <li><a href="/normal/p_val?p_val=200">채소류</a></li>
+                            <li><a href="/normal/p_val?p_val=300">특용작물</a></li>
+                            <li><a href="/normal/p_val?p_val=400">과일류</a></li>
+                            <li><a href="/normal/p_val?p_val=500">축산물</a></li>
+                            <li><a href="/normal/p_val?p_val=600">수산물</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="hero__search">
+                        <div class="hero__search__form">
+                            <form action="/normal/search">
+                                
+                                <input type="text" placeholder="검색할 상품명" name="pname">
+                                <button type="submit" class="site-btn">검색</button>
+                            </form>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Hero Section End --> <%-- ------------------------- 다른 페이지들과 공통부분 끝 ------------------------- --%>
 
-		<!-- Sidebar -->
-		<ul
-			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
-			id="accordionSidebar">
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section set-bg" data-setbg="../../market/img/breadcrumb.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                	<%-- 장바구니 페이지의 중단부에 토마토 부분 --%>
+                    <div class="breadcrumb__text">
+                        <h2>관심 업체</h2>
+                        <div class="breadcrumb__option">
+                            <a href="/normal/market">홈</a>
+                            <span>관심 업체</span>
+                            <%-- MarketController에서 받은 userid를 받아놓은 부분 --%>
+                            <input id="userid" value="${userid}" hidden="hidden">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
 
-			<!-- Sidebar - Brand -->
-			<!-- 홈화면 링크 부분-->
-			<a
-				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="index.html">
-				<div class="sidebar-brand-icon rotate-n-15">
-					<i class="fas fa-laugh-wink"></i>
-				</div>
-				<div class="sidebar-brand-text mx-3">
-					관리해줘 <sup>업체</sup>
-				</div>
-			</a>
+    <!-- Shoping Cart Section Begin -->
+    <section class="shoping-cart spad">
+        <div class="container">
+        <div class="row">
+        
+                <div class="col-lg-3 col-md-5">
+                    <div class="sidebar">
+                        <div class="sidebar__item">
+                            <div><h4>관리 여부</h4></div>
+                            <ul>
+                                <li><a href="/normal/interest">관심 업체 관리</a></li>
+                            	<li><a href="/normal/management2">유의 업체관리</a></li>
+                            	<li><a href="/normal/listall">전체 관리</a></li>
+                            </ul>
+                        </div>
+                	</div>
+            	</div>
 
-			<!-- Divider -->
-			<hr class="sidebar-divider my-0">
-
-			<!-- Nav Item - Dashboard -->
-
-
-			<!-- Divider -->
-			<hr class="sidebar-divider">
-
-			<!-- Heading -->
-			<div class="sidebar-heading">Interface</div>
-
-			<!-- Nav Item - Pages Collapse Menu -->
-			<!-- data-toggle 제거시 화살표 부분 제거-->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-target="#collapseTwo" aria-expanded="true"
-				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Components</span>
-			</a></li>
-
-			<!-- Nav Item - Utilities Collapse Menu -->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseUtilities"
-				aria-expanded="true" aria-controls="collapseUtilities"> <i
-					class="fas fa-fw fa-wrench"></i> <span>Utilities</span>
-			</a></li>
-
-			<!-- Divider -->
-			<hr class="sidebar-divider">
-
-			<!-- Heading -->
-			<div class="sidebar-heading">Addons</div>
-
-			<!-- Nav Item - Pages Collapse Menu -->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapsePages"
-				aria-expanded="true" aria-controls="collapsePages"> <i
-					class="fas fa-fw fa-folder"></i> <span>업체 관리</span>
-			</a>
-				<div id="collapsePages" class="collapse"
-					aria-labelledby="headingPages" data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">관리 유형</h6>
-						<a class="collapse-item" href="/company/management1">관심 업체</a> <a
-							class="collapse-item" href="/company/management2">유의 업체</a>
-					</div>
-				</div></li>
-
-			<!-- Nav Item - Charts -->
-			<li class="nav-item"><a class="nav-link"
-				href="../../charts.html"> <i class="fas fa-fw fa-chart-area"></i>
-					<span>Charts</span></a></li>
-
-			<!-- Nav Item - Tables -->
-			<li class="nav-item"><a class="nav-link" href="tables.html">
-					<i class="fas fa-fw fa-table"></i> <span>Tables</span>
-			</a></li>
-
-			<!-- Divider -->
-			<hr class="sidebar-divider d-none d-md-block">
-
-			<!-- Sidebar Toggler (Sidebar) -->
-			<div class="text-center d-none d-md-inline">
-				<button class="rounded-circle border-0" id="sidebarToggle"></button>
-			</div>
-
-			<!-- Sidebar Message -->
-
-
-		</ul>
-		<!-- End of Sidebar -->
-
-		<!-- Content Wrapper -->
-		<div id="content-wrapper" class="d-flex flex-column">
-
-			<div id="content">
-
-				<!-- Topbar -->
-				<nav
-					class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-					<!-- Sidebar Toggle (Topbar) -->
-					<form class="form-inline">
-						<button id="sidebarToggleTop"
-							class="btn btn-link d-md-none rounded-circle mr-3">
-							<i class="fa fa-bars"></i>
-						</button>
-					</form>
-
-					<!-- Topbar Search -->
-					<form
-						class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-						<div class="input-group">
-							<input type="text" class="form-control bg-light border-0 small"
-								placeholder="Search for..." aria-label="Search"
-								aria-describedby="basic-addon2">
-							<div class="input-group-append">
-								<button class="btn btn-primary" type="button">
-									<i class="fas fa-search fa-sm"></i>
-								</button>
-							</div>
-						</div>
-					</form>
-
-					<!-- Topbar Navbar -->
-					<ul class="navbar-nav ml-auto">
-
-						<!-- Nav Item - Search Dropdown (Visible Only XS) -->
-						<li class="nav-item dropdown no-arrow d-sm-none"><a
-							class="nav-link dropdown-toggle" href="#" id="searchDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> <i class="fas fa-search fa-fw"></i>
-						</a> <!-- Dropdown - Messages -->
-							<div
-								class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-								aria-labelledby="searchDropdown">
-								<form class="form-inline mr-auto w-100 navbar-search">
-									<div class="input-group">
-										<input type="text"
-											class="form-control bg-light border-0 small"
-											placeholder="Search for..." aria-label="Search"
-											aria-describedby="basic-addon2">
-										<div class="input-group-append">
-											<button class="btn btn-primary" type="button">
-												<i class="fas fa-search fa-sm"></i>
-											</button>
-										</div>
-									</div>
-								</form>
-							</div></li>
-
-						<!-- Nav Item - Alerts -->
-
-						<li class="nav-item dropdown no-arrow"><a
-							class="nav-link dropdown-toggle" href="#" id="userDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> <span
-								class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas
-									McGee</span> <img class="img-profile rounded-circle"
-								src="img/undraw_profile.svg">
-						</a> <!-- Dropdown - User Information -->
-							<div
-								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-								aria-labelledby="userDropdown">
-								<a class="dropdown-item" href="#"> <i
-									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
-								</a> <a class="dropdown-item" href="#"> <i
-									class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-									Settings
-								</a> <a class="dropdown-item" href="#"> <i
-									class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-									Activity Log
-								</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#" data-toggle="modal"
-									data-target="#logoutModal"> <i
-									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-									Logout
-								</a>
-							</div></li>
-
-					</ul>
-
-				</nav>
-				<!-- End of Topbar -->
-
-				<!-- Begin Page Content -->
-				<div class="container-fluid">
-
+  
+                <div class="col-lg-9">
+             
+					<div>
 					<!-- Page Heading -->
-					<form
-						class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
-						action="search" method="GET">
-						<div class="search">
+					
 							<h1 class="h3 mb-2 text-gray-800">관심 업체</h1>
-							<input type="text" class="form-control bg-light border-0 small" name="keyword" placeholder="기업을 입력해주세요" aria-describedby="basic-addon2">
-								 <input type="submit" class="btn btn-primary" value="search">
+							   
+							<div class="hero__search__form">
+							<form action="/normal/inmasearch" method="GET">
+							
+							<div class="search">
+							<input type="text" name="keyword" placeholder="추가하실 기업을 입력해주세요">
+							 <button type="submit" class="site-btn">검색</button>	
+							 </div>		
+							</form>
 						</div>
-
-					</form>
-
-
-					<!-- DataTales Example -->
-					<div class="card shadow mb-4">
-						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">검색 결과</h6>
 						</div>
-						<div class="card-body">
-							<div class="table-responsive">
-								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+						
+                    <div class="shoping__cart__table">
+								<table>
 									<c:if test="${count != 0 }">
-										
 											<tr>
 												<th>no.</th>
-												<th>회사 이름</th>
-												<th>회사 여부</th>
-												<th>삭제</th>
-												<th>상태 변경</th>
+												<th>회사 명</th>
+												<th>회사 홈페이지</th>
+												<th>사업자 번호</th>
+												<th>추가</th>
 											</tr>
-
-											<c:forEach items="${dList}" var="management"
-												varStatus="count">
+											<c:forEach items="${mList}" var="user" varStatus="count">
 												<tr>
 													<td>${count.index+1}</td>
-													<td class="m_content">${management.m_content}</td>
-													<td class="m_val">${management.m_val}</td>
-													<td><button class="click">삭제</button></td>
-													<th><button class="click2">변경</button></th>
+													<td class="username">${user.username}</td>
+													<td>${user.gender}</td>
+													<td>${user.age}</td>
+													<td><button class="click">추가</button></td>
 												</tr>
 											</c:forEach>
-										
 									</c:if>
 									<c:if test="${count == 0 }">
-		검색 조건에 맞는 글이 없습니다.
-		</c:if>
+	검색 조건에 맞는 글이 없습니다.
+	</c:if>
 									</tbody>
 								</table>
 							</div>
-						</div>
-					</div>
+                </div>
+            </div>
+            </div>     
 
-				</div>
-				<!-- /.container-fluid -->
+    </section>
+    <!-- Shoping Cart Section End -->
 
-			</div>
-			<!-- End of Main Content -->
+    <!-- Footer Section Begin -->
+    
+    <!-- Footer Section End -->
+
+    <!-- Js Plugins -->
+     <script src="../market/js/jquery-3.3.1.min.js"></script>
+    <script src="../market/js/bootstrap.min.js"></script>
+    <script src="../market/js/jquery.nice-select.min.js"></script>
+    <script src="../market/js/jquery-ui.min.js"></script>
+    <script src="../market/js/jquery.slicknav.js"></script>
+    <script src="../market/js/mixitup.min.js"></script>
+    <script src="../market/js/owl.carousel.min.js"></script>
+    <script src="../market/js/main.js"></script>	
+    <!--js list made by kim -->
+	<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="../../js/priceWebSocket.js"></script>
 			<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 			<script>
 				$(document)
 						.ready(
 								function() {
-									$('.click')
+									$(".click")
 											.click(
 													function() {
-														var m_content = $(this)
-																.closest('tr')
-																.find(
-																		'.m_content')
-																.text();
-														location.href = "/company/delete?m_content="
-																+ m_content;
-
-													});
-								});
-
-				$(document)
-						.ready(
-								function() {
-									$('.click2')
-											.click(
-													function() {
-														var m_content = $(this)
-																.closest('tr')
-																.find(
-																		'.m_content')
+														var username = $(this)
+																.parent()
+																.siblings(
+																		'.username')
 																.text();
 														$
 																.ajax({
 																	type : 'POST',
-																	url : '/company/check2',
+																	url : '/normal/check',
 																	data : {
-																		'm_content' : m_content
+																		'username' : username
 																	},
 																	success : function(
 																			result) {
-																		if (result === true) {
-																			location.href = "/company/update?m_content="
-																					+ m_content;
+																		if (result === false) {
+																			alert('이미 추가된 업체입니다.');
 																		} else {
-																			location.href = "/company/update2?m_content="
-																					+ m_content;
+																			location.href = "/normal/insert2?id="
+																					+ username;
 																		}
 																	}
+
 																});
 													});
 								});

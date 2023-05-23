@@ -60,9 +60,9 @@ public class MarketController {
 
 		if (count > 0) {
 
-			int perPage = 5; // 한 페이지에 보일 글의 갯수
+			int perPage = 4; // 한 페이지에 보일 글의 갯수
 			int startRow = (page - 1) * perPage;
-
+			System.out.println(startRow);
 			List<ManagementDto> mainList = m_service.mainList(startRow,userid);
 			m.addAttribute("userid", userid);
 			System.out.println(mainList);
@@ -122,7 +122,8 @@ public class MarketController {
 		
 
 		if (cproduct > 0) {													//검색 페이지 하단에 표시할 페이지수 
-			int perPage = 10; // 한 페이지에 보일 상품의 갯수
+
+			int perPage = 5; // 한 페이지에 보일 상품의 갯수
 
 			int startRow = (page - 1) * perPage;
 			//int endRow = page * perPage;

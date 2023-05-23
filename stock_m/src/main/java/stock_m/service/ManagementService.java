@@ -39,11 +39,18 @@ public class ManagementService {
 	public List<ManagementDto> mainList(int startRow, String userid) {
 		Map<String, Object> m = new HashMap<String, Object>();
 		m.put("userid", userid);
-		m.put("start", startRow);
-		m.put("count", 5);
+		m.put("count", 3);
+		m.put("startRow", startRow);
 		return dao.mainList(m);
 	}
 	
+	public List<ManagementDto> mainList2(int startRow, String userid) {
+		Map<String, Object> m = new HashMap<String, Object>();
+		m.put("userid", userid);
+		m.put("count", 10);
+		m.put("startRow", startRow);
+		return dao.mainList2(m);
+	}
 	public List<ManagementDto> maList(int start, String userid) {
 		Map<String, Object> m = new HashMap<String, Object>();
 		m.put("start", start);
