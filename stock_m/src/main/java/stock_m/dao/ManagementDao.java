@@ -40,6 +40,7 @@ public interface ManagementDao {
 		List<UserDto> UList(Map<String, Object> m);
 		List<ManagementDto> mainList(Map<String, Object> m);
 		boolean switch1(String m_content);
+		List<ManagementDto> managementListall(Map<String, Object> m);
 		
 		
 		

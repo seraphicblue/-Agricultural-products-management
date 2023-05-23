@@ -153,7 +153,7 @@ input:checked+.slider:before {
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">관리 유형</h6>
-						<a class="collapse-item" href="/company/management1">관심 업체</a> <a
+						<a class="collapse-item" href="/company/interest">관심 업체</a> <a
 							class="collapse-item" href="/company/management2">유의 업체</a>
 					</div>
 				</div></li>
@@ -285,8 +285,10 @@ input:checked+.slider:before {
 						action="search" method="GET">
 						<div class="search">
 							<h1 class="h3 mb-2 text-gray-800">관심 업체</h1>
-							<input type="text" class="form-control bg-light border-0 small" name="keyword" placeholder="기업을 입력해주세요" aria-describedby="basic-addon2">
-								 <input type="submit" class="btn btn-primary" value="search">
+							<input type="text" class="form-control bg-light border-0 small"
+								name="keyword" placeholder="기업을 입력해주세요"
+								aria-describedby="basic-addon2"> <input type="submit"
+								class="btn btn-primary" value="search">
 						</div>
 
 					</form>
@@ -295,36 +297,36 @@ input:checked+.slider:before {
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">검색 결과</h6>
+							<h6 class="m-0 font-weight-bold text-primary">관심 업체 목록</h6>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
 								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-									<c:if test="${count != 0 }">
-										<table border="1">
-											<tr>
-												<th>no.</th>
-												<th>회사 이름</th>
-												<th>회사 여부</th>
-												<th>삭제</th>
-												<th>상태 변경</th>
-											</tr>
-
-											<c:forEach items="${dList}" var="management"
-												varStatus="count">
-												<tr>
-													<td>${count.index+1}</td>
-													<td class="m_content">${management.m_content}</td>
-													<td class="m_val">${management.m_val}</td>
-													<td><button class="click">삭제</button></td>
-													<th><button class="click2">변경</button></th>
-												</tr>
-											</c:forEach>
-										</table>
-									</c:if>
-									<c:if test="${count == 0 }">
-		검색 조건에 맞는 글이 없습니다.
-		</c:if>
+									<thead>
+										<tr>
+											<th>no.</th>
+											<th>회사 이름</th>
+											<th>회사 여부</th>
+											<th>알림 설정</th>
+											<th>삭제</th>
+											<th>상태 변경</th>
+										</tr>
+									</thead>
+									<c:forEach items="${mainList}" var="management"
+										varStatus="count">
+										<tr>
+											<th>${count.index+1}</th>
+											<th class="m_content">${management.m_content}</th>
+											<th>${management.m_val}</th>
+											<th><label class="switch"> <input
+													type="checkbox"> <span class="slider round"></span>
+											</label></th>
+											<th><button class="click"
+													data-userid="${management.userid}">삭제</button></th>
+											<th><button class="click2"
+													data-userid="${management.userid}">변경</button></th>
+										</tr>
+									</c:forEach>
 									</tbody>
 								</table>
 							</div>
@@ -344,13 +346,22 @@ input:checked+.slider:before {
 									$('.click')
 											.click(
 													function() {
+														var userid = $(this)
+																.data('userid');
+														var m_content = $(this)
+																.closest('tr')
+																.find(
+																		'.m_content')
+																.text();
 														var m_content = $(this)
 																.closest('tr')
 																.find(
 																		'.m_content')
 																.text();
 														location.href = "/company/delete?m_content="
-																+ m_content;
+																+ m_content
+																+ "&userid="
+																+ userid;
 
 													});
 								});
@@ -361,31 +372,68 @@ input:checked+.slider:before {
 									$('.click2')
 											.click(
 													function() {
+														var userid = $(this)
+																.data('userid');
 														var m_content = $(this)
 																.closest('tr')
 																.find(
 																		'.m_content')
 																.text();
+														console.log(m_content);
 														$
 																.ajax({
 																	type : 'POST',
 																	url : '/company/check2',
 																	data : {
-																		'm_content' : m_content
+																		'm_content' : m_content,
+																		"userid" : userid
 																	},
 																	success : function(
 																			result) {
-																		if (result === true) {
+																		if (result == true) {
 																			location.href = "/company/update?m_content="
-																					+ m_content;
+																					+ m_content
+																					+ "&userid="
+																					+ userid;
 																		} else {
 																			location.href = "/company/update2?m_content="
-																					+ m_content;
+																					+ m_content
+																					+ "&userid="
+																					+ userid;
 																		}
 																	}
+
 																});
 													});
 								});
+
+				$(document).ready(
+						function() {
+							$('.switch input').change(
+									function() {
+										var Checked = $(this).is(":checked");
+										var userid = $(this).closest('tr')
+												.find('.userid').val();
+										console.log("슬라이드 바 상태: " + Checked);
+										console.log(userid);
+										$.ajax({
+											type : 'POST',
+											url : '/company/switch',
+											data : {
+												Checked : Checked,
+												'userid' : userid
+											},
+											success : function(result) {
+												if (result == true) {
+
+												} else {
+
+												}
+											}
+
+										});
+									});
+						});
 			</script>
 </body>
 </html>

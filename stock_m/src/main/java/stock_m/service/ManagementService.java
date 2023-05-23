@@ -27,16 +27,18 @@ public class ManagementService {
 	@Autowired
 	ManagementDao dao;
 
-	public List<ManagementDto> managementList(int start, String keyword) {
+	public List<ManagementDto> managementList(int start, String keyword, String userid) {
 		Map<String, Object> m = new HashMap<String, Object>();
 		m.put("start", start);
 		m.put("count", 5);
 		m.put("keyword", keyword);
+		m.put("userid", userid);
 		return dao.managementList(m);
 	}
 
-	public List<ManagementDto> mainList(int startRow) {
+	public List<ManagementDto> mainList(int startRow, String userid) {
 		Map<String, Object> m = new HashMap<String, Object>();
+		m.put("userid", userid);
 		m.put("start", startRow);
 		m.put("count", 5);
 		return dao.mainList(m);
@@ -46,6 +48,7 @@ public class ManagementService {
 		Map<String, Object> m = new HashMap<String, Object>();
 		m.put("start", start);
 		m.put("count", 5);
+		m.put("userid", userid);
 		return dao.maList(m);
 	}
 
@@ -114,6 +117,14 @@ public class ManagementService {
 
 	public boolean switch1(String m_content) {
 		return dao.switch1(m_content);
+	}
+
+	public List<ManagementDto> managementListall(int startRow, String userid) {
+		Map<String, Object> m = new HashMap<String, Object>();
+		m.put("start", startRow);
+		m.put("count", 5);
+		m.put("userid", userid);
+		return dao.managementListall(m);
 	}
 
 }

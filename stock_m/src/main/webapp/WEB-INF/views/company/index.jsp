@@ -31,7 +31,6 @@
 
 <body id="page-top">
 
-
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -97,6 +96,7 @@
 						<h6 class="collapse-header">관리 유형</h6>
 						<a class="collapse-item" href="/company/interest">관심 업체</a> <a
 							class="collapse-item" href="/company/management2">유의 업체</a>
+							<a class="collapse-item" href="/company/listall"> 전체 관리</a>
 					</div>
 				</div></li>
 
@@ -507,7 +507,6 @@
 
 			<!-- End of Footer -->
 
-
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -653,7 +652,6 @@
 							});
 				});
 	</script>
-
 </body>
 
 </html>
