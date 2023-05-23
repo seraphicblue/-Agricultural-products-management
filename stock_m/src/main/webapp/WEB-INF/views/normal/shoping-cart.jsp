@@ -1,8 +1,8 @@
 <%-- 
-   Date    : 2023.05.16
+   Date    : 2023.05.22
    name    : shoping-cart
    type    : form
-   ver     : 5.0
+   ver     : 6.0
    conect  : MarketController
    content : 장바구니 페이지
    writer  : 김기덕
@@ -53,7 +53,7 @@
                         <ul>
                             <li>
                                 <div class="header__top__right__auth">
-                                    <a href="/logout"><i class="fa fa-user"></i> Logout</a>
+                                    <a href="/logout"><i class="fa fa-user"></i> 로그아웃</a>
                                 </div>
                             </li>
                             <li><a href="/normal/cart/${userid}"><i class="fa fa-shopping-bag"></i> <span id="ccount">${ccount}</span></a></li>
@@ -147,7 +147,7 @@
                                 <tr>
                                     <td class="shoping__cart__item">
                                         <a href="../details/${cart.product_pno}">
-                                        <img src="../../market/img/cart/cart-1.jpg" alt="">
+                                        <img src="" id="h${status.count}img" alt="">
                                         <h5>${cart.name}</h5>
                                         </a>
                                     </td>
@@ -169,7 +169,7 @@
                                     </td>
                                     <td class="shoping__cart__item__close">
                                         <span class="icon_close" id="${cart.product_pno} delete" onclick="dcart(this)"></span>
-                                    </td>
+                                    </td> 
                                 </tr>
                                 
                                 <%-- 해당 상품의 판매자 userid, 판매자 장부정보, 판매수량, 재고수량 등 받아놓은 부분 --%> <%-- 이부분을 효율적으로 바꿀 방법 찾는중 --%>
@@ -188,10 +188,28 @@
                                 
                             </c:forEach>                          
                                 <input id="fina" value="${fina}" hidden="hidden">
+                                <input id="uid" value="${uid}" hidden="hidden">
                             </tbody>                            
                         </table>                        
                         
                         <script>
+                        window.onload = function(){
+                        	var fin = "${fina}"; 
+                    		for(var i = 1; i < parseInt(fin)+1; i++){
+                            	console.log(document.getElementById("h"+i+"name").value);
+                    			if(document.getElementById("h"+i+"name").value == "감자"){
+                    				document.getElementById("h"+i+"img").setAttribute("src", "../../market/img/cart/potato.jpg");
+                    			}else if(document.getElementById("h"+i+"name").value == "양파"){
+                    				document.getElementById("h"+i+"img").setAttribute("src", "../../market/img/cart/onion.jpg");
+                    			}else if(document.getElementById("h"+i+"name").value == "가지"){
+                    				document.getElementById("h"+i+"img").setAttribute("src", "../../market/img/cart/eggplant.jpg");
+                    			}else if(document.getElementById("h"+i+"name").value == "토마토"){
+                    				document.getElementById("h"+i+"img").setAttribute("src", "../../market/img/cart/tomato.jpg");
+                    			}else if(document.getElementById("h"+i+"name").value == "당근"){
+                    				document.getElementById("h"+i+"img").setAttribute("src", "../../market/img/cart/carrot.jpg");
+                    			}
+                    		}
+                        }
                        		<%-- 장바구니에 +,-버튼 클릭시 발생하는 이벤트 상품수 증감 --%>
                         	function vi(obj){
                         		var str = obj;
@@ -331,7 +349,7 @@
                 <%-- 구매버튼 클릭시 발생하는 이벤트 결제완료시 해당 유저의 장바구니 상품을 모두 삭제 및 해당상품 판매자의 장부, 판매,구매 정보에 반영 --%>
                 <script>         
                 	function checkout(){
-                		sendMessage()
+                		
                 		if(confirm('구매하시겠습니까?')){
                 			if(${ccount} == 0){
                 				alert("구매할 상품이 없습니다. 장바구니에 상품을 추가해주세요.");
@@ -344,9 +362,6 @@
                     				return false;
                     			}
                     			if(parseInt(document.getElementById("h"+i+"p_count").value) < parseInt(document.getElementById("h"+i+"bcount").value)){
-                    				console.log(document.getElementById("h"+i+"p_count").value);
-                    				console.log(document.getElementById("h"+i+"bcount").value);
-
                     				alert("준비된 상품갯수를 초과했습니다.");
                     				alert(document.getElementById("h"+i+"name").value + "의 남은 수량은 " + document.getElementById("h"+i+"p_count").value+"개 입니다.");
                     				return false;
@@ -355,7 +370,7 @@
 							if(confirm('결제 완료')){
 								var params = {
 										userid : $("#userid").val()
-					            };                        		
+					            };                        		 
                         		$.ajax({
                         			type:"get",
                         			url: "../checkout",
@@ -399,17 +414,17 @@
                 			           	  		}
                 			        		})
                 			    	})(i);
-                        			//재고 알림 발생
+                        			
                         		}//결제후 구매내역 저장
                         		
-                        		//location.reload();
+                        		location.reload();
 							}else{
 								return false
 							}
 						}else{
 							return false;
 						} 
-                		
+                		sendMessage()//웹 알림 발생
                 	};
                 </script>
                 
@@ -433,7 +448,7 @@
     <script src="../../market/js/main.js"></script>
     
     <!--js list made by kim -->
-	<script src="../../js/stockWebSocket.js"></script>
+	<script src="../../js/webSocket.js"></script>
 
 
 

@@ -17,18 +17,19 @@
 <html>
 <head>
 <title>판매 페이지</title>
+<!-- SCRIPT -->
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!-- made by kim js -->
-<script src="../../../js/sell.js"></script>
+<script src="../../js/sell.js"></script>
 <script src="../../js/webSocket.js"></script>
+
 
 </head>
 <body>
-	<form action="sell" method="post" id="sellform" onsubmit="return checkStock();">
-		<input type="hidden" name="sno" id="val" value=0>
+	<form action="sell" method="post" id="sellform"onsubmit="return checkStock();">
+		<input type="hidden" name="sno" id="val" value=0> 
 		<input type="hidden" name="pname" id="pname">
+		<input type="hidden" name="uid" id="uid" value="${uid}"> 
 		<input type="hidden" name="command" id="command" value="price">
-		
 
 		<table>
 			<tr>
@@ -36,7 +37,7 @@
 			</tr>
 			<tr>
 				<td>상품명</td>
-				<td><select id="scontent" onchange="check()" >
+				<td><select id="scontent" onchange="check()">
 						<option>--------------------</option>
 						<c:forEach items="${npList}" var="np">
 							<option value="${np.s_volume}" id="${np.sno}">${np.scontent}</option>
@@ -57,4 +58,6 @@
 
 	</form>
 </body>
+
+
 </html>

@@ -120,9 +120,11 @@ public class MarketController {
 		//List<Map<String,Object>> list = service.searchPname(pname);
 		//m.addAttribute("list", list);
 		
-		
+
 		if (cproduct > 0) {													//검색 페이지 하단에 표시할 페이지수 
+
 			int perPage = 5; // 한 페이지에 보일 상품의 갯수
+
 			int startRow = (page - 1) * perPage;
 			//int endRow = page * perPage;
 			
@@ -236,6 +238,7 @@ public class MarketController {
 		
 		List<Map<String,Object>> cart = service.userCart(userid);					//세션에 저장된 userid로 해당 유저의 cart에 저장된 상품 정보를 cart에 저장 
 		m.addAttribute("cart", cart);
+		m.addAttribute("uid", userid);
 		return "normal/shoping-cart";
 	}
 		

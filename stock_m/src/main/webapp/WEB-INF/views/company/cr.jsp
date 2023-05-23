@@ -344,50 +344,61 @@
 
                         <div class="col-xl-8 col-lg-7">
 
-                            <!-- Area Chart -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary" _msttexthash="23009883" _msthash="59">영역 차트</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="chart-area"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                                        <canvas id="myAreaChart" width="571" height="400" style="display: block; height: 320px; width: 457px;" class="chartjs-render-monitor"></canvas>
-                                    </div>
-                                    <hr><font _mstmutation="1" _msttexthash="215862985" _msthash="60"> 영역 차트의 스타일은 파일에서 찾을 수 있습니다. </font><code>/js/demo/chart-area-demo.js</code></div>
-                            </div>
+                           
 
                             <!-- Bar Chart -->
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary" _msttexthash="22221355" _msthash="61">막대 차트</h6>
                                 </div>
+                                <div> <!--  id="B" --> 
+  <div> <!-- style="display:flex; align-items:center;" -->
+  <form id="chartform"action="${pageContext.request.contextPath}/finance/filtered_data_o" method="get">
+ <!--  <p><strong>매출 내역</strong></p><br> -->
+    <table id="data-table">
+      <tr>
+        <th id="C">날짜</th>
+      <td id="I">
+   <label class="test_obj">
+    <input type="radio" name="date" value="today">
+    <span>오늘</span>
+</label>
+ 
+<label class="test_obj">
+    <input type="radio" name="date" value="1month">
+    <span>1개월</span>
+</label>
+ 
+<label class="test_obj">
+    <input type="radio" name="date" value="3month">
+    <span>3개월</span>
+</label>
+<label class="test_obj">
+    <input type="radio" name="date" value="1year">
+    <span>1년</span>
+</label>
+
+ <label for="start-date-input"></label>
+<input type="date" id="start-date-input" name="start-date" min="2021-01-01" max="" value="" required>
+
+<label for="end-date-input"><a id="P">~</a></label>
+<input type="date" id="end-date-input" name="end-date" min="" max="" value="" required>
+<button type="button" class="resetButton" onclick="resetSearch()">X</button>
+<button type="button" id="myButton" onclick="search()">검색 </button>
+                                        
+                                    </div>
                                 <div class="card-body">
                                     <div class="chart-bar"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                                        <canvas id="myBarChart" width="571" height="400" style="display: block; height: 320px; width: 457px;" class="chartjs-render-monitor"></canvas>
-                                    </div>
+                                        <canvas id="myChart" width="571" height="400" style="display: block; height: 320px; width: 457px;" class="chartjs-render-monitor"></canvas>
+                                        <input type="hidden" id="totalselllist" value="${totalselllist}" />
+                                        </table>
+                                         </form>
+
                                     <hr><font _mstmutation="1" _msttexthash="215074457" _msthash="62"> 막대 차트의 스타일은 파일에서 찾을 수 있습니다. </font><code>/js/demo/chart-bar-demo.js</code></div>
                             </div>
 
                         </div>
 
-                        <!-- Donut Chart -->
-                        <div class="col-xl-4 col-lg-5">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary" _msttexthash="22030684" _msthash="63">도넛 차트</h6>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-pie pt-4"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                                        <canvas id="myPieChart" width="571" height="316" style="display: block; height: 253px; width: 457px;" class="chartjs-render-monitor"></canvas>
-                                    </div>
-                                    <hr><font _mstmutation="1" _msttexthash="233168572" _msthash="64"> 도넛형 차트의 스타일은 파일에서 찾을 수 있습니다. </font><code>/js/demo/chart-pie-demo.js</code></div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
                 <!-- /.container-fluid -->
 
             </div>
@@ -451,7 +462,7 @@
     <script src="../../../js/demo/chart-pie-demo.js"></script>
     <script src="../../../js/demo/chart-bar-demo.js"></script>
 
-
+    
 
 </body>
 

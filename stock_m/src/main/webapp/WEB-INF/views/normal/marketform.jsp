@@ -1,8 +1,8 @@
 <%--      
-   Date    : 2023.05.16
+   Date    : 2023.05.22
    name    : marketform
    type    : form
-   ver     : 5.0
+   ver     : 6.0
    conect  : MarketController
    content : 일반사용자용 구매 메인페이지
    writer  : 김기덕
@@ -120,7 +120,7 @@ input:checked+.slider:before {
                             <li>
                             	<div class="header__top__right__auth">
                             	<%-- logout기능 클릭시 MarketController에 logout메서드로 세션에 저장된 userid 정보를 삭제 --%>
-                               		<a href="/logout"><i class="fa fa-user"></i> Logout</a> 
+                               		<a href="/logout"><i class="fa fa-user"></i> 로그아웃</a> 
                            	 	</div>
                        		</li>
                        		<%-- 장바구니에 저장된 상품수 출력 및 클릭시 MarketController에 cform메서드로 해당유저의 장바구니로 이동 --%>
@@ -183,25 +183,7 @@ input:checked+.slider:before {
     <!-- Hero Section End -->
 
     <!-- Categories Section Begin -->
-    <section class="categories">
-        <div class="container">
-            <div class="row">
-                <div class="categories__slider owl-carousel">
-                
-                <%-- MarketController에 mform메서드로 Product테이블에 저장된 모든 상품 정보를 list로 받아서 출력 --%>
-                <c:forEach items="${list}" var="p">
-                    <div class="col-lg-3">
-                    	<a href="/normal/details/${p.pno}">
-                        <div class="categories__item set-bg" data-setbg="../market/img/categories/cat-1.jpg">
-                            <h5>${p.pname}</h5>
-                        </div>
-                        </a>
-                    </div>
-                </c:forEach>    
-                </div>
-            </div>
-        </div>
-    </section>
+    
     <!-- Categories Section End -->
 
     <!-- Featured Section Begin -->
@@ -277,7 +259,7 @@ input:checked+.slider:before {
     <script src="../market/js/main.js"></script>	
     <!--js list made by kim -->
 	<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script src="../../js/priceWebSocket.js"></script>
+	<script src="../../js/webSocket.js"></script>
     <!-- <script>
         $('document').ready(function () {
         	console.log("aaa");
@@ -293,6 +275,7 @@ input:checked+.slider:before {
             console.log(document.getElementById("ccount").textContent);
         });
     </script> -->
+
     <script>
 				$(document)
 						.ready(
@@ -389,6 +372,7 @@ input:checked+.slider:before {
 									});
 						});
 			</script>
+
 
 </body>
 

@@ -528,7 +528,7 @@ function selectAll(selectAll){
    // document.getElementById("pno_" + sno).removeAttribute("readonly");
     document.getElementById("s_volume_" + sno).removeAttribute("readonly"); 
         
-} */
+} *///main코드 수정 23.05.23
 
 /*function supdate(button){
 	var sno = button.id.toString().split("_"); 
@@ -547,7 +547,7 @@ function selectAll(selectAll){
 
 	})
 	
-}*/
+}*///main코드 수정 23.05.23
 	function dc(obj){
 		var params = {
 				sno : obj.getAttribute("id")
