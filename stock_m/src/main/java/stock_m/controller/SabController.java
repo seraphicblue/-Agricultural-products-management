@@ -58,24 +58,23 @@ public class SabController {
 
 	@GetMapping("/company/{sno}")
 	@ResponseBody // view없이 바로 보냄
-	public int snoCount(Model m, @PathVariable int sno,HttpSession session) {
-		String userid = (String) session.getAttribute("userid");
-		int count = sab_service.selecCount(userid, sno);
+	public int snoCount(Model m, @PathVariable int sno) {
+		
+		int count = sab_service.selecCount(sno);
 		return count;
 	}
 
 	@GetMapping("/company/Vol/{sno}/{p_count}")
 	@ResponseBody // view없이 바로 보냄
-	public int snoSearch(Model m, @PathVariable int sno, @PathVariable int p_count,HttpSession session) {
-		String userid = (String) session.getAttribute("userid");
-		int Vol = sab_service.selecVol(userid, sno);
+	public int snoSearch(Model m, @PathVariable int sno, @PathVariable int p_count) {
+		int Vol = sab_service.selecVol(sno);
 		return Vol;
 	}
 
 	@GetMapping("/company/sell")
 	public String sellForm(Model m, HttpSession session) {
 		String userid = (String) session.getAttribute("userid");
-		List<NameAndPrice_sabDto> npList = sab_service.namePrice("test");
+		List<NameAndPrice_sabDto> npList = sab_service.namePrice(userid);
 		m.addAttribute("npList", npList);
 		m.addAttribute("uid", userid);
 		return "company/sell";
@@ -83,7 +82,7 @@ public class SabController {
 
 	@PostMapping("/company/sell")
 	public void sellpost(int sno, String pname, int price, int p_count) {
-
+		
 		sab_service.updateAndInsert(sno, pname, price, p_count);
 		/*
 		 * return "company/index";
@@ -92,9 +91,9 @@ public class SabController {
 	
 	@GetMapping("/broadprice")
 	@ResponseBody
-	public String broadprice(int sno,String userid) {
+	public String broadprice(int sno) {
 		
-		String bno = String.valueOf(sab_service.broadprice(userid,sno));
+		String bno = String.valueOf(sab_service.broadprice(sno));
 		
 		return bno;
 	}

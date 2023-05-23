@@ -41,9 +41,7 @@ public class SabService {
 
 	
 	public List<NameAndPrice_sabDto> namePrice(String userid) {
-		userid="testcompany1";
 		return sab_dao.namePrice(userid);
-		
 	}
 	
 	public int selecSval(int sno) {
@@ -54,31 +52,31 @@ public class SabService {
 		return stock_dao.selecSvol(sno);
 	}
 	
-	public int selecCount(String userid, int sno) {
-		return product_dao.selecCount(userid, sno);
+	public int selecCount(int sno) {
+		return product_dao.selecCount(sno);
 	}
 	
-	public int selecVol(String userid, int sno) {
-		return product_dao.selecVol(userid, sno);
+	public int selecVol(int sno) {
+		return product_dao.selecVol(sno);
 	}
 	
-	public int broadprice(String userid, int sno) {
-		return product_dao.broadprice(userid, sno);
+	public int broadprice(int sno) {
+		return product_dao.broadprice(sno);
 	}
 	
 	
 	public void updateAndInsert(int sno, String pname, int price, int p_count) {
 		int p_val= stock_dao.selecSval(sno);
-		String userid="testcompany1";
-		int count=product_dao.selecCount(userid, sno);
+		
+		int count=product_dao.selecCount(sno);
 		
 		if(count==0) {
-			product_dao.insertproduct(sno,pname,price,p_val,p_count,userid);
+			product_dao.insertproduct(sno,pname,price,p_val,p_count);
 		}
 		else if(count==1) {
-			int Vol=product_dao.selecVol(userid, sno);
+			int Vol=product_dao.selecVol(sno);
 			p_count = Vol+p_count;
-			product_dao.updateproduct(price,p_count, userid, sno);
+			product_dao.updateproduct(price,p_count, sno);
 		}
 	}
 

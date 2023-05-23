@@ -46,7 +46,7 @@ function sendMessage() {
 		$.ajax({
 			url: '/broadprice',
 			type: 'get',
-			data: { sno: parseInt(message), userid: userid },
+			data: { sno: parseInt(message)},
 			dataType: 'text',
 			success: function(data) {
 				$.ajax({

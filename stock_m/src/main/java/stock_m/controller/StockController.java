@@ -10,6 +10,9 @@
 	  */
 package stock_m.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -222,6 +225,25 @@ public class StockController {
 		 * "redirect:/company/stock"; }
 		 */
 		//main코드 수정 23.05.23
+		
+		
+		
+		@GetMapping("company/cs")
+        public String chartr(String userid,Model m) {
+				  userid="1";
+				    Calendar calendar = Calendar.getInstance();
+			        calendar.set(Calendar.YEAR, 2023);
+			        calendar.set(Calendar.MONTH, Calendar.MAY);
+			        calendar.set(Calendar.DAY_OF_MONTH, 15);
+			        
+			        Date date = calendar.getTime();
+			        
+			        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+			        String sdate = dateFormat.format(date);
+			        
+			       
+				return"company/cs";
+			}
 	}
 
 
