@@ -12,7 +12,7 @@ import org.apache.ibatis.annotations.Select;
 @Mapper
 public interface BroadcastDao {
 	
-	@Select("select userid from pricebroadcast where pno = #{pno} AND param <= #{param}")
+	@Select("select userid from pricebroadcast where pno = #{pno} AND param >= #{param}")
 	public List<String> broadPriceCheck(@Param("pno")int pno, @Param("param")int param);
 	
 	@Select("select count(userid) from stockbroadcast where stock_param > ((select s_volume from stock where sno=#{sno})-40)")

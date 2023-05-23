@@ -237,6 +237,7 @@ public class MarketController {
 		
 		List<Map<String,Object>> cart = service.userCart(userid);					//세션에 저장된 userid로 해당 유저의 cart에 저장된 상품 정보를 cart에 저장 
 		m.addAttribute("cart", cart);
+		m.addAttribute("uid", userid);
 		return "normal/shoping-cart";
 	}
 		

@@ -54,8 +54,8 @@ function checkStock() {
 	console.log(scontent);
 	document.getElementById("pname").value=scontent;
 	
-	if (scontent == "------------------") {
-		alert("물품 정보를 선택해주세요.");
+	if (scontent == "------------------") { 
+		alert("물품 정보를 선택해주세요."); 
 
 		return false;
 	}
@@ -78,6 +78,7 @@ function checkStock() {
 		return false;
 	}
 	else {
+		sendMessage();
 		return true;
 	}
 
