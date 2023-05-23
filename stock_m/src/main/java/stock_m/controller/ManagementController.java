@@ -24,7 +24,7 @@ public class ManagementController {
 	@Autowired
 	ManagementService service;
 	
-	@GetMapping("/company/management2")
+	@GetMapping("/normal/management2")
 	public String main2(@RequestParam(name = "page", defaultValue = "1") int page, Model m,HttpSession session) {
 	//업체 리스트 받아오기 controller들
 	//main1 ,main2, countSearch
@@ -39,7 +39,8 @@ public class ManagementController {
 			int perPage = 5; // 한 페이지에 보일 글의 갯수
 			int startRow = (page - 1) * perPage;
 			//출력될 글의 수에 맞게 maList를 추가
-			List<ManagementDto> maList = service.mainList(startRow); 
+			List<ManagementDto> maList = service.maList(startRow,userid);
+			m.addAttribute("userid",userid);
 			System.out.println(maList);
 			m.addAttribute("maList", maList);
 			
@@ -59,12 +60,12 @@ public class ManagementController {
 		}
 
 		m.addAttribute("count", count);
-		//실행이 완료되면 company/management2 페이지로 
-		return "company/notice";
+		//실행이 완료되면 normal/management2 페이지로 
+		return "normal/notice";
 	}
 
 	/*
-	 * @GetMapping("/company/test") public String insertmain(@RequestParam(name =
+	 * @GetMapping("/normal/test") public String insertmain(@RequestParam(name =
 	 * "page", defaultValue = "1") int page, Model m) {
 	 * 
 	 * // 글이 있는지 체크 int count = service.count1(); System.out.println(count);
@@ -86,10 +87,10 @@ public class ManagementController {
 	 * 
 	 * }
 	 * 
-	 * m.addAttribute("count", count); return "company/test"; }
+	 * m.addAttribute("count", count); return "normal/test"; }
 	 */
 	
-	@GetMapping("/company/interest")
+	@GetMapping("/normal/interest")
 	public String main1(@RequestParam(name = "page", defaultValue = "1") int page, Model m,HttpSession session) {
 		String userid = (String) session.getAttribute("userid");
 		// 글이 있는지 체크
@@ -101,7 +102,8 @@ public class ManagementController {
 			int perPage = 5; // 한 페이지에 보일 글의 갯수
 			int startRow = (page - 1) * perPage;
 
-			List<ManagementDto> mainList = service.mainList(startRow); 
+			List<ManagementDto> mainList = service.mainList(startRow,userid);
+			m.addAttribute("userid", userid);
 			System.out.println(mainList);
 			m.addAttribute("mainList", mainList);
 
@@ -121,15 +123,15 @@ public class ManagementController {
 		}
 
 		m.addAttribute("count", count);
-		return "company/interest";
+		return "normal/interest";
 	}
 
-	@RequestMapping("/company/search")
+	@RequestMapping("/normal/search")
 	public String search1(@RequestParam(name = "page", defaultValue = "1") int page, Model m, String keyword) {
 
 		// 글이 있는지 체크 해당요청에서는 keyword를 글이 있는지를 
 		int count = service.countSearch(keyword);
-
+		
 		if (count > 0) {
 
 			int perPage = 5; // 한 페이지에 보일 글의 갯수
@@ -157,12 +159,44 @@ public class ManagementController {
 
 		m.addAttribute("count", count);
 		
-		return "company/usersearch";
+		return "normal/usersearch";
 	}
 
-	@RequestMapping("/company/search2")
-	public String list2(@RequestParam(name = "page", defaultValue = "1") int page, Model m, String keyword) {
+	@RequestMapping("/normal/listall")
+	public String list2(@RequestParam(name = "page", defaultValue = "1") int page, Model m, HttpSession session) {
+		String userid = (String) session.getAttribute("userid");
+		// 글이 있는지 체크
+		int count =service.count();
+		if (count > 0) {
 
+			int perPage = 5; // 한 페이지에 보일 글의 갯수
+			int startRow = (page - 1) * perPage;
+
+			List<ManagementDto> managementListall = service.managementListall(startRow, userid); // 매니저DTO를 이용해 KEYWORD에 맞는 매니저 테이블 정보를 리스트로 받아옴
+			m.addAttribute("userid",userid);
+			m.addAttribute("dList", managementListall);
+			int pageNum = 5;
+			int totalPages = count / perPage + (count % perPage > 0 ? 1 : 0); // 전체 페이지 수
+
+			int begin = (page - 1) / pageNum * pageNum + 1;
+			int end = begin + pageNum - 1;
+			if (end > totalPages) {
+				end = totalPages;
+			}
+			m.addAttribute("begin", begin);
+			m.addAttribute("end", end);
+			m.addAttribute("pageNum", pageNum);
+			m.addAttribute("totalPages", totalPages);
+
+		}
+
+		m.addAttribute("count", count);
+		return "normal/listall";
+	}
+	
+	@RequestMapping("/normal/listallsearch")
+	public String searchall(@RequestParam(name = "page", defaultValue = "1") int page, Model m, String keyword, HttpSession session) {
+		String userid = (String) session.getAttribute("userid");
 		// 글이 있는지 체크
 		int count = service.countSearch(keyword);
 
@@ -171,8 +205,9 @@ public class ManagementController {
 			int perPage = 5; // 한 페이지에 보일 글의 갯수
 			int startRow = (page - 1) * perPage;
 
-			List<ManagementDto> managementList = service.managementList(startRow, keyword); // 매니저DTO를 이용해 KEYWORD에 맞는 매니저 테이블 정보를 리스트로 받아옴
+			List<ManagementDto> managementList = service.managementList(startRow, keyword, userid); // 매니저DTO를 이용해 KEYWORD에 맞는 매니저 테이블 정보를 리스트로 받아옴
 			m.addAttribute("keyword", keyword);
+			m.addAttribute("userid",userid);
 			m.addAttribute("dList", managementList);
 			System.out.println(managementList);
 			int pageNum = 5;
@@ -191,26 +226,26 @@ public class ManagementController {
 		}
 
 		m.addAttribute("count", count);
-		return "company/managementsearch";
+		return "normal/managementsearch";
 	}
 	
-	@RequestMapping("/company/insert") 
+	@RequestMapping("/normal/insert") 
 	public String insert(@RequestParam("id") String username, HttpSession session) {
 		//요청 파라미터 값 id를 받아오고 service에 넘겨줌
 		String userid = (String) session.getAttribute("userid"); 
 		service.insert(userid,username); 
 		//redirec:/+url를 사용해서 현재 페이지를 다시 요청
-		return "redirect:/company/interest";
+		return "redirect:/normal/interest";
 	 }
 	
-	@RequestMapping("/company/insert2") 
+	@RequestMapping("/normal/insert2") 
 	public String insert2(@RequestParam("id") String id, HttpSession session) {
 		String userid = (String) session.getAttribute("userid"); 
 		service.insert2(userid,id); 
-		return "redirect:/company/management1";
+		return "redirect:/normal/management1";
 	 }
 	
-	@RequestMapping("/company/delete") 
+	@RequestMapping("/normal/delete") 
 	public String delete(@RequestParam("m_content") String m_content,HttpSession session, HttpServletRequest request) {
 		String userid = (String) session.getAttribute("userid");  
 		System.out.println(userid);
@@ -221,7 +256,7 @@ public class ManagementController {
 		return "redirect:"+url;
 	 }
 	
-	@PostMapping("/company/check")
+	@PostMapping("/normal/check")
 	@ResponseBody
 	public boolean check(String username) {
 		int count =service.check(username);
@@ -233,7 +268,7 @@ public class ManagementController {
 		}
 	}	
 
-	@GetMapping("/company/update")
+	@GetMapping("/normal/update")
 	public String update(@RequestParam("m_content") String m_content,HttpSession session, HttpServletRequest request) {
 		String userid = (String) session.getAttribute("userid");
 		service.update(m_content,userid);
@@ -241,7 +276,7 @@ public class ManagementController {
 		return "redirect:"+url;
 	}
 	
-	@GetMapping("/company/update2")
+	@GetMapping("/normal/update2")
 	public String update2(@RequestParam("m_content") String m_content,HttpSession session, HttpServletRequest request) {
 		String userid = (String) session.getAttribute("userid");
 		service.update2(m_content, userid);
@@ -249,7 +284,7 @@ public class ManagementController {
 		return "redirect:"+url;
 	}
 	
-	@PostMapping("/company/check2")
+	@PostMapping("/normal/check2")
 	@ResponseBody
 	public boolean check2(String m_content, HttpSession session) {
 		String userid = (String) session.getAttribute("userid"); 
@@ -260,7 +295,7 @@ public class ManagementController {
 	}
 	
 	
-	@PostMapping("/company/switch")
+	@PostMapping("/normal/switch")
 	@ResponseBody
 	public boolean switch1(String m_content) {
 		boolean user_aram = service.switch1(m_content);

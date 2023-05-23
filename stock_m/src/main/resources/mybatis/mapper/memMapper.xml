@@ -64,21 +64,29 @@
 
 		select mno, userid, m_val, m_content from management
 		where
-		m_content like concat ('%',#{keyword},'%')
+		m_content like concat ('%',#{keyword},'%') AND userid=#{userid}
+	</select>
+	
+	<select id="managementListall" parameterType="map"
+		resultType="stock_m.dto.ManagementDto">
+
+		select mno, userid, m_val, m_content from management
+		where
+	 	userid=#{userid}
 	</select>
 
 	<select id="mainList" parameterType="map"
 		resultType="stock_m.dto.ManagementDto">
 
 		select mno, userid, m_val, m_content from management where
-		m_val=0 and userid=#{userid}
+		m_val=true and userid=#{userid}
 		</select>
 
 	<select id="maList" parameterType="map"
 		resultType="stock_m.dto.ManagementDto">
 
 		select mno, userid, m_val, m_content from management where
-		m_val=1 and userid=#{userid}
+		m_val=false and userid=#{userid}
 	</select>
 
 	<delete id="delete" parameterType="int">

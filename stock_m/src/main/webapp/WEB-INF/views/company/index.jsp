@@ -97,6 +97,7 @@
 						<h6 class="collapse-header">관리 유형</h6>
 						<a class="collapse-item" href="/company/interest">관심 업체</a> <a
 							class="collapse-item" href="/company/management2">유의 업체</a>
+							<a class="collapse-item" href="/company/listall"> 전체 관리</a>
 					</div>
 				</div></li>
 

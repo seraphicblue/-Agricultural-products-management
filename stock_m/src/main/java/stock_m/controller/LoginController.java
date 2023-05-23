@@ -16,10 +16,10 @@ public class LoginController {
 	
 
 
-	@GetMapping("company/main")
-	public String companyindex() {
-		return "company/index";
-	}
+	/*
+	 * @GetMapping("company/main") public String companyindex() { return
+	 * "company/index"; }
+	 */
 	
 	@GetMapping("/login/login")
 	public void login() {

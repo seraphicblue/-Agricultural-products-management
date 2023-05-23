@@ -5,6 +5,7 @@
 
 <head>
 
+
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
@@ -21,9 +22,11 @@
 	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 	rel="stylesheet">
 
+
 <!-- Custom styles for this template-->
 <link href="../../css/sb-admin-2.min.css" rel="stylesheet">
 <script src="../../js/webSocket.js"></script>
+
 <style>
 .switch {
 	position: relative;
@@ -282,7 +285,7 @@ input:checked+.slider:before {
 					<!-- Page Heading -->
 					<form
 						class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
-						action="search" method="GET">
+						action="search2" method="GET">
 						<div class="search">
 							<h1 class="h3 mb-2 text-gray-800">관심 업체</h1>
 							<input type="text" class="form-control bg-light border-0 small"
@@ -297,32 +300,28 @@ input:checked+.slider:before {
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">관심 업체 목록</h6>
+							<h6 class="m-0 font-weight-bold text-primary">유의 업체 목록</h6>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
-								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+								<table class="table table-bordered" id="dataTable" width="100%"
+									cellspacing="0">
 									<thead>
 										<tr>
 											<th>no.</th>
 											<th>회사 이름</th>
 											<th>회사 여부</th>
-											<th>알림 설정</th>
 											<th>삭제</th>
 											<th>상태 변경</th>
 										</tr>
 									</thead>
-									<c:forEach items="${mainList}" var="management"
-										varStatus="count">
+									<c:forEach items="${maList}" var="management" varStatus="count">
 										<tr>
-											<th>${count.index+1}</th>
-											<th class="m_content">${management.m_content}</th>
-											<th>${management.m_val}</th>
-											<th><label class="switch"> <input
-													type="checkbox"> <span class="slider round"></span>
-											</label></th>
-											<th><button class="click"
-													data-userid="${management.userid}">삭제</button></th>
+											<td>${count.index+1}</td>
+											<td class="m_content">${management.m_content}</td>
+											<td>${management.m_val}</td>
+											<td><button class="click"
+													data-userid="${management.userid}">삭제</button></td>
 											<th><button class="click2"
 													data-userid="${management.userid}">변경</button></th>
 										</tr>
@@ -348,11 +347,6 @@ input:checked+.slider:before {
 													function() {
 														var userid = $(this)
 																.data('userid');
-														var m_content = $(this)
-																.closest('tr')
-																.find(
-																		'.m_content')
-																.text();
 														var m_content = $(this)
 																.closest('tr')
 																.find(
@@ -406,34 +400,6 @@ input:checked+.slider:before {
 																});
 													});
 								});
-
-				$(document).ready(
-						function() {
-							$('.switch input').change(
-									function() {
-										var Checked = $(this).is(":checked");
-										var userid = $(this).closest('tr')
-												.find('.userid').val();
-										console.log("슬라이드 바 상태: " + Checked);
-										console.log(userid);
-										$.ajax({
-											type : 'POST',
-											url : '/company/switch',
-											data : {
-												Checked : Checked,
-												'userid' : userid
-											},
-											success : function(result) {
-												if (result == true) {
-
-												} else {
-
-												}
-											}
-
-										});
-									});
-						});
 			</script>
 </body>
 </html>
