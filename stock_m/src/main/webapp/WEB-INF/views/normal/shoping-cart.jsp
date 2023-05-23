@@ -169,7 +169,7 @@
                                     </td>
                                     <td class="shoping__cart__item__close">
                                         <span class="icon_close" id="${cart.product_pno} delete" onclick="dcart(this)"></span>
-                                    </td>
+                                    </td> 
                                 </tr>
                                 
                                 <%-- 해당 상품의 판매자 userid, 판매자 장부정보, 판매수량, 재고수량 등 받아놓은 부분 --%> <%-- 이부분을 효율적으로 바꿀 방법 찾는중 --%>
@@ -188,6 +188,7 @@
                                 
                             </c:forEach>                          
                                 <input id="fina" value="${fina}" hidden="hidden">
+                                <input id="uid" value="${uid}" hidden="hidden">
                             </tbody>                            
                         </table>                        
                         
@@ -331,7 +332,7 @@
                 <%-- 구매버튼 클릭시 발생하는 이벤트 결제완료시 해당 유저의 장바구니 상품을 모두 삭제 및 해당상품 판매자의 장부, 판매,구매 정보에 반영 --%>
                 <script>         
                 	function checkout(){
-                		sendMessage()
+                		
                 		if(confirm('구매하시겠습니까?')){
                 			if(${ccount} == 0){
                 				alert("구매할 상품이 없습니다. 장바구니에 상품을 추가해주세요.");
@@ -355,7 +356,7 @@
 							if(confirm('결제 완료')){
 								var params = {
 										userid : $("#userid").val()
-					            };                        		
+					            };                        		 
                         		$.ajax({
                         			type:"get",
                         			url: "../checkout",
@@ -399,7 +400,7 @@
                 			           	  		}
                 			        		})
                 			    	})(i);
-                        			//재고 알림 발생
+                        			
                         		}//결제후 구매내역 저장
                         		
                         		//location.reload();
@@ -409,7 +410,7 @@
 						}else{
 							return false;
 						} 
-                		
+                		sendMessage()//웹 알림 발생
                 	};
                 </script>
                 
@@ -433,7 +434,7 @@
     <script src="../../market/js/main.js"></script>
     
     <!--js list made by kim -->
-	<script src="../../js/stockWebSocket.js"></script>
+	<script src="../../js/webSocket.js"></script>
 
 
 

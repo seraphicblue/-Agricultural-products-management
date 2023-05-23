@@ -222,7 +222,7 @@
                 </nav>
                 <!-- End of Topbar -->
 
-                <!-- Begin Page Content -->
+                <!-- Begin Page Content --> 
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
@@ -488,7 +488,7 @@
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                     <a class="btn btn-primary" href="login.html">Logout</a>
                 </div>
-                
+                 
             </div>
         </div>
     </div>
@@ -511,9 +511,7 @@
     <script src="../../js/demo/chart-pie-demo.js"></script>
     
     <!--js list made by kim -->
-	<!-- <script src="../../js/priceWebSocket.js"></script> -->
-	<script src="../../js/priceWebSocket.js"></script>
-	<script src="../../js/stockWebSocket.js"></script>
+	<script src="../../js/webSocket.js"></script>
 </body>
 
 </html>

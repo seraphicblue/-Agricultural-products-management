@@ -199,6 +199,7 @@ public class MarketController {
 		m.addAttribute("cprice", cprice);
 		List<Map<String,Object>> cart = service.userCart(userid);
 		m.addAttribute("cart", cart);
+		m.addAttribute("uid", userid);
 		return "normal/shoping-cart";
 	}
 		
