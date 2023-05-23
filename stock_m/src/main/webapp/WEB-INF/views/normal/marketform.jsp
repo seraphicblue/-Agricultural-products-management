@@ -20,10 +20,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Ogani | Template</title>
-
+	
+	
+	
+	
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
-
+	
     <!-- Css Styles -->
     <link rel="stylesheet" href="../market/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="../market/css/font-awesome.min.css" type="text/css">
@@ -33,6 +36,8 @@
     <link rel="stylesheet" href="../market/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="../market/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="../market/css/style.css" type="text/css">
+     
+     
 </head>
 
 <body>
@@ -157,7 +162,25 @@
     <script src="../market/js/jquery.slicknav.js"></script>
     <script src="../market/js/mixitup.min.js"></script>
     <script src="../market/js/owl.carousel.min.js"></script>
-    <script src="../market/js/main.js"></script>    
+    <script src="../market/js/main.js"></script>	
+    <!--js list made by kim -->
+	<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="../../js/priceWebSocket.js"></script>
+    <!-- <script>
+        $('document').ready(function () {
+        	console.log("aaa");
+            $.ajax({
+                type: "get",	
+                url: "/cartcount"   
+                
+            }).done(function(response){    
+            	
+            	document.getElementById("ccount").textContent = reponse.ccount;
+            	document.getElementById("cprice").textContent = reponse.cprice;
+            });
+            console.log(document.getElementById("ccount").textContent);
+        });
+    </script> -->
 
 </body>
 

@@ -432,6 +432,9 @@
     <script src="../../market/js/mixitup.min.js"></script>
     <script src="../../market/js/owl.carousel.min.js"></script>
     <script src="../../market/js/main.js"></script>
+    
+    <!--js list made by kim -->
+	<script src="../../js/webSocket.js"></script>
 
 
 </body>

@@ -18,6 +18,7 @@
 <head>
 <title>판매 페이지</title>
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- made by kim js -->
 <script src="../../../js/sell.js"></script>
 <script src="../../js/webSocket.js"></script>
 

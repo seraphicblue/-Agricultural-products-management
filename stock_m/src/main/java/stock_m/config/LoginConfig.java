@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 //import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.session.HttpSessionEventPublisher;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -38,7 +40,12 @@ public class LoginConfig {
                 }
             })
             .and().exceptionHandling().accessDeniedPage("/login/accessDenied")
-            .and().logout().invalidateHttpSession(true).logoutSuccessUrl("/login/login");
+            .and().logout().invalidateHttpSession(true).logoutSuccessUrl("/login/login")
+            .and().sessionManagement()
+            .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+            .maximumSessions(10) // 동시 세션 제한 수
+            .maxSessionsPreventsLogin(false) // 새로운 로그인 허용 여부
+            .expiredUrl("/login/login"); // 세션 만료 시 이동할 URL
 
         security.userDetailsService(loginUserDetailService);
         security.csrf().disable();
@@ -46,9 +53,9 @@ public class LoginConfig {
         return security.build();
     }
 
-    /*
-     * @Bean public PasswordEncoder passwordEncoder() { return
-     * PasswordEncoderFactories.createDelegatingPasswordEncoder(); }
-     */
+    @Bean
+    public HttpSessionEventPublisher httpSessionEventPublisher() {
+        return new HttpSessionEventPublisher();
+    }
 
 }

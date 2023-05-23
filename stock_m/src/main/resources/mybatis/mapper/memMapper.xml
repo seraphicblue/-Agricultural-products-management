@@ -6,13 +6,13 @@
 	<insert id="insert" parameterType="List">
 		insert into
 		management(userid,m_val,m_content)
-		values('testcompany2',true,#{username})
+		values(#{userid},true,#{username})
 	</insert>
 
 	<insert id="insert2" parameterType="List">
 		insert into
 		management(userid,m_val,m_content)
-		values('testcompany1',false,#{username})
+		values(#{userid},false,#{username})
 	</insert>
 
 	<select id="count" resultType="int">
@@ -27,14 +27,14 @@
 
 	<select id="count1" resultType="int">
 		select count(*)from user where
-		role='업체'
+		role= 'ROLE_COMPANY'
 	</select>
 
 	<select id="countSearch" parameterType="String" resultType="int">
 
 		select count(*) from user
 		where username like concat
-		('%',#{keyword},'%') and role = '업체'
+		('%',#{keyword},'%') and role = 'ROLE_COMPANY'
 
 	</select>
 
@@ -48,7 +48,7 @@
 		resultType="stock_m.dto.UserDto">
 
 		select userid, username, age, gender from user where
-		role='업체'
+		role='ROLE_COMPANY'
 	</select>
 
 	<select id="UserList" parameterType="map"
@@ -56,7 +56,7 @@
 
 		select userid, username, age, gender from user
 		where
-		username like concat ('%',#{keyword},'%') and role = '업체'
+		username like concat ('%',#{keyword},'%') and role = 'ROLE_COMPANY'
 	</select>
 
 	<select id="managementList" parameterType="map"
@@ -71,20 +71,20 @@
 		resultType="stock_m.dto.ManagementDto">
 
 		select mno, userid, m_val, m_content from management where
-		m_val=true 	
+		m_val=0 and userid=#{userid}
 		</select>
 
 	<select id="maList" parameterType="map"
 		resultType="stock_m.dto.ManagementDto">
 
 		select mno, userid, m_val, m_content from management where
-		m_val=false
+		m_val=1 and userid=#{userid}
 	</select>
 
 	<delete id="delete" parameterType="int">
 		delete from management
 		where
-		mno=#{mno} 
+		mno=#{mno}
 	</delete>
 
 	<update id="update" parameterType="String">

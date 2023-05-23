@@ -69,7 +69,6 @@ public interface ProductDao {
 	
 	@Delete("delete from cart where userid = #{userid} and product_pno = #{product_pno}")
 	public int deleteCart(@Param("product_pno") int product_pno, @Param("userid") String userid);
-	
 
 	@Insert("INSERT INTO buy(pno,userid,bdate,price,bcount) values(#{pno},#{userid},#{bdate},#{price},#{bcount})")
 	public int addbuy(Map<String, Object> abmap);
@@ -86,7 +85,6 @@ public interface ProductDao {
 	@Update("update revenue set ssum = #{ssum}+(#{price}*#{bcount}), profit = #{profit}+(#{price}*#{bcount}) where userid = #{suserid}")
 	public int updateRevenue(Map<String, Object> urmap);
 	
-
 	@Select("select count(*) from product where userid=#{userid} AND sno=#{sno}")
 	int selecCount(@Param("userid")String userid, @Param("sno")int sno);
 	

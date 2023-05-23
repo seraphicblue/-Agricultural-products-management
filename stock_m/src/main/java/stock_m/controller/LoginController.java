@@ -14,26 +14,12 @@ public class LoginController {
 	@Autowired
 	LoginService service;
 	
+
+
 	/*
-	 * @GetMapping("/") public String index() { System.out.println("index 요청입니다.");
-	 * return "index"; }
+	 * @GetMapping("company/main") public String companyindex() { return
+	 * "company/index"; }
 	 */
-
-	@GetMapping("/member")
-	public void forMember() {
-		System.out.println("Member 요청입니다.");
-	}
-
-	@GetMapping("/manager")
-	public void forManager() {
-		System.out.println("Manager 요청입니다.");
-	}
-
-	@GetMapping("/admin")
-	public void forAdmin() {
-		System.out.println("Admin 요청입니다.");
-	}
-	
 	@GetMapping("/login/login")
 	public void login() {
 	}
