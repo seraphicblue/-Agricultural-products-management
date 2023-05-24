@@ -1,102 +1,89 @@
 /*
-   Date    : 2023.05.16
-   name    : ProductDao
-   type    : Dao
-   ver     : 5.0
-   conect  : MarketService
-   content : 상품 Dao
-   writer  : 김기덕
-   api     : x
+  	Date    : 2023.05.06
+	name    : SabService
+	type    : Service
+	ver     : 1.0
+	conect  : SabController
+	content : 구매 판매에 대한 서비스 클래스
+	writer  : 김재영
+	api     : x
 */
-package stock_m.dao;
+package stock_m.service;
 
 import java.util.List;
-import java.util.Map;
 
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import stock_m.dto.Cart;
+import stock_m.dao.AdminstockDao;
+import stock_m.dao.NameAndPrice_sabDao;
+import stock_m.dao.ProductDao;
+import stock_m.dao.StockDao;
+import stock_m.dto.NameAndPrice_sabDto;
 
-@Mapper
-public interface ProductDao {
-	@Select("select * from product where pname like concat('%',#{pname},'%') limit #{start} , #{count}")
-	//@Select("select * from product")
-	public List<Map<String,Object>> searchPname(Map<String, Object> m);
+@Service
+public class SabService {
 	
-	@Select("select count(*) from product where pname like concat('%',#{pname},'%') or p_val = #{p_val}")
-	public int countProduct(Map<String, Object> map);
+	@Autowired
+	NameAndPrice_sabDao sab_dao;
 	
-	@Select("select * from product where pno = #{pno}")
-	public Map<String,Object> detailProduct(int pno);
+	@Autowired
+	StockDao stock_dao;
 	
-	@Select("select count(userid) from cart where userid = #{userid}")
-	public int cartCount(String memberId);
+	@Autowired
+	ProductDao product_dao;
 	
-	@Select("select sum(count*price) from cart where userid = #{userid}")
-	public int cartPrice(String memberId);
-	
-	@Select("select * from product where p_val = #{p_val} limit #{start} , #{count}")
-	public List<Map<String,Object>> searchP_val(Map<String, Object> m);
-	
-	@Insert("INSERT INTO cart(userid,product_pno,count,price,name) values(#{userid},#{product_pno},#{count},#{price},#{name})")
-	public int addCart(Cart cart);
-	
-	@Select("select stock.sno, product_pno, count, product.price, name, stock.userid, s_volume, p_count, ssum, profit from cart inner join stock inner join product inner join revenue on product.sno = stock.sno and cart.product_pno = product.pno and stock.userid = revenue.userid  where cart.userid = #{userid}")
-	public List<Map<String,Object>> userCart(@Param("userid")String userid);
-	
-	@Select("select * from product")
-	public List<Map<String,Object>> allProduct();	
-	
-	@Update("update cart set count = #{count} where userid = #{userid} and product_pno = #{product_pno}")
-	public int countChange(Map<String, Object> map);
-	
-	@Select("select count(*) from cart where product_pno = #{product_pno} and userid = #{userid}")
-	public int cartCheck(Map<String, Object> cmap);
-	
-	@Update("update cart set count = #{count} where userid = #{userid} and product_pno = #{product_pno}")
-	public int countAdd(@Param("count") int count, @Param("userid") String userid, @Param("product_pno") int product_pno);
-	
-	@Select("select count from cart where product_pno = #{product_pno} and userid = #{userid}")
-	public int countCheck(@Param("product_pno") int product_pno, @Param("userid") String userid);
-	
-	@Delete("delete from cart where userid = #{userid}")
-	public int checkOut(@Param("userid") String userid);
-	
-	@Delete("delete from cart where userid = #{userid} and product_pno = #{product_pno}")
-	public int deleteCart(@Param("product_pno") int product_pno, @Param("userid") String userid);
 
-	@Insert("INSERT INTO buy(pno,userid,bdate,price,bcount) values(#{pno},#{userid},#{bdate},#{price},#{bcount})")
-	public int addbuy(Map<String, Object> abmap);
+	@Autowired
+	AdminstockDao admin_dao;
+
+
 	
-	@Insert("INSERT INTO sell(product_pno,userid,sdate,price,scount) values(#{pno},#{suserid},#{bdate},#{price},#{bcount})")
-	public int addsell(Map<String, Object> asmap);
+	public List<NameAndPrice_sabDto> namePrice(String userid) {
+		
+		return sab_dao.namePrice(userid);
+		
+	}
 	
-	@Update("update stock set s_volume = #{s_volume}-#{bcount} where sno = #{sno} and userid = #{suserid}")
-	public int updateStock(Map<String, Object> usmap);
+	/*
+	 * public int selecSval(int sno) { return stock_dao.selecSval(sno); }
+	 */
 	
-	@Update("update product set p_count = #{p_count}-#{bcount} where pno = #{pno}")
-	public int updateProduck(Map<String, Object> upmap);
+	public int selecSvol(int sno) {
+		return stock_dao.selecSvol(sno);
+	}
 	
-	@Update("update revenue set ssum = #{ssum}+(#{price}*#{bcount}), profit = #{profit}+(#{price}*#{bcount}) where userid = #{suserid}")
-	public int updateRevenue(Map<String, Object> urmap);
+	public int selecCount(int sno) {
+		return product_dao.selecCount(sno);
+	}
 	
-	@Select("select count(*) from product where sno=#{sno}")
-	int selecCount(@Param("sno")int sno);
+	public int selecVol(int sno) {
+		return product_dao.selecVol(sno);
+	}
 	
-	@Select("select p_count from product where sno=#{sno}")
-	int selecVol(@Param("sno")int sno);
+	public int broadprice(String userid, int sno) {
+		return product_dao.broadprice(sno);
+	}
 	
-	@Insert("insert into product(sno,pname,price,p_val,p_count) values(#{sno},#{pname},#{price},#{p_val},#{p_count})")
-	void insertproduct(@Param("sno")int sno, @Param("pname")String pname, @Param("price")int price, @Param("p_val")int p_val, @Param("p_count")int p_count);
 	
-	@Update("UPDATE product SET p_count = #{p_count},price = #{price} where sno=#{sno}")
-	void updateproduct(@Param("price")int price, @Param("p_count")int p_count, @Param("sno")int sno);
+	public void updateAndInsert(int sno, String pname, int price, int p_count) {
+		int p_val= stock_dao.selecSval(sno);
+		int count=product_dao.selecCount(sno);
+		
+		if(count==0) {
+			product_dao.insertproduct(sno,pname,price,p_val,p_count);
+		}
+		else if(count==1) {
+			int Vol=product_dao.selecVol(sno);
+			p_count = Vol+p_count;
+			product_dao.updateproduct(price,p_count,sno);
+		}
+	}
+
+	public int inserta(@Param("a_content") String a_content,@Param("a_val") int a_val,@Param("a_volum") int a_volum) {
+		return admin_dao.inserta(a_content,a_val,a_volum);	
+	}
+
 	
-	@Select("select pno from product where sno=#{sno}")
-	int broadprice(@Param("sno")int sno);
 }
