@@ -1,11 +1,11 @@
 /*
-   Date    : 2023.05.16
+   Date    : 2023.05.23
    name    : ProductDao
    type    : Dao
-   ver     : 5.0
-   conect  : MarketService
+   ver     : 6.0
+   conect  : MarketService/sell
    content : 상품 Dao
-   writer  : 김기덕
+   writer  : 김재영
    api     : x
 */
 package stock_m.dao;

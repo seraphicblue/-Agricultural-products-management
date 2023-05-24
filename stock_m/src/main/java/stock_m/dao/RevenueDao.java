@@ -11,10 +11,13 @@
 	  */
 package stock_m.dao;
 
+
+
 import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Delete;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -35,6 +38,11 @@ public interface RevenueDao {
 	
 	@Update("UPDATE revenue SET profit=profit-#{s_price} WHERE userid = #{userid}")
 	int updater(@Param("s_price")int s_price, @Param("userid") String userid);
+
+	
+	@Insert("insert into buy(pno,userid,bdate,price) values(#{s_val},#{userid},#{s_date},#{s_price})")
+	int insertb(@Param("s_val")int s_val, @Param("userid")String userid, @Param("s_date") String s_date, @Param("s_price")int s_price);
+
 
 	
 		
@@ -111,6 +119,7 @@ public interface RevenueDao {
 
 		//@Select("select `limit` from revenue where userid = 'testcompany'")
 		//int checks();//main코드 수정 23.05.23
+
 	 
 		//chart
 		@Select("SELECT MONTH(sdate) AS month, SUM(price) AS sell_price FROM sell WHERE sdate BETWEEN #{startDate} AND #{endDate} GROUP BY MONTH(sdate) order by MONTH(sdate)")

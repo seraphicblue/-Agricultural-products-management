@@ -59,7 +59,7 @@ public class SabController {
 	@GetMapping("/company/{sno}")
 	@ResponseBody // view없이 바로 보냄
 	public int snoCount(Model m, @PathVariable int sno) {
-		
+
 		int count = sab_service.selecCount(sno);
 		return count;
 	}

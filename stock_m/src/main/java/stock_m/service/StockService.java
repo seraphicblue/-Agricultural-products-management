@@ -23,7 +23,11 @@ import stock_m.dao.AdminstockDao;
 import stock_m.dao.RevenueDao;
 import stock_m.dao.StockDao;
 import stock_m.dto.AdminstockDto;
+
+import stock_m.dto.BuyDto;
+
 import stock_m.dto.StockDto;
+
 
 @Service
 public class StockService {
@@ -38,26 +42,35 @@ public class StockService {
 	RevenueDao rdao;
 	
 	
+
 	public List<AdminstockDto> option(){
+
 		Map<String, Object> m =new HashMap<String, Object>();
 		return admindao.option(m);
 		
 	}
 
-	
-	// public void inserts(String scontent, int s_volume, String s_date) {
-	 //dao.inserts(scontent,s_volume, s_date); }
-	//main코드 수정 23.05.23
 
-	
-	  public int checki(int s_price, String scontent, int s_volume, int s_val,
-	  String userid) { System.out.println(userid); int s =
-	  dao.checki(scontent,userid); System.out.println(s); if(s>0) {
-	  rdao.updater(s_price,userid); return
-	  dao.updates(scontent,s_volume,s_val,userid); }else { Date now = new Date();
-	  SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
-	  rdao.updater(s_price,userid); return
-	  dao.inserts(scontent,s_volume,format.format(now), s_val,userid); } }
+
+	public int checki(int s_price, String scontent, int s_volume, int s_val, String userid) {
+		System.out.println(userid);
+		int s = dao.checki(scontent,userid);
+		System.out.println(s);
+		if(s>0) {
+			Date now = new	 Date();
+			SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+			rdao.insertb(s_val,userid,format.format(now),s_price);
+			rdao.updater(s_price,userid);
+			 return dao.updates(scontent,s_volume,s_val,userid);
+		}else {
+			Date now = new	 Date();
+			SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+			rdao.updater(s_price,userid);
+			rdao.insertb(s_val,userid,format.format(now),s_price);
+			return dao.inserts(scontent,s_volume,format.format(now), s_val,userid);
+		}
+	}
+
 	 
 		
 			public List<StockDto> sList(String userid){
@@ -120,11 +133,42 @@ public class StockService {
 
 
 
+			public List<Map<String, Object>> getstockData(String userid) {
+				// TODO Auto-generated method stub
+				return dao.getstockData(userid);
+			}
+
+
+
+			
+			public List<Map<String, Object>> getbuycount(int sno) {
+				return dao.getbuycount(sno);
+			}
+
+
+			
+			public List<Map<String, Object>> getsellcount(int sno) {
+				return dao.getsellcount(sno);
+			}
+
+
+
+			public List<Map<String, Object>> getstockoption(String userid) {
+				
+				return dao.getstockoption(userid);
+			}
+
+
+
+			
+
+
 
 		
 		
 
 		
+
 
 	}
 

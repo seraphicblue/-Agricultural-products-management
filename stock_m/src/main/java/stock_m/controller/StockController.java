@@ -13,10 +13,13 @@ package stock_m.controller;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +28,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 
 import jakarta.servlet.http.HttpSession;
 import stock_m.dto.AdminstockDto;
@@ -72,8 +79,8 @@ public class StockController {
 	 * SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
 	 * service.inserts(scontent,s_volume,format.format(now)); return
 	 * "redirect:/company/stock"; }
-	 * 
 	 */
+	 
 	//main코드 수정 23.05.23
 	
 	
@@ -90,7 +97,7 @@ public class StockController {
 					//@ModelAttribute("user") MemDto dto) {//1.세션서장값 dto 에넘겨줌 2. 파라미터값 저장(id는 그대로) sesssion에 저장되 내용 바뀜=>db도업데이트 해줘야함
 					//dto에 아이디값은 포함되지않았음
 
-					  @RequestMapping("/company/stockmanage")
+					  @RequestMapping("company/stockmanage")
 						public String slist(@RequestParam(name="p", defaultValue = "1") int page, Model m ) {
 						  System.out.println("is");
 							//글이 있는지 체크
@@ -127,7 +134,7 @@ public class StockController {
 						
 							m.addAttribute("count", count);
 							
-							return "/company/stockmanage";
+							return "company/stockmanage";
 						}
 					  	
 						  @GetMapping("/company/sdelete")
@@ -229,21 +236,40 @@ public class StockController {
 		
 		
 		@GetMapping("company/cs")
-        public String chartr(String userid,Model m) {
-				  userid="1";
-				    Calendar calendar = Calendar.getInstance();
-			        calendar.set(Calendar.YEAR, 2023);
-			        calendar.set(Calendar.MONTH, Calendar.MAY);
-			        calendar.set(Calendar.DAY_OF_MONTH, 15);
-			        
-			        Date date = calendar.getTime();
-			        
-			        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-			        String sdate = dateFormat.format(date);
-			        
+        public String chartr(HttpSession session,Model m) {
+			
+			String userid = (String) session.getAttribute("userid");
+			List<Map<String, Object>> stockList = service.getstockoption(userid);
+			 m.addAttribute("stockList",stockList);
 			       
 				return"company/cs";
 			}
+		
+		@GetMapping("company/getstock")
+		@ResponseBody
+		public String getstock(HttpSession session){
+			String userid = (String) session.getAttribute("userid");
+			List<Map<String, Object>> getstockList = service.getstockData(userid);
+			 Gson gson=new Gson();
+			  String stockList =gson.toJson(getstockList);				
+			  System.out.println("stock"+stockList);
+			return stockList;
+			
+			
+			
+		}
+		@GetMapping("/company/getStockInfo")
+		@ResponseBody
+		public List<Map<String, Object>> getStockInfo(@RequestParam("selectedsno")int sno,Model m) {
+			System.out.println("getstockinfo 요청됨");
+			List<Map<String, Object>> sellcountdate=service.getsellcount(sno);
+			List<Map<String, Object>> buycountdate=service.getbuycount(sno);
+			
+			Map<String,Object> map=HashMap<String, Object>;
+		   m.addAttribute("sellcount",sellcountdate);
+		   m.addAttribute("buycount",buycountdate);
+		  return sellcountdate;
+		}
 	}
 
 

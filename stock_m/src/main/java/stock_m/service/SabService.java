@@ -24,48 +24,52 @@ import stock_m.dto.NameAndPrice_sabDto;
 
 @Service
 public class SabService {
-	
+
 	@Autowired
 	NameAndPrice_sabDao sab_dao;
-	
+
 	@Autowired
 	StockDao stock_dao;
-	
+
 	@Autowired
 	ProductDao product_dao;
-	
 
 	@Autowired
 	AdminstockDao admin_dao;
 
-
-	
 	public List<NameAndPrice_sabDto> namePrice(String userid) {
+
 		return sab_dao.namePrice(userid);
+
 	}
-	
+
 	public int selecSval(int sno) {
 		return stock_dao.selecSval(sno);
 	}
-	
+
 	public int selecSvol(int sno) {
 		return stock_dao.selecSvol(sno);
 	}
-	
+
 	public int selecCount(int sno) {
 		return product_dao.selecCount(sno);
 	}
-	
+
 	public int selecVol(int sno) {
 		return product_dao.selecVol(sno);
 	}
+
+	
+	
+
 	
 	public int broadprice(int sno) {
+
 		return product_dao.broadprice(sno);
 	}
-	
-	
+
 	public void updateAndInsert(int sno, String pname, int price, int p_count) {
+
 		int p_val= stock_dao.selecSval(sno);
 		
 		int count=product_dao.selecCount(sno);
@@ -77,12 +81,14 @@ public class SabService {
 			int Vol=product_dao.selecVol(sno);
 			p_count = Vol+p_count;
 			product_dao.updateproduct(price,p_count, sno);
+
+		
+
 		}
 	}
 
-	public int inserta(@Param("a_content") String a_content,@Param("a_val") int a_val,@Param("a_volum") int a_volum) {
-		return admin_dao.inserta(a_content,a_val,a_volum);	
+	public int inserta(@Param("a_content") String a_content, @Param("a_val") int a_val, @Param("a_volum") int a_volum) {
+		return admin_dao.inserta(a_content, a_val, a_volum);
 	}
 
-	
 }

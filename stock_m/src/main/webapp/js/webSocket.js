@@ -2,7 +2,7 @@ var uri = 'ws://' + document.location.host + '/websocket';
 var socket = new WebSocket(uri);
 
 socket.onopen = function(event) {
-	console.log("WebSocket is open now."); 
+	console.log("WebSocket is open now.");
 };
 
 socket.onmessage = function(event) {
@@ -14,13 +14,13 @@ socket.onmessage = function(event) {
 	const newWindow = window.open('', 'New Window', "top=1000,left=1500,width=400,height=100");
 
 	if (sep == 'P') {
-		contents ='<h3>' +"("+ content + ")가 가격에 도달했습니다" + '</h3>';
+		contents = '<h3>' + "(" + content + ")가 가격에 도달했습니다" + '</h3>';
 	}
 
 	else if (sep == 'S') {
 		contents = '<h3>' + content + " 재고량이 위험 수치에 도달했습니다" + '</h3>';
 	}
-	
+
 	// 새 창에 내용 삽입
 	newWindow.document.write(contents);
 
@@ -30,25 +30,29 @@ socket.onmessage = function(event) {
 
 
 socket.onclose = function(event) {
-	console.log("WebSocket is closed now.");  
+	console.log("WebSocket is closed now.");
 };
 
 function sendMessage() {
-	
+
 	if (document.getElementById('command').value == "price") {
+		
 		var message = document.getElementById('val').value;
 		var command = document.getElementById('command').value;
 		var userid = document.getElementById('uid').value;
 		var param = document.getElementById('price').value;
 		var textTarget = document.getElementById('scontent')[document.getElementById('scontent').selectedIndex].textContent;
 		var text;
-		
+
 		$.ajax({
 			url: '/broadprice',
 			type: 'get',
 			data: { sno: parseInt(message)},
 			dataType: 'text',
 			success: function(data) {
+				/*const newWindow = window.open('', 'New Window', "top=1000,left=1500,width=400,height=100");
+							contents = '<h3>' +"메세지 : "+message+"데이터 : "+data+"파람 : "+param +"1차 도달했습니다" + '</h3>';
+							newWindow.document.write(contents);*/
 				$.ajax({
 					url: '/broadCprice',
 					type: 'get',
@@ -57,7 +61,10 @@ function sendMessage() {
 					success: function(data) {
 						message = data;
 						for (var i = 0; i < data.length; i++) {
-							text = "/" + command + '_' + userid + '_' + data[i]+'_' +textTarget;
+							text = "/" + command + '_' + userid + '_' + data[i] + '_' + textTarget;
+							/*const newWindow = window.open('', 'New Window', "top=1000,left=1500,width=400,height=100");
+							contents = '<h3>' + "2차 도달했습니다" + '</h3>';
+							newWindow.document.write(contents);*/
 							socket.send(text);
 						}
 
