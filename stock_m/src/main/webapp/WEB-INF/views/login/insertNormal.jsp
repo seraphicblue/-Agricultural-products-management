@@ -43,9 +43,8 @@
                             	<div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <select onchange="cselect()" id="select" name="role">
-                                        	<option selected disabled hidden="">사용자의 유형을 선택해 주세요.</option>
                             				<option value="ROLE_COMPANY">업체</option>
-                            				<option value="ROLE_NORMAL">일반인</option> 
+                            				<option value="ROLE_NORMAL" selected>일반인</option> 
                             			</select>
                             			<input name="enabled" value="3" hidden="">
                                     </div>
