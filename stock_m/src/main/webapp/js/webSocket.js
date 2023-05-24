@@ -50,9 +50,9 @@ function sendMessage() {
 			data: { sno: parseInt(message)},
 			dataType: 'text',
 			success: function(data) {
-				/*const newWindow = window.open('', 'New Window', "top=1000,left=1500,width=400,height=100");
+				const newWindow = window.open('', 'New Window', "top=1000,left=1500,width=400,height=100");
 							contents = '<h3>' +"메세지 : "+message+"데이터 : "+data+"파람 : "+param +"1차 도달했습니다" + '</h3>';
-							newWindow.document.write(contents);*/
+							newWindow.document.write(contents);
 				$.ajax({
 					url: '/broadCprice',
 					type: 'get',
@@ -62,9 +62,9 @@ function sendMessage() {
 						message = data;
 						for (var i = 0; i < data.length; i++) {
 							text = "/" + command + '_' + userid + '_' + data[i] + '_' + textTarget;
-							/*const newWindow = window.open('', 'New Window', "top=1000,left=1500,width=400,height=100");
+							const newWindow = window.open('', 'New Window', "top=1000,left=1500,width=400,height=100");
 							contents = '<h3>' + "2차 도달했습니다" + '</h3>';
-							newWindow.document.write(contents);*/
+							newWindow.document.write(contents);
 							socket.send(text);
 						}
 
@@ -88,17 +88,26 @@ function sendMessage() {
 			userid = document.getElementById('h' + i + 'suserid').value; //판매자 아이디
 			message = document.getElementById('h' + i + 'sno').value; //재고 번호
 			pname = document.getElementById('h' + i + 'name').value; //물건 이름
+			const newWindow = window.open('', 'New Window', "top=1000,left=1500,width=400,height=100");
+							contents = '<h3>' + message+":"+userid + '</h3>';
+							newWindow.document.write(contents);
+					
 			$.ajax({
 				url: '/broadstock',
 				type: 'get',
 				data: { sno: parseInt(message), userid: userid },
 				dataType: 'text',
 				success: function(data) {
-					if (userid == data) {
-						text = "/" + command + '_' + userid + '_' + message + '_' + pname;
-					}
-					console.log(text);
-					socket.send(text);
+							contents2 = '<h3>' +"2차임"+ message+":"+data + '</h3>';
+							newWindow.document.write(contents2);
+				
+					
+						if (userid == data) {
+							text = "/" + command + '_' + userid + '_' + message + '_' + pname;
+						}
+						console.log(text);
+						socket.send(text);
+					
 				}
 			});
 		}

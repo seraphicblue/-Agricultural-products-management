@@ -34,10 +34,8 @@ public interface StockDao {
 	int selecSvol(int sno);
 	
 	
-	 @Insert("insert into stock(userid, s_val, scontent, s_volume, s_date) values(#{userid},#{s_val},#{scontent},#{s_volume},#{s_date})"
-	  ) int inserts(@Param("scontent") String scontent, @Param("s_volume") int
-	  s_volume, @Param("s_date") String s_date,@Param("s_val") int
-	  s_val,@Param("userid") String userid);
+	 @Insert("insert into stock(userid, s_val, scontent, s_volume, s_date) values(#{userid},#{s_val},#{scontent},#{s_volume},#{s_date})") 
+	 int inserts(@Param("scontent") String scontent, @Param("s_volume") int s_volume, @Param("s_date") String s_date,@Param("s_val") int s_val,@Param("userid") String userid);
 	 
 
 	@Select("select count(*) from stock where userid = #{userid} and scontent=#{scontent}")
@@ -96,4 +94,3 @@ public interface StockDao {
 	
 	                                 
 }
-                                 
