@@ -104,6 +104,9 @@ public class MarketController {
 		m.addAttribute("pname", pname);										//pname : 상품명
 		int p_val = 0;														//p_val : 상품 분류코드
 		List<String> nuserid = service.negativeUserid(userid);
+		if(nuserid.isEmpty()) {
+			nuserid.add("등록하지 않았습니다.");
+		}
 		int cproduct = service.countProduct(pname, p_val, nuserid);			//검색결과에 해당하는 상품의 수
 		m.addAttribute("cproduct", cproduct);
 
@@ -150,6 +153,9 @@ public class MarketController {
 		m.addAttribute("cprice", cprice);
 		m.addAttribute("p_val", p_val);
 		List<String> nuserid = service.negativeUserid(userid);
+		if(nuserid.isEmpty()) {
+			nuserid.add("등록하지 않았습니다.");
+		}
 		int cproduct = service.countProduct(pname, p_val, nuserid);
 		m.addAttribute("cproduct", cproduct);
 		
@@ -218,9 +224,9 @@ public class MarketController {
 		else if(ccount > 0) {
 			cprice = service.cartPrice(userid);
 		}			
-		m.addAttribute("cprice", cprice);											//공통부분
-		
-		List<Map<String,Object>> cart = service.userCart(userid);					//세션에 저장된 userid로 해당 유저의 cart에 저장된 상품 정보를 cart에 저장 
+		m.addAttribute("cprice", cprice);
+		List<Map<String,Object>> cart = service.userCart(userid);
+		System.out.println("cart :"+cart);
 		m.addAttribute("cart", cart);
 		m.addAttribute("uid", userid);
 		return "normal/shoping-cart";
