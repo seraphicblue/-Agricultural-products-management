@@ -24,12 +24,13 @@ import stock_m.dto.Cart;
 
 @Mapper
 public interface ProductDao {
-	@Select("select * from product where pname like concat('%',#{pname},'%') limit #{start} , #{count}")
-	//@Select("select * from product")
-	public List<Map<String,Object>> searchPname(Map<String, Object> m);
+	public List<Map<String,Object>> searchPname(@Param("pname")String pname, @Param("start")int start, @Param("nuserid") List<String> nuserid);
 	
-	@Select("select count(*) from product where pname like concat('%',#{pname},'%') or p_val = #{p_val}")
-	public int countProduct(Map<String, Object> map);
+	@Select("select m_content from management where userid like #{userid} and m_val = 1")
+	public List<String> negativeUserid(String userid);
+	
+	//false인 업체(userid)를 제외하고 받아오기
+	public int countProduct(@Param("pname") String pname, @Param("p_val") int p_val, @Param("nuserid") List<String> nuserid);
 	
 	@Select("select * from product where pno = #{pno}")
 	public Map<String,Object> detailProduct(int pno);
@@ -40,8 +41,7 @@ public interface ProductDao {
 	@Select("select sum(count*price) from cart where userid = #{userid}")
 	public int cartPrice(String memberId);
 	
-	@Select("select * from product where p_val = #{p_val} limit #{start} , #{count}")
-	public List<Map<String,Object>> searchP_val(Map<String, Object> m);
+	public List<Map<String,Object>> searchP_val(@Param("p_val")int p_val, @Param("start")int start, @Param("nuserid") List<String> nuserid);
 	
 	@Insert("INSERT INTO cart(userid,product_pno,count,price,name) values(#{userid},#{product_pno},#{count},#{price},#{name})")
 	public int addCart(Cart cart);
