@@ -43,7 +43,7 @@
 			<!-- 홈화면 링크 부분-->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="index.html">
+				href="index.jsp">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-laugh-wink"></i>
 				</div>
@@ -95,8 +95,8 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">관리 유형</h6>
 						<a class="collapse-item" href="/company/interest">관심 업체</a> <a
-							class="collapse-item" href="/company/management2">유의 업체</a>
-							<a class="collapse-item" href="/company/listall"> 전체 관리</a>
+							class="collapse-item" href="/company/management2">유의 업체</a> <a
+							class="collapse-item" href="/company/listall"> 전체 관리</a>
 					</div>
 				</div></li>
 
@@ -230,13 +230,12 @@
 									<div class="row no-gutters align-items-center">
 										<div class="col mr-2">
 											<div
-												class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-												Earnings (Monthly)</div>
-											<div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+												class="text-xs font-weight-bold text-primary text-uppercase mb-1"
+												style="font-size: 15px;">재고 알림</div>
+											<div class="h5 mb-0 font-weight-bold text-gray-800"
+												id="position1">알림 메세지</div>
 										</div>
-										<div class="col-auto">
-											<i class="fas fa-calendar fa-2x text-gray-300"></i>
-										</div>
+										<div class="col-auto"></div>
 									</div>
 								</div>
 							</div>
@@ -249,13 +248,12 @@
 									<div class="row no-gutters align-items-center">
 										<div class="col mr-2">
 											<div
-												class="text-xs font-weight-bold text-success text-uppercase mb-1">
-												Earnings (Annual)</div>
-											<div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+												class="text-xs font-weight-bold text-success text-uppercase mb-1"
+												style="font-size: 15px;">가격 알림</div>
+											<div class="h5 mb-0 font-weight-bold text-gray-800"
+												id="position2">알림 메세지</div>
 										</div>
-										<div class="col-auto">
-											<i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-										</div>
+										<div class="col-auto"></div>
 									</div>
 								</div>
 							</div>
@@ -268,11 +266,12 @@
 									<div class="row no-gutters align-items-center">
 										<div class="col mr-2">
 											<div
-												class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
-											</div>
+												class="text-xs font-weight-bold text-info text-uppercase mb-1"
+												style="font-size: 15px;">한도 알림</div>
 											<div class="row no-gutters align-items-center">
 												<div class="col-auto">
-													<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+													<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"
+														id="position3">알림 메세지</div>
 												</div>
 												<div class="col">
 													<div class="progress progress-sm mr-2">
@@ -283,9 +282,7 @@
 												</div>
 											</div>
 										</div>
-										<div class="col-auto">
-											<i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-										</div>
+										<div class="col-auto"></div>
 									</div>
 								</div>
 							</div>
@@ -298,9 +295,10 @@
 									<div class="row no-gutters align-items-center">
 										<div class="col mr-2">
 											<div
-												class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-												Pending Requests</div>
-											<div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+												class="text-xs font-weight-bold text-warning text-uppercase mb-1"
+												style="font-size: 15px;">메세지 종합</div>
+											<div class="h5 mb-0 font-weight-bold text-gray-800"
+												id="position4">18</div>
 										</div>
 										<div class="col-auto">
 											<i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -452,29 +450,28 @@
 
 						</div>
 
+
 						<div id="Message" class="col-lg-6 mb-4">
-						<div class="card shadow mb-4">
-						<div class="card-header py-3">
+							<div class="card shadow mb-4">
+								<div class="card-header py-3">
 									<h6 class="m-0 font-weight-bold text-primary">물품 발주</h6>
 								</div>
-							<table class="table table-bordered dataTable" id="dataTable"
-								width="100%" cellspacing="0" role="grid"
-								aria-describedby="dataTable_info" style="width: 100%;">
-								<thead>
-								<tr>
-									<th>no</th>
-									<th>재고 번호</th>
-									<th>수량</th>
-									<th>재고 물품</th>
-									<th>가격</th>
-									<th>총가격</th>
-									<th>추가</th>
-								</tr>
-								</thead>
-								<tbody>
-									<c:forEach var="i" begin="1" end="5">
+								<table class="table table-bordered dataTable" id="dataTable"
+									width="100%" cellspacing="0" role="grid"
+									aria-describedby="dataTable_info" style="width: 100%;">
+									<thead>
 										<tr>
-											<td>${i}</td>
+											<th>재고 번호</th>
+											<th>수량</th>
+											<th>재고 물품</th>
+											<th>가격</th>
+											<th>총가격</th>
+											<th>추가</th>
+										</tr>
+									</thead>
+									<tbody>
+
+										<tr>
 											<td class="s_val"></td>
 											<td><input type="text" class="s_volume"
 												onchange="changeprice(this)"></td>
@@ -491,12 +488,11 @@
 											<td class="selectedprice"></td>
 											<td><button class="click">추가</button></td>
 										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
+									</tbody>
+								</table>
+							</div>
 						</div>
 					</div>
-				</div>
 				</div>
 				<!-- /.container-fluid -->
 
@@ -618,39 +614,40 @@
 			}
 		}
 
-		$(document).ready(
-				function() {
-					$('.click').click(
-							function() {
-								var scontent = $(this).closest('tr').find(
-										'.select_option').val();
-								var selectedPrice = $(this).closest('tr').find(
-										'.selectedprice').text();
-								var s_volume = $(this).closest('tr').find(
-										'.s_volume').val();
-								var s_val = parseInt($(this).closest('tr')
-										.find('.s_val').text());
-
-								$.ajax({
-									type : 'POST',
-									url : '/company/checks',
-									data : {
-										's_price' : selectedPrice,
-										'scontent' : scontent,
-										's_volume' : s_volume,
-										's_val' : s_val
-									},
-									success : function(result) {
-										if (result == true) {
-											location.reload();
-										} else {
-											alert("한도 부족입니다.");
-											location.reload();
-										}
-									}
-								});
-							});
-				});
+		$(document).ready(function() {
+			$('.click').click(
+					function() {
+						var scontent = $(this).closest('tr').find('.select_option').val();
+						var selectedPrice = $(this).closest('tr').find('.selectedprice').text();
+						var s_volume = $(this).closest('tr').find('.s_volume').val();
+						var s_val = parseInt($(this).closest('tr').find('.s_val').text());
+												$.ajax({
+															type : 'POST',
+															url : '/company/checks',
+															data : {
+																's_price' : selectedPrice,
+																'scontent' : scontent,
+																's_volume' : s_volume,
+																's_val' : s_val
+															},
+															success : function(result) {
+																$(".s_val").text("");
+																$(".select_option").val("");
+																$(".s_volume").val("");
+																$(".selectedvolume").text("");
+																$(".selectedprice").text("");
+																$(".s_val").trigger("change");
+																$(".selectedvolume").trigger("change");
+																$(".selectedprice").trigger("change");
+																
+																if (result == true) {
+																} else {
+																	alert("한도 부족입니다.");
+																}
+															}
+														});
+											});
+						});
 	</script>
 </body>
 

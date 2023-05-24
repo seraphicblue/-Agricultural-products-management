@@ -79,8 +79,15 @@
 		resultType="stock_m.dto.ManagementDto">
 
 		select mno, userid, m_val, m_content from management where
-		m_val=true and userid=#{userid}
+		m_val=true and userid=#{userid} LIMIT #{startRow},#{count}
 		</select>
+		
+	<select id="mainList2" parameterType="map"
+		resultType="stock_m.dto.ManagementDto">
+
+		select mno, userid, m_val, m_content from management where
+		m_val=true and userid=#{userid} LIMIT #{startRow},#{count}
+		</select>	
 
 	<select id="maList" parameterType="map"
 		resultType="stock_m.dto.ManagementDto">

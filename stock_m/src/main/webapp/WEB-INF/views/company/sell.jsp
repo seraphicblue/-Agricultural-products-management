@@ -35,13 +35,13 @@
 			<tr>
 				<td><h2>판매</h2></td>
 			</tr>
-			<tr>
-				<td>상품명</td>
+			<tr> 
+				<td>상품명</td> 
 				<td><select id="scontent" onchange="check()">
-						<option>--------------------</option>
+						<option>--------------------</option> 
 						<c:forEach items="${npList}" var="np">
 							<option value="${np.s_volume}" id="${np.sno}">${np.scontent}</option>
-						</c:forEach>
+						</c:forEach> 
 				</select></td>
 			</tr>
 			<tr>

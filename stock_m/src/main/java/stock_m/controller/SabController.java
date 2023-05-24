@@ -55,24 +55,22 @@ public class SabController {
 
 	@GetMapping("/company/{sno}")
 	@ResponseBody // view없이 바로 보냄
-	public int snoCount(Model m, @PathVariable int sno,HttpSession session) {
-		String userid = (String) session.getAttribute("userid");
-		int count = sab_service.selecCount(userid, sno);
+	public int snoCount(Model m, @PathVariable int sno) {
+		int count = sab_service.selecCount(sno);
 		return count;
 	}
 
 	@GetMapping("/company/Vol/{sno}/{p_count}")
 	@ResponseBody // view없이 바로 보냄
-	public int snoSearch(Model m, @PathVariable int sno, @PathVariable int p_count,HttpSession session) {
-		String userid = (String) session.getAttribute("userid");
-		int Vol = sab_service.selecVol(userid, sno);
+	public int snoSearch(Model m, @PathVariable int sno, @PathVariable int p_count) {
+		int Vol = sab_service.selecVol(sno);
 		return Vol;
 	}
 
 	@GetMapping("/company/sell")
 	public String sellForm(Model m, HttpSession session) {
 		String userid = (String) session.getAttribute("userid");
-		List<NameAndPrice_sabDto> npList = sab_service.namePrice("test");
+		List<NameAndPrice_sabDto> npList = sab_service.namePrice(userid);
 		m.addAttribute("npList", npList);
 		m.addAttribute("uid", userid);
 		return "company/sell";
