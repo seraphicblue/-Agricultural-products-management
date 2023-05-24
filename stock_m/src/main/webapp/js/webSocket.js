@@ -82,8 +82,7 @@ function sendMessage() {
 		var userid = document.getElementById('uid').value; //판매자 아이디
 		var param = document.getElementById('fina').value; //반복 횟수
 		var pname = "";// 상품 이름
-
-		var text;
+		var text="";
 		for (var i = 1; i <= param; i++) {
 			userid = document.getElementById('h' + i + 'suserid').value; //판매자 아이디
 			message = document.getElementById('h' + i + 'sno').value; //재고 번호
@@ -94,9 +93,9 @@ function sendMessage() {
 				data: { sno: parseInt(message), userid: userid },
 				dataType: 'text',
 				success: function(data) {
-					if (userid == data) {
+					
 						text = "/" + command + '_' + userid + '_' + message + '_' + pname;
-					}
+					
 					console.log(text);
 					socket.send(text);
 				}
