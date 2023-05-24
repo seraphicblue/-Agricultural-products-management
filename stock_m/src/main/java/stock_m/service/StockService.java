@@ -69,6 +69,7 @@ public class StockService {
 			rdao.insertb(s_val,userid,format.format(now),s_price);
 			return dao.inserts(scontent,s_volume,format.format(now), s_val,userid);
 		}
+	}
 
 	 
 		
