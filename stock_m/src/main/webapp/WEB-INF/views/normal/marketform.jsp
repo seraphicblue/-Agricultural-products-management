@@ -276,6 +276,7 @@ input:checked+.slider:before {
         });
     </script> -->
 
+
     <script>
 				$(document)
 						.ready(
@@ -372,7 +373,6 @@ input:checked+.slider:before {
 									});
 						});
 			</script>
-
 
 </body>
 

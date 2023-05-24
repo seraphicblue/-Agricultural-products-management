@@ -28,19 +28,15 @@ public class MarketService {
 	ProductDao dao;
 	
 	//pname(상품명)으로 상품 검색 pname : 검색 때 입력한 문자열, start : 시작할 상품순서, count : 한페이지에 보여줄 상품수 
-	public List<Map<String,Object>> searchPname(String pname, int start) {
-		Map<String, Object> m = new HashMap<String, Object>();
-		m.put("pname", pname);
-		m.put("start", start);
-		m.put("count", 9);
-		return dao.searchPname(m);
+	public List<Map<String,Object>> searchPname(String pname, int start, List<String> nuserid) {
+		return dao.searchPname(pname, start, nuserid);
 	}
 	
-	public int countProduct(String pname, int p_val) {
-		Map<String, Object> map = new HashMap<>();
-		map.put("pname", pname);
-		map.put("p_val", p_val);
-		return dao.countProduct(map);
+	public int countProduct(String pname, int p_val, List<String> nuserid) {
+		if(pname == null) {
+			pname = "없음";			
+		}
+	    return dao.countProduct(pname, p_val, nuserid);
 	}
 	
 	public Map<String,Object> detailProduct(int pno) {
@@ -55,12 +51,8 @@ public class MarketService {
 		return dao.cartPrice(memberId);
 	}
 	
-	public List<Map<String,Object>> searchP_val(int p_val, int start) {
-		Map<String, Object> m = new HashMap<String, Object>();
-		m.put("p_val", p_val);
-		m.put("start", start);
-		m.put("count", 9);
-		return dao.searchP_val(m);
+	public List<Map<String,Object>> searchP_val(int p_val, int start, List<String> nuserid) {
+		return dao.searchP_val(p_val, start, nuserid);
 	}
 	
 	public void addCart(Cart cart, int product_pno, String userid, int count) {
@@ -149,6 +141,10 @@ public class MarketService {
 		urmap.put("bcount", bcount);
 		urmap.put("suserid", suserid);
 		return dao.updateRevenue(urmap);
+	}
+	
+	public List<String> negativeUserid(String userid) {		
+		return dao.negativeUserid(userid);
 	}
 	
 }

@@ -39,21 +39,18 @@ public class SabController {
 		return "test";
 	}
 
-
-
 	@GetMapping("company/main")
 	public String companyindex(Model m) {
 		List<AdminstockDto> adminstockList = stock_service.option();
 		System.out.println(adminstockList);
 		m.addAttribute("adminstockList",adminstockList);
-
 		return "company/index";
 	}
 
 
 	@GetMapping("normal/main")
 	public String normalindex() {
-		return "normal/index";
+		return "/normal/index";
 	}
 
 	@GetMapping("/company/{sno}")
