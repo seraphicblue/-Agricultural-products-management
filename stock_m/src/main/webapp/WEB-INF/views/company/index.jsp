@@ -41,8 +41,7 @@
 
 			<!-- Sidebar - Brand -->
 			<!-- 홈화면 링크 부분-->
-			<a class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="index.html">
+			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.jsp">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-laugh-wink"></i>
 				</div>
@@ -109,7 +108,7 @@
 					<i class="fas fa-fw fa-table"></i> <span>Tables</span>
 			</a></li>
 
-			<!-- Divider -->
+			<!-- Divider -->  
 			<hr class="sidebar-divider d-none d-md-block">
 
 			<!-- Sidebar Toggler (Sidebar) -->
@@ -118,7 +117,7 @@
 			</div>
 
 			<!-- Sidebar Message -->
-
+ 
 
 		</ul>
 		<!-- End of Sidebar -->
@@ -228,13 +227,12 @@
 								<div class="card-body">
 									<div class="row no-gutters align-items-center">
 										<div class="col mr-2">
-											<div
-												class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-												Earnings (Monthly)</div>
-											<div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+											<div class="text-xs font-weight-bold text-primary text-uppercase mb-1" style="font-size: 15px;">
+												재고 알림</div>
+											<div class="h5 mb-0 font-weight-bold text-gray-800" id="position1">$40,000</div>
 										</div>
 										<div class="col-auto">
-											<i class="fas fa-calendar fa-2x text-gray-300"></i>
+											
 										</div>
 									</div>
 								</div>
@@ -246,11 +244,11 @@
 							<div class="card border-left-success shadow h-100 py-2">
 								<div class="card-body">
 									<div class="row no-gutters align-items-center">
-										<div class="col mr-2">
+										<div class="col mr-2"> 
 											<div
-												class="text-xs font-weight-bold text-success text-uppercase mb-1">
-												Earnings (Annual)</div>
-											<div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+												class="text-xs font-weight-bold text-success text-uppercase mb-1" style="font-size: 15px;">
+												가격 알림</div>
+											<div class="h5 mb-0 font-weight-bold text-gray-800" id="position2">$215,000</div>
 										</div>
 										<div class="col-auto">
 											<i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -267,11 +265,11 @@
 									<div class="row no-gutters align-items-center">
 										<div class="col mr-2">
 											<div
-												class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
+												class="text-xs font-weight-bold text-info text-uppercase mb-1" style="font-size: 15px;">한도 알림
 											</div>
 											<div class="row no-gutters align-items-center">
 												<div class="col-auto">
-													<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+													<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="position3">50%</div>
 												</div>
 												<div class="col">
 													<div class="progress progress-sm mr-2">
@@ -299,7 +297,7 @@
 											<div
 												class="text-xs font-weight-bold text-warning text-uppercase mb-1">
 												Pending Requests</div>
-											<div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+											<div class="h5 mb-0 font-weight-bold text-gray-800" id="position4">18</div>
 										</div>
 										<div class="col-auto">
 											<i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -461,6 +459,7 @@
 								aria-describedby="dataTable_info" style="width: 100%;">
 								<thead>
 								<tr>
+									<th>no</th>
 									<th>재고 번호</th>
 									<th>수량</th>
 									<th>재고 물품</th>
@@ -470,12 +469,13 @@
 								</tr>
 								</thead>
 								<tbody>
-									
+									<c:forEach var="i" begin="1" end="5">
 										<tr>
+											<td>${i}</td>
 											<td class="s_val"></td>
 											<td><input type="text" class="s_volume"
-												onchange="changeprice(this)"></td>
-											<td><select class="select_option"
+												onchange="changeprice(this)" id="input_num"></td>
+											<td><select class="select_option" id="seleccontent"
 												onchange="selectedoption(this)">
 													<option value="">선택하세요</option>
 													<c:forEach items="${adminstockList}" var="option">
@@ -488,6 +488,7 @@
 											<td class="selectedprice"></td>
 											<td><button class="click">추가</button></td>
 										</tr>
+									</c:forEach>
 								</tbody>
 							</table>
 						</div>
@@ -610,7 +611,6 @@
 										'.s_volume').val();
 								var s_val = parseInt($(this).closest('tr')
 										.find('.s_val').text());
-
 								$.ajax({
 									type : 'POST',
 									url : '/company/checks',
@@ -621,17 +621,14 @@
 										's_val' : s_val
 									},
 									success : function(result) {
-										$(".s_val").text("");
-										$(".select_option").val("");
-										$(".s_volume").val("");
-										$(".selectedvolume").text("");
-										$(".selectedprice").text("");
-										$(".s_val").trigger("change");
-										$(".selectedvolume").trigger("change");
-										$(".selectedprice").trigger("change");
 										if (result == true) {
+											document.getElementById('input_num').value="";
+											document.getElementById('seleccontent').value="";
+											
+											alert("됨");
 										} else {
 											alert("한도 부족입니다.");
+											//location.reload();
 										}
 									}
 								});
