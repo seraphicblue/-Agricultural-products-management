@@ -161,7 +161,7 @@
                                                 <input type="text" class="count" value="${cart.count}" id="${cart.product_pno}" onchange="cchange(this)">                                                
                                             <span class="inc qtybtn" id="${cart.product_pno} +" onclick="vi('${cart.product_pno} +')">+</span>
                                             	<input id="${cart.product_pno}oldcount" value="${cart.count}" hidden="hidden">
-                                            </div>
+                                            </div> 
                                         </div>
                                     </td>
                                     <td class="shoping__cart__total" id="${cart.product_pno}total">

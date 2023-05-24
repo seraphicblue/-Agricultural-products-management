@@ -20,7 +20,8 @@ public class BroadcastService {
 
 	public String broadStock(int sno, String userid) {
 
-		int useridTF = Broadcast_dao.broadStock(sno);
+		int useridTF = Broadcast_dao.broadStock(sno,userid);
+		System.out.println("this is"+useridTF);
 		if (useridTF == 1) {
 			return userid;
 		}else{
