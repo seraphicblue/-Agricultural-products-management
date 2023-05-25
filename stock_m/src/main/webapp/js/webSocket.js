@@ -131,5 +131,5 @@ function sendMessage() {
 }
 
 function stockMessage(uid, text) {
-
+	
 }
