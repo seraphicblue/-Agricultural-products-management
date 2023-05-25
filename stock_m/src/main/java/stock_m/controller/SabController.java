@@ -54,6 +54,7 @@ public class SabController {
 	@GetMapping("/company/{sno}")
 	@ResponseBody // view없이 바로 보냄
 	public int snoCount(Model m, @PathVariable int sno) {
+
 		int count = sab_service.selecCount(sno);
 		return count;
 	}
@@ -81,7 +82,7 @@ public class SabController {
 
 	@PostMapping("/company/sell")
 	public void sellpost(int sno, String pname, int price, int p_count) {
-
+		
 		sab_service.updateAndInsert(sno, pname, price, p_count);
 		/*
 		 * return "company/index";
@@ -90,9 +91,9 @@ public class SabController {
 	
 	@GetMapping("/broadprice")
 	@ResponseBody
-	public String broadprice(int sno,String userid) {
+	public String broadprice(int sno) {
 		
-		String bno = String.valueOf(sab_service.broadprice(userid,sno));
+		String bno = String.valueOf(sab_service.broadprice(sno));
 		
 		return bno;
 	}

@@ -59,20 +59,31 @@ public class SabService {
 		return product_dao.selecVol(sno);
 	}
 
-	public int broadprice(String userid, int sno) {
+	
+	
+
+	
+	public int broadprice(int sno) {
+
 		return product_dao.broadprice(sno);
 	}
 
 	public void updateAndInsert(int sno, String pname, int price, int p_count) {
-		int p_val = stock_dao.selecSval(sno);
-		int count = product_dao.selecCount(sno);
 
-		if (count == 0) {
-			product_dao.insertproduct(sno, pname, price, p_val, p_count);
-		} else if (count == 1) {
-			int Vol = product_dao.selecVol(sno);
-			p_count = Vol + p_count;
-			product_dao.updateproduct(price, p_count, sno);
+		int p_val= stock_dao.selecSval(sno);
+		
+		int count=product_dao.selecCount(sno);
+		
+		if(count==0) {
+			product_dao.insertproduct(sno,pname,price,p_val,p_count);
+		}
+		else if(count==1) {
+			int Vol=product_dao.selecVol(sno);
+			p_count = Vol+p_count;
+			product_dao.updateproduct(price,p_count, sno);
+
+		
+
 		}
 	}
 
