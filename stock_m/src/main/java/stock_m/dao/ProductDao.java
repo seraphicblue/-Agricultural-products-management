@@ -26,7 +26,7 @@ import stock_m.dto.Cart;
 public interface ProductDao {
 	public List<Map<String,Object>> searchPname(@Param("pname")String pname, @Param("start")int start, @Param("nuserid") List<String> nuserid);
 	
-	@Select("select m_content from management where userid like #{userid} and m_val = 1")
+	@Select("select m_content from management where userid like #{userid} and m_val = 0")
 	public List<String> negativeUserid(String userid);
 	
 	//false인 업체(userid)를 제외하고 받아오기
