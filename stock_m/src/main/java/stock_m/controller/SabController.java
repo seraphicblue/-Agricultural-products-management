@@ -51,12 +51,6 @@ public class SabController {
 		return "company/index";
 	}
 
-
-	@GetMapping("normal/main")
-	public String normalindex() {
-		return "/normal/index";
-	}
-
 	@GetMapping("/company/{sno}")
 	@ResponseBody // view없이 바로 보냄
 	public int snoCount(Model m, @PathVariable int sno) {

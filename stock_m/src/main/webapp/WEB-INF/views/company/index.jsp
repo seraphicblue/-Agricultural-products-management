@@ -43,7 +43,7 @@
 			<!-- 홈화면 링크 부분-->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="index.jsp">
+				href="/company/main">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-laugh-wink"></i>
 				</div>
@@ -66,7 +66,7 @@
 
 			<!-- Nav Item - Pages Collapse Menu -->
 			<!-- data-toggle 제거시 화살표 부분 제거-->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
+			<li class="nav-item"><a class="nav-link collapsed" href="redirect:/index.jsp"
 				data-target="#collapseTwo" aria-expanded="true"
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Components</span>
 			</a></li>
@@ -186,8 +186,7 @@
 							class="nav-link dropdown-toggle" href="#" id="userDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <span
-								class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas
-									McGee</span> <img class="img-profile rounded-circle"
+								class="mr-2 d-none d-lg-inline text-gray-600 small">${uid}</span> <img class="img-profile rounded-circle"
 								src="../../img/undraw_profile.svg">
 						</a> <!-- Dropdown - User Information -->
 							<div
@@ -216,9 +215,8 @@
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+						<h1 class="h3 mb-0 text-gray-800">${uid}의 관리 페이지입니다.</h1>
 					</div>
-
 					<!-- Content Row -->
 					<div class="row">
 
@@ -423,7 +421,7 @@
 
 										<tr>
 											<td class="s_val"></td>
-											<td><input name="p_count" id="s_volume" value=0 style="width : 30px" ></td>
+											<td><input name="p_count" id="s_volume" value=0 style="width : 100px" ></td>
 											<td><select id="scontent" onchange="check()">
 													<option>--------------------</option> 
 													<c:forEach items="${npList}" var="np">
@@ -477,7 +475,7 @@
 											</select></td>
 											<td class="selectedvolume"></td>
 											<td class="selectedprice"></td>
-											<td><button class="click">추가</button></td>
+											<td><button class="click2">추가</button></td>
 										</tr>
 									</tbody>
 								</table>
@@ -561,6 +559,9 @@
 	<!-- Page level custom scripts -->
 	<script src="../../js/demo/chart-area-demo.js"></script>
 	<script src="../../js/demo/chart-pie-demo.js"></script>
+	<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="../../js/sell.js"></script>
+	<script src="../../js/webSocket.js"></script>
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
@@ -606,7 +607,7 @@
 		}
 
 		$(document).ready(function() {
-			$('.click').click(
+			$('.click2').click(
 					function() {
 						var scontent = $(this).closest('tr').find('.select_option').val();
 						var selectedPrice = $(this).closest('tr').find('.selectedprice').text();
