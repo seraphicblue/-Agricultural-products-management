@@ -22,7 +22,7 @@
     </c:forEach>
     </select>
     <input type="text" id ="a_val">
-    
+     
    <button class="click">제출</button>
     
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

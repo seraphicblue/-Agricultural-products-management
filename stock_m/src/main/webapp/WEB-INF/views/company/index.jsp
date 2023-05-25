@@ -30,7 +30,7 @@
 </head>
 
 <body id="page-top">
-	<input type="hidden" name="allcommand" id="allcommand" value="All">
+	<input type="hidden" name="command" id="command" value="All">
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
