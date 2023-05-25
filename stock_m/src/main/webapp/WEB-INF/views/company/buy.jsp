@@ -222,19 +222,20 @@
 					<div class="row">
 
 						<!-- Earnings (Monthly) Card Example -->
-						<div id="Message" class="col-lg-6 mb-4">
-							<div class="card shadow mb-4">
+						<div id="Message" class="col-lg-6 mb-4" >
+							<div class="card shadow mb-4" style="width: 1600px;">
 								<div class="card-header py-3">
 									<h6 class="m-0 font-weight-bold text-primary">물품 발주</h6>
 								</div>
-								<table class="table table-bordered dataTable" id="dataTable"
+								<table class="table table-bordered dataTable copyright text-center my-auto" id="dataTable"
 									width="100%" cellspacing="0" role="grid"
 									aria-describedby="dataTable_info" style="width: 100%;">
 									<thead>
 										<tr>
 											<th>재고 번호</th>
-											<th>수량</th>
 											<th>재고 물품</th>
+											<th>수량</th>
+											
 											<th>가격</th>
 											<th>총가격</th>
 											<th>추가</th>
@@ -244,11 +245,7 @@
 
 										<tr>
 											<td class="s_val"></td>
-											<td><input type="text" class="s_volume" value=0
-												style="width: 30px"
-												"
-												onchange="changeprice(this)"></td>
-											<td><select class="navbar navbar-expand select_option"
+											<td align="center"><select class="navbar navbar-expand select_option"
 												onchange="selectedoption(this)">
 													<option value="">선택하세요</option>
 													<c:forEach items="${adminstockList}" var="option">
@@ -257,10 +254,15 @@
 															data-val="${option.a_val}">${option.acontent}</option>
 													</c:forEach>
 											</select></td>
+											<td style="padding-top: 12px">
+											<input type="text" class="s_volume" value=0 size="10"
+											style="width:45px;height:41px;"
+												onchange="changeprice(this)"></td>
 											<td class="selectedvolume"></td>
 											<td class="selectedprice"></td>
-											<td><button class="btn btn-primary btn-icon-split click">
-											추가</i>
+											<td><button class="btn btn-primary btn-icon-split click" style="width:45px;height:41px;">
+											<!-- <i class="fas fa-check" ></i> -->
+											<span style="padding-top:10px">추가</span>
 											</button></td>
 										</tr>
 									</tbody>
