@@ -169,6 +169,24 @@
                     				document.getElementById(i+"pimg").setAttribute("style", "background-image: url('../../market/img/product/tomato.jpg');");
                     			}else if(document.getElementById(i+"pname").textContent.includes("당근")){
                     				document.getElementById(i+"pimg").setAttribute("style", "background-image: url('../../market/img/product/carrot.jpg');");
+                    			}else if(document.getElementById(i+"pname").textContent.includes("사과")){
+                    				document.getElementById(i+"pimg").setAttribute("style", "background-image: url('../../market/img/product/apple.jpg');");
+                    			}else if(document.getElementById(i+"pname").textContent.includes("바나나")){
+                    				document.getElementById(i+"pimg").setAttribute("style", "background-image: url('../../market/img/product/banana.jpg');");
+                    			}else if(document.getElementById(i+"pname").textContent.includes("배추")){
+                    				document.getElementById(i+"pimg").setAttribute("style", "background-image: url('../../market/img/product/cabbage.jpg');");
+                    			}else if(document.getElementById(i+"pname").textContent.includes("고추")){
+                    				document.getElementById(i+"pimg").setAttribute("style", "background-image: url('../../market/img/product/chilipepper.jpg');");
+                    			}else if(document.getElementById(i+"pname").textContent.includes("포도")){
+                    				document.getElementById(i+"pimg").setAttribute("style", "background-image: url('../../market/img/product/grape.jpg');");
+                    			}else if(document.getElementById(i+"pname").textContent.includes("메론")){
+                    				document.getElementById(i+"pimg").setAttribute("style", "background-image: url('../../market/img/product/melon.jpg');");
+                    			}else if(document.getElementById(i+"pname").textContent.includes("호박")){
+                    				document.getElementById(i+"pimg").setAttribute("style", "background-image: url('../../market/img/product/pumpkin.jpg');");
+                    			}else if(document.getElementById(i+"pname").textContent.includes("딸기")){
+                    				document.getElementById(i+"pimg").setAttribute("style", "background-image: url('../../market/img/product/strawberry.jpg');");
+                    			}else if(document.getElementById(i+"pname").textContent.includes("수박")){
+                    				document.getElementById(i+"pimg").setAttribute("style", "background-image: url('../../market/img/product/watermelon.jpg');");
                     			}
                     		}
                         }
