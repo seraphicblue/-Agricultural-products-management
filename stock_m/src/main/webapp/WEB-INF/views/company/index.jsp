@@ -464,7 +464,7 @@
 
 										<tr>
 											<td class="s_val"></td>
-											<td><input type="text" class="s_volume"
+											<td><input type="text" class="s_volume" value=0 style="width : 30px""
 												onchange="changeprice(this)"></td>
 											<td><select class="select_option"
 												onchange="selectedoption(this)">
