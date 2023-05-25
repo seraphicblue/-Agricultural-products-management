@@ -278,6 +278,7 @@ input:checked+.slider:before {
 																.siblings(
 																		'.username')
 																.text();
+														console.log(username);
 														$
 																.ajax({
 																	type : 'POST',
@@ -290,7 +291,7 @@ input:checked+.slider:before {
 																		if (result === false) {
 																			alert('이미 추가된 업체입니다.');
 																		} else {
-																			location.href = "/normal/insert?id="
+																			location.href = "/normal/insert?username="
 																					+ username;
 																		}
 																	}

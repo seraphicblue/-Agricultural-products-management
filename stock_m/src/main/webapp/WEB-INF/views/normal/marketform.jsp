@@ -284,8 +284,6 @@ input:checked+.slider:before {
 									$('.click')
 											.click(
 													function() {
-														var userid = $(this)
-																.data('userid');
 														var m_content = $(this)
 																.closest('tr')
 																.find(
@@ -296,10 +294,8 @@ input:checked+.slider:before {
 																.find(
 																		'.m_content')
 																.text();
-														location.href = "/company/delete?m_content="
-																+ m_content
-																+ "&userid="
-																+ userid;
+														location.href = "/normal/madelete?m_content="
+																+ m_content;
 
 													});
 								});
@@ -310,8 +306,6 @@ input:checked+.slider:before {
 									$('.click2')
 											.click(
 													function() {
-														var userid = $(this)
-																.data('userid');
 														var m_content = $(this)
 																.closest('tr')
 																.find(
@@ -323,21 +317,16 @@ input:checked+.slider:before {
 																	type : 'POST',
 																	url : '/normal/check2',
 																	data : {
-																		'm_content' : m_content,
-																		"userid" : userid
+																		'm_content' : m_content
 																	},
 																	success : function(
 																			result) {
 																		if (result == true) {
 																			location.href = "/normal/update?m_content="
-																					+ m_content
-																					+ "&userid="
-																					+ userid;
+																					+ m_content;
 																		} else {
 																			location.href = "/normal/update2?m_content="
-																					+ m_content
-																					+ "&userid="
-																					+ userid;
+																					+ m_content;
 																		}
 																	}
 
