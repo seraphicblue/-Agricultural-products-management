@@ -563,7 +563,6 @@
 	<script src="../../js/demo/chart-pie-demo.js"></script>
 	<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="../../js/sell.js"></script>
-	<script src="../../js/webSocket.js"></script>
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>

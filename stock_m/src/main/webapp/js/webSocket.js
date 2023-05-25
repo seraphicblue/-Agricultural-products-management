@@ -91,7 +91,7 @@ function sendMessage() {
 						}
 
 
-					}
+					} 
 
 				})
 			}
@@ -111,23 +111,18 @@ function sendMessage() {
 			userid = document.getElementById('h' + i + 'suserid').value; //판매자 아이디
 			message = document.getElementById('h' + i + 'sno').value; //재고 번호
 			pname = document.getElementById('h' + i + 'name').value; //물건 이름
-			const newWindow = window.open('', 'New Window', "top=1000,left=1500,width=400,height=100");
-			contents = '<h3>' + "1차 메세지 : " + userid + "도달했습니다" + '</h3>';
-			newWindow.document.write(contents);
-
+			//const newWindow = window.open('', 'New Window', "top=1000,left=1500,width=400,height=100");
+			//contents = '<h3>' + "1차 메세지 : " + userid + "도달했습니다" + '</h3>';
+			//newWindow.document.write(contents);
 			$.ajax({
 				url: '/broadstock',
 				type: 'get',
 				data: { sno: parseInt(message), userid: userid },
 				dataType: 'text',
-				success: function(data) {
-
-					//const newWindow = window.open('', 'New Window', "top=1000,left=1500,width=400,height=100");
-					contents = '<h3>' + "메세지 : " + userid + "도달했습니다" + '</h3>';
-					newWindow.document.write(contents);
+				success: function(data){
+					/*contents = '<h3>' + "메세지 : " + userid + "도달했습니다" + '</h3>';
+					newWindow.document.write(contents);*/
 					text = "/" + command + '_' + data + '_' + message + '_' + pname;
-
-
 					socket.send(text);
 				}
 			})
