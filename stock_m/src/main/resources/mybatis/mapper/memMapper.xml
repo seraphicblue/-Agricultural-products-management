@@ -22,7 +22,7 @@
 	<select id="check" parameterType="String" resultType="int">
 		select
 		count(*) from management
-		where m_content = #{id}
+		where m_content = #{username} and userid=#{userid}
 	</select>
 
 	<select id="count1" resultType="int">
@@ -96,10 +96,10 @@
 		m_val=false and userid=#{userid}
 	</select>
 
-	<delete id="delete" parameterType="int">
+	<delete id="delete" parameterType="map">
 		delete from management
 		where
-		mno=#{mno}
+		mno=#{mno} and userid=#{userid}
 	</delete>
 
 	<update id="update" parameterType="String">

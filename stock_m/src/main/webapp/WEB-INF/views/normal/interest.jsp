@@ -340,8 +340,7 @@ input:checked+.slider:before {
 											type : 'POST',
 											url : '/normal/switch',
 											data : {
-												Checked : Checked,
-												'userid' : userid
+												Checked : Checked
 											},
 											success : function(result) {
 												if (result == true) {
