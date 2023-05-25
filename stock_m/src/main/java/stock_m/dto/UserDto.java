@@ -18,7 +18,7 @@ public class UserDto {
 	 */
 	 
 	
-	private String userid="admin";
+	private String userid="testuser1";
 	private String userpw;
 	private String gender;
 	private int age;

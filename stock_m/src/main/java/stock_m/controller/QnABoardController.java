@@ -21,26 +21,26 @@ public class QnABoardController {
     @Autowired
     QnABoardService service;
 
-    // "user"¶ó´Â ÀÌ¸§À¸·Î UserDto °´Ã¼¸¦ Model¿¡ Ãß°¡ÇÏ´Â ¸Þ¼­µå
+    // "user"ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ UserDto ï¿½ï¿½Ã¼ï¿½ï¿½ Modelï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ï´ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
     @ModelAttribute("user")
     public UserDto getDto() {
         return new UserDto();
     }
 
-    // ±Û ÀÛ¼º ÆûÀ» º¸¿©ÁÖ´Â GET ¿äÃ» Ã³¸® ¸Þ¼­µå
+    // ï¿½ï¿½ ï¿½Û¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ GET ï¿½ï¿½Ã» Ã³ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
     @GetMapping("/normal/qnawrite")
     public String writeForm(@ModelAttribute("user") UserDto dto) {
         return "normal/qnawrite";
     }
 
-    // ±Û ÀÛ¼ºÀ» Ã³¸®ÇÏ´Â POST ¿äÃ» Ã³¸® ¸Þ¼­µå
+    // ï¿½ï¿½ ï¿½Û¼ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ï´ï¿½ POST ï¿½ï¿½Ã» Ã³ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
     @PostMapping("/normal/qnawrite")
     public String write(QnABoardDto dto) {
         service.qnainsert(dto);
         return "redirect:qnalist";
     }
 
-    // ±Û ¸ñ·ÏÀ» Á¶È¸ÇÏ´Â GET ¿äÃ» Ã³¸® ¸Þ¼­µå
+    // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ï¿½Ï´ï¿½ GET ï¿½ï¿½Ã» Ã³ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
     @GetMapping("/normal/qnalist")
     public String list(@RequestParam(name = "p", defaultValue = "1") int page,
                        @RequestParam(name = "field", required = false) String field,
@@ -85,7 +85,7 @@ public class QnABoardController {
         return "normal/qnalist";
     }
 
-    // ±Û ³»¿ëÀ» º¸¿©ÁÖ´Â GET ¿äÃ» Ã³¸® ¸Þ¼­µå
+    // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ GET ï¿½ï¿½Ã» Ã³ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
     @GetMapping("/normal/qnacontent/{qnaboardid}")
     public String content(@PathVariable int qnaboardid, Model m) {
         service.qnaaddReadcount(qnaboardid);
@@ -94,7 +94,7 @@ public class QnABoardController {
         return "normal/qnacontent";
     }
 
-    // ±Û ¼öÁ¤ ÆûÀ» º¸¿©ÁÖ´Â GET ¿äÃ» Ã³¸® ¸Þ¼­µå
+    // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ GET ï¿½ï¿½Ã» Ã³ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
     @GetMapping("/normal/qnaupdate/{qnaboardid}")
     public String qnaupdate(@PathVariable int qnaboardid, Model m) {
         QnABoardDto dto = service.qnaboardOne(qnaboardid);
@@ -102,20 +102,20 @@ public class QnABoardController {
         return "normal/qnaupdate";
     }
 
-    // ±Û ¼öÁ¤À» Ã³¸®ÇÏ´Â PUT ¿äÃ» Ã³¸® ¸Þ¼­µå
-    @PutMapping("/normal/qnaupdate")
+    // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ï´ï¿½ PUT ï¿½ï¿½Ã» Ã³ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
+    @PostMapping("/normal/qnaupdate")
     public String qnaupdate(QnABoardDto dto) {
         service.qnaupdateBoard(dto);
         return "redirect:/normal/qnalist";
     }
 
-    // ±Û »èÁ¦¸¦ Ã³¸®ÇÏ´Â DELETE ¿äÃ» Ã³¸® ¸Þ¼­µå
+    // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ï´ï¿½ DELETE ï¿½ï¿½Ã» Ã³ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
     @DeleteMapping("/normal/qnadelete/{qnaboardid}")
     @ResponseBody
     public String qnadelete(@PathVariable int qnaboardid) {
-        // ¿äÃ» ÆÄ¶ó¹ÌÅÍ·Î Àü´Þ¹ÞÀº ±Û ¹øÈ£¸¦ »ç¿ëÇÏ¿© serviceÀÇ qnadeleteBoard ¸Þ¼­µå¸¦ È£ÃâÇÏ¿© ±Û »èÁ¦
+        // ï¿½ï¿½Ã» ï¿½Ä¶ï¿½ï¿½ï¿½Í·ï¿½ ï¿½ï¿½ï¿½Þ¹ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ serviceï¿½ï¿½ qnadeleteBoard ï¿½Þ¼ï¿½ï¿½å¸¦ È£ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         int i = service.qnadeleteBoard(qnaboardid);
-        // »èÁ¦µÈ ±ÛÀÇ ¼ö¸¦ ¹®ÀÚ¿­·Î ¹ÝÈ¯
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
         return String.valueOf(i);
     }
 

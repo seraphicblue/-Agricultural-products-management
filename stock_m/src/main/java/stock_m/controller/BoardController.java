@@ -19,26 +19,26 @@ public class BoardController {
     @Autowired
     BoardService service;
     
-    // "user"¶ó´Â ÀÌ¸§À¸·Î UserDto °´Ã¼¸¦ Model¿¡ Ãß°¡ÇÏ´Â ¸Þ¼­µå
+    // "user"ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ UserDto ï¿½ï¿½Ã¼ï¿½ï¿½ Modelï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ï´ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
     @ModelAttribute("user")
     public UserDto getDto() {
         return new UserDto();
     }
 
-    // ±Û ÀÛ¼º ÆûÀ» º¸¿©ÁÖ´Â GET ¿äÃ» Ã³¸® ¸Þ¼­µå
+    // ï¿½ï¿½ ï¿½Û¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ GET ï¿½ï¿½Ã» Ã³ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
     @GetMapping("/normal/write")
     public String writeForm(@ModelAttribute("user")UserDto dto) {
-        return "normal/write";// normal/write ÅÛÇÃ¸´À» ¹ÝÈ¯ÇÏ¿© ±Û ÀÛ¼º ÆûÀ» º¸¿©ÁÜ
+        return "normal/write";// normal/write ï¿½ï¿½ï¿½Ã¸ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ï¿ï¿½ ï¿½ï¿½ ï¿½Û¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     }
     
-    // ±Û ÀÛ¼ºÀ» Ã³¸®ÇÏ´Â POST ¿äÃ» Ã³¸® ¸Þ¼­µå
+    // ï¿½ï¿½ ï¿½Û¼ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ï´ï¿½ POST ï¿½ï¿½Ã» Ã³ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
     @PostMapping("/normal/write")
     public String write(BoardDto dto) {
-        service.insert(dto);// Àü´Þ¹ÞÀº ±Û µ¥ÀÌÅÍ¸¦ µ¥ÀÌÅÍº£ÀÌ½º¿¡ ÀúÀå
-        return "redirect:list";  // ±Û ÀÛ¼º ÈÄ ±Û ¸ñ·Ï ÆäÀÌÁö·Î ¸®´ÙÀÌ·ºÆ®
+        service.insert(dto);// ï¿½ï¿½ï¿½Þ¹ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        return "redirect:list";  // ï¿½ï¿½ ï¿½Û¼ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì·ï¿½Æ®
     }
     
- // ±Û ¸ñ·ÏÀ» Á¶È¸ÇÏ´Â GET ¿äÃ» Ã³¸® ¸Þ¼­µå
+ // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ï¿½Ï´ï¿½ GET ï¿½ï¿½Ã» Ã³ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
     @GetMapping("/normal/list")
     public String list(@RequestParam(name = "p", defaultValue = "1") int page,
                        @RequestParam(name = "field", required = false) String field,
@@ -48,29 +48,29 @@ public class BoardController {
                        Model m) {
         UserDto user = (UserDto) m.getAttribute("user");
 
-        int count = service.count(); // ÀüÃ¼ ±Û °¹¼ö Á¶È¸
+        int count = service.count(); // ï¿½ï¿½Ã¼ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸
         if (count > 0) {
-            int perPage = 10; // ÇÑ ÆäÀÌÁö¿¡ º¸ÀÏ ±ÛÀÇ °¹¼ö
+            int perPage = 10; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             int startRow = (page - 1) * perPage;
 
             List<BoardDto> boardList;
-            // °Ë»ö¾î°¡ ÀÖÀ» °æ¿ì °Ë»ö Á¶°Ç¿¡ µû¶ó °Ô½Ã±ÛÀ» °Ë»ö
+            // ï¿½Ë»ï¿½ï¿½î°¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ ï¿½ï¿½ï¿½Ç¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô½Ã±ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
             if (keyword != null && !keyword.isEmpty() || (startDate != null && endDate != null)) {
                 boardList = service.searchDateBoard(field, keyword, startRow, startDate, endDate);
             } else {
-                boardList = service.boardList(startRow); // ÇØ´ç ÆäÀÌÁö¿¡ ¸Â´Â ±Û ¸ñ·Ï Á¶È¸
+                boardList = service.boardList(startRow); // ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Â´ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½È¸
             }
 
-            // »ç¿ëÀÚ°¡ adminÀÌ°Å³ª ±ÛÀÇ ÀÛ¼ºÀÚÀÎ °æ¿ì¸¦ È®ÀÎÇÕ´Ï´Ù.
+            // ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ adminï¿½Ì°Å³ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ì¸¦ È®ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
 
 
             m.addAttribute("bList", boardList);
 
-            int pageNum = 5;  // ÆäÀÌÂ¡¿¡ º¸¿©ÁÙ ÆäÀÌÁö ¹øÈ£ÀÇ °¹¼ö
-            int totalPages = count / perPage + (count % perPage > 0 ? 1 : 0); // ÀüÃ¼ ÆäÀÌÁö ¼ö
+            int pageNum = 5;  // ï¿½ï¿½ï¿½ï¿½Â¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            int totalPages = count / perPage + (count % perPage > 0 ? 1 : 0); // ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 
-            int begin = (page - 1) / pageNum * pageNum + 1; // ½ÃÀÛ ÆäÀÌÁö ¹øÈ£
-            int end = begin + pageNum - 1;  // ³¡ ÆäÀÌÁö ¹øÈ£c
+            int begin = (page - 1) / pageNum * pageNum + 1; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
+            int end = begin + pageNum - 1;  // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£c
             if (end > totalPages) {
                 end = totalPages;
             }
@@ -81,51 +81,51 @@ public class BoardController {
         }
 
         m.addAttribute("count", count);
-        return "normal/list"; // normal/list ÅÛÇÃ¸´À» ¹ÝÈ¯ÇÏ¿© ±Û ¸ñ·ÏÀ» º¸¿©ÁÜ
+        return "normal/list"; // normal/list ï¿½ï¿½ï¿½Ã¸ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ï¿ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     }
     
-    // ±Û ³»¿ëÀ» º¸¿©ÁÖ´Â GET ¿äÃ» Ã³¸® ¸Þ¼­µå
+    // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ GET ï¿½ï¿½Ã» Ã³ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
     @GetMapping("normal/content/{boardno}")
     public String content( @PathVariable int boardno, Model m) {
     	service.addReadcount(boardno);
     	
-        // ¿äÃ» URL¿¡¼­ {boardno}¿¡ ÇØ´çÇÏ´Â ±Û ¹øÈ£¸¦ ¹Þ¾Æ¿È
-        // ÇØ´ç ±Û ¹øÈ£¸¦ »ç¿ëÇÏ¿© serviceÀÇ boardOne ¸Þ¼­µå¸¦ È£ÃâÇÏ¿© ÇØ´ç ±ÛÀÇ Á¤º¸¸¦ °¡Á®¿È
+        // ï¿½ï¿½Ã» URLï¿½ï¿½ï¿½ï¿½ {boardno}ï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ ï¿½ï¿½È£ï¿½ï¿½ ï¿½Þ¾Æ¿ï¿½
+        // ï¿½Ø´ï¿½ ï¿½ï¿½ ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ serviceï¿½ï¿½ boardOne ï¿½Þ¼ï¿½ï¿½å¸¦ È£ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         BoardDto dto = service.boardOne(boardno);
-        // °¡Á®¿Â ±Û Á¤º¸¸¦ Model¿¡ Ãß°¡ÇÏ¿© ºä·Î Àü´Þ
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Modelï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         m.addAttribute("dto", dto);
-        // normal/content ÅÛÇÃ¸´À» ¹ÝÈ¯ÇÏ¿© ÇØ´ç ±ÛÀÇ ³»¿ëÀ» º¸¿©ÁÜ
+        // normal/content ï¿½ï¿½ï¿½Ã¸ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ï¿ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         return "normal/content";
     }
 
-    // ±Û ¼öÁ¤ ÆûÀ» º¸¿©ÁÖ´Â GET ¿äÃ» Ã³¸® ¸Þ¼­µå
+    // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ GET ï¿½ï¿½Ã» Ã³ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
     @GetMapping("normal/update/{boardno}")
     public String updateForm(@PathVariable int boardno, Model m) {
-        // ¿äÃ» URL¿¡¼­ {boardno}¿¡ ÇØ´çÇÏ´Â ±Û ¹øÈ£¸¦ ¹Þ¾Æ¿È
-        // ÇØ´ç ±Û ¹øÈ£¸¦ »ç¿ëÇÏ¿© serviceÀÇ boardOne ¸Þ¼­µå¸¦ È£ÃâÇÏ¿© ÇØ´ç ±ÛÀÇ Á¤º¸¸¦ °¡Á®¿È
+        // ï¿½ï¿½Ã» URLï¿½ï¿½ï¿½ï¿½ {boardno}ï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ ï¿½ï¿½È£ï¿½ï¿½ ï¿½Þ¾Æ¿ï¿½
+        // ï¿½Ø´ï¿½ ï¿½ï¿½ ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ serviceï¿½ï¿½ boardOne ï¿½Þ¼ï¿½ï¿½å¸¦ È£ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         BoardDto dto = service.boardOne(boardno);
-        // °¡Á®¿Â ±Û Á¤º¸¸¦ Model¿¡ Ãß°¡ÇÏ¿© ºä·Î Àü´Þ
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Modelï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         m.addAttribute("dto", dto);
-        // normal/updateform ÅÛÇÃ¸´À» ¹ÝÈ¯ÇÏ¿© ÇØ´ç ±ÛÀÇ ¼öÁ¤ ÆûÀ» º¸¿©ÁÜ
+        // normal/updateform ï¿½ï¿½ï¿½Ã¸ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ï¿ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         return "normal/updateform";
     }
 
-    // ±Û ¼öÁ¤À» Ã³¸®ÇÏ´Â PUT ¿äÃ» Ã³¸® ¸Þ¼­µå
-    @PutMapping("/normal/update")
+    // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ï´ï¿½ PUT ï¿½ï¿½Ã» Ã³ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
+    @PostMapping("/normal/update")
     public String update(BoardDto dto) {
-        // Àü´Þ¹ÞÀº ¼öÁ¤µÈ ±Û Á¤º¸¸¦ serviceÀÇ updateBoard ¸Þ¼­µå¸¦ È£ÃâÇÏ¿© ¾÷µ¥ÀÌÆ®
+        // ï¿½ï¿½ï¿½Þ¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ serviceï¿½ï¿½ updateBoard ï¿½Þ¼ï¿½ï¿½å¸¦ È£ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
         service.updateBoard(dto);
-        // ±Û ¼öÁ¤ ÈÄ ±Û ¸ñ·Ï ÆäÀÌÁö·Î ¸®´ÙÀÌ·ºÆ®
+        // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì·ï¿½Æ®
         return "redirect:list";
     }
 
-    // ±Û »èÁ¦¸¦ Ã³¸®ÇÏ´Â DELETE ¿äÃ» Ã³¸® ¸Þ¼­µå
+    // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ï´ï¿½ DELETE ï¿½ï¿½Ã» Ã³ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
     @DeleteMapping("/normal/delete")
     @ResponseBody
     public String delete(int boardno) {
-        // ¿äÃ» ÆÄ¶ó¹ÌÅÍ·Î Àü´Þ¹ÞÀº ±Û ¹øÈ£¸¦ »ç¿ëÇÏ¿© serviceÀÇ deleteBoard ¸Þ¼­µå¸¦ È£ÃâÇÏ¿© ±Û »èÁ¦
+        // ï¿½ï¿½Ã» ï¿½Ä¶ï¿½ï¿½ï¿½Í·ï¿½ ï¿½ï¿½ï¿½Þ¹ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ serviceï¿½ï¿½ deleteBoard ï¿½Þ¼ï¿½ï¿½å¸¦ È£ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         int i = service.deleteBoard(boardno);
-        // »èÁ¦µÈ ±ÛÀÇ ¼ö¸¦ ¹®ÀÚ¿­·Î ¹ÝÈ¯
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
         return "" + i;
     }
 

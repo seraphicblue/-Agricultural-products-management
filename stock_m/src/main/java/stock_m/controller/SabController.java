@@ -49,7 +49,7 @@ public class SabController {
 	
 	@GetMapping("normal/main")
 	public String normalindex() {
-		return "/normal/index";
+		return "/normal/marketform";
 	}
 	
 	/*
