@@ -112,12 +112,16 @@ input:checked+.slider:before {
                         <a href="/normal/market"><img src="../market/img/logo.png" alt=""></a>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                </div>
                 <div class="col-lg-3">
+                </div>
+                <div class="col-lg-6">
+                                   
                     <div class="header__cart">
                         <ul>
-                            <li>
+                        <li>
+                         ${userid}님 안녕하세요
+                        </li>
+                            <li>       
                             	<div class="header__top__right__auth">
                             	<%-- logout기능 클릭시 MarketController에 logout메서드로 세션에 저장된 userid 정보를 삭제 --%>
                                		<a href="/logout"><i class="fa fa-user"></i> 로그아웃</a> 
@@ -150,9 +154,7 @@ input:checked+.slider:before {
                             <li><a href="/normal/p_val?p_val=100">식량작물</a></li>
                             <li><a href="/normal/p_val?p_val=200">채소류</a></li>
                             <li><a href="/normal/p_val?p_val=300">특용작물</a></li>
-                            <li><a href="/normal/p_val?p_val=400">과일류</a></li>
-                            <li><a href="/normal/p_val?p_val=500">축산물</a></li>
-                            <li><a href="/normal/p_val?p_val=600">수산물</a></li>
+                            <li><a href="/normal/p_val?p_val=400">과일류</a></li>          
                         </ul>
                     </div>
                 </div>
