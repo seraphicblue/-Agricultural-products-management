@@ -2,49 +2,49 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="stock_m.dao.BoardDao">
+<mapper namespace="stock_m.dao.QnABoardDao">
 
     <!-- 게시글 삽입 -->
-    <insert id="insert" parameterType="stock_m.dto.BoardDto">
-        insert into board(userid, subject, content, regdate, secret)
-        values(#{userid}, #{subject}, #{content}, now(), #{secret})
+    <insert id="qnainsert" parameterType="stock_m.dto.QnABoardDto">
+        insert into qnaboard(userid, subject, content, regdate, secret, role)
+        values( #{userid}, #{subject}, #{content}, now(), #{secret}, (select role from user where userid = #{userid}))
     </insert>
 
     <!-- 게시글 수정 -->
-    <update id="updateBoard" parameterType="stock_m.dto.BoardDto">
-        update board set subject=#{subject}, content=#{content}
-        where boardno=#{boardno}
+    <update id="qnaupdate" parameterType="stock_m.dto.QnABoardDto">
+        update qnaboard set subject=#{subject}, content=#{content}
+        where qnaboardid = #{qnaboardid}
     </update>
 
     <!-- 조회수 증가 -->
-    <update id="addReadcount" parameterType="int">
-        update board set readcount = readcount + 1 where boardno = #{boardno}
+    <update id="qnaaddReadcount" parameterType="int">
+        update qnaboard set readcount = readcount + 1 where qnaboardid = #{qnaboardid}
     </update>
 
     <!-- 게시글 삭제 -->
-    <delete id="deleteBoard" parameterType="int">
-        delete from board where boardno = #{boardno}
+    <delete id="qnadeleteBoard" parameterType="int">
+        delete from qnaboard where qnaboardid = #{qnaboardid}
     </delete>
 
     <!-- 게시글 목록 조회 -->
-    <select id="boardList" parameterType="map" resultType="stock_m.dto.BoardDto">
-        select * from board
-        order by boardno desc limit #{start}, #{count}
+    <select id="qnaboardList" parameterType="map" resultType="stock_m.dto.QnABoardDto">
+        select * from qnaboard
+        order by qnaboardid desc limit #{start}, #{count}
     </select>
 
     <!-- 게시글 총 개수 조회 -->
     <select id="count" resultType="int">
-        select count(*) from board
+        select count(*) from qnaboard
     </select>
 
     <!-- 게시글 단일 조회 -->
-    <select id="boardOne" parameterType="int" resultType="stock_m.dto.BoardDto">
-        select * from board where boardno = #{boardno}
+    <select id="qnaboardOne" parameterType="int" resultType="stock_m.dto.QnABoardDto">
+        select * from qnaboard where qnaboardid = #{qnaboardid}
     </select>
 
     <!-- 게시글 검색 -->
-    <select id="searchDateBoard" parameterType="map" resultType="stock_m.dto.BoardDto">
-        SELECT * FROM board
+    <select id="qnasearchboard" parameterType="map" resultType="stock_m.dto.QnABoardDto">
+        SELECT * FROM qnaboard
         <where>
             <if test="field != null and field != '' and keyword != null and keyword != ''">
             	<if test="startDate != null and endDate != null">
@@ -68,8 +68,12 @@
 
             </if>
         </where>
-        ORDER BY boardno DESC
+        ORDER BY qnaboard DESC
         LIMIT #{start}, #{count}
     </select>
+
+    
+    
+
 
 </mapper>

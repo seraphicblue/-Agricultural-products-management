@@ -20,7 +20,7 @@
     <tr><td>등록일</td><td><fmt:formatDate value="${dto.regdate }" dateStyle="long"/></td>
     <tr><td>조회수</td><td>${dto.readcount}</td>
     <tr><td colspan="2" align="right">
-        <c:if test="${ 0 == dto.userid }">
+        <c:if test="${user.userid == dto.userid}">
             <a href="/normal/update/${dto.boardno}">글 수정 </a>
             <a id="${dto.boardno}" href="#">글 삭제</a>
         </c:if>

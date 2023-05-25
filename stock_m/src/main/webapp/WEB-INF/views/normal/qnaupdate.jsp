@@ -7,18 +7,18 @@
 </head>
 <body>
 <div id="center">
-    <a href="../list" style="color: black; text-decoration: none;">
+    <a href="../qnalist" style="color: black; text-decoration: none;">
         <h1>게시글 목록</h1>
     </a>
 
     </div>
-<form method="post" id="updateform" action="/normal/update" >
+<form method="post" id="qnaupdate" action="/normal/qnaupdate" >
     <input type="hidden" name="_method" value="put">
     <table border="1">
         <tr>
             <td class="orange">제목</td>
             <td><input name="subject" value="${dto.subject }"/>
-                <input name="boardno" value="${dto.boardno}" type="hidden">
+                <input name="qnaboardid" value="${dto.qnaboardid}" type="hidden">
             </td>
         </tr>
         <tr>

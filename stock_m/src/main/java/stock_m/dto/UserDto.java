@@ -12,17 +12,17 @@ public class UserDto {
 	 * type : java 
 	 * ver : 1.0 
 	 * conect : UserDto
-	 * content : 유저 DTO 
-	 * writer : 고상원
+	 * content : �쑀�� DTO 
+	 * writer : 怨좎긽�썝
 	 * api : x
 	 */
 	 
 	
-	private String userid;
+	private String userid="admin";
 	private String userpw;
 	private String gender;
 	private int age;
 	private String username;
-	private String role;
+	private String role="admin";
 	private String enable;
 }
