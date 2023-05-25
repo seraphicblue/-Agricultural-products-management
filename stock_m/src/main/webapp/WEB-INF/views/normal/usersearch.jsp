@@ -135,8 +135,6 @@ input:checked+.slider:before {
                             <li><a href="/normal/p_val?p_val=200">채소류</a></li>
                             <li><a href="/normal/p_val?p_val=300">특용작물</a></li>
                             <li><a href="/normal/p_val?p_val=400">과일류</a></li>
-                            <li><a href="/normal/p_val?p_val=500">축산물</a></li>
-                            <li><a href="/normal/p_val?p_val=600">수산물</a></li>
                         </ul>
                     </div>
                 </div>
