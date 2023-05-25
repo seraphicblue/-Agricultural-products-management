@@ -8,7 +8,7 @@
 <body>
 
 	<table border="1">
-		<thead>
+		<thead> 
 			<tr>
 				<th>no</th>
 				<th>재고 번호</th>
