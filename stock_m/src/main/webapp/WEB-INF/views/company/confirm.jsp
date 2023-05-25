@@ -830,11 +830,10 @@ $.ajax({
 				    		$("#sbchange").val("total");
 				    		console.log("totalList");
 				    		$("input:checkbox[id='checkall']").prop("checked", false);
-				    		//$("input:checkbox[id='test_check']").prop("checked", false);
+				    		
 				    		 document.getElementById("buyinsert").style.display = "none";
 		     	    		document.getElementById("sellinsert").style.display = "none";
-		     	    		//document.getElementById("delchecksell").style.display = "none";
-		     	    		//document.getElementById("delcheckit").style.display = "none";
+		     	    		
 		     	    		 
 		     	    		var str = "";
 		     	    		for(let rb in response){
@@ -867,13 +866,9 @@ $.ajax({
 	 		    	}).done(function(response) {
 	 		    		
 	 		    		$("#sbchange").val("sell");
-	 		    		//alert($("#sbchange").val())
 	 		    		$("input:checkbox[id='checkall']").prop("checked", false);
-	 		    		//$("input:checkbox[id='test_check']").prop("checked", false);
 	 		    		document.getElementById("sellinsert").style.display = "block";
 	 		    		document.getElementById("buyinsert").style.display = "none";
-	 		    		//document.getElementById("delchecksell").style.display = "block";
-	 		    		//document.getElementById("delcheckit").style.display = "none";
 	 		    		
 	 		    		
 	 		    		console.log("sellList");
@@ -930,8 +925,7 @@ $.ajax({
 	     	    		
 	     	    		$("#sbchange").val("buy");
 	     	    		$("input:checkbox[id='checkall']").prop("checked", false);
-	     	    		//$("input:checkbox[id='test_check']").prop("checked", false);
-	     	    		//console.log("hiiii");
+	     	    		
 	     	    		document.getElementById("buyinsert").style.display = "block";
 	     	    		document.getElementById("sellinsert").style.display = "none";
 	     	    		
