@@ -376,7 +376,7 @@
                                     <h6 class="m-0 font-weight-bold text-primary">Area Chart</h6>
                                 </div>
                                
-                                    </div>
+                                    
                                 <div class="card-body">
                                     <div class="chart-area">
                                         <canvas id="myAreaChart"></canvas>
@@ -385,6 +385,7 @@
                                     <hr>
                                     Styling for the area chart can be found in the
                                     <code>/js/demo/chart-area-demo.js</code> file.
+                                </div>
                                 </div>
                             </div>
                         </div>
