@@ -16,6 +16,10 @@ public class LoginService {
 	//@Autowired
 	//private PasswordEncoder encoder;
 	
+	public int checkId(String userid) {
+		return dao.checkId(userid);
+	}
+	
 	public int insertUser(UserDto user) {
 		
 		//암호화(BCrypt 알고리즘 )

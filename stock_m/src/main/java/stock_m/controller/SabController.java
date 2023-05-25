@@ -39,21 +39,16 @@ public class SabController {
 		return "test";
 	}
 
-
-
 	@GetMapping("company/main")
-	public String companyindex(Model m) {
+	public String companyindex(Model m, HttpSession session) {
+		String userid = (String) session.getAttribute("userid");
 		List<AdminstockDto> adminstockList = stock_service.option();
 		System.out.println(adminstockList);
 		m.addAttribute("adminstockList",adminstockList);
-
+		List<NameAndPrice_sabDto> npList = sab_service.namePrice(userid);
+		m.addAttribute("npList", npList);
+		m.addAttribute("uid", userid);
 		return "company/index";
-	}
-
-
-	@GetMapping("normal/main")
-	public String normalindex() {
-		return "normal/index";
 	}
 
 	@GetMapping("/company/{sno}")
@@ -69,6 +64,11 @@ public class SabController {
 		int Vol = sab_service.selecVol(sno);
 		return Vol;
 	}
+	
+    @GetMapping("/company/buy")
+    public String buy(Model model) {    	
+        return "company/buy";
+    }
 
 	@GetMapping("/company/sell")
 	public String sellForm(Model m, HttpSession session) {

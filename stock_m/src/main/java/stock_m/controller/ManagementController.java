@@ -276,7 +276,7 @@ public class ManagementController {
 	}
 
 	@RequestMapping("/normal/insert")
-	public String insert(@RequestParam("id") String username, HttpSession session) {
+	public String insert(@RequestParam("username") String username, HttpSession session) {
 		// 요청 파라미터 값 id를 받아오고 service에 넘겨줌
 		String userid = (String) session.getAttribute("userid");
 		service.insert(userid, username);
@@ -294,18 +294,20 @@ public class ManagementController {
 	@RequestMapping("/normal/madelete")
 	public String delete(@RequestParam("m_content") String m_content, HttpSession session, HttpServletRequest request) {
 		String userid = (String) session.getAttribute("userid");
-		System.out.println(userid);
 		int mno = service.find(m_content, userid);
+		System.out.println(mno);
 		// HttpServletRequest을 이용해 현재 페이지의 접속 경로를 받아 저장
 		String url = request.getHeader("Referer");
-		service.delete(mno);
+		service.delete(mno,userid);
 		return "redirect:" + url;
 	}
 
 	@PostMapping("/normal/check")
 	@ResponseBody
-	public boolean check(String username) {
-		int count = service.check(username);
+	public boolean check(String username,HttpSession session) {
+		String userid = (String) session.getAttribute("userid");
+		System.out.println(username);
+		int count = service.check(username,userid);
 		if (count == 0) {
 			// ajax에서 result타입을 boolean type으로 받기 때문에 필요한 boolean 타입을 return
 			return true;

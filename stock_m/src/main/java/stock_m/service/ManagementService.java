@@ -76,8 +76,12 @@ public class ManagementService {
 		return dao.find(m_content, userid);
 	}
 
-	public int delete(int mno) {
-		return dao.delete(mno);
+	public int delete(int mno, String userid) {
+		Map<String, Object> m = new HashMap<>();
+		m.put("mno", mno);
+		m.put("userid", userid);
+		System.out.println(mno);
+		return dao.delete(m);
 	}
 
 	public int count() {
@@ -104,8 +108,8 @@ public class ManagementService {
 	}
 
 	
-	public int check(String id) {
-		return dao.check(id);
+	public int check(String username,String userid) {
+		return dao.check(username, userid);
 	}
 	
 

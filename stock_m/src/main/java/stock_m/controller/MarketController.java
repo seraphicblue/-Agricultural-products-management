@@ -87,16 +87,6 @@ public class MarketController {
 	    return "normal/marketform";
 	}
 	
-	/*
-	 * @GetMapping("/cartcount")
-	 * 
-	 * @ResponseBody() public String mlform(String userid) { int ccount =
-	 * service.cartCount("${nuserid}"); int cprice = service.cartPrice("${nuserid}");
-	 * Map<String, Object> map = new HashMap<>(); map.put("ccount", ccount);
-	 * map.put("cprice", cprice); JSONObject jo = new JSONObject(map); return
-	 * jo.toString(); }
-	 */
-	
 	@GetMapping("/normal/search")// 상품명 검색기능, 받아올건 이름이랑 가격만으로도 됨(pname, price)
 	public String sform(String pname, Model m, HttpSession session, @RequestParam(name = "p", defaultValue = "1") int page) {		
 		String userid = (String) session.getAttribute("userid");
@@ -111,24 +101,23 @@ public class MarketController {
 			cprice = service.cartPrice(userid);
 		}				
 		m.addAttribute("cprice", cprice);									//장바구니 공통 사항
-		
-		
 		m.addAttribute("pname", pname);										//pname : 상품명
 		int p_val = 0;														//p_val : 상품 분류코드
-		int cproduct = service.countProduct(pname, p_val);					//검색결과에 해당하는 상품의 수
+		List<String> nuserid = service.negativeUserid(userid);
+		if(nuserid.isEmpty()) {
+			nuserid.add("등록하지 않았습니다.");
+		}
+		int cproduct = service.countProduct(pname, p_val, nuserid);			//검색결과에 해당하는 상품의 수
 		m.addAttribute("cproduct", cproduct);
-		//List<Map<String,Object>> list = service.searchPname(pname);
-		//m.addAttribute("list", list);
-		
 
 		if (cproduct > 0) {													//검색 페이지 하단에 표시할 페이지수 
 
-			int perPage = 5; // 한 페이지에 보일 상품의 갯수
+			int perPage = 9; // 한 페이지에 보일 상품의 갯수
+
 
 			int startRow = (page - 1) * perPage;
-			//int endRow = page * perPage;
 			
-			List<Map<String,Object>> list = service.searchPname(pname, startRow);			
+			List<Map<String,Object>> list = service.searchPname(pname, startRow, nuserid);			
 			m.addAttribute("list", list);
 			
 			int pageNum = 5;//보여줄 페이지 번호 갯수
@@ -163,18 +152,19 @@ public class MarketController {
 		}				
 		m.addAttribute("cprice", cprice);
 		m.addAttribute("p_val", p_val);
-		int cproduct = service.countProduct(pname, p_val);
+		List<String> nuserid = service.negativeUserid(userid);
+		if(nuserid.isEmpty()) {
+			nuserid.add("등록하지 않았습니다.");
+		}
+		int cproduct = service.countProduct(pname, p_val, nuserid);
 		m.addAttribute("cproduct", cproduct);
-		//List<Map<String,Object>> list = service.searchP_val(p_val);
-		//m.addAttribute("list", list);
-		
 		
 		if (cproduct > 0) {
-			int perPage = 10; // 한 페이지에 보일 글의 갯수
+			int perPage = 9; // 한 페이지에 보일 글의 갯수
 			int startRow = (page - 1) * perPage;
-			//int endRow = page * perPage;
 			
-			List<Map<String,Object>> list = service.searchP_val(p_val, startRow);			
+			List<Map<String,Object>> list = service.searchP_val(p_val, startRow, nuserid);	
+			System.out.println("list : "+list);
 			m.addAttribute("list", list);
 			
 			int pageNum = 5;//보여줄 페이지 번호 갯수
@@ -234,9 +224,9 @@ public class MarketController {
 		else if(ccount > 0) {
 			cprice = service.cartPrice(userid);
 		}			
-		m.addAttribute("cprice", cprice);											//공통부분
-		
-		List<Map<String,Object>> cart = service.userCart(userid);					//세션에 저장된 userid로 해당 유저의 cart에 저장된 상품 정보를 cart에 저장 
+		m.addAttribute("cprice", cprice);
+		List<Map<String,Object>> cart = service.userCart(userid);
+		System.out.println("cart :"+cart);
 		m.addAttribute("cart", cart);
 		m.addAttribute("uid", userid);
 		return "normal/shoping-cart";

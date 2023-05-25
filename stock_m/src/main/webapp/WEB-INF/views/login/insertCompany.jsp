@@ -43,25 +43,24 @@
                             	<div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <select onchange="cselect()" id="select" name="role">
-                                        	<option selected disabled hidden="">사용자의 유형을 선택해 주세요.</option>
-                            				<option value="ROLE_COMPANY">업체</option>
+                            				<option value="ROLE_COMPANY" selected>업체</option>
                             				<option value="ROLE_NORMAL">일반인</option> 
                             			</select>
                             			<input name="enabled" value="3" hidden="">
                                     </div>
                                     <div class="col-sm-6">
-                                        <label><input type="radio" name="gender" value="남" checked> 남자</label>
-                                    	<label><input type="radio" name="gender" value="여"> 여자</label>
+                                        <input type="text" class="form-control form-control-user" id="gender"
+                                         name="gender"   placeholder="회사홈페이지">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="text" class="form-control form-control-user" id="username"
-                                         name="username"   placeholder="이름">
+                                         name="username"   placeholder="회사명">
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control form-control-user" id="age"
-                                         name="age"   placeholder="나이">
+                                         name="age"   placeholder="사업자번호">
                                     </div>
                                 </div>
                                 <div class="form-group row" style="margin-bottom: 3px">
@@ -92,8 +91,8 @@
                             
                             <script>
                             	function cselect(){                            		
-                            		if(document.getElementById("select").value == "ROLE_COMPANY") {
-                            			location.href = "insertCompany";
+                            		if(document.getElementById("select").value == "ROLE_NORMAL") {
+                            			location.href = "insertNormal";
                             		}
                             	}
                             	
@@ -136,43 +135,27 @@
                           	      var n = document.getElementById('username').value;
                           	      var a = document.getElementById('age').value;
                           	      var r = document.getElementById('select').value;
-                          	      var id = document.getElementById('userid').value;
-                          	   	  var cid = document.getElementById('idcheck').value;
-                          	      
-                          	      if(r != "ROLE_NORMAL" || r != "ROLE_NORMAL") {
-                    	              alert('사용자 유형을 선택해주세요.');
-                    	              return false;
-                    	          }
+                        	      var id = document.getElementById('userid').value;
+                        	   	  var cid = document.getElementById('idcheck').value;
                           	      
                           	      if(n.length < 2) {
-                      	              alert('이름을 입력해주세요.');
+                      	              alert('회사명을 입력해주세요.');
                       	              return false;
                       	          }
-                          	      // 공백과 특수문자 확인
-                                  var regex = /^[a-zA-Z가-힣]*$/;
-                                  if (!regex.test(n)) {
-                                      alert('이름에는 공백, 특수문자, 자음 또는 모음을 사용할 수 없습니다.');
-                                      return false;
-                                  }	
                           	      
                           	      if(isNaN(a) || a == "") {
-                      	              alert('나이는 숫자만 입력해주세요.');
+                      	              alert('사업자번호는 숫자만 입력해주세요.');
                       	              return false;
                       	          }
                           	      
-                          	      // 숫자 입력 확인
+                          		  // 숫자 입력 확인
                                   var regex = /^[0-9]*$/;
                                   if (!regex.test(a)) {
-                                      alert('나이는 숫자만 입력해주세요.');
+                                      alert('사업자번호는 숫자만 입력해주세요.');
                                       return false;
                                   }
                           	      
-                          	      if(a < 14 || a > 140) {
-                      	              alert('14살 이하는 가입할수 없습니다.');
-                      	              return false;
-                      	          }                          	      
-                          	      
-                          	      if(id.length < 5) {
+                                  if(id.length < 5) {
                       	              alert('id는 5글자 이상이어야 합니다.');
                       	              return false;
                       	          }

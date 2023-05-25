@@ -41,7 +41,11 @@
 
 			<!-- Sidebar - Brand -->
 			<!-- 홈화면 링크 부분-->
-			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.jsp">
+
+			<a
+				class="sidebar-brand d-flex align-items-center justify-content-center"
+				href="/company/main">
+
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-laugh-wink"></i>
 				</div>
@@ -64,7 +68,7 @@
 
 			<!-- Nav Item - Pages Collapse Menu -->
 			<!-- data-toggle 제거시 화살표 부분 제거-->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
+			<li class="nav-item"><a class="nav-link collapsed" href="redirect:/index.jsp"
 				data-target="#collapseTwo" aria-expanded="true"
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Components</span>
 			</a></li>
@@ -86,15 +90,14 @@
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapsePages"
 				aria-expanded="true" aria-controls="collapsePages"> <i
-					class="fas fa-fw fa-folder"></i> <span>업체 관리</span>
+					class="fas fa-fw fa-folder"></i> <span>거래 탭</span>
 			</a>
 				<div id="collapsePages" class="collapse"
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">관리 유형</h6>
-						<a class="collapse-item" href="/company/interest">관심 업체</a> <a
-							class="collapse-item" href="/company/management2">유의 업체</a> <a
-							class="collapse-item" href="/company/listall"> 전체 관리</a>
+						<h6 class="collapse-header">발주 / 판매</h6>
+						<a class="collapse-item" href="/company/buy">발주</a> 
+						<a class="collapse-item" href="/company/sell">판매</a>
 					</div>
 				</div></li>
 
@@ -107,7 +110,7 @@
 			<li class="nav-item"><a class="nav-link" href="tables.html">
 					<i class="fas fa-fw fa-table"></i> <span>Tables</span>
 			</a></li>
-
+			
 			<!-- Divider -->
 			<hr class="sidebar-divider d-none d-md-block">
 
@@ -185,8 +188,7 @@
 							class="nav-link dropdown-toggle" href="#" id="userDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <span
-								class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas
-									McGee</span> <img class="img-profile rounded-circle"
+								class="mr-2 d-none d-lg-inline text-gray-600 small">${uid}</span> <img class="img-profile rounded-circle"
 								src="../../img/undraw_profile.svg">
 						</a> <!-- Dropdown - User Information -->
 							<div
@@ -215,9 +217,8 @@
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+						<h1 class="h3 mb-0 text-gray-800">${uid}의 관리 페이지입니다.</h1>
 					</div>
-
 					<!-- Content Row -->
 					<div class="row">
 
@@ -393,59 +394,51 @@
 					<div class="row">
 
 						<!-- Content Column -->
-						<div class="col-lg-6 mb-4">
+						
+						<div id="Message" class="col-lg-6 mb-4">
+						<form action="sell" method="post" id="sellform"onsubmit="return checkStock();">
+							<input type="hidden" name="sno" id="val" value=0> 
+							<input type="hidden" name="pname" id="pname">
+							<input type="hidden" name="uid" id="uid" value="${uid}"> 
+							<input type="hidden" name="command" id="command" value="price">
 
-							<!-- Project Card Example -->
 							<div class="card shadow mb-4">
 								<div class="card-header py-3">
-									<h6 class="m-0 font-weight-bold text-primary">Projects</h6>
+									<h6 class="m-0 font-weight-bold text-primary">물품 판매</h6>
 								</div>
-								<div class="card-body">
-									<h4 class="small font-weight-bold">
-										Server Migration <span class="float-right">20%</span>
-									</h4>
-									<div class="progress mb-4">
-										<div class="progress-bar bg-danger" role="progressbar"
-											style="width: 20%" aria-valuenow="20" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-									<h4 class="small font-weight-bold">
-										Sales Tracking <span class="float-right">40%</span>
-									</h4>
-									<div class="progress mb-4">
-										<div class="progress-bar bg-warning" role="progressbar"
-											style="width: 40%" aria-valuenow="40" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-									<h4 class="small font-weight-bold">
-										Customer Database <span class="float-right">60%</span>
-									</h4>
-									<div class="progress mb-4">
-										<div class="progress-bar" role="progressbar"
-											style="width: 60%" aria-valuenow="60" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-									<h4 class="small font-weight-bold">
-										Payout Details <span class="float-right">80%</span>
-									</h4>
-									<div class="progress mb-4">
-										<div class="progress-bar bg-info" role="progressbar"
-											style="width: 80%" aria-valuenow="80" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-									<h4 class="small font-weight-bold">
-										Account Setup <span class="float-right">Complete!</span>
-									</h4>
-									<div class="progress">
-										<div class="progress-bar bg-success" role="progressbar"
-											style="width: 100%" aria-valuenow="100" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-								</div>
+								<table class="table table-bordered dataTable" id="dataTable"
+									width="100%" cellspacing="0" role="grid"
+									aria-describedby="dataTable_info" style="width: 100%;">
+									<thead>
+										<tr>
+											<th>재고 번호</th>
+											<th>수량</th>
+											<th>재고 물품</th>
+											<th>가격</th>
+											<th>총가격</th>
+											<th>판매</th>
+										</tr>
+									</thead>
+									<tbody>
+
+										<tr>
+											<td class="s_val"></td>
+											<td><input name="p_count" id="s_volume" value=0 style="width : 100px" ></td>
+											<td><select id="scontent" onchange="check()">
+													<option>--------------------</option> 
+													<c:forEach items="${npList}" var="np">
+														<option value="${np.s_volume}" id="${np.sno}">${np.scontent}</option>
+													</c:forEach> 
+												</select>
+											</td>
+											<td><input name="price" id="price" value=0 style="width : 100px"></td>
+											<td class="productprice"></td>
+											<td><input type="submit" value="판매"></td>
+										</tr>
+									</tbody>
+								</table>
 							</div>
-
-							<!-- Color System -->
-
+							</form>
 						</div>
 
 
@@ -484,7 +477,7 @@
 											</select></td>
 											<td class="selectedvolume"></td>
 											<td class="selectedprice"></td>
-											<td><button class="click">추가</button></td>
+											<td><button class="click2">추가</button></td>
 										</tr>
 									</tbody>
 								</table>
@@ -501,10 +494,26 @@
 
 			<!-- End of Footer -->
 
-		</div>
-		<!-- End of Content Wrapper -->
-
-	</div>
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">로그아웃</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">로그아웃 하시겠습니까?</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
+                    <a class="btn btn-primary" href="/logout">로그아웃</a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
 	<!-- End of Page Wrapper -->
 
 	<!-- Scroll to Top Button-->
@@ -552,6 +561,9 @@
 	<!-- Page level custom scripts -->
 	<script src="../../js/demo/chart-area-demo.js"></script>
 	<script src="../../js/demo/chart-pie-demo.js"></script>
+	<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="../../js/sell.js"></script>
+	<script src="../../js/webSocket.js"></script>
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
@@ -597,7 +609,7 @@
 		}
 
 		$(document).ready(function() {
-			$('.click').click(
+			$('.click2').click(
 					function() {
 						var scontent = $(this).closest('tr').find('.select_option').val();
 						var selectedPrice = $(this).closest('tr').find('.selectedprice').text();

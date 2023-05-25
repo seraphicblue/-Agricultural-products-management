@@ -81,8 +81,6 @@
                             <li><a href="/normal/p_val?p_val=200">채소류</a></li>
                             <li><a href="/normal/p_val?p_val=300">특용작물</a></li>
                             <li><a href="/normal/p_val?p_val=400">과일류</a></li>
-                            <li><a href="/normal/p_val?p_val=500">축산물</a></li>
-                            <li><a href="/normal/p_val?p_val=600">수산물</a></li>
                         </ul>
                     </div>
                 </div>
@@ -133,8 +131,6 @@
                             	<li><a href="/normal/p_val?p_val=200">채소류</a></li>
                             	<li><a href="/normal/p_val?p_val=300">특용작물</a></li>
                             	<li><a href="/normal/p_val?p_val=400">과일류</a></li>
-                            	<li><a href="/normal/p_val?p_val=500">축산물</a></li>
-                            	<li><a href="/normal/p_val?p_val=600">수산물</a></li>
                             </ul>
                         </div>
                 	</div>
@@ -164,15 +160,15 @@
                         window.onload = function(){
                         	var fin = "${fina}"; 
                     		for(var i = 1; i < parseInt(fin)+1; i++){
-                    			if(document.getElementById(i+"pname").textContent == "감자"){
+                    			if(document.getElementById(i+"pname").textContent.includes("감자")){
                     				document.getElementById(i+"pimg").setAttribute("style", "background-image: url('../../market/img/product/potato.jpg');");
-                    			}else if(document.getElementById(i+"pname").textContent == "양파"){
+                    			}else if(document.getElementById(i+"pname").textContent.includes("양파")){
                     				document.getElementById(i+"pimg").setAttribute("style", "background-image: url('../../market/img/product/onion.jpg');");
-                    			}else if(document.getElementById(i+"pname").textContent == "가지"){
+                    			}else if(document.getElementById(i+"pname").textContent.includes("가지")){
                     				document.getElementById(i+"pimg").setAttribute("style", "background-image: url('../../market/img/product/eggplant.jpg');");
-                    			}else if(document.getElementById(i+"pname").textContent == "토마토"){
+                    			}else if(document.getElementById(i+"pname").textContent.includes("토마토")){
                     				document.getElementById(i+"pimg").setAttribute("style", "background-image: url('../../market/img/product/tomato.jpg');");
-                    			}else if(document.getElementById(i+"pname").textContent == "당근"){
+                    			}else if(document.getElementById(i+"pname").textContent.includes("당근")){
                     				document.getElementById(i+"pimg").setAttribute("style", "background-image: url('../../market/img/product/carrot.jpg');");
                     			}
                     		}
@@ -190,13 +186,13 @@
                     <c:if test="${p_val == null}">
                     <div class="product__pagination" id="page">
 						<c:if test="${begin > pageNum }">
-							<a href="search?pname=${pname}&p=${begin-1 }">[이전]</a>
+							<a href="search?pname=${pname}&p=${begin-1 }"><</a>
 						</c:if>
 						<c:forEach begin="${begin }" end="${end}" var="i">
 							<a href="search?pname=${pname}&p=${i}">${i}</a>
 						</c:forEach>
 						<c:if test="${end < totalPages }">
-							<a href="search?pname=${pname}&p=${end+1}">[다음]</a>
+							<a href="search?pname=${pname}&p=${end+1}">></a>
 						</c:if>
 					</div>
 					</c:if>
