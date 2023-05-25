@@ -36,10 +36,10 @@ public interface ProductDao {
 	public Map<String,Object> detailProduct(int pno);
 	
 	@Select("select count(userid) from cart where userid = #{userid}")
-	public int cartCount(String memberId);
+	public int cartCount(String userid);
 	
 	@Select("select sum(count*price) from cart where userid = #{userid}")
-	public int cartPrice(String memberId);
+	public int cartPrice(String userid);
 	
 	public List<Map<String,Object>> searchP_val(@Param("p_val")int p_val, @Param("start")int start, @Param("nuserid") List<String> nuserid);
 	

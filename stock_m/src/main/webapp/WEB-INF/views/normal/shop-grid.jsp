@@ -37,8 +37,7 @@
 
 <body>
 <!-- Header Section Begin -->
-    <header class="header">
-       
+    <header class="header">       
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
