@@ -141,21 +141,36 @@ public class StockService {
 
 
 			
-			public List<Map<String, Object>> getbuycount(int sno) {
-				return dao.getbuycount(sno);
-			}
 
 
 			
-			public List<Map<String, Object>> getsellcount(int sno) {
-				return dao.getsellcount(sno);
-			}
 
 
 
 			public List<Map<String, Object>> getstockoption(String userid) {
 				
 				return dao.getstockoption(userid);
+			}
+
+
+
+
+
+			public List<Map<String, Object>> getsellcount(String userid, int sno) {
+				Map<String, Object> m = new HashMap<String, Object>();
+				m.put("userid", userid);
+				m.put("sno", sno);
+				return dao.getsellcount(m);
+			}
+
+
+
+			public List<Map<String, Object>> getbuycount(String userid, int sno) {
+				Map<String, Object> m = new HashMap<String, Object>();
+				m.put("userid", userid);
+				m.put("sno", sno);
+				System.out.println(sno);
+				return dao.getbuycount(m);
 			}
 
 

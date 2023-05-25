@@ -2,27 +2,32 @@
 Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#858796';
 
+               
+//1차 처음에 도넛데이터 불러오기         
 $(document).ready(function() {
   showStockResult();
 });
+
+//1차 도넛 ajax
 function showStockResult() {
 			$.ajax({
             url: "/company/getstock",
             type: "GET",
             }).done(function(response) {
-				     console.log("sdfsf");
+				     console.log("stocklist");
 			    	var stocklist = JSON.parse(response);
-                    
+
                     console.log(stocklist);
                     stockChart(stocklist);
-			    	 
-			    	
+
+
 			    	});
-             
-            
-       
+
+
+
         }
 
+//1차 도넛그래프 그리는 function 재고이름, 재고량
 function stockChart(stocklist){
 
 // Pie Chart Example
@@ -68,45 +73,78 @@ var myPieChart = new Chart(ctx, {
   },
 });
 
-
-        $(function(){$("[name='selectedStock']").on("change", function() {
-           var selectedsno=$(this).val();
+//2차 그래프 안에서 재고 선택시 onchange
+   $(function(){$("[name='selectedStock']").on("change", function() {
+		var selectedsno=$(this).val();
            console.log(selectedsno)
-           $.ajax({
-    url: "/company/getStockInfo",
-    type: "GET",
-    data: { selectedsno: selectedsno },
-    }).done(function(response) {
-		console.log("change.event 요청 성공")
-		 console.log(response);
-		 var sellcount=response;
-         getStockInfo(sellcount);
-         myLineChart(sellcount); 
-		 
-      // 가져온 데이터를 활용하여 추가 작업 수행
-  
-   
-  /*  getStockInfo(this);
-           
-            // var selectedElement=$(this).val();
-             console.log(selectedElement);
-             getStockInfo(selectedElement);*/
-  });
+       
+			$.ajax({
+            url: "/company/getStockInfos",
+            data: {
+				"selectedsno": selectedsno 
+               },
+            type: "GET"
+            }).done(function(response) {
+				     console.log("changeevent 호출");
+				     var parsedResponse = JSON.parse(response);
+                     var sellcountdate =JSON.parse(parsedResponse.sellcountdate);
+                     var buycountdate = JSON.parse(parsedResponse.buycountdate);
+			    	
+                    
+                    console.log(sellcountdate);
+                    console.log(buycountdate);
+                    getStockInfo(sellcountdate,buycountdate);
+			    	 
+			    	
+			    	});
+             
+            
+       
+        
+           firstResult(selectedsno);
 
         });
         });
 }
-function getStockInfo(sellcount) {
-	
-	console.log("getstockinfo 요청 성공");
-	console.log(sellcount);
+/////////////////////////////////
+var formatter = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+ ///////////////////////////////////////
+//2차
+function getStockInfo(sellcountdate,buycountdate) {
+var currentDate = new Date();
+// Create an array to store the labels for the past week
+var weekLabels = [];
+// Loop through the past 7 days and format the dates
+for (var i = 6; i >= 0; i--) {
+  var date = new Date(currentDate);
+  date.setDate(date.getDate() - i);
+  // Format the date and push it to the labels array
+  weekLabels.push(formatter.format(date));
+}
+	var ctx = document.getElementById("myAreaChart");
+	console.log("11111111111111111 요청 성공");
+	console.log(sellcountdate);
+	console.log(buycountdate);
 	
 	var sdates=[];
 	var scs=[];
+	var bdates=[];
+	var bcs=[];
 	
-    sellcount.forEach(function({ sdate, sc }) {
-    sdates.push(sdate);
+    sellcountdate.forEach(function({ sdate, sc }) {
+    sdates.push(formatter.format(sdate));
+    console.log("여기임");
+    console.log(sdate);
+    console.log(formatter.format(sdate));
     scs.push(sc);
+  });
+    buycountdate.forEach(function({ bdate, bc }) {
+    bdates.push(formatter.format(bdate));
+    bcs.push(bc);
   });
 
 //console.log(sellcountobj.sdate);
@@ -115,14 +153,40 @@ if (window.myLineChart) {
 	  
     window.myLineChart.destroy();
   }
+var salesData = [];
+var purchaseData = [];
 
+// Loop through the past 7 days and check if there is data available
+for (var i = 6; i >= 0; i--) {
+  var date = new Date(currentDate);
+  date.setDate(date.getDate() - i);
+  var formattedDate = formatter.format(date);
 
- var ctx = document.getElementById("myAreaChart");
+  // Check if there is sales data available for the current date
+  var salesIndex = sdates.indexOf(formattedDate);
+  if (salesIndex !== -1) {
+    // Sales data exists for the current date, add it to the salesData array
+    salesData.push(scs[salesIndex]);
+  } else {
+    // No sales data available for the current date, add 0
+    salesData.push(0);
+  }
+
+  // Check if there is purchase data available for the current date
+  var purchaseIndex = bdates.indexOf(formattedDate);
+  if (purchaseIndex !== -1) {
+    // Purchase data exists for the current date, add it to the purchaseData array
+    purchaseData.push(bcs[purchaseIndex]);
+  } else {
+    // No purchase data available for the current date, add 0
+    purchaseData.push(0);
+  }
+}
 var myLineChart = new Chart(ctx, {
 	
   type: 'line',
   data: {
-    labels: sdates,
+    labels: weekLabels, 
     datasets: [{
       label: "판매량",
       lineTension: 0.3,
@@ -136,8 +200,25 @@ var myLineChart = new Chart(ctx, {
       pointHoverBorderColor: "rgba(78, 115, 223, 1)",
       pointHitRadius: 10,
       pointBorderWidth: 2,
-      data: scs,
-    }],
+      data: salesData,
+    },
+    {
+      label: "구매량",
+      lineTension: 0.3,
+      backgroundColor: "rgba(231, 76, 60, 0.05)",
+      borderColor: "rgba(231, 76, 60, 1)",
+      pointRadius: 3,
+      pointBackgroundColor: "rgba(231, 76, 60, 1)",
+      pointBorderColor: "rgba(231, 76, 60, 1)",
+      pointHoverRadius: 3,
+      pointHoverBackgroundColor: "rgba(231, 76, 60, 1)",
+      pointHoverBorderColor: "rgba(231, 76, 60, 1)",
+      pointHitRadius: 10,
+      pointBorderWidth: 2,
+      data: purchaseData ,
+    } ],
+   
+   
   },
   options: {
     maintainAspectRatio: false,
@@ -164,11 +245,16 @@ var myLineChart = new Chart(ctx, {
       }],
       yAxes: [{
         ticks: {
+		beginAtZero: true,
           maxTicksLimit: 5,
           padding: 10,
+          
           // Include a dollar sign in the ticks
           callback: function(value, index, values) {
-            return '' + number_format(value);
+			  if (value === Math.floor(value)) {
+          return value; // Display the integer value
+        }
+            //return '' + number_format(value);
           }
         },
         gridLines: {
@@ -208,4 +294,7 @@ var myLineChart = new Chart(ctx, {
   
 
 })
+
+
+
 window.myLineChart = myLineChart;}

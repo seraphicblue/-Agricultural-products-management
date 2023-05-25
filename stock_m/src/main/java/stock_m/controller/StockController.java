@@ -258,18 +258,38 @@ public class StockController {
 			
 			
 		}
-		@GetMapping("/company/getStockInfo")
+		@GetMapping("company/getStockInfos")
 		@ResponseBody
-		public List<Map<String, Object>> getStockInfo(@RequestParam("selectedsno")int sno,Model m) {
+		public ResponseEntity<String> getStockInfo(
+				HttpSession session,
+				@RequestParam("selectedsno" )int selectedsno)throws JsonProcessingException{
+			String userid = (String)session.getAttribute("userid");
+			System.out.println(userid);
 			System.out.println("getstockinfo 요청됨");
-			List<Map<String, Object>> sellcountdate=service.getsellcount(sno);
-			List<Map<String, Object>> buycountdate=service.getbuycount(sno);
+			int sno=selectedsno;
+			List<Map<String, Object>> sellcountdate=service.getsellcount(userid, sno);
+			List<Map<String, Object>> buycountdate=service.getbuycount(userid, sno);
 			
-			Map<String,Object> map=HashMap<String, Object>;
-		   m.addAttribute("sellcount",sellcountdate);
-		   m.addAttribute("buycount",buycountdate);
-		  return sellcountdate;
+			System.out.println("sellcountdate"+sellcountdate);
+			System.out.println("buycountdate"+buycountdate);
+			
+			//json으로 직렬화
+			ObjectMapper om= new ObjectMapper();
+            
+			//json문자열로 변환
+			String sellcountdateJson = om.writeValueAsString(sellcountdate);
+			String buycountdateJson = om.writeValueAsString(buycountdate);
+			
+            Map<String, String> responseData = new HashMap<>();
+			responseData.put("sellcountdate", sellcountdateJson);
+			responseData.put("buycountdate", buycountdateJson);
+			
+			String jsonResponse = om.writeValueAsString(responseData);
+			
+			return ResponseEntity.ok(jsonResponse);
+			
 		}
+		
 	}
 
 

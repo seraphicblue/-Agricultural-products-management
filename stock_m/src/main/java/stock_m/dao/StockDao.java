@@ -89,14 +89,22 @@ public interface StockDao {
 			@Select("select scontent,s_volume from stock where userid=#{userid}")
 			List<Map<String, Object>> getstockData(String userid);
 
-			@Select("select count(bno) as bc,sdate from buy where pno=(select product.pno from product,stock where stock.sno=product.sno and stock.sno=#{sno}) group by sdate order by sdate")
-			List<Map<String, Object>> getbuycount(@Param("sno") int sno);	
-			
-			@Select("select count(sno) as sc,sdate from sell where pno=(select product.pno from product,stock where stock.sno=product.sno and stock.sno=#{sno}) group by sdate order by sdate")
-			List<Map<String, Object>> getsellcount(@Param("sno") int sno);			                                    //stock 번호로 product 상품번호를 찾기 
-			
+			/*
+			 * @Select("select count(bno) as bc,bdate from buy where pno=(select product.pno from product,stock where stock.sno=product.sno and stock.sno=#{sno}) group by bdate order by bdate"
+			 * ) List<Map<String, Object>> getbuycount(@Param("sno") int sno);
+			 * 
+			 * @Select("select count(sno) as sc,sdate from sell where pno=(select product.pno from product,stock where stock.sno=product.sno and stock.sno=#{sno}) group by sdate order by sdate"
+			 * ) List<Map<String, Object>> getsellcount(@Param("sno") int sno); //stock 번호로
+			 * product 상품번호를 찾기
+			 */
 			@Select("select sno,scontent from stock where userid=#{userid}")
 			List<Map<String, Object>> getstockoption(String userid);
+
+			@Select("select count(sno) as sc,sdate from sell where pno=(select product.pno from product,stock where stock.sno=product.sno and stock.sno=#{sno} and userid=#{userid})  group by sdate order by sdate")
+			List<Map<String, Object>> getsellcount(Map<String, Object> m);
+			
+			@Select("select count(bno) as bc,bdate from buy where pno=(select product.pno from product,stock where stock.sno=product.sno and stock.sno=#{sno}  and userid=#{userid}) group by bdate order by bdate")
+			List<Map<String, Object>> getbuycount(Map<String, Object> m);
 			 
 			
 			
