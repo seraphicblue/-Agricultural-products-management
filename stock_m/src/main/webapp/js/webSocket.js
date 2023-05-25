@@ -131,5 +131,7 @@ function sendMessage() {
 }
 
 function stockMessage(uid, text) {
-	
+	const newWindow = window.open('', 'New Window', "top=1000,left=1500,width=400,height=100");
+	contents = '<h3>' + "1차 메세지 : " + uid + "도달했습니다" +text+ '</h3>';
+	newWindow.document.write(contents);
 }
