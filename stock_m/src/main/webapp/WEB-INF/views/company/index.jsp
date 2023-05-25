@@ -88,15 +88,14 @@
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapsePages"
 				aria-expanded="true" aria-controls="collapsePages"> <i
-					class="fas fa-fw fa-folder"></i> <span>업체 관리</span>
+					class="fas fa-fw fa-folder"></i> <span>거래 탭</span>
 			</a>
 				<div id="collapsePages" class="collapse"
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">관리 유형</h6>
-						<a class="collapse-item" href="/company/interest">관심 업체</a> <a
-							class="collapse-item" href="/company/management2">유의 업체</a> <a
-							class="collapse-item" href="/company/listall"> 전체 관리</a>
+						<h6 class="collapse-header">발주 / 판매</h6>
+						<a class="collapse-item" href="/company/buy">발주</a> 
+						<a class="collapse-item" href="/company/sell">판매</a>
 					</div>
 				</div></li>
 
@@ -109,7 +108,7 @@
 			<li class="nav-item"><a class="nav-link" href="tables.html">
 					<i class="fas fa-fw fa-table"></i> <span>Tables</span>
 			</a></li>
-
+			
 			<!-- Divider -->
 			<hr class="sidebar-divider d-none d-md-block">
 
@@ -395,59 +394,51 @@
 					<div class="row">
 
 						<!-- Content Column -->
-						<div class="col-lg-6 mb-4">
+						
+						<div id="Message" class="col-lg-6 mb-4">
+						<form action="sell" method="post" id="sellform"onsubmit="return checkStock();">
+							<input type="hidden" name="sno" id="val" value=0> 
+							<input type="hidden" name="pname" id="pname">
+							<input type="hidden" name="uid" id="uid" value="${uid}"> 
+							<input type="hidden" name="command" id="command" value="price">
 
-							<!-- Project Card Example -->
 							<div class="card shadow mb-4">
 								<div class="card-header py-3">
-									<h6 class="m-0 font-weight-bold text-primary">Projects</h6>
+									<h6 class="m-0 font-weight-bold text-primary">물품 판매</h6>
 								</div>
-								<div class="card-body">
-									<h4 class="small font-weight-bold">
-										Server Migration <span class="float-right">20%</span>
-									</h4>
-									<div class="progress mb-4">
-										<div class="progress-bar bg-danger" role="progressbar"
-											style="width: 20%" aria-valuenow="20" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-									<h4 class="small font-weight-bold">
-										Sales Tracking <span class="float-right">40%</span>
-									</h4>
-									<div class="progress mb-4">
-										<div class="progress-bar bg-warning" role="progressbar"
-											style="width: 40%" aria-valuenow="40" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-									<h4 class="small font-weight-bold">
-										Customer Database <span class="float-right">60%</span>
-									</h4>
-									<div class="progress mb-4">
-										<div class="progress-bar" role="progressbar"
-											style="width: 60%" aria-valuenow="60" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-									<h4 class="small font-weight-bold">
-										Payout Details <span class="float-right">80%</span>
-									</h4>
-									<div class="progress mb-4">
-										<div class="progress-bar bg-info" role="progressbar"
-											style="width: 80%" aria-valuenow="80" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-									<h4 class="small font-weight-bold">
-										Account Setup <span class="float-right">Complete!</span>
-									</h4>
-									<div class="progress">
-										<div class="progress-bar bg-success" role="progressbar"
-											style="width: 100%" aria-valuenow="100" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-								</div>
+								<table class="table table-bordered dataTable" id="dataTable"
+									width="100%" cellspacing="0" role="grid"
+									aria-describedby="dataTable_info" style="width: 100%;">
+									<thead>
+										<tr>
+											<th>재고 번호</th>
+											<th>수량</th>
+											<th>재고 물품</th>
+											<th>가격</th>
+											<th>총가격</th>
+											<th>판매</th>
+										</tr>
+									</thead>
+									<tbody>
+
+										<tr>
+											<td class="s_val"></td>
+											<td><input name="p_count" id="s_volume" value=0 style="width : 30px" ></td>
+											<td><select id="scontent" onchange="check()">
+													<option>--------------------</option> 
+													<c:forEach items="${npList}" var="np">
+														<option value="${np.s_volume}" id="${np.sno}">${np.scontent}</option>
+													</c:forEach> 
+												</select>
+											</td>
+											<td><input name="price" id="price" value=0 style="width : 100px"></td>
+											<td class="productprice"></td>
+											<td><input type="submit" value="판매"></td>
+										</tr>
+									</tbody>
+								</table>
 							</div>
-
-							<!-- Color System -->
-
+							</form>
 						</div>
 
 
