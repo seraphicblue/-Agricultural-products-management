@@ -18,16 +18,28 @@ public class BroadcastService {
 		return userList;
 	}
 
-	public String broadStock(int sno, String userid) {
+	public int broadStock(int sno, String userid) {
 
 		int useridTF = Broadcast_dao.broadStock(sno,userid);
 		System.out.println("this is useridTF : "+useridTF);
-		System.out.println("this is userid : "+userid);
+		System.out.println("this is sno : "+sno);
 		if (useridTF == 1) {
-			return userid;
+			System.out.println("/////////+++++++++++++++++++++"+sno);
+			return sno;
 		}else{
-			return "none";
+			System.out.println("/////////-------------------------"+sno);
+			return 0;
 		}
 
 	}
+	
+	public void stockMessage(String userid,String content) {
+		Broadcast_dao.insertMessage(userid,content);
+	}
+	
+	public int countMsg(String userid){
+		return Broadcast_dao.countMsg(userid);
+	}
+	
+	
 }

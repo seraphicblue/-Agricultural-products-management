@@ -231,8 +231,8 @@
 											<div
 												class="text-xs font-weight-bold text-primary text-uppercase mb-1"
 												style="font-size: 15px;">재고 알림</div>
-											<div class="h5 mb-0 font-weight-bold text-gray-800"
-												id="position1">알림 메세지</div>
+											<div class="h5 mb-0 font-weight-bold text-800"
+												id="position1"></div>
 										</div>
 										<div class="col-auto"></div>
 									</div>
@@ -249,8 +249,8 @@
 											<div
 												class="text-xs font-weight-bold text-success text-uppercase mb-1"
 												style="font-size: 15px;">가격 알림</div>
-											<div class="h5 mb-0 font-weight-bold text-gray-800"
-												id="position2">알림 메세지</div>
+											<div class="h5 mb-0 font-weight-bold text-800"
+												id="position2"></div>
 										</div>
 										<div class="col-auto"></div>
 									</div>
@@ -261,23 +261,23 @@
 						<!-- Earnings (Monthly) Card Example -->
 						<div class="col-xl-3 col-md-6 mb-4">
 							<div class="card border-left-info shadow h-100 py-2">
-								<div class="card-body">
+								<div class="card-body"> 
 									<div class="row no-gutters align-items-center"> 
 										<div class="col mr-2">
 											<div
 												class="text-xs font-weight-bold text-info text-uppercase mb-1"
-												style="font-size: 15px;">한도 알림</div>
+												style="font-size: 15px;">한도 알림</div>  
 											<div class="row no-gutters align-items-center">
 												<div class="col-auto">
-													<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"
-														id="position3">알림 메세지</div>
+													<div class="h5 mb-0 mr-3 font-weight-bold text-800"
+														id="position3"></div>
 												</div>
 												<div class="col">
-													<div class="progress progress-sm mr-2">
+													<!-- <div class="progress progress-sm mr-2">
 														<div class="progress-bar bg-info" role="progressbar"
 															style="width: 50%" aria-valuenow="50" aria-valuemin="0"
 															aria-valuemax="100"></div>
-													</div>
+													</div> -->
 												</div>
 											</div>
 										</div>
@@ -296,8 +296,8 @@
 											<div
 												class="text-xs font-weight-bold text-warning text-uppercase mb-1"
 												style="font-size: 15px;">메세지 종합</div>
-											<div class="h5 mb-0 font-weight-bold text-gray-800"
-												id="position4">18</div>
+											<div class="h5 mb-0 font-weight-bold text-800"
+												id="position4"></div>
 										</div>
 										<div class="col-auto">
 											<i class="fas fa-comments fa-2x text-gray-300"></i>
