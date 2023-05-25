@@ -81,8 +81,6 @@
                             <li><a href="/normal/p_val?p_val=200">채소류</a></li>
                             <li><a href="/normal/p_val?p_val=300">특용작물</a></li>
                             <li><a href="/normal/p_val?p_val=400">과일류</a></li>
-                            <li><a href="/normal/p_val?p_val=500">축산물</a></li>
-                            <li><a href="/normal/p_val?p_val=600">수산물</a></li>
                         </ul>
                     </div>
                 </div>
@@ -161,7 +159,7 @@
                                                 <input type="text" class="count" value="${cart.count}" id="${cart.product_pno}" onchange="cchange(this)">                                                
                                             <span class="inc qtybtn" id="${cart.product_pno} +" onclick="vi('${cart.product_pno} +')">+</span>
                                             	<input id="${cart.product_pno}oldcount" value="${cart.count}" hidden="hidden">
-                                            </div>
+                                            </div> 
                                         </div>
                                     </td>
                                     <td class="shoping__cart__total" id="${cart.product_pno}total">

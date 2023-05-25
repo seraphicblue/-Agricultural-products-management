@@ -85,7 +85,59 @@ public class WebSocketConfig implements WebSocketConfigurer {
 			String payload = message.getPayload();
 			System.out.println(payload);
 			
-			if (payload.startsWith("/price")) { 
+			if (payload.startsWith("/price")) { // 가격 알림
+				String[] tokens = payload.split("_", 4);
+				String useridToken = tokens[1];
+				String target = tokens[2];
+				String textTarget = tokens[3];
+				System.out.println("this is handleTextMessage" + payload);
+
+				for (WebSocketSession webSocketSession : sessions) {
+					for (String key : socketMap.keySet()) {
+						
+						
+						String str = socketMap.get(key);
+
+						if (webSocketSession.getId().equals(str) && key.equals(target)) {
+
+							webSocketSession.sendMessage(new TextMessage("P_"+textTarget+"_"+useridToken));
+							System.out.println(webSocketSession.getId());
+							System.out.println("Sent message to user " + useridToken + ": " + target);
+							break;
+						}
+					} // inner_for_end
+				} // outer_for_end
+			} // if /price
+			
+			if (payload.startsWith("/stock")) {//재고 알림
+				String[] tokens = payload.split("_", 4);
+				String useridToken = tokens[1]; 
+				String target = tokens[2];
+				String name = tokens[3];
+				
+				System.out.println("this is payload : " + payload);
+				System.out.println("this is uidToken : " + useridToken);
+				System.out.println("this is target : " + target);
+				System.out.println("this is name : " + name);
+
+				for (WebSocketSession webSocketSession : sessions) {
+					for (String key : socketMap.keySet()) {
+						
+						String str = socketMap.get(key);
+
+						if (webSocketSession.getId().equals(str) && key.equals(useridToken)) {
+
+							webSocketSession.sendMessage(new TextMessage("S_"+name +"_"+ useridToken));
+							System.out.println(webSocketSession.getId());
+							System.out.println("Sent message to user " + useridToken + ": " + target+name);
+							break;
+						}
+					} // inner_for_end
+				} // outer_for_end
+			} // if /stock
+			
+			
+			if (payload.startsWith("/limit")) { //한도 알림
 				String[] tokens = payload.split("_", 4);
 				String useridToken = tokens[1];
 				String target = tokens[2];
@@ -107,34 +159,7 @@ public class WebSocketConfig implements WebSocketConfigurer {
 						}
 					} // inner_for_end
 				} // outer_for_end
-			} // if /price
-			
-			if (payload.startsWith("/stock")) {
-				String[] tokens = payload.split("_", 4);
-				String useridToken = tokens[1]; 
-				String target = tokens[2];
-				String name = tokens[3];
-				
-				System.out.println("this is payload : " + payload);
-				System.out.println("this is uidToken : " + useridToken);
-				System.out.println("this is target : " + target);
-				System.out.println("this is name : " + name);
-
-				for (WebSocketSession webSocketSession : sessions) {
-					for (String key : socketMap.keySet()) {
-						
-						String str = socketMap.get(key);
-
-						if (webSocketSession.getId().equals(str) && key.equals(useridToken)) {
-
-							webSocketSession.sendMessage(new TextMessage("S_"+name));
-							System.out.println(webSocketSession.getId());
-							System.out.println("Sent message to user " + useridToken + ": " + target+name);
-							break;
-						}
-					} // inner_for_end
-				} // outer_for_end
-			} // if /stock
+			} // if /price	
 			
 			
 		}//text_send
