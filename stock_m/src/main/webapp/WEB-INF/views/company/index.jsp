@@ -30,7 +30,7 @@
 </head>
 
 <body id="page-top">
-
+	<input type="hidden" name="command" id="command" value="All">
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -41,9 +41,11 @@
 
 			<!-- Sidebar - Brand -->
 			<!-- 홈화면 링크 부분-->
+
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
 				href="/company/main">
+
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-laugh-wink"></i>
 				</div>
@@ -260,7 +262,7 @@
 						<div class="col-xl-3 col-md-6 mb-4">
 							<div class="card border-left-info shadow h-100 py-2">
 								<div class="card-body">
-									<div class="row no-gutters align-items-center">
+									<div class="row no-gutters align-items-center"> 
 										<div class="col mr-2">
 											<div
 												class="text-xs font-weight-bold text-info text-uppercase mb-1"
@@ -561,7 +563,6 @@
 	<script src="../../js/demo/chart-pie-demo.js"></script>
 	<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="../../js/sell.js"></script>
-	<script src="../../js/webSocket.js"></script>
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>

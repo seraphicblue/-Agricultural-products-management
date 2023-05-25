@@ -14,8 +14,7 @@
     
 
    
-
-        function resetSearch(){
+       function resetSearch(){
 			document.getElementById("chartform").reset()
 			//location.assign("/company/getsdate")
 			};
