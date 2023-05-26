@@ -134,6 +134,7 @@ public class StockController {
 							}
 						
 							m.addAttribute("count", count);
+							m.addAttribute("uid", userid);
 							
 							return "company/stockmanage";
 						}
@@ -166,6 +167,7 @@ public class StockController {
 							  List<StockDto> sList=service.searchscontent(search,userid);
 							  m.addAttribute("stockList",sList);
 							  m.addAttribute("search", search);
+							  m.addAttribute("uid", userid);
 							  System.out.println("검색 결과 "+sList);
 							 
 						   return "company/search";
@@ -239,14 +241,14 @@ public class StockController {
 		
 		
 		@GetMapping("company/cs")
-        public String chartr(HttpSession session,Model m) {
-			
+        public String chartr(HttpSession session,Model m) {			
 			String userid = (String) session.getAttribute("userid");
 			List<Map<String, Object>> stockList = service.getstockoption(userid);
-			 m.addAttribute("stockList",stockList);
+			m.addAttribute("stockList",stockList);
+			m.addAttribute("uid", userid);
 			       
-				return"company/cs";
-			}
+			return"company/cs";
+		}
 		
 		@GetMapping("company/getstock")
 		@ResponseBody

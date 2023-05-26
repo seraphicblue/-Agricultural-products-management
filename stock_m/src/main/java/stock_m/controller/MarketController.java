@@ -54,16 +54,13 @@ public class MarketController {
 	    m.addAttribute("cprice", cprice);
 	    
 	    int count =m_service.count();
-		System.out.println(count);
 
 		if (count > 0) {
 
-			int perPage = 4; // 한 페이지에 보일 글의 갯수
+			int perPage = 3; // 한 페이지에 보일 글의 갯수
 			int startRow = (page - 1) * perPage;
-			System.out.println(startRow);
 			List<ManagementDto> mainList = m_service.mainList(startRow,userid);
 			m.addAttribute("userid", userid);
-			System.out.println(mainList);
 			m.addAttribute("mainList", mainList);
 
 			int pageNum = 5;
@@ -161,8 +158,7 @@ public class MarketController {
 			int perPage = 9; // 한 페이지에 보일 글의 갯수
 			int startRow = (page - 1) * perPage;
 			
-			List<Map<String,Object>> list = service.searchP_val(p_val, startRow, nuserid);	
-			System.out.println("list : "+list);
+			List<Map<String,Object>> list = service.searchP_val(p_val, startRow, nuserid);
 			m.addAttribute("list", list);
 			
 			int pageNum = 5;//보여줄 페이지 번호 갯수
@@ -224,7 +220,6 @@ public class MarketController {
 		}			
 		m.addAttribute("cprice", cprice);
 		List<Map<String,Object>> cart = service.userCart(userid);
-		System.out.println("cart :"+cart);
 		m.addAttribute("cart", cart);
 		m.addAttribute("uid", userid);
 		return "normal/shoping-cart";
