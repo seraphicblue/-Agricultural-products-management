@@ -25,10 +25,11 @@
 
 
 <!-- Custom styles for this template-->
-<link href="../../css/sb-admin-2.min.css" rel="stylesheet">
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script src="../../js/sell.js"></script>
-<script src="../../js/webSocket.js"></script>
+
+<link href="../../../css/sb-admin-2.min.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../../../js/sell.js"></script>
+<script src="../../../js/webSocket.js"></script>
 
 
 
@@ -197,7 +198,7 @@
 									<input type="hidden" name="pname" id="pname"> 
 									<input type="hidden" name="uid" id="uid" value="${uid}"> 
 									<input type="hidden" name="command" id="command" value="price">
-
+									
 									<table class="table table-bordered dataTable copyright text-center my-auto"
 										id="dataTable" width="100%" cellspacing="0" role="grid"
 										aria-describedby="dataTable_info" style="width: 100%;">
@@ -284,21 +285,24 @@
 			</div>
 
 			<!-- Bootstrap core JavaScript-->
-			<script src="../../vendor/jquery/jquery.min.js"></script>
-			<script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+			<script src="../../../vendor/jquery/jquery.min.js"></script>
+			<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 			<!-- Core plugin JavaScript-->
-			<script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
+			<script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
 
 			<!-- Custom scripts for all pages-->
-			<script src="../../js/sb-admin-2.min.js"></script>
+			<script src="../../../js/sb-admin-2.min.js"></script>
 
 			<!-- Page level plugins -->
-			<script src="../../vendor/chart.js/Chart.min.js"></script>
+			<script src="../../../vendor/chart.js/Chart.min.js"></script>
 
 			<!-- Page level custom scripts -->
-			</div>
-	</div>
+
+			
+			<script src="../../../js/demo/chart-area-demo.js"></script>
+			<script src="../../../js/demo/chart-pie-demo.js"></script>
+			
 
 </body>
 </html>
