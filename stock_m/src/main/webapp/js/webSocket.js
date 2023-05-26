@@ -34,7 +34,7 @@ socket.onmessage = function(event) {
 		}
 
 		stockMessage(sentUserid, contents);
-		messageCount = countMessage(sentUserid);
+		countMessage(sentUserid);
 
 	}
 	else {
@@ -163,6 +163,7 @@ function countMessage(uid) {
 		data: { userid: uid },
 		dataType: 'text',
 		success: function(data) {
+			document.getElementById('position4').textContent = " ";
 			document.getElementById('position4').textContent = data;
 		}
 	});
