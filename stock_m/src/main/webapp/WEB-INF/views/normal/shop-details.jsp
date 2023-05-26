@@ -37,6 +37,7 @@
 
 <body>
 <!-- Header Section Begin --> <%-- ------------------------- 다른 페이지들과 공통부분 시작 ------------------------- --%>
+<input type="hidden" name="command" id="command" value="common">
     <header class="header">
         <div class="container">
             <div class="row">
@@ -155,17 +156,43 @@
                             <img class="product__details__pic__item--large"
                                 src="../../market/img/product/carrot.jpg" height="360" width="330"alt="">
                         </c:if>
-                        </div>
-                        <!-- <div class="product__details__pic__slider owl-carousel">
-                            <img data-imgbigurl="../../market/img/product/details/product-details-2.jpg"
-                                src="../../market/img/product/details/thumb-1.jpg" alt="">
-                            <img data-imgbigurl="../../market/img/product/details/product-details-3.jpg"
-                                src="../../market/img/product/details/thumb-2.jpg" alt="">
-                            <img data-imgbigurl="../../market/img/product/details/product-details-5.jpg"
-                                src="../../market/img/product/details/thumb-3.jpg" alt="">
-                            <img data-imgbigurl="../../market/img/product/details/product-details-4.jpg"
-                                src="../../market/img/product/details/thumb-4.jpg" alt="">
-                        </div> -->
+                        <c:if test="${product.pname == '사과'}">
+                            <img class="product__details__pic__item--large"
+                                src="../../market/img/product/apple.jpg" height="360" width="330"alt="">
+                        </c:if>
+                        <c:if test="${product.pname == '바나나'}">
+                            <img class="product__details__pic__item--large"
+                                src="../../market/img/product/banana.jpg" height="360" width="330"alt="">
+                        </c:if>
+                        <c:if test="${product.pname == '배추'}">
+                            <img class="product__details__pic__item--large"
+                                src="../../market/img/product/cabbage.jpg" height="360" width="330"alt="">
+                        </c:if>
+                        <c:if test="${product.pname == '고추'}">
+                            <img class="product__details__pic__item--large"
+                                src="../../market/img/product/chilipepper.jpg" height="360" width="330"alt="">
+                        </c:if>
+                        <c:if test="${product.pname == '포도'}">
+                            <img class="product__details__pic__item--large"
+                                src="../../market/img/product/grape.jpg" height="360" width="330"alt="">
+                        </c:if>
+                        <c:if test="${product.pname == '메론'}">
+                            <img class="product__details__pic__item--large"
+                                src="../../market/img/product/melon.jpg" height="360" width="330"alt="">
+                        </c:if>
+                        <c:if test="${product.pname == '호박'}">
+                            <img class="product__details__pic__item--large"
+                                src="../../market/img/product/pumpkin.jpg" height="360" width="330"alt="">
+                        </c:if>
+                        <c:if test="${product.pname == '딸기'}">
+                            <img class="product__details__pic__item--large"
+                                src="../../market/img/product/strawberry.jpg" height="360" width="330"alt="">
+                        </c:if>
+                        <c:if test="${product.pname == '수박'}">
+                            <img class="product__details__pic__item--large"
+                                src="../../market/img/product/watermelon.jpg" height="360" width="330"alt="">
+                        </c:if>
+                        </div>                        
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">

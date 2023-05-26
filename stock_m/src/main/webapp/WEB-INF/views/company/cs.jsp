@@ -387,6 +387,7 @@
                                     <code></code> 
                                 </div>
                                 </div>
+                                </div>
                             </div>
                         </div>
                 <!-- /.container-fluid -->

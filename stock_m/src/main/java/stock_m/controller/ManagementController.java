@@ -17,12 +17,16 @@ import jakarta.servlet.http.HttpSession;
 import stock_m.dto.ManagementDto;
 import stock_m.dto.UserDto;
 import stock_m.service.ManagementService;
+import stock_m.service.MarketService;
 
 @Controller
 @SessionAttributes("user")
 public class ManagementController {
 	@Autowired
 	ManagementService service;
+	
+	@Autowired
+	MarketService marketservice;
 
 	@GetMapping("/normal/management2")
 	public String main2(@RequestParam(name = "page", defaultValue = "1") int page, Model m, HttpSession session) {
@@ -30,6 +34,18 @@ public class ManagementController {
 		// main1 ,main2, countSearch
 		// 위 컨트롤러들은 매핑된 경로로 요청이 들어오면 실행 됩니다.
 		String userid = (String) session.getAttribute("userid");
+		
+		//판매사이트 모든 페이지의 상단 장바구니 아이콘에 나타낼 정보들
+	    int cprice = 0;												//cprice : 장바구니에 저장된 모든 상품의 가격 총합
+	    int ccount = marketservice.cartCount(userid);				//ccount : 장바구니에 저장된 모든 상품의 갯수
+	    m.addAttribute("ccount", ccount);
+	    if (ccount == 0) {											//ccount가 0이면 cprice 계산시 오류가 나서 cprice값을 0으로 만들어줌
+	        cprice = 0;
+	    } else if (ccount > 0) {									
+	        cprice = marketservice.cartPrice(userid);
+	    }
+	    m.addAttribute("cprice", cprice);
+		
 		// 글이 있는지 체크하기위해 service에 count메서드를 실행
 		int count = service.count();
 		System.out.println(count);
@@ -68,6 +84,18 @@ public class ManagementController {
 	@GetMapping("/normal/interest")
 	public String main1(@RequestParam(name = "page", defaultValue = "1") int page, Model m, HttpSession session) {
 		String userid = (String) session.getAttribute("userid");
+		
+		//판매사이트 모든 페이지의 상단 장바구니 아이콘에 나타낼 정보들
+	    int cprice = 0;												//cprice : 장바구니에 저장된 모든 상품의 가격 총합
+	    int ccount = marketservice.cartCount(userid);				//ccount : 장바구니에 저장된 모든 상품의 갯수
+	    m.addAttribute("ccount", ccount);
+	    if (ccount == 0) {											//ccount가 0이면 cprice 계산시 오류가 나서 cprice값을 0으로 만들어줌
+	        cprice = 0;
+	    } else if (ccount > 0) {									
+	        cprice = marketservice.cartPrice(userid);
+	    }
+	    m.addAttribute("cprice", cprice);
+		
 		// 글이 있는지 체크
 		int count = service.count();
 		System.out.println(count);
@@ -102,7 +130,20 @@ public class ManagementController {
 	}
 
 	@RequestMapping("/normal/inmasearch")
-	public String search1(@RequestParam(name = "page", defaultValue = "1") int page, Model m, String keyword) {
+	public String search1(@RequestParam(name = "page", defaultValue = "1") int page, Model m, String keyword, HttpSession session) {
+		
+		String userid = (String) session.getAttribute("userid");
+		
+		//판매사이트 모든 페이지의 상단 장바구니 아이콘에 나타낼 정보들
+	    int cprice = 0;												//cprice : 장바구니에 저장된 모든 상품의 가격 총합
+	    int ccount = marketservice.cartCount(userid);				//ccount : 장바구니에 저장된 모든 상품의 갯수
+	    m.addAttribute("ccount", ccount);
+	    if (ccount == 0) {											//ccount가 0이면 cprice 계산시 오류가 나서 cprice값을 0으로 만들어줌
+	        cprice = 0;
+	    } else if (ccount > 0) {									
+	        cprice = marketservice.cartPrice(userid);
+	    }
+	    m.addAttribute("cprice", cprice);
 
 		// 글이 있는지 체크 해당요청에서는 keyword를 글이 있는지를
 		int count = service.countSearch(keyword);
@@ -138,7 +179,20 @@ public class ManagementController {
 	}
 
 	@RequestMapping("/normal/inmasearch2")
-	public String search2(@RequestParam(name = "page", defaultValue = "1") int page, Model m, String keyword) {
+	public String search2(@RequestParam(name = "page", defaultValue = "1") int page, Model m, String keyword, HttpSession session) {
+		
+		String userid = (String) session.getAttribute("userid");
+		
+		//판매사이트 모든 페이지의 상단 장바구니 아이콘에 나타낼 정보들
+	    int cprice = 0;												//cprice : 장바구니에 저장된 모든 상품의 가격 총합
+	    int ccount = marketservice.cartCount(userid);				//ccount : 장바구니에 저장된 모든 상품의 갯수
+	    m.addAttribute("ccount", ccount);
+	    if (ccount == 0) {											//ccount가 0이면 cprice 계산시 오류가 나서 cprice값을 0으로 만들어줌
+	        cprice = 0;
+	    } else if (ccount > 0) {									
+	        cprice = marketservice.cartPrice(userid);
+	    }
+	    m.addAttribute("cprice", cprice);
 
 		// 글이 있는지 체크 해당요청에서는 keyword를 글이 있는지를
 		int count = service.countSearch(keyword);
@@ -206,6 +260,18 @@ public class ManagementController {
 	@RequestMapping("/normal/listall")
 	public String list2(@RequestParam(name = "page", defaultValue = "1") int page, Model m, HttpSession session) {
 		String userid = (String) session.getAttribute("userid");
+		
+		//판매사이트 모든 페이지의 상단 장바구니 아이콘에 나타낼 정보들
+	    int cprice = 0;												//cprice : 장바구니에 저장된 모든 상품의 가격 총합
+	    int ccount = marketservice.cartCount(userid);				//ccount : 장바구니에 저장된 모든 상품의 갯수
+	    m.addAttribute("ccount", ccount);
+	    if (ccount == 0) {											//ccount가 0이면 cprice 계산시 오류가 나서 cprice값을 0으로 만들어줌
+	        cprice = 0;
+	    } else if (ccount > 0) {									
+	        cprice = marketservice.cartPrice(userid);
+	    }
+	    m.addAttribute("cprice", cprice);
+		
 		// 글이 있는지 체크
 		int count = service.count();
 		if (count > 0) {
@@ -238,9 +304,19 @@ public class ManagementController {
 	}
 
 	@RequestMapping("/normal/listallsearch")
-	public String searchall(@RequestParam(name = "page", defaultValue = "1") int page, Model m, String keyword,
-			HttpSession session) {
+	public String searchall(@RequestParam(name = "page", defaultValue = "1") int page, Model m, String keyword, HttpSession session) {
 		String userid = (String) session.getAttribute("userid");
+		
+		//판매사이트 모든 페이지의 상단 장바구니 아이콘에 나타낼 정보들
+	    int cprice = 0;												//cprice : 장바구니에 저장된 모든 상품의 가격 총합
+	    int ccount = marketservice.cartCount(userid);				//ccount : 장바구니에 저장된 모든 상품의 갯수
+	    m.addAttribute("ccount", ccount);
+	    if (ccount == 0) {											//ccount가 0이면 cprice 계산시 오류가 나서 cprice값을 0으로 만들어줌
+	        cprice = 0;
+	    } else if (ccount > 0) {									
+	        cprice = marketservice.cartPrice(userid);
+	    }
+	    m.addAttribute("cprice", cprice);
 		// 글이 있는지 체크
 		int count = service.countSearch(keyword);
 

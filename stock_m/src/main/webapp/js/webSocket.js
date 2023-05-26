@@ -16,16 +16,21 @@ socket.onmessage = function(event) {
 		if (sep == 'S') {
 			contents = content + " 재고 수치 도달";
 			document.getElementById('position1').textContent = contents;
-			stockMessage(sentUserid, contents);
+			document.getElementById('position1').style.color = "#FF0000";
 		}
 
 		else if (sep == 'P') {
-			document.getElementById('position2').textContent = content + "가격 도달";
+			contents = content + "가격 도달";
+			document.getElementById('position2').textContent = contents;
+			document.getElementById('position2').style.color = "#FF0000";
 		}
 
 		else if (sep == 'L') {
 			document.getElementById('position2').textContent = content + "한도 도달";
 		}
+
+		stockMessage(sentUserid, contents);
+		messageCount = countMessage(sentUserid);
 
 	}
 	else {
@@ -59,10 +64,9 @@ socket.onclose = function(event) {
 
 function sendMessage() {
 
-	if (document.getElementById('command').value == "price") {
+	if (document.getElementById('command').value == "price" || document.getElementById('command').value == "All") {
 
 		var message = document.getElementById('val').value;
-		var command = document.getElementById('command').value;
 		var userid = document.getElementById('uid').value;
 		var param = document.getElementById('price').value;
 		var textTarget = document.getElementById('scontent')[document.getElementById('scontent').selectedIndex].textContent;
@@ -85,13 +89,13 @@ function sendMessage() {
 					success: function(data) {
 						message = data;
 						for (var i = 0; i < data.length; i++) {
-							text = "/" + command + '_' + userid + '_' + data[i] + '_' + textTarget;
+							text = "/" + "price" + '_' + userid + '_' + data[i] + '_' + textTarget;
 
 							socket.send(text);
 						}
 
 
-					} 
+					}
 
 				})
 			}
@@ -100,8 +104,7 @@ function sendMessage() {
 	}
 	else if (document.getElementById('command').value == "stock") {
 		var message = "";
-		var command = document.getElementById('command').value;//식별 정보
-		var userid = document.getElementById('uid').value; //판매자 아이디
+		var userid = "";
 		var param = document.getElementById('fina').value; //반복 횟수
 		var pname = "";// 상품 이름
 
@@ -111,19 +114,30 @@ function sendMessage() {
 			userid = document.getElementById('h' + i + 'suserid').value; //판매자 아이디
 			message = document.getElementById('h' + i + 'sno').value; //재고 번호
 			pname = document.getElementById('h' + i + 'name').value; //물건 이름
-			//const newWindow = window.open('', 'New Window', "top=1000,left=1500,width=400,height=100");
-			//contents = '<h3>' + "1차 메세지 : " + userid + "도달했습니다" + '</h3>';
-			//newWindow.document.write(contents);
 			$.ajax({
 				url: '/broadstock',
 				type: 'get',
-				data: { sno: parseInt(message), userid: userid },
+				data: { sno: message, userid: userid },
 				dataType: 'text',
-				success: function(data){
-					/*contents = '<h3>' + "메세지 : " + userid + "도달했습니다" + '</h3>';
-					newWindow.document.write(contents);*/
-					text = "/" + command + '_' + data + '_' + message + '_' + pname;
-					socket.send(text);
+				success: function(data) {
+					if (data != 0) {
+						/*const newWindow = window.open('', 'New Window', "top=1000,left=1500,width=400,height=100");
+						contents = '<h3>' + "데이터 : " + data + "1차 도달했습니다" + '</h3>';
+						newWindow.document.write(contents);*/
+						for (var i = 1; i <= param; i++) {
+							userid = document.getElementById('h' + i + 'suserid').value; //판매자 아이디
+							message = document.getElementById('h' + i + 'sno').value; //재고 번호
+							pname = document.getElementById('h' + i + 'name').value; //물건 이름
+							if (data == message) {
+								/*const newWindow = window.open('', 'New Window', "top=1000,left=1500,width=400,height=100");
+								contents = '<h3>' + "메세지 : " + message + "데이터 : " + data + "1차 도달했습니다" + pname + '</h3>';
+								newWindow.document.write(contents);*/
+								text = "/" + "stock" + '_' + userid + '_' + message + '_' + pname;
+								socket.send(text);
+							}
+
+						}
+					}
 				}
 			})
 		}
@@ -131,5 +145,22 @@ function sendMessage() {
 }
 
 function stockMessage(uid, text) {
-
+	$.ajax({
+		url: '/stockmessage',
+		type: 'get',
+		data: { userid: uid, content: text }
+	});
 }
+
+function countMessage(uid) {
+	$.ajax({
+		url: '/countmessage',
+		type: 'get',
+		data: { userid: uid },
+		dataType: 'text',
+		success: function(data) {
+			document.getElementById('position4').textContent = data;
+		}
+	});
+}
+

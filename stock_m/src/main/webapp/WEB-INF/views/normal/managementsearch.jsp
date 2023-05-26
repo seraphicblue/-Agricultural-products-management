@@ -88,7 +88,7 @@ input:checked+.slider:before {
 </head>
 
 <body>
-<input type="hidden" name="command" id="command" value="stock"> 
+<input type="hidden" name="command" id="command" value="common">
 <!-- Header Section Begin --> <%-- ------------------------- 다른 페이지들과 공통부분 시작 ------------------------- --%>
     <header class="header">
        
@@ -135,8 +135,6 @@ input:checked+.slider:before {
                             <li><a href="/normal/p_val?p_val=200">채소류</a></li>
                             <li><a href="/normal/p_val?p_val=300">특용작물</a></li>
                             <li><a href="/normal/p_val?p_val=400">과일류</a></li>
-                            <li><a href="/normal/p_val?p_val=500">축산물</a></li>
-                            <li><a href="/normal/p_val?p_val=600">수산물</a></li>
                         </ul>
                     </div>
                 </div>
@@ -164,10 +162,10 @@ input:checked+.slider:before {
                 <div class="col-lg-12 text-center">
                 	<%-- 장바구니 페이지의 중단부에 토마토 부분 --%>
                     <div class="breadcrumb__text">
-                        <h2>관심 업체</h2>
+                        <h2>유의 업체</h2>
                         <div class="breadcrumb__option">
                             <a href="/normal/market">홈</a>
-                            <span>관심 업체</span>
+                            <span>유의 업체</span>
                             <%-- MarketController에서 받은 userid를 받아놓은 부분 --%>
                             <input id="userid" value="${userid}" hidden="hidden">
                         </div>
@@ -202,7 +200,7 @@ input:checked+.slider:before {
 					<div>
 					<!-- Page Heading -->
 					
-							<h1 class="h3 mb-2 text-gray-800">관심 업체</h1>
+							<h1 class="h3 mb-2 text-gray-800">유의 업체</h1>
 							   
 							<div class="hero__search__form">
 							<form action="/normal/inmasearch" method="GET">

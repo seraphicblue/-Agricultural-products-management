@@ -17,8 +17,21 @@ public class BroadcastController {
 	
 	@GetMapping("/broadstock")
 	@ResponseBody
-	public String stockBroad(int sno, String userid) {
-		String reuserid = broad_service.broadStock(sno,userid);
-		return reuserid;
+	public int stockBroad(int sno, String userid) {
+		int snocount = broad_service.broadStock(sno,userid);
+		return snocount;
+	}
+	
+	
+	@GetMapping("/stockmessage")
+	@ResponseBody
+	public void stockBroad(String userid, String content) {
+		broad_service.stockMessage(userid,content);
+	}
+	
+	@GetMapping("/countmessage")
+	@ResponseBody
+	public int countMessage(String userid) {
+		return broad_service.countMsg(userid);
 	}
 }
