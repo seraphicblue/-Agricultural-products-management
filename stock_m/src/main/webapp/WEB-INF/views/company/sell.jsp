@@ -25,10 +25,10 @@
 
 
 <!-- Custom styles for this template-->
-<link href="../../css/sb-admin-2.min.css" rel="stylesheet">
-<script src="../../js/webSocket.js"></script>
-<script src="../../js/sell.js"></script>
-<script src="../../js/webSocket.js"></script>
+<link href="../../../css/sb-admin-2.min.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../../../js/sell.js"></script>
+<script src="../../../js/webSocket.js"></script>
 
 
 </head>
@@ -300,10 +300,10 @@
 			<script src="../../vendor/chart.js/Chart.min.js"></script>
 
 			<!-- Page level custom scripts -->
-			<script src="../../js/demo/chart-area-demo.js"></script>
-			<script src="../../js/demo/chart-pie-demo.js"></script>
-			<script src="../../js/sell.js"></script>
-			<script src="../../js/sell.webSoket.js"></script>
-			<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+			
+			<script src="../../../js/demo/chart-area-demo.js"></script>
+			<script src="../../../js/demo/chart-pie-demo.js"></script>
+			
+			
 </body>
 </html>
