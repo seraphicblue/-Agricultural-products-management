@@ -26,6 +26,7 @@
 <link href="../../css/sb-admin-2.min.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="../../js/webSocket.js"></script>
+	<script src="../../js/sell.js"></script>
 
 
 </head>
@@ -280,8 +281,8 @@
 							<div class="card shadow mb-4">
 								<!-- Card Header - Dropdown -->
 								<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-									<h6 class="m-0 font-weight-bold text-primary">일주일간 판구매 동향</h6>
-									<div class="dropdown no-arrow">
+									<h6 class="m-0 font-weight-bold text-primary">일주일간 거래 동향</h6>
+									<!-- <div class="dropdown no-arrow">
 										<a class="dropdown-toggle" href="#" role="button"
 											id="dropdownMenuLink" data-toggle="dropdown"
 											aria-haspopup="true" aria-expanded="false"> <i
@@ -296,7 +297,7 @@
 											<div class="dropdown-divider"></div>
 											<a class="dropdown-item" href="#">Something else here</a>
 										</div>
-									</div>
+									</div> -->
 								</div>
 								<!-- Card Body -->
 								<div class="card-body">
@@ -313,7 +314,7 @@
 								<!-- Card Header - Dropdown -->
 								<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 									<h6 class="m-0 font-weight-bold text-primary">재고 현황</h6>
-									<div class="dropdown no-arrow">
+									<!-- <div class="dropdown no-arrow">
 										<a class="dropdown-toggle" href="#" role="button"
 											id="dropdownMenuLink" data-toggle="dropdown"
 											aria-haspopup="true" aria-expanded="false"> <i
@@ -328,7 +329,7 @@
 											<div class="dropdown-divider"></div>
 											<a class="dropdown-item" href="#">Something else here</a>
 										</div>
-									</div>
+									</div> -->
 								</div>
 								<!-- Card Body -->
 								<div class="card-body">
@@ -353,7 +354,7 @@
 						<!-- Content Column -->
 						
 						<div id="Message" class="col-lg-6 mb-4">
-						<form action="sell" method="post" id="sellform"onsubmit="return checkStock();">
+						<form action="sell" method="post" id="sellform" onsubmit="return checkStock();">
 							<input type="hidden" name="sno" id="val" value=0> 
 							<input type="hidden" name="pname" id="pname">
 							<input type="hidden" name="uid" id="uid" value="${uid}"> 
@@ -377,7 +378,7 @@
 									<tbody>
 
 										<tr>
-											<td ><input name="p_count" id="s_volume" placeholder="0 " size="10"
+											<td ><input name="p_count" id="s_volume" value=0 size="10"
 											style="width:45px;height:41px; text-align:right;"></td>
 											<td align="center"><select class="navbar navbar-expand" id="scontent" onchange="check()">
 													<option>--------------------</option> 
@@ -386,7 +387,7 @@
 													</c:forEach> 
 												</select>
 											</td>
-											<td><input name="price" id="price" placeholder="0 " size="10"
+											<td><input name="price" id="price" value=0 size="10"
 											style="width:100px;height:41px; text-align:right;"></td>
 											<td><input type="submit" class="btn btn-primary btn-icon-split" style="width:45px;height:41px; vertical-align: middle;" value="판매"></td>
 										</tr>
@@ -420,7 +421,7 @@
 										<tr>
 											<td class="s_val" style="vertical-align: middle;"></td>
 											<td style="padding-top: 12px">
-											<input type="text" class="s_volume" placeholder="0 " size="10"
+											<input type="text" class="s_volume" value=0 size="10"
 											style="width:45px;height:41px; text-align:right;"
 												onchange="changeprice(this)"></td>
 												<td align="center"><select class="navbar navbar-expand select_option"
@@ -434,7 +435,7 @@
 											</select></td>
 											<td class="selectedvolume" style="vertical-align: middle;"></td>
 											<td class="selectedprice" style="vertical-align: middle;"></td>
-											<td><button class="btn btn-primary btn-icon-split click" style="width:45px;height:41px;align-items: center;">
+											<td><button class="btn btn-primary btn-icon-split click2" style="width:45px;height:41px;align-items: center;">
 											<span>추가</span>
 											</button></td>
 										</tr>
@@ -522,7 +523,7 @@
 	<script src="../../js/demo/chart-area-demo.js"></script>
 	<script src="../../js/demo/chart-pie-demo.js"></script>
 	<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script src="../../js/sell.js"></script>
+
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>

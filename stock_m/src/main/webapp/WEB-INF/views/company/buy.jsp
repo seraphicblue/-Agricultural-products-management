@@ -204,7 +204,7 @@
 									<tbody>
 
 										<tr>
-											<td class="s_val"></td>
+											<td class="s_val" style="vertical-align: middle;"></td>
 											<td align="center"><select class="navbar navbar-expand select_option"
 												onchange="selectedoption(this)">
 													<option value="">선택하세요</option>
@@ -215,14 +215,14 @@
 													</c:forEach>
 											</select></td>
 											<td style="padding-top: 12px">
-											<input type="text" class="s_volume" value=0 size="10"
-											style="width:45px;height:41px;"
+											<input type="text" class="s_volume" placeholder="0" size="10"
+											style="width:45px;height:41px;text-align:right;"
 												onchange="changeprice(this)"></td>
-											<td class="selectedvolume"></td>
-											<td class="selectedprice"></td>
-											<td><button class="btn btn-primary btn-icon-split click" style="width:45px;height:41px;">
+											<td class="selectedvolume" style="vertical-align: middle;"></td>
+											<td class="selectedprice" style="vertical-align: middle;"></td>
+											<td><button class="btn btn-primary btn-icon-split click" style="width:45px;height:41px;align-items: center;">
 											<!-- <i class="fas fa-check" ></i> -->
-											<span style="padding-top:10px">추가</span>
+											<span>추가</span>
 											</button></td>
 										</tr>
 									</tbody>
