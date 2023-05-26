@@ -213,24 +213,24 @@
 									<tbody>
 
 										<tr>
-											<td class="s_val"></td>
-											<td align="center"><select class="navbar navbar-expand select_option"
-												onchange="selectedoption(this)">
-													<option value="">선택하세요</option>
-													<c:forEach items="${adminstockList}" var="option">
-														<option value="${option.acontent}"
-															data-volume="${option.a_volume}"
-															data-val="${option.a_val}">${option.acontent}</option>
-													</c:forEach>
-											</select></td>
+											<td class="sno"></td>
 											<td style="padding-top: 12px">
 											<input type="text" class="s_volume" value=0 size="10"
 											style="width:45px;height:41px;"
 												onchange="changeprice(this)"></td>
+												<td align="center">
+												<select class="navbar navbar-expand select_option" onchange="selectedoption(this)">
+													<option value="">--------------------</option>
+													<c:forEach items="${adminstockList}" var="option">
+														<option value="${option.acontent}"
+															data-volume="${option.a_volume}"
+															data-ano="${option.ano}"
+															title="${option.a_val}">${option.acontent}</option>
+													</c:forEach>
+											</select></td>
 											<td class="selectedvolume"></td>
 											<td class="selectedprice"></td>
-											<td><button class="btn btn-primary btn-icon-split click" style="width:45px;height:41px;">
-											<!-- <i class="fas fa-check" ></i> -->
+											<td><button class="btn btn-primary btn-icon-split click2" style="width:45px;height:41px;">
 											<span style="padding-top:10px">추가</span>
 											</button></td>
 										</tr>
@@ -315,7 +315,7 @@
 		function selectedoption(selectElement) {
 			var selectedOption = selectElement.options[selectElement.selectedIndex];
 			var selectedVolume = selectedOption.getAttribute("data-volume");
-			var selectedVal = selectedOption.getAttribute("data-val");
+			var selectedAno = selectedOption.getAttribute("data-ano");
 			var s_volume = selectElement.parentNode.parentNode
 					.getElementsByClassName("s_volume")[0].value;
 			var selectedPrice = selectElement.parentNode.parentNode
@@ -334,7 +334,7 @@
 			}
 
 			selectedPrice.textContent = selectedVolume;
-			selectElement.parentNode.parentNode.getElementsByClassName("s_val")[0].textContent = selectedVal;
+			selectElement.parentNode.parentNode.getElementsByClassName("sno")[0].textContent = selectedAno;
 		}
 
 		function changeprice(selectElement) {
@@ -354,12 +354,15 @@
 		}
 
 		$(document).ready(function() {
-			$('.click').click(
+			$('.click2').click(
 					function() {
 						var scontent = $(this).closest('tr').find('.select_option').val();
 						var selectedPrice = $(this).closest('tr').find('.selectedprice').text();
 						var s_volume = $(this).closest('tr').find('.s_volume').val();
-						var s_val = parseInt($(this).closest('tr').find('.s_val').text());
+						var ano = parseInt($(this).closest('tr').find('.sno').text());
+						var s_val = parseInt($(this).closest('tr').find('.select_option :selected').attr('title'));
+						console.log(s_val);
+						
 												$.ajax({
 															type : 'POST',
 															url : '/company/checks',
@@ -367,15 +370,16 @@
 																's_price' : selectedPrice,
 																'scontent' : scontent,
 																's_volume' : s_volume,
-																's_val' : s_val
+																'ano' : ano,
+																's_val': s_val
 															},
 															success : function(result) {
-																$(".s_val").text("");
+																$(".sno").text("");
 																$(".select_option").val("");
 																$(".s_volume").val("");
 																$(".selectedvolume").text("");
 																$(".selectedprice").text("");
-																$(".s_val").trigger("change");
+																$(".sno").trigger("change");
 																$(".selectedvolume").trigger("change");
 																$(".selectedprice").trigger("change");
 																
