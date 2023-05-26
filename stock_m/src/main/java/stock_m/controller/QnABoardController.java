@@ -6,9 +6,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import stock_m.dto.CommentDto;
 import stock_m.dto.QnABoardDto;
 import stock_m.dto.UserDto;
-
+import stock_m.service.CommentService;
 import stock_m.service.QnABoardService;
 
 import java.util.Date;
@@ -20,6 +21,8 @@ public class QnABoardController {
 
     @Autowired
     QnABoardService service;
+    @Autowired
+    CommentService Cservice;
 
     // "user"라는 이름으로 UserDto 객체를 Model에 추가하는 메서드
     @ModelAttribute("user")
@@ -91,7 +94,10 @@ public class QnABoardController {
         service.qnaaddReadcount(qnaboardid);
         QnABoardDto dto = service.qnaboardOne(qnaboardid);
         m.addAttribute("dto", dto);
+        List<CommentDto> commentList = Cservice.commentList();
+        m.addAttribute("commentList", commentList);
         return "normal/qnacontent";
+        
     }
 
     // 글 수정 폼을 보여주는 GET 요청 처리 메서드
@@ -101,6 +107,7 @@ public class QnABoardController {
         m.addAttribute("dto", dto);
         return "normal/qnaupdate";
     }
+    
 
     // 글 수정을 처리하는 PUT 요청 처리 메서드
     @PutMapping("/normal/qnaupdate")

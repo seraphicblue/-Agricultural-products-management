@@ -34,7 +34,7 @@
         <tr>
             <td colspan="2" align="center">
                 <c:choose>
-                    <c:when test="${qna.secret eq true}">
+                    <c:when test="${qnaboard.secret eq true}">
                         <input class="form-check-input" type="checkbox" name="secret" id="secret" checked="checked" disabled="disabled">
                     </c:when>
                     <c:otherwise>
