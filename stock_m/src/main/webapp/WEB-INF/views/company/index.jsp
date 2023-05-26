@@ -31,7 +31,7 @@
 
 <body id="page-top">
 	<input type="hidden" name="command" id="command" value="All">
-	<!-- Page Wrapper -->
+	<!-- Page Wrapper -->	
 	<div id="wrapper">
 
 		<!-- Sidebar -->
@@ -373,14 +373,14 @@
 								<div class="card-header py-3">
 									<h6 class="m-0 font-weight-bold text-primary">물품 판매</h6>
 								</div>
-								<table class="table table-bordered dataTable" id="dataTable"
+								<table class="table table-bordered dataTable copyright text-center my-auto" id="dataTable"
 									width="100%" cellspacing="0" role="grid"
 									aria-describedby="dataTable_info" style="width: 100%;">
 									<thead>
 										<tr>
 											<th>재고 번호</th>
-											<th>재고 물품</th>
 											<th>수량(KG)</th>
+											<th>재고 물품</th>											
 											<th>가격</th>
 											<th>총가격</th>
 											<th>판매</th>
@@ -390,8 +390,8 @@
 
 										<tr>
 											<td class="s_val"></td>
-											<td ><input name="p_count" id="s_volume" value=0 size="10"
-											style="width:45px;height:41px;"></td>
+											<td ><input name="p_count" id="s_volume" placeholder="0" size="10"
+											style="width:45px;height:41px; text-align:right;"></td>
 											<td align="center"><select class="navbar navbar-expand" id="scontent" onchange="check()">
 													<option>--------------------</option> 
 													<c:forEach items="${npList}" var="np">
@@ -399,8 +399,8 @@
 													</c:forEach> 
 												</select>
 											</td>
-											<td><input name="price" id="price" value=0 ize="10"
-											style="width:100px;height:41px;"></td>
+											<td><input name="price" id="price" placeholder="0" size="10"
+											style="width:100px;height:41px; text-align:right;"></td>
 											<td class="productprice"></td>
 											<td><input type="submit" class="btn btn-primary btn-icon-split" style="width:45px;height:41px;padding-top:5px;" value="판매"></td>
 										</tr>
@@ -434,8 +434,8 @@
 										<tr>
 											<td class="s_val"></td>
 											<td style="padding-top: 12px">
-											<input type="text" class="s_volume" value=0 size="10"
-											style="width:45px;height:41px;"
+											<input type="text" class="s_volume" placeholder="0" size="10"
+											style="width:45px;height:41px; text-align:right;"
 												onchange="changeprice(this)"></td>
 												<td align="center"><select class="navbar navbar-expand select_option"
 												onchange="selectedoption(this)">
