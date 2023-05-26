@@ -117,28 +117,6 @@ input:checked+.slider:before {
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
-<div class="hero__categories__box">
-   
-        <h4 align="center">게시글</h4>
-   
-    </div>
-
-	<div class="shoping__cart__table">
-	        <table>
-	        <tread>
-            <tr>
-                <th>제목</th>
-                <th>작성자</th>
-                <th>작성일</th>
-                <th>조회수</th>
-            </tr>
-            </tread>
-        
-       
-    
-    </table>
-    
-</div>
                 </div>
                 <div class="col-lg-3">
                 </div>

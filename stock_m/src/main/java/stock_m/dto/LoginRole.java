@@ -1,5 +1,5 @@
 package stock_m.dto;
 
-public class LoginRole {
-
+public enum LoginRole {
+	ROLE_ADMIN, ROLE_COMPANY, ROLE_NORMAL
 }
