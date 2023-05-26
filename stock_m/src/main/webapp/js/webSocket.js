@@ -3,6 +3,10 @@ var socket = new WebSocket(uri);
 
 socket.onopen = function(event) {
 	console.log("WebSocket is open now.");
+	if (document.getElementById('command').value == "All") {
+		console.log(uid.value);
+		messageCount = countMessage(uid.value);
+	}
 };
 
 socket.onmessage = function(event) {
