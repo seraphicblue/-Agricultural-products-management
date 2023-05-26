@@ -43,7 +43,7 @@
 
 			<!-- Sidebar - Brand -->
 			<!-- 홈화면 링크 부분-->
-			<a href="/company/main" class="sidebar-brand d-flex align-items-center justify-content-center" > 
+			<a href="/company/main" class="sidebar-brand d-flex align-items-center justify-content-center" >
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-laugh-wink"></i>
 				</div>
@@ -51,7 +51,6 @@
 					관리해줘 <sup>업체</sup>
 				</div>
 			</a>
-
 
 			<hr class="sidebar-divider">
 

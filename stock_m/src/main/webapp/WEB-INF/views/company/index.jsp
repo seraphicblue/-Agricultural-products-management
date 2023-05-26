@@ -24,9 +24,9 @@
 
 <!-- Custom styles for this template-->
 <link href="../../css/sb-admin-2.min.css" rel="stylesheet">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="../../js/webSocket.js"></script>
-<script src="../../js/sell.js"></script>
+	<script src="../../js/sell.js"></script>
 
 
 	<script src="../../vendor/jquery/jquery.min.js"></script>
@@ -152,7 +152,26 @@
 			</a>
 
 			<!-- Divider -->
+			<hr class="sidebar-divider my-0">
+
+			<!-- Nav Item - Dashboard -->
+
+
+			<!-- Divider -->
 			<hr class="sidebar-divider">
+<<<<<<< HEAD
+=======
+
+			<!-- Heading -->
+			
+			<!-- Nav Item - Pages Collapse Menu -->
+			<!-- data-toggle 제거시 화살표 부분 제거-->
+
+			<!-- Nav Item - Utilities Collapse Menu -->			
+
+			<!-- Divider -->
+
+>>>>>>> branch 'main' of https://github.com/marionest98/stock.git
 			<!-- Heading -->
 			<div class="sidebar-heading">Addons</div>
 
@@ -521,10 +540,17 @@
 															title="${option.a_val}">${option.acontent}</option>
 													</c:forEach>
 											</select></td>
+<<<<<<< HEAD
 											<td class="selectedvolume"></td>
 											<td class="selectedprice"></td>
 											<td><button class="btn btn-primary btn-icon-split click2" style="width:45px;height:41px;">
 											<span style="padding-top:10px">추가</span>
+=======
+											<td class="selectedvolume" style="vertical-align: middle;"></td>
+											<td class="selectedprice" style="vertical-align: middle;"></td>
+											<td><button class="btn btn-primary btn-icon-split click2" style="width:45px;height:41px;align-items: center;">
+											<span>추가</span>
+>>>>>>> branch 'main' of https://github.com/marionest98/stock.git
 											</button></td>
 										</tr>
 									</tbody>
@@ -594,7 +620,10 @@
 	</div>
 
 	<!-- Bootstrap core JavaScript-->
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'main' of https://github.com/marionest98/stock.git
 </body>
 
 </html>

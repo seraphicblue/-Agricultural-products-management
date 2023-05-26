@@ -228,10 +228,15 @@
 															title="${option.a_val}">${option.acontent}</option>
 													</c:forEach>
 											</select></td>
-											<td class="selectedvolume"></td>
-											<td class="selectedprice"></td>
-											<td><button class="btn btn-primary btn-icon-split click2" style="width:45px;height:41px;">
-											<span style="padding-top:10px">추가</span>
+											<td style="padding-top: 12px">
+											<input type="text" class="s_volume" placeholder="0" size="10"
+											style="width:45px;height:41px;text-align:right;"
+												onchange="changeprice(this)"></td>
+											<td class="selectedvolume" style="vertical-align: middle;"></td>
+											<td class="selectedprice" style="vertical-align: middle;"></td>
+											<td><button class="btn btn-primary btn-icon-split click" style="width:45px;height:41px;align-items: center;">
+											<!-- <i class="fas fa-check" ></i> -->
+											<span>추가</span>
 											</button></td>
 										</tr>
 									</tbody>
