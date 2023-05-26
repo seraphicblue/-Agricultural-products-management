@@ -232,7 +232,9 @@ public class RevenueController {
 						  //chart
 						
 						@GetMapping("company/cr")
-                      public String chartr(String userid,Model m) {
+                      public String chartr(String userid,Model m, HttpSession session) {
+							String uid = (String) session.getAttribute("userid");
+							m.addAttribute("uid", uid);
 							  userid="1";
 							    Calendar calendar = Calendar.getInstance();
 						        calendar.set(Calendar.YEAR, 2023);

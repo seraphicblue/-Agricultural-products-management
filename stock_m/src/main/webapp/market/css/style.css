@@ -594,6 +594,13 @@ ol {
 	cursor: pointer;
 }
 
+.hero__categories__box {
+	background: #7fad39;
+	position: relative;
+	padding: 10px 25px 10px 40px;
+	cursor: pointer;
+}
+
 .hero__categories__all i {
 	font-size: 16px;
 	color: #ffffff;

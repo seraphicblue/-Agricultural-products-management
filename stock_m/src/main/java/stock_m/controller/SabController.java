@@ -67,7 +67,11 @@ public class SabController {
 	}
 	
     @GetMapping("/company/buy")
-    public String buy(Model model) {    	
+    public String buy(Model model,HttpSession session) {
+    	String userid = (String) session.getAttribute("userid");
+		List<AdminstockDto> adminstockList = stock_service.option();
+		model.addAttribute("userid",userid);
+		model.addAttribute("adminstockList",adminstockList);
         return "company/buy";
     }
 
