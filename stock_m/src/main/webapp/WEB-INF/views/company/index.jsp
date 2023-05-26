@@ -368,18 +368,15 @@
 									aria-describedby="dataTable_info" style="width: 100%;">
 									<thead>
 										<tr>
-											<th>재고 번호</th>
 											<th>수량(KG)</th>
 											<th>재고 물품</th>											
 											<th>가격</th>
-											<th>총가격</th>
 											<th>판매</th>
 										</tr>
 									</thead>
 									<tbody>
 
 										<tr>
-											<td class="s_val"></td>
 											<td ><input name="p_count" id="s_volume" placeholder="0 " size="10"
 											style="width:45px;height:41px; text-align:right;"></td>
 											<td align="center"><select class="navbar navbar-expand" id="scontent" onchange="check()">
@@ -391,8 +388,7 @@
 											</td>
 											<td><input name="price" id="price" placeholder="0 " size="10"
 											style="width:100px;height:41px; text-align:right;"></td>
-											<td class="productprice"></td>
-											<td><input type="submit" class="btn btn-primary btn-icon-split" style="width:45px;height:41px;padding-top:5px;" value="판매"></td>
+											<td><input type="submit" class="btn btn-primary btn-icon-split" style="width:45px;height:41px; vertical-align: middle;" value="판매"></td>
 										</tr>
 									</tbody>
 								</table>
@@ -422,7 +418,7 @@
 									<tbody>
 
 										<tr>
-											<td class="s_val"></td>
+											<td class="s_val" style="vertical-align: middle;"></td>
 											<td style="padding-top: 12px">
 											<input type="text" class="s_volume" placeholder="0 " size="10"
 											style="width:45px;height:41px; text-align:right;"
@@ -436,10 +432,10 @@
 															data-val="${option.a_val}">${option.acontent}</option>
 													</c:forEach>
 											</select></td>
-											<td class="selectedvolume"></td>
-											<td class="selectedprice"></td>
-											<td><button class="btn btn-primary btn-icon-split click" style="width:45px;height:41px;">
-											<span style="padding-top:10px">추가</span>
+											<td class="selectedvolume" style="vertical-align: middle;"></td>
+											<td class="selectedprice" style="vertical-align: middle;"></td>
+											<td><button class="btn btn-primary btn-icon-split click" style="width:45px;height:41px;align-items: center;">
+											<span>추가</span>
 											</button></td>
 										</tr>
 									</tbody>
@@ -573,38 +569,38 @@
 
 		$(document).ready(function() {
 			$('.click2').click(
-					function() {
-						var scontent = $(this).closest('tr').find('.select_option').val();
-						var selectedPrice = $(this).closest('tr').find('.selectedprice').text();
-						var s_volume = $(this).closest('tr').find('.s_volume').val();
-						var s_val = parseInt($(this).closest('tr').find('.s_val').text());
-												$.ajax({
-															type : 'POST',
-															url : '/company/checks',
-															data : {
-																's_price' : selectedPrice,
-																'scontent' : scontent,
-																's_volume' : s_volume,
-																's_val' : s_val
-															},
-															success : function(result) {
-																$(".s_val").text("");
-																$(".select_option").val("");
-																$(".s_volume").val("");
-																$(".selectedvolume").text("");
-																$(".selectedprice").text("");
-																$(".s_val").trigger("change");
-																$(".selectedvolume").trigger("change");
-																$(".selectedprice").trigger("change");
+				function() {
+					var scontent = $(this).closest('tr').find('.select_option').val();
+					var selectedPrice = $(this).closest('tr').find('.selectedprice').text();
+					var s_volume = $(this).closest('tr').find('.s_volume').val();
+					var s_val = parseInt($(this).closest('tr').find('.s_val').text());
+						$.ajax({
+							type : 'POST',
+							url : '/company/checks',
+							data : {
+								's_price' : selectedPrice,
+								'scontent' : scontent,
+								's_volume' : s_volume,
+								's_val' : s_val
+							},							
+							success : function(result) {
+								$(".s_val").text("");
+								$(".select_option").val("");
+								$(".s_volume").val("");
+								$(".selectedvolume").text("");
+								$(".selectedprice").text("");
+								$(".s_val").trigger("change");
+								$(".selectedvolume").trigger("change");
+								$(".selectedprice").trigger("change");
 																
-																if (result == true) {
-																} else {
-																	alert("한도 부족입니다.");
-																}
-															}
-														});
-											});
+								if (result == true) {
+								} else {
+									alert("한도 부족입니다.");
+								}
+							}
 						});
+				});
+		});
 	</script>
 </body>
 
