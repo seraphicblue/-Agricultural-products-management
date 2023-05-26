@@ -4,8 +4,8 @@
    type    : Controller
    ver     : 5.0
    conect  : MarketService
-   content : 판매사이트 컨트롤러
-   writer  : 김기덕
+   content : �뙋留ㅼ궗�씠�듃 而⑦듃濡ㅻ윭
+   writer  : 源�湲곕뜒
    api     : x
 */
 package stock_m.controller;
@@ -39,14 +39,14 @@ public class MarketController {
 	@Autowired
 	ManagementService m_service;
 	
-	@GetMapping("/normal/market") // 판매사이트 로그인시 메인화면
+	@GetMapping("/normal/market") // �뙋留ㅼ궗�씠�듃 濡쒓렇�씤�떆 硫붿씤�솕硫�
 	public String mform(@RequestParam(name = "page", defaultValue = "1") int page,Model m, HttpSession session) {		
-		String userid = (String) session.getAttribute("userid");	//세션의 userid정보를 받아옴
-	    //판매사이트 모든 페이지의 상단 장바구니 아이콘에 나타낼 정보들
-	    int cprice = 0;												//cprice : 장바구니에 저장된 모든 상품의 가격 총합
-	    int ccount = service.cartCount(userid);						//ccount : 장바구니에 저장된 모든 상품의 갯수
+		String userid = (String) session.getAttribute("userid");	//�꽭�뀡�쓽 userid�젙蹂대�� 諛쏆븘�샂
+	    //�뙋留ㅼ궗�씠�듃 紐⑤뱺 �럹�씠吏��쓽 �긽�떒 �옣諛붽뎄�땲 �븘�씠肄섏뿉 �굹���궪 �젙蹂대뱾
+	    int cprice = 0;												//cprice : �옣諛붽뎄�땲�뿉 ���옣�맂 紐⑤뱺 �긽�뭹�쓽 媛�寃� 珥앺빀
+	    int ccount = service.cartCount(userid);						//ccount : �옣諛붽뎄�땲�뿉 ���옣�맂 紐⑤뱺 �긽�뭹�쓽 媛��닔
 	    m.addAttribute("ccount", ccount);
-	    if (ccount == 0) {											//ccount가 0이면 cprice 계산시 오류가 나서 cprice값을 0으로 만들어줌
+	    if (ccount == 0) {											//ccount媛� 0�씠硫� cprice 怨꾩궛�떆 �삤瑜섍� �굹�꽌 cprice媛믪쓣 0�쑝濡� 留뚮뱾�뼱以�
 	        cprice = 0;
 	    } else if (ccount > 0) {									
 	        cprice = service.cartPrice(userid);
@@ -57,14 +57,14 @@ public class MarketController {
 
 		if (count > 0) {
 
-			int perPage = 3; // 한 페이지에 보일 글의 갯수
+			int perPage = 3; // �븳 �럹�씠吏��뿉 蹂댁씪 湲��쓽 媛��닔
 			int startRow = (page - 1) * perPage;
 			List<ManagementDto> mainList = m_service.managementListall(startRow,userid);
 			m.addAttribute("userid", userid);
 			m.addAttribute("mainList", mainList);
 
 			int pageNum = 5;
-			int totalPages = count / perPage + (count % perPage > 0 ? 1 : 0); // 전체 페이지 수
+			int totalPages = count / perPage + (count % perPage > 0 ? 1 : 0); // �쟾泥� �럹�씠吏� �닔
 
 			int begin = (page - 1) / pageNum * pageNum + 1;
 			int end = begin + pageNum - 1;
@@ -82,7 +82,7 @@ public class MarketController {
 	    return "normal/marketform";
 	}
 	
-	@GetMapping("/normal/search")// 상품명 검색기능, 받아올건 이름이랑 가격만으로도 됨(pname, price)
+	@GetMapping("/normal/search")// �긽�뭹紐� 寃��깋湲곕뒫, 諛쏆븘�삱嫄� �씠由꾩씠�옉 媛�寃⑸쭔�쑝濡쒕룄 �맖(pname, price)
 	public String sform(String pname, Model m, HttpSession session, @RequestParam(name = "p", defaultValue = "1") int page) {		
 		String userid = (String) session.getAttribute("userid");
         
@@ -95,19 +95,19 @@ public class MarketController {
 		else if(ccount > 0) {
 			cprice = service.cartPrice(userid);
 		}				
-		m.addAttribute("cprice", cprice);									//장바구니 공통 사항
-		m.addAttribute("pname", pname);										//pname : 상품명
-		int p_val = 0;														//p_val : 상품 분류코드
+		m.addAttribute("cprice", cprice);									//�옣諛붽뎄�땲 怨듯넻 �궗�빆
+		m.addAttribute("pname", pname);										//pname : �긽�뭹紐�
+		int p_val = 0;														//p_val : �긽�뭹 遺꾨쪟肄붾뱶
 		List<String> nuserid = service.negativeUserid(userid);
 		if(nuserid.isEmpty()) {
-			nuserid.add("등록하지 않았습니다.");
+			nuserid.add("�벑濡앺븯吏� �븡�븯�뒿�땲�떎.");
 		}
-		int cproduct = service.countProduct(pname, p_val, nuserid);			//검색결과에 해당하는 상품의 수
+		int cproduct = service.countProduct(pname, p_val, nuserid);			//寃��깋寃곌낵�뿉 �빐�떦�븯�뒗 �긽�뭹�쓽 �닔
 		m.addAttribute("cproduct", cproduct);
 
-		if (cproduct > 0) {													//검색 페이지 하단에 표시할 페이지수 
+		if (cproduct > 0) {													//寃��깋 �럹�씠吏� �븯�떒�뿉 �몴�떆�븷 �럹�씠吏��닔 
 
-			int perPage = 9; // 한 페이지에 보일 상품의 갯수
+			int perPage = 9; // �븳 �럹�씠吏��뿉 蹂댁씪 �긽�뭹�쓽 媛��닔
 
 
 			int startRow = (page - 1) * perPage;
@@ -115,8 +115,8 @@ public class MarketController {
 			List<Map<String,Object>> list = service.searchPname(pname, startRow, nuserid);			
 			m.addAttribute("list", list);
 			
-			int pageNum = 5;//보여줄 페이지 번호 갯수
-			int totalPages = cproduct / perPage + (cproduct % perPage > 0 ? 1 : 0); //전체 페이지 수
+			int pageNum = 5;//蹂댁뿬以� �럹�씠吏� 踰덊샇 媛��닔
+			int totalPages = cproduct / perPage + (cproduct % perPage > 0 ? 1 : 0); //�쟾泥� �럹�씠吏� �닔
 			
 			int begin = (page - 1) / pageNum * pageNum + 1;
 			int end = begin + pageNum - 1;
@@ -132,7 +132,7 @@ public class MarketController {
 		return "normal/shop-grid";
 	}
 	
-	@GetMapping("/normal/p_val")// 상품분류코드 별로 검색 기능, 받아올건 이름이랑 가격만으로도 됨(pname, price)
+	@GetMapping("/normal/p_val")// �긽�뭹遺꾨쪟肄붾뱶 蹂꾨줈 寃��깋 湲곕뒫, 諛쏆븘�삱嫄� �씠由꾩씠�옉 媛�寃⑸쭔�쑝濡쒕룄 �맖(pname, price)
 	public String pvform(String pname, int p_val, Model m, HttpSession session, @RequestParam(name = "p", defaultValue = "1") int page) {		
 		String userid = (String) session.getAttribute("userid");
         
@@ -149,20 +149,20 @@ public class MarketController {
 		m.addAttribute("p_val", p_val);
 		List<String> nuserid = service.negativeUserid(userid);
 		if(nuserid.isEmpty()) {
-			nuserid.add("등록하지 않았습니다.");
+			nuserid.add("�벑濡앺븯吏� �븡�븯�뒿�땲�떎.");
 		}
 		int cproduct = service.countProduct(pname, p_val, nuserid);
 		m.addAttribute("cproduct", cproduct);
 		
 		if (cproduct > 0) {
-			int perPage = 9; // 한 페이지에 보일 글의 갯수
+			int perPage = 9; // �븳 �럹�씠吏��뿉 蹂댁씪 湲��쓽 媛��닔
 			int startRow = (page - 1) * perPage;
 			
 			List<Map<String,Object>> list = service.searchP_val(p_val, startRow, nuserid);
 			m.addAttribute("list", list);
 			
-			int pageNum = 5;//보여줄 페이지 번호 갯수
-			int totalPages = cproduct / perPage + (cproduct % perPage > 0 ? 1 : 0); //전체 페이지 수
+			int pageNum = 5;//蹂댁뿬以� �럹�씠吏� 踰덊샇 媛��닔
+			int totalPages = cproduct / perPage + (cproduct % perPage > 0 ? 1 : 0); //�쟾泥� �럹�씠吏� �닔
 			
 			int begin = (page - 1) / pageNum * pageNum + 1;
 			int end = begin + pageNum - 1;
@@ -179,7 +179,7 @@ public class MarketController {
 		return "normal/shop-grid";
 	}
 	
-	@GetMapping("/normal/details/{pno}") // 특정상품 클릭시 그 상품 상세페이지로 이동
+	@GetMapping("/normal/details/{pno}") // �듅�젙�긽�뭹 �겢由��떆 洹� �긽�뭹 �긽�꽭�럹�씠吏�濡� �씠�룞
 	public String sdform(@PathVariable int pno, Model m, HttpSession session) {		
 		String userid = (String) session.getAttribute("userid");
         
@@ -192,20 +192,20 @@ public class MarketController {
 		else if(ccount > 0) {
 			cprice = service.cartPrice(userid);
 		}			
-		m.addAttribute("cprice", cprice);							//공통부분
+		m.addAttribute("cprice", cprice);							//怨듯넻遺�遺�
 		
-		Map<String,Object> product = service.detailProduct(pno);	//해당 상품의 상품번호로 해당 상품 정보를 받아서 product에 저장
+		Map<String,Object> product = service.detailProduct(pno);	//�빐�떦 �긽�뭹�쓽 �긽�뭹踰덊샇濡� �빐�떦 �긽�뭹 �젙蹂대�� 諛쏆븘�꽌 product�뿉 ���옣
 		m.addAttribute("product", product);
 		return "normal/shop-details";
 	}
 	
-	@PostMapping("/normal/addcart") // 장바구니에 상품 담기 기능
+	@PostMapping("/normal/addcart") // �옣諛붽뎄�땲�뿉 �긽�뭹 �떞湲� 湲곕뒫
 	public String addcart(Cart cart, int product_pno, String userid, int count) {
 		service.addCart(cart, product_pno, userid, count);
 		return "normal/shop-details";
 	}
 	
-	@GetMapping("/normal/cart/{userid}") // 유저아이디로 그 유저의 카트 목록을 가져오는 기능
+	@GetMapping("/normal/cart/{userid}") // �쑀���븘�씠�뵒濡� 洹� �쑀���쓽 移댄듃 紐⑸줉�쓣 媛��졇�삤�뒗 湲곕뒫
 	public String cform(Model m, HttpSession session) {		
 		String userid = (String) session.getAttribute("userid");
 
@@ -225,25 +225,25 @@ public class MarketController {
 		return "normal/shoping-cart";
 	}
 		
-	@GetMapping("/normal/countchange") // 장바구니에서 -,+버튼 클릭시 cart테이블에 해당상품 갯수 변경 기능
+	@GetMapping("/normal/countchange") // �옣諛붽뎄�땲�뿉�꽌 -,+踰꾪듉 �겢由��떆 cart�뀒�씠釉붿뿉 �빐�떦�긽�뭹 媛��닔 蹂�寃� 湲곕뒫
 	public String cc(@Param("count") int count,@Param("userid") String userid,@Param("product_pno") int product_pno) {
 		service.countChange(count, userid, product_pno);
 		return "normal/shoping-cart";
 	}
 	
-	@GetMapping("/normal/checkout") // 결제완료시 해당 유저의 cart테이블에 모든 정보를 지우는 기능
+	@GetMapping("/normal/checkout") // 寃곗젣�셿猷뚯떆 �빐�떦 �쑀���쓽 cart�뀒�씠釉붿뿉 紐⑤뱺 �젙蹂대�� 吏��슦�뒗 湲곕뒫
 	public String co(@Param("userid") String userid) {
 		service.checkOut(userid);
 		return "normal/shoping-cart";
 	}
 	
-	@GetMapping("/normal/delete") // 장바구니 X버튼 클릭시 cart테이블에서 상품번호를 통해 해당 유저 장바구니에 상품의 정보를 지우는 기능
+	@GetMapping("/normal/delete") // �옣諛붽뎄�땲 X踰꾪듉 �겢由��떆 cart�뀒�씠釉붿뿉�꽌 �긽�뭹踰덊샇瑜� �넻�빐 �빐�떦 �쑀�� �옣諛붽뎄�땲�뿉 �긽�뭹�쓽 �젙蹂대�� 吏��슦�뒗 湲곕뒫
 	public String dc(@Param("product_pno") int product_pno, @Param("userid") String userid) {
 		service.deleteCart(product_pno, userid);
 		return "normal/shoping-cart";
 	}
 	
-	@PostMapping("/normal/addbuy") // 결제완료시 구매,판매,재고,상품,장부 테이블에 반영하는 기능
+	@PostMapping("/normal/addbuy") // 寃곗젣�셿猷뚯떆 援щℓ,�뙋留�,�옱怨�,�긽�뭹,�옣遺� �뀒�씠釉붿뿉 諛섏쁺�븯�뒗 湲곕뒫
 	public String ab(@Param("pno") int pno, @Param("sno") int sno, @Param("suserid") String suserid, @Param("userid") String userid, @DateTimeFormat(pattern = "yyyyMMdd") @Param("bdate") Date bdate, @Param("price") int price, @Param("bcount") int bcount, @Param("s_volume") int s_volume, @Param("p_count") int p_count, @Param("ssum") int ssum, @Param("profit") int profit) {
 		service.addbuy(pno, userid, bdate, price, bcount); 
 		service.addsell(pno, suserid, bdate, price, bcount);
@@ -255,7 +255,7 @@ public class MarketController {
 	
 	@GetMapping("/logout")
     public String logout(HttpSession session) {
-        // 세션에서 사용자 정보 제거
+        // �꽭�뀡�뿉�꽌 �궗�슜�옄 �젙蹂� �젣嫄�
         session.removeAttribute("userid");
         return "redirect:/login";
 	}
