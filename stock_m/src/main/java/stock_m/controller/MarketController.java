@@ -25,8 +25,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.servlet.http.HttpSession;
+import stock_m.dto.BoardDto;
 import stock_m.dto.Cart;
 import stock_m.dto.ManagementDto;
+import stock_m.service.BoardService;
 import stock_m.service.ManagementService;
 import stock_m.service.MarketService;
 
@@ -38,6 +40,8 @@ public class MarketController {
 	
 	@Autowired
 	ManagementService m_service;
+    @Autowired
+    BoardService B_service;
 	
 	@GetMapping("/normal/market") // �뙋留ㅼ궗�씠�듃 濡쒓렇�씤�떆 硫붿씤�솕硫�
 	public String mform(@RequestParam(name = "page", defaultValue = "1") int page,Model m, HttpSession session) {		
@@ -77,6 +81,33 @@ public class MarketController {
 			m.addAttribute("totalPages", totalPages);
 
 		}
+        int bcount = B_service.count(); // 전체 글 갯수 조회
+        if (bcount > 0) {
+            int perPage = 3; // 한 페이지에 보일 글의 갯수
+            int startRow = (page - 1) * perPage;
+
+            List<BoardDto> boardList2;
+            // 검색어가 있을 경우 검색 조건에 따라 게시글을 검색
+           
+                boardList2 = B_service.boardList2(startRow); // 해당 페이지에 맞는 글 목록 조회
+            
+
+
+            m.addAttribute("bList", boardList2);
+
+            int pageNum = 7;  // 페이징에 보여줄 페이지 번호의 갯수
+            int totalPages = count / perPage + (count % perPage > 0 ? 1 : 0); // 전체 페이지 수
+
+            int begin = (page - 1) / pageNum * pageNum + 1; // 시작 페이지 번호
+            int end = begin + pageNum - 1;  // 끝 페이지 번호c
+            if (end > totalPages) {
+                end = totalPages;
+            }
+            m.addAttribute("begin", begin);
+            m.addAttribute("end", end);
+            m.addAttribute("pageNum", pageNum);
+            m.addAttribute("totalPages", totalPages);
+        }
 
 		m.addAttribute("count", count);
 	    return "normal/marketform";

@@ -69,7 +69,7 @@
         <h1>게시글 목록</h1>
     </a>
     <div align="right">
-        <a href="/main">main</a>
+        <a href="market">main</a>
         <a href="write">새글 등록</a>
         <a href="qnalist">Q&A 게시판</a>
     </div>
@@ -145,7 +145,7 @@
             </form>
         </div>
     </c:if>
-    <c:if test="${count ne 0 && bList ne null }">
+    <c:if test="${count eq 0 && bList eq null }">
         아직 입력한 글이 없습니다.
     </c:if>
 </div>

@@ -10,6 +10,7 @@
 --%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -203,9 +204,75 @@ input:checked+.slider:before {
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6">
-                    <div class="banner__pic">
-                        <img src="../market/img/banner/banner-1.jpg" alt="">
-                    </div>
+                <div class="hero__categories">
+                        <div class="hero__categories__box">
+                   
+                            <h4 align="center">게시물</h4>
+                        </div>
+                        	<div class="shoping__cart__table">
+                        	<table>
+                        	<thread>
+                        		<tr>
+                                	<th>제목</th>
+                					<th>작성자</th>
+                					<th>작성일</th>
+                					<th>조회수</th>
+                        		</tr>
+                            </thread>
+                        
+
+                        
+                       
+                         <c:if test="${bcount != 0 }">
+                        	<c:forEach items="${bList}" var="board">
+    	<tr>
+        	<c:choose>
+            	<c:when test="${board.secret}">
+                	<c:if test="${user.role eq 'admin' or user.userid eq board.userid}">
+                    	<td>
+                        	<a href="content/${board.boardno}">
+                            	<i class="icofont-lock"></i>
+                            	<c:out value="${board.subject}"/>
+                            	<span class="text-muted small"> </span>
+                       	 </a>
+                    	</td>
+               	 	</c:if>
+               	 	<c:if test="${user.role ne 'admin' and user.userid ne board.userid}">
+                    	<td>
+                        	<a href="#" onclick="showAlert();">
+                            	<i class="icofont-lock"></i>
+                            	비밀글입니다.
+                            	<span class="text-muted small"> </span>
+                        	</a>
+                    	</td>
+                	</c:if>
+            	</c:when>
+            	<c:otherwise>
+                <td>
+                    <a href="content/${board.boardno}">
+                        <c:out value="${board.subject}"/>
+                    </a>
+                </td>
+            </c:otherwise>
+        </c:choose>
+        <td>${board.userid}</td>
+        <td><fmt:formatDate value="${board.regdate}" dateStyle="short"/></td>
+        <td>${board.readcount}</td>
+    </tr>
+</c:forEach>
+        </table>
+
+    </c:if>
+    <c:if test="${bcount eq 0 && bList eq null }">
+        아직 입력한 글이 없습니다.
+    </c:if>
+    </table>
+                        
+                        </div>
+     <div class="header__cart"><div class="site-btn"><a href="list" style="color: black; text-decoration: underline;">
+        				<h6>더보기</h6>
+    					</a></div></div>
+                </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="hero__categories">
