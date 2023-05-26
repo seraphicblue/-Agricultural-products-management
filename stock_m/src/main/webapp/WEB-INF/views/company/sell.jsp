@@ -26,9 +26,10 @@
 
 <!-- Custom styles for this template-->
 <link href="../../css/sb-admin-2.min.css" rel="stylesheet">
-<script src="../../js/webSocket.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="../../js/sell.js"></script>
 <script src="../../js/webSocket.js"></script>
+
 
 
 </head>
@@ -186,20 +187,18 @@
 					<div class="row">
 
 						<!-- Earnings (Monthly) Card Example -->
-						<div id="Message" class="col-lg-6 mb-4">
-							<div class="card shadow mb-4" style="width: 1600px;">
+						<div id="Message" class="col-lg-12 mb-4">
+							<div class="card shadow mb-4">
 								<div class="card-header py-3">
 									<h6 class="m-0 font-weight-bold text-primary">판매 등록</h6>
 								</div>
-								<form action="sell" method="post" id="sellform"
-									onsubmit="return checkStock();">
-									<input type="hidden" name="sno" id="val" value=0> <input
-										type="hidden" name="pname" id="pname"> <input
-										type="hidden" name="uid" id="uid" value="${uid}"> <input
-										type="hidden" name="command" id="command" value="price">
+								<form action="sell" method="post" id="sellform" onsubmit="return checkStock();">
+									<input type="hidden" name="sno" id="val" value=0> 
+									<input type="hidden" name="pname" id="pname"> 
+									<input type="hidden" name="uid" id="uid" value="${uid}"> 
+									<input type="hidden" name="command" id="command" value="price">
 
-									<table
-										class="table table-bordered dataTable copyright text-center my-auto"
+									<table class="table table-bordered dataTable copyright text-center my-auto"
 										id="dataTable" width="100%" cellspacing="0" role="grid"
 										aria-describedby="dataTable_info" style="width: 100%;">
 										
@@ -214,19 +213,17 @@
 										</tr>
 										<tr>
 											<td>가격</td>
-											<td><input name="price" id="price" value=0></td>
+											<td><input name="price" id="price" placeholder="0" value=0 style="text-align: right;"></td>
 										</tr>
 										<tr>
 											<td>수량</td>
-											<td><input name="p_count" id="s_volume" value=0></td>
+											<td><input name="p_count" id="s_volume" placeholder="0"  style="text-align: right;"></td>
 										</tr>
 									</table>
-								</form>
-								
+									<input type="submit" class="btn btn-primary btn-icon-split" value="판매" style="width:70px;height:41px;float: right;" >
+								</form>						
 							</div>
-						
-							<input type="submit"  class="btn btn-primary btn-icon-split" value="판매" style="width:45px;height:41px;float: right;" >
-							
+	
 						</div>
 					</div>
 				</div>
@@ -300,10 +297,8 @@
 			<script src="../../vendor/chart.js/Chart.min.js"></script>
 
 			<!-- Page level custom scripts -->
-			<script src="../../js/demo/chart-area-demo.js"></script>
-			<script src="../../js/demo/chart-pie-demo.js"></script>
-			<script src="../../js/sell.js"></script>
-			<script src="../../js/sell.webSoket.js"></script>
-			<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+			</div>
+	</div>
+
 </body>
 </html>

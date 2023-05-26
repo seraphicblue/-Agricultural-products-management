@@ -53,8 +53,7 @@ function checkStock() {
 	var scontent = $("#scontent option:checked").text();
 	console.log(scontent);
 	document.getElementById("pname").value=scontent;
-	
-	if (scontent == "------------------") { 
+	if (scontent == "--------------------") { 
 		alert("물품 정보를 선택해주세요."); 
 
 		return false;
@@ -73,6 +72,7 @@ function checkStock() {
 	}
 
 	else if (price <= 0) {
+		console.log(price);
 		alert("가격 정보를 선택해주세요.");
 
 		return false;
