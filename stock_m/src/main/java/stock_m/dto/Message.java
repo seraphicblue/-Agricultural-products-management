@@ -7,4 +7,5 @@ public class Message {
 	private int mesno;
 	private String content;
 	private String userid;
+	private boolean rcheck;  
 }

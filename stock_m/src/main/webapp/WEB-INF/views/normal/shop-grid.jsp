@@ -37,6 +37,7 @@
 
 <body>
 <!-- Header Section Begin -->
+<input type="hidden" name="command" id="command" value="common">
     <header class="header">       
         <div class="container">
             <div class="row">
@@ -97,7 +98,7 @@
             </div>
         </div>
     </section>
-    <!-- Hero Section End -->
+    <!-- Hero Section End --> 
 
     <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-section set-bg" data-setbg="../../market/img/breadcrumb.jpg">

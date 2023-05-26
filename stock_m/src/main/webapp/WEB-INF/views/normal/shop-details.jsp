@@ -37,6 +37,7 @@
 
 <body>
 <!-- Header Section Begin --> <%-- ------------------------- 다른 페이지들과 공통부분 시작 ------------------------- --%>
+<input type="hidden" name="command" id="command" value="common">
     <header class="header">
         <div class="container">
             <div class="row">

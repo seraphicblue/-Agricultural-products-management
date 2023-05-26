@@ -105,6 +105,8 @@ input:checked+.slider:before {
 <body>
 <!-- Header Section Begin -->
     <header class="header">
+    
+<input type="hidden" name="command" id="command" value="common">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">

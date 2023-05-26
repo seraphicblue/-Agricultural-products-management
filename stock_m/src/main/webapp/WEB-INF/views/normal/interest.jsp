@@ -88,7 +88,7 @@ input:checked+.slider:before {
 </head>
 
 <body>
-<input type="hidden" name="command" id="command" value="stock"> 
+<input type="hidden" name="command" id="command" value="common"> 
 <!-- Header Section Begin --> <%-- ------------------------- 다른 페이지들과 공통부분 시작 ------------------------- --%>
     <header class="header">
        

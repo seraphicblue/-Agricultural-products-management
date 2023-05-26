@@ -64,10 +64,9 @@ socket.onclose = function(event) {
 
 function sendMessage() {
 
-	if (document.getElementById('command').value == "price") {
+	if (document.getElementById('command').value == "price" || document.getElementById('command').value == "All") {
 
 		var message = document.getElementById('val').value;
-		var command = document.getElementById('command').value;
 		var userid = document.getElementById('uid').value;
 		var param = document.getElementById('price').value;
 		var textTarget = document.getElementById('scontent')[document.getElementById('scontent').selectedIndex].textContent;
@@ -90,7 +89,7 @@ function sendMessage() {
 					success: function(data) {
 						message = data;
 						for (var i = 0; i < data.length; i++) {
-							text = "/" + command + '_' + userid + '_' + data[i] + '_' + textTarget;
+							text = "/" + "price" + '_' + userid + '_' + data[i] + '_' + textTarget;
 
 							socket.send(text);
 						}
@@ -105,7 +104,6 @@ function sendMessage() {
 	}
 	else if (document.getElementById('command').value == "stock") {
 		var message = "";
-		var command = document.getElementById('command').value;//식별 정보
 		var userid = "";
 		var param = document.getElementById('fina').value; //반복 횟수
 		var pname = "";// 상품 이름
@@ -134,7 +132,7 @@ function sendMessage() {
 								/*const newWindow = window.open('', 'New Window', "top=1000,left=1500,width=400,height=100");
 								contents = '<h3>' + "메세지 : " + message + "데이터 : " + data + "1차 도달했습니다" + pname + '</h3>';
 								newWindow.document.write(contents);*/
-								text = "/" + command + '_' + userid + '_' + message + '_' + pname;
+								text = "/" + "stock" + '_' + userid + '_' + message + '_' + pname;
 								socket.send(text);
 							}
 

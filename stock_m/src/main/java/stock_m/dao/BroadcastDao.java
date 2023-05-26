@@ -19,7 +19,7 @@ public interface BroadcastDao {
 	@Insert("insert into message(userid, content) values(#{userid}, #{content})")
 	int insertMessage(@Param("userid") String userid, @Param("content") String content);
 	
-	@Select("select count(userid) from message where userid=#{userid}")
+	@Select("select count(userid) from message where userid=#{userid} AND rcheck = false")
 	int countMsg(@Param("userid") String userid);
 	
 	
