@@ -379,7 +379,7 @@
 
 										<tr>
 											<td class="s_val"></td>
-											<td ><input name="p_count" id="s_volume" placeholder="0" size="10"
+											<td ><input name="p_count" id="s_volume" placeholder="0 " size="10"
 											style="width:45px;height:41px; text-align:right;"></td>
 											<td align="center"><select class="navbar navbar-expand" id="scontent" onchange="check()">
 													<option>--------------------</option> 
@@ -388,7 +388,7 @@
 													</c:forEach> 
 												</select>
 											</td>
-											<td><input name="price" id="price" placeholder="0" size="10"
+											<td><input name="price" id="price" placeholder="0 " size="10"
 											style="width:100px;height:41px; text-align:right;"></td>
 											<td class="productprice"></td>
 											<td><input type="submit" class="btn btn-primary btn-icon-split" style="width:45px;height:41px;padding-top:5px;" value="판매"></td>
@@ -423,7 +423,7 @@
 										<tr>
 											<td class="s_val"></td>
 											<td style="padding-top: 12px">
-											<input type="text" class="s_volume" placeholder="0" size="10"
+											<input type="text" class="s_volume" placeholder="0 " size="10"
 											style="width:45px;height:41px; text-align:right;"
 												onchange="changeprice(this)"></td>
 												<td align="center"><select class="navbar navbar-expand select_option"
