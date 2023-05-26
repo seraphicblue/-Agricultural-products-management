@@ -31,7 +31,7 @@
 
 <body id="page-top">
 	<input type="hidden" name="command" id="command" value="All">
-	<!-- Page Wrapper -->
+	<!-- Page Wrapper -->	
 	<div id="wrapper">
 
 		<!-- Sidebar -->
@@ -64,25 +64,13 @@
 			<hr class="sidebar-divider">
 
 			<!-- Heading -->
-			<div class="sidebar-heading">Interface</div>
-
+			
 			<!-- Nav Item - Pages Collapse Menu -->
 			<!-- data-toggle 제거시 화살표 부분 제거-->
-			<li class="nav-item"><a class="nav-link collapsed"
-				href="redirect:/index.jsp" data-target="#collapseTwo"
-				aria-expanded="true" aria-controls="collapseTwo"> <i
-					class="fas fa-fw fa-cog"></i> <span>Components</span>
-			</a></li>
 
-			<!-- Nav Item - Utilities Collapse Menu -->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseUtilities"
-				aria-expanded="true" aria-controls="collapseUtilities"> <i
-					class="fas fa-fw fa-wrench"></i> <span>Utilities</span>
-			</a></li>
+			<!-- Nav Item - Utilities Collapse Menu -->			
 
 			<!-- Divider -->
-			<hr class="sidebar-divider">
 
 			<!-- Heading -->
 			<div class="sidebar-heading">Addons</div>
@@ -440,6 +428,40 @@
 										</tbody>
 									</table>
 								</div>
+								<table class="table table-bordered dataTable copyright text-center my-auto" id="dataTable"
+									width="100%" cellspacing="0" role="grid"
+									aria-describedby="dataTable_info" style="width: 100%;">
+									<thead>
+										<tr>
+											<th>재고 번호</th>
+											<th>수량(KG)</th>
+											<th>재고 물품</th>											
+											<th>가격</th>
+											<th>총가격</th>
+											<th>판매</th>
+										</tr>
+									</thead>
+									<tbody>
+
+										<tr>
+											<td class="s_val"></td>
+											<td ><input name="p_count" id="s_volume" placeholder="0" size="10"
+											style="width:45px;height:41px; text-align:right;"></td>
+											<td align="center"><select class="navbar navbar-expand" id="scontent" onchange="check()">
+													<option>--------------------</option> 
+													<c:forEach items="${npList}" var="np">
+														<option value="${np.s_volume}" id="${np.sno}">${np.scontent}</option>
+													</c:forEach> 
+												</select>
+											</td>
+											<td><input name="price" id="price" placeholder="0" size="10"
+											style="width:100px;height:41px; text-align:right;"></td>
+											<td class="productprice"></td>
+											<td><input type="submit" class="btn btn-primary btn-icon-split" style="width:45px;height:41px;padding-top:5px;" value="판매"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
 							</form>
 						</div>
 
@@ -466,7 +488,9 @@
 
 										<tr>
 											<td class="s_val"></td>
-											<td><input type="text" class="s_volume"
+											<td style="padding-top: 12px">
+											<input type="text" class="s_volume" placeholder="0" size="10"
+											style="width:45px;height:41px; text-align:right;"
 												onchange="changeprice(this)"></td>
 											<td><select class="select_option"
 												onchange="selectedoption(this)">
