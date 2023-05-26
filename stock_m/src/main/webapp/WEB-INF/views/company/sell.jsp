@@ -45,8 +45,7 @@
 
 			<!-- Sidebar - Brand -->
 			<!-- 홈화면 링크 부분-->
-
-			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="/company/main">
+			<a href="/company/main" class="sidebar-brand d-flex align-items-center justify-content-center" > 
 
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-laugh-wink"></i>
@@ -56,23 +55,9 @@
 				</div>
 			</a>
 
-			<!-- Divider -->
-			<hr class="sidebar-divider my-0">
-
-			<!-- Nav Item - Dashboard -->
 
 
-			<!-- Divider -->
 			<hr class="sidebar-divider">
-
-			<!-- Heading -->
-			
-			<!-- Nav Item - Pages Collapse Menu -->
-			<!-- data-toggle 제거시 화살표 부분 제거-->
-
-			<!-- Nav Item - Utilities Collapse Menu -->			
-
-			<!-- Divider -->
 
 			<!-- Heading -->
 			<div class="sidebar-heading">Addons</div>

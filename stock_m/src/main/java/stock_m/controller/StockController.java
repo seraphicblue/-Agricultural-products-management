@@ -59,12 +59,12 @@ public class StockController {
 	
 	@PostMapping("/company/checks")
 	@ResponseBody
-	public boolean checks(int s_price, String scontent, @RequestParam("s_volume") int s_volume, int s_val ,HttpSession session) {
+	public boolean checks(int s_price, String scontent, @RequestParam("s_volume") int s_volume,int s_val, int ano ,HttpSession session) {
 		String userid = (String) session.getAttribute("userid"); 
 		int a = r_service.checks(userid);
 		System.out.println(a);
 		if(a> s_price) {
-			service.checki(s_price,scontent, s_volume, s_val,userid);
+			service.checki(s_price,scontent, s_volume,s_val, ano,userid);
 			return true;
 		}else {
 			return false;

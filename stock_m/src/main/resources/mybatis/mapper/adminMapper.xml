@@ -11,6 +11,16 @@
 		values(#{a_content},#{a_val},#{a_volum})
 	</insert>
 	
+	<select id="admincheck" resultType="int">
+		select count(*)
+		from adminstock
+		where acontent=#{a_content} and a_val=#{a_val}
+	</select>
+	
+	<update id ="updatea">
+	 update adminstock set a_volume=#{a_volum} and a_val=#{a_val} where acontent=#{a_content}
+	</update>
+	
 	<select id ="option" resultType="Map">
 	select *  from adminstock
 	</select>

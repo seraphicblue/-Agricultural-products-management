@@ -37,9 +37,9 @@ public interface RevenueDao {
 	@Update("UPDATE revenue SET profit=profit-#{s_price} WHERE userid = #{userid}")
 	int updater(@Param("s_price") int s_price, @Param("userid") String userid);
 
-	@Insert("insert into buy(pno,userid,bdate,price,bcount) values(#{s_val},#{userid},#{s_date},#{s_price},#{s_volume})")
-	int insertb(@Param("s_val") int s_val, @Param("userid") String userid, @Param("s_date") String s_date,
-			@Param("s_price") int s_price,@Param("s_volume")int s_volume);
+	@Insert("insert into buy(pno,userid,bdate,price) values(#{ano},#{userid},#{s_date},#{s_price})")
+	int insertb(@Param("ano") int ano, @Param("userid") String userid, @Param("s_date") String s_date,
+			@Param("s_price") int s_price);
 
 	@Insert("insert into sell (sno,userid,pno,sdate,price,scount) values(#{sno},#{userid},#{pno},#{sdate},#{price},#{scount})")
 	int insert(SellDto dto);

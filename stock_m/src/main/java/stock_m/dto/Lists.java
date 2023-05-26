@@ -10,5 +10,5 @@ public class Lists {
 	int list_total_count;
 	
 	List<PriceDto> list;
-	
+	//PriceDto list;
 }

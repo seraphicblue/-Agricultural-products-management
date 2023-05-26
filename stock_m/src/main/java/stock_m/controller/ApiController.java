@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import stock_m.component.KamisApiCaller;
 import stock_m.dto.PriceDto;
@@ -23,12 +24,12 @@ public class ApiController {
 	@Autowired
 	SabService service;
 
-	@GetMapping("company/price")
+	@GetMapping("admin/price")
 	public String showPrice(Model model) throws Exception {
 		
 		int a =kamisApiCaller.DailyPriceByCategoryList();
 		  List<PriceDto> priceDataList = new ArrayList<>();
-
+		  	
 		    for (int i = a; 1 < i; i--) {
 		    	if(!kamisApiCaller.priceinfo(i).toString().equals(kamisApiCaller.priceinfo(i-1).toString())) {
 		    		priceDataList.add(kamisApiCaller.priceinfo(i));
@@ -39,13 +40,14 @@ public class ApiController {
 		    model.addAttribute("aValue", a);
 		
 		System.out.println("controller END");
-		return "company/price";
+		return "admin/price";
 	}
 
 	@PostMapping("company/inserta")
-	public String inserta(@RequestParam("a_content") String a_content, @RequestParam("a_val") int a_val, @RequestParam("a_volum") int a_volum) {	
-		service.inserta(a_content, a_val, a_volum);
-		return "redirect:/comapny/price";
+	@ResponseBody
+	public int inserta(@RequestParam("a_content") String a_content, @RequestParam("a_val") int a_val, @RequestParam("a_volum") int a_volum) {	
+		int a =service.inserta(a_content, a_val, a_volum);
+		return a;
 	}
 
 }
