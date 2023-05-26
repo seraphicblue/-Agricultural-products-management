@@ -3,6 +3,10 @@ var socket = new WebSocket(uri);
 
 socket.onopen = function(event) {
 	console.log("WebSocket is open now.");
+	if (document.getElementById('command').value == "All") {
+		console.log(uid.value);
+		messageCount = countMessage(uid.value);
+	}
 };
 
 socket.onmessage = function(event) {
@@ -10,7 +14,9 @@ socket.onmessage = function(event) {
 	var sep = arr[0];
 	var content = arr[1];
 	var sentUserid = arr[2];
+	var targetSno = arr[3];
 	var contents = "";
+	var count;
 
 	if (document.getElementById('command').value == "All") {
 		if (sep == 'S') {
@@ -29,8 +35,7 @@ socket.onmessage = function(event) {
 			document.getElementById('position2').textContent = content + "한도 도달";
 		}
 
-		stockMessage(sentUserid, contents);
-		messageCount = countMessage(sentUserid);
+		stockMessage(sentUserid, contents + "_" + targetSno);
 
 	}
 	else {
@@ -148,7 +153,19 @@ function stockMessage(uid, text) {
 	$.ajax({
 		url: '/stockmessage',
 		type: 'get',
-		data: { userid: uid, content: text }
+		data: { userid: uid, content: text },
+		success: function() {
+			$.ajax({
+				url: '/countmessage',
+				type: 'get',
+				data: { userid: uid },
+				dataType: 'text',
+				success: function(data) {
+					count = data;
+					document.getElementById('position4').textContent = count;
+				}
+			});
+		}
 	});
 }
 
@@ -159,7 +176,8 @@ function countMessage(uid) {
 		data: { userid: uid },
 		dataType: 'text',
 		success: function(data) {
-			document.getElementById('position4').textContent = data;
+			count = data;
+			document.getElementById('position4').textContent = count;
 		}
 	});
 }

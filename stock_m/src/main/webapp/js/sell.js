@@ -4,8 +4,8 @@ $(document).ready(function() {
 		var s_volume_val = $('#s_volume').val();
 		var price_val = $('#price').val();
 
-		// 숫자가 아닌 경우
-		if (!/^[0-9]*$/.test(s_volume_val) || !/^[0-9]*$/.test(price_val)) {
+		// 숫자가 아닌 경우 또는 공백이 있는 경우
+		if (!/^[0-9\s]*$/.test(s_volume_val) || !/^[0-9\s]*$/.test(price_val) || s_volume_val.trim() === "" || price_val.trim() === "") {
 			// submit 버튼 동작하지 않도록 설정
 			$('input[type=submit]').attr('disabled', 'disabled');
 			alert('숫자만 입력해주세요.');
@@ -15,7 +15,6 @@ $(document).ready(function() {
 		}
 	});
 });
-
 
 function check() {
 	var selec = document.getElementById("scontent").selectedIndex;
@@ -52,34 +51,26 @@ function checkStock() {
 	var select = parseInt(document.getElementById("scontent").value);
 	var scontent = $("#scontent option:checked").text();
 	console.log(scontent);
-	document.getElementById("pname").value=scontent;
-	
-	if (scontent == "------------------") { 
-		alert("물품 정보를 선택해주세요."); 
+	document.getElementById("pname").value = scontent;
+	if (scontent.trim() === "--------------------") {
+		alert("물품 정보를 선택해주세요.");
 
 		return false;
-	}
-
-	else if (stock <= 0) {
+	} else if (stock <= 0 || document.getElementById("stock").value.trim() === "") {
 		alert("재고 정보를 입력해주세요.");
 
 		return false;
-	}
-
-	else if (stock > select) {
+	} else if (stock > select) {
 		alert("재고량을 넘는 입력입니다.");
 
 		return false;
-	}
-
-	else if (price <= 0) {
+	} else if (price <= 0 || document.getElementById("price").value.trim() === "") {
+		console.log(price);
 		alert("가격 정보를 선택해주세요.");
 
 		return false;
-	}
-	else {
+	} else {
 		sendMessage();
 		return true;
 	}
-
 }

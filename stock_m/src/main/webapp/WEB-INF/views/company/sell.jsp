@@ -25,17 +25,19 @@
 
 
 <!-- Custom styles for this template-->
-<link href="../../css/sb-admin-2.min.css" rel="stylesheet">
-<script src="../../js/webSocket.js"></script>
-<script src="../../js/sell.js"></script>
-<script src="../../js/webSocket.js"></script>
+
+<link href="../../../css/sb-admin-2.min.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../../../js/sell.js"></script>
+<script src="../../../js/webSocket.js"></script>
+
 
 
 </head>
 
 <body id="page-top">
 
-	<!-- Page Wrapper -->
+	<!-- Page Wrapper -->	
 	<div id="wrapper">
 
 		<!-- Sidebar -->
@@ -44,6 +46,7 @@
 			<!-- Sidebar - Brand -->
 			<!-- 홈화면 링크 부분-->
 			<a href="/company/main" class="sidebar-brand d-flex align-items-center justify-content-center" > 
+
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-laugh-wink"></i>
 				</div>
@@ -51,6 +54,7 @@
 					관리해줘 <sup>업체</sup>
 				</div>
 			</a>
+
 
 
 			<hr class="sidebar-divider">
@@ -68,21 +72,25 @@
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">발주 / 판매</h6>
-						<a class="collapse-item" href="/company/buy">발주</a> <a
-							class="collapse-item" href="/company/sell">판매</a>
+						<a class="collapse-item" href="/company/buy">발주</a> 
+						<a class="collapse-item" href="/company/sell">판매</a>
 					</div>
 				</div></li>
 
 			<!-- Nav Item - Charts -->
 			<li class="nav-item"><a class="nav-link"
-				href="../../charts.html"> <i class="fas fa-fw fa-chart-area"></i>
-					<span>Charts</span></a></li>
+				href="/company/cs"> <i class="fas fa-fw fa-chart-area"></i>
+					<span>재고 그래프</span></a></li>
+					
+			<li class="nav-item"><a class="nav-link"
+				href="/company/cr"> <i class="fas fa-fw fa-chart-area"></i>
+					<span>장부 그래프</span></a></li>
 
 			<!-- Nav Item - Tables -->
-			<li class="nav-item"><a class="nav-link" href="tables.html">
-					<i class="fas fa-fw fa-table"></i> <span>Tables</span>
+			<li class="nav-item"><a class="nav-link" href="/company/stockmanage">
+					<i class="fas fa-fw fa-table"></i> <span>재고</span>
 			</a></li>
-
+			
 			<!-- Divider -->
 			<hr class="sidebar-divider d-none d-md-block">
 
@@ -104,83 +112,51 @@
 			<div id="content">
 
 				<!-- Topbar -->
-				<nav
-					class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+				<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
 					<!-- Sidebar Toggle (Topbar) -->
-					<button id="sidebarToggleTop"
-						class="btn btn-link d-md-none rounded-circle mr-3">
-						<i class="fa fa-bars"></i>
-					</button>
-
+					
 					<!-- Topbar Search -->
-					<form
-						class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-
-					</form>
+					
 
 					<!-- Topbar Navbar -->
 					<ul class="navbar-nav ml-auto">
 
 						<!-- Nav Item - Search Dropdown (Visible Only XS) -->
-						<li class="nav-item dropdown no-arrow d-sm-none"><a
-							class="nav-link dropdown-toggle" href="#" id="searchDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> <i class="fas fa-search fa-fw"></i>
-						</a> <!-- Dropdown - Messages -->
-							<div
-								class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-								aria-labelledby="searchDropdown">
-								<form class="form-inline mr-auto w-100 navbar-search">
-									<div class="input-group">
-										<input type="text"
-											class="form-control bg-light border-0 small"
-											placeholder="Search for..." aria-label="Search"
-											aria-describedby="basic-addon2">
-										<div class="input-group-append">
-											<button class="btn btn-primary" type="button">
-												<i class="fas fa-search fa-sm"></i>
-											</button>
-										</div>
-									</div>
-								</form>
-							</div></li>
+						<!-- Dropdown - Messages -->
+							
 
 						<!-- Nav Item - Alerts -->
-						<li class="nav-item dropdown no-arrow mx-1"></li>
+						
 
 						<!-- Nav Item - Messages -->
-						<li class="nav-item dropdown no-arrow mx-1"></li>
-
-
-
+						
 						<!-- Nav Item - User Information -->
 						<!-- 로그아웃 마이페이 부분-->
-						<li class="nav-item dropdown no-arrow"><a
-							class="nav-link dropdown-toggle" href="#" id="userDropdown"
+						<li class="nav-item dropdown no-arrow">
+						<a  class="nav-link dropdown-toggle" href="#" id="userDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <span
-								class="mr-2 d-none d-lg-inline text-gray-600 small">${userid}</span>
-								<img class="img-profile rounded-circle"
+								class="mr-2 d-none d-lg-inline text-gray-600 small">${uid}</span> <img class="img-profile rounded-circle"
 								src="../../img/undraw_profile.svg">
-						</a> <!-- Dropdown - User Information -->
-							<div
-								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+						</a> 
+						<!-- Dropdown - User Information -->
+							<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 								aria-labelledby="userDropdown">
-								<a class="dropdown-item" href="#"> <i
-									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
+								<a class="dropdown-item" href="#"> 
+									<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 
+									프로필
 								</a>
 
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="#" data-toggle="modal"
-									data-target="#logoutModal"> <i
-									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-									Logout
+									data-target="#logoutModal"> 
+									<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+									로그아웃
 								</a>
-							</div></li>
-
+							</div>
+						</li>
 					</ul>
-
 				</nav>
 				<!-- End of Topbar -->
 
@@ -197,20 +173,18 @@
 					<div class="row">
 
 						<!-- Earnings (Monthly) Card Example -->
-						<div id="Message" class="col-lg-6 mb-4">
-							<div class="card shadow mb-4" style="width: 1600px;">
+						<div id="Message" class="col-lg-12 mb-4">
+							<div class="card shadow mb-4">
 								<div class="card-header py-3">
 									<h6 class="m-0 font-weight-bold text-primary">판매 등록</h6>
 								</div>
-								<form action="sell" method="post" id="sellform"
-									onsubmit="return checkStock();">
-									<input type="hidden" name="sno" id="val" value=0> <input
-										type="hidden" name="pname" id="pname"> <input
-										type="hidden" name="uid" id="uid" value="${uid}"> <input
-										type="hidden" name="command" id="command" value="price">
-
-									<table
-										class="table table-bordered dataTable copyright text-center my-auto"
+								<form action="sell" method="post" id="sellform" onsubmit="return checkStock();">
+									<input type="hidden" name="sno" id="val" value=0> 
+									<input type="hidden" name="pname" id="pname"> 
+									<input type="hidden" name="uid" id="uid" value="${uid}"> 
+									<input type="hidden" name="command" id="command" value="price">
+									
+									<table class="table table-bordered dataTable copyright text-center my-auto"
 										id="dataTable" width="100%" cellspacing="0" role="grid"
 										aria-describedby="dataTable_info" style="width: 100%;">
 										
@@ -225,19 +199,17 @@
 										</tr>
 										<tr>
 											<td>가격</td>
-											<td><input name="price" id="price" value=0></td>
+											<td><input name="price" id="price" placeholder="0" value=0 style="text-align: right;"></td>
 										</tr>
 										<tr>
 											<td>수량</td>
-											<td><input name="p_count" id="s_volume" value=0></td>
+											<td><input name="p_count" id="s_volume" placeholder="0"  style="text-align: right;"></td>
 										</tr>
 									</table>
-								</form>
-								
+									<input type="submit" class="btn btn-primary btn-icon-split" value="판매" style="width:70px;height:41px;float: right;" >
+								</form>						
 							</div>
-						
-							<input type="submit"  class="btn btn-primary btn-icon-split" value="판매" style="width:45px;height:41px;float: right;" >
-							
+	
 						</div>
 					</div>
 				</div>
@@ -298,23 +270,24 @@
 			</div>
 
 			<!-- Bootstrap core JavaScript-->
-			<script src="../../vendor/jquery/jquery.min.js"></script>
-			<script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+			<script src="../../../vendor/jquery/jquery.min.js"></script>
+			<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 			<!-- Core plugin JavaScript-->
-			<script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
+			<script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
 
 			<!-- Custom scripts for all pages-->
-			<script src="../../js/sb-admin-2.min.js"></script>
+			<script src="../../../js/sb-admin-2.min.js"></script>
 
 			<!-- Page level plugins -->
-			<script src="../../vendor/chart.js/Chart.min.js"></script>
+			<script src="../../../vendor/chart.js/Chart.min.js"></script>
 
 			<!-- Page level custom scripts -->
-			<script src="../../js/demo/chart-area-demo.js"></script>
-			<script src="../../js/demo/chart-pie-demo.js"></script>
-			<script src="../../js/sell.js"></script>
-			<script src="../../js/sell.webSoket.js"></script>
-			<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+			
+			<script src="../../../js/demo/chart-area-demo.js"></script>
+			<script src="../../../js/demo/chart-pie-demo.js"></script>
+			
+
 </body>
 </html>

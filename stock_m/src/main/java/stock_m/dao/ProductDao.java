@@ -73,7 +73,7 @@ public interface ProductDao {
 	@Insert("INSERT INTO buy(pno,userid,bdate,price,bcount) values(#{pno},#{userid},#{bdate},#{price},#{bcount})")
 	public int addbuy(Map<String, Object> abmap);
 	
-	@Insert("INSERT INTO sell(product_pno,userid,sdate,price,scount) values(#{pno},#{suserid},#{bdate},#{price},#{bcount})")
+	@Insert("INSERT INTO sell(pno,userid,sdate,price,scount) values(#{pno},#{suserid},#{bdate},#{price},#{bcount})")
 	public int addsell(Map<String, Object> asmap);
 	
 	@Update("update stock set s_volume = #{s_volume}-#{bcount} where sno = #{sno} and userid = #{suserid}")
