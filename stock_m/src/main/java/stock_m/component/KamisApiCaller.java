@@ -6,8 +6,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.json.JSONObject;
 import org.json.XML;
@@ -73,9 +71,8 @@ public class KamisApiCaller {
 		/* System.out.println("Json String: " + jsonString); */
 		Gson gson = new Gson();
 		PriceLists price = gson.fromJson(jsonString, PriceLists.class);
-		int pageidx = price.getLists().getList_total_count() / 10  + ( price.getLists().getList_total_count() % 10  == 0 ? 0:1 );
+		int pageidx = price.getLists().getList_total_count() / 10;
 		System.out.println(pageidx);
-
 		return pageidx;
 
 	}
@@ -123,11 +120,10 @@ public class KamisApiCaller {
 		  String xmlString2 = sb2.toString(); 
 		  JSONObject jsonObject2 =XML.toJSONObject(xmlString2);
 		  String jsonString2 = jsonObject2.toString();
-			/* System.out.println("Json String: " + jsonString2); */
 		  Gson gson2 = new Gson();
-		  PriceLists price2 = gson2.fromJson(jsonString2, PriceLists.class); 
-		  PriceDto pricedto2 = price2.getLists().getList().get(1);
-		  return pricedto2;
+		  PriceLists price = gson2.fromJson(jsonString2, PriceLists.class); 
+		  PriceDto pricedto = price.getLists().getList().get(0);
+		  return pricedto;
 		 
 	}
 }

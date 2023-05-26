@@ -24,9 +24,110 @@
 
 <!-- Custom styles for this template-->
 <link href="../../css/sb-admin-2.min.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="../../js/webSocket.js"></script>
+<script src="../../js/sell.js"></script>
 
 
+	<script src="../../vendor/jquery/jquery.min.js"></script>
+	<script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Core plugin JavaScript-->
+	<script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+	<!-- Custom scripts for all pages-->
+	<script src="../../js/sb-admin-2.min.js"></script>
+
+	<!-- Page level plugins -->
+	<script src="../../vendor/chart.js/Chart.min.js"></script>
+
+	<!-- Page level custom scripts -->
+	<script src="../../js/demo/chart-area-demo.js"></script>
+	<script src="../../js/demo/chart-pie-demo.js"></script>
+
+
+
+	<script>
+		function selectedoption(selectElement) {
+			var selectedOption = selectElement.options[selectElement.selectedIndex];
+			var selectedVolume = selectedOption.getAttribute("data-volume");
+			var selectedAno = selectedOption.getAttribute("data-ano");
+			var s_volume = selectElement.parentNode.parentNode
+					.getElementsByClassName("s_volume")[0].value;
+			var selectedPrice = selectElement.parentNode.parentNode
+					.getElementsByClassName("selectedvolume")[0];
+			var totalPrice = selectElement.parentNode.parentNode
+					.getElementsByClassName("selectedprice")[0];
+
+			selectElement.parentNode.parentNode
+					.getElementsByClassName("s_volume")[0].value = '0';
+
+			if (!isNaN(parseInt(selectedPrice.textContent) * s_volume)) {
+				totalPrice.textContent = parseInt(selectedPrice.textContent)
+						* s_volume;
+			} else {
+				totalPrice.textContent = 0;
+			}
+
+			selectedPrice.textContent = selectedVolume;
+			selectElement.parentNode.parentNode.getElementsByClassName("sno")[0].textContent = selectedAno;
+		}
+
+		function changeprice(selectElement) {
+			var s_volume = parseInt(selectElement.value);
+			var selectedPrice = selectElement.parentNode.parentNode
+					.getElementsByClassName("selectedvolume")[0];
+			var totalPrice = selectElement.parentNode.parentNode
+					.getElementsByClassName("selectedprice")[0];
+
+			if (!isNaN(s_volume) && s_volume >= 0) {
+				totalPrice.textContent = parseInt(selectedPrice.textContent)
+						* s_volume;
+			} else {
+				alert("수량은 양수만 입력이 가능합니다");
+				selectElement.value = "";
+			}
+		}
+
+		$(document).ready(function() {
+			$('.click2').click(
+					function() {
+						var scontent = $(this).closest('tr').find('.select_option').val();
+						var selectedPrice = $(this).closest('tr').find('.selectedprice').text();
+						var s_volume = $(this).closest('tr').find('.s_volume').val();
+						var ano = parseInt($(this).closest('tr').find('.sno').text());
+						var s_val = parseInt($(this).closest('tr').find('.select_option :selected').attr('title'));
+						console.log(s_val);
+						
+												$.ajax({
+															type : 'POST',
+															url : '/company/checks',
+															data : {
+																's_price' : selectedPrice,
+																'scontent' : scontent,
+																's_volume' : s_volume,
+																'ano' : ano,
+																's_val': s_val
+															},
+															success : function(result) {
+																$(".sno").text("");
+																$(".select_option").val("");
+																$(".s_volume").val("");
+																$(".selectedvolume").text("");
+																$(".selectedprice").text("");
+																$(".sno").trigger("change");
+																$(".selectedvolume").trigger("change");
+																$(".selectedprice").trigger("change");
+																
+																if (result == true) {
+																} else {
+																	alert("한도 부족입니다.");
+																}
+															}
+														});
+											});
+						});
+	</script>
 </head>
 
 <body id="page-top">
@@ -51,34 +152,7 @@
 			</a>
 
 			<!-- Divider -->
-			<hr class="sidebar-divider my-0">
-
-			<!-- Nav Item - Dashboard -->
-
-
-			<!-- Divider -->
 			<hr class="sidebar-divider">
-
-			<!-- Heading -->
-			<div class="sidebar-heading">Interface</div>
-
-			<!-- Nav Item - Pages Collapse Menu -->
-			<!-- data-toggle 제거시 화살표 부분 제거-->
-			<li class="nav-item"><a class="nav-link collapsed" href="redirect:/index.jsp"
-				data-target="#collapseTwo" aria-expanded="true"
-				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Components</span>
-			</a></li>
-
-			<!-- Nav Item - Utilities Collapse Menu -->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseUtilities"
-				aria-expanded="true" aria-controls="collapseUtilities"> <i
-					class="fas fa-fw fa-wrench"></i> <span>Utilities</span>
-			</a></li>
-
-			<!-- Divider -->
-			<hr class="sidebar-divider">
-
 			<!-- Heading -->
 			<div class="sidebar-heading">Addons</div>
 
@@ -389,7 +463,7 @@
 									<tbody>
 
 										<tr>
-											<td class="s_val"></td>
+											<td class="ano"></td>
 											<td ><input name="p_count" id="s_volume" value=0 size="10"
 											style="width:45px;height:41px;"></td>
 											<td align="center"><select class="navbar navbar-expand" id="scontent" onchange="check()">
@@ -432,23 +506,24 @@
 									<tbody>
 
 										<tr>
-											<td class="s_val"></td>
+											<td class="sno"></td>
 											<td style="padding-top: 12px">
 											<input type="text" class="s_volume" value=0 size="10"
 											style="width:45px;height:41px;"
 												onchange="changeprice(this)"></td>
-												<td align="center"><select class="navbar navbar-expand select_option"
-												onchange="selectedoption(this)">
+												<td align="center">
+												<select class="navbar navbar-expand select_option" onchange="selectedoption(this)">
 													<option value="">--------------------</option>
 													<c:forEach items="${adminstockList}" var="option">
 														<option value="${option.acontent}"
 															data-volume="${option.a_volume}"
-															data-val="${option.a_val}">${option.acontent}</option>
+															data-ano="${option.ano}"
+															title="${option.a_val}">${option.acontent}</option>
 													</c:forEach>
 											</select></td>
 											<td class="selectedvolume"></td>
 											<td class="selectedprice"></td>
-											<td><button class="btn btn-primary btn-icon-split click" style="width:45px;height:41px;">
+											<td><button class="btn btn-primary btn-icon-split click2" style="width:45px;height:41px;">
 											<span style="padding-top:10px">추가</span>
 											</button></td>
 										</tr>
@@ -502,8 +577,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
+					<button class="close" type="button" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">×</span>
 					</button>
 				</div>
@@ -520,102 +594,7 @@
 	</div>
 
 	<!-- Bootstrap core JavaScript-->
-	<script src="../../vendor/jquery/jquery.min.js"></script>
-	<script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-	<!-- Core plugin JavaScript-->
-	<script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
-
-	<!-- Custom scripts for all pages-->
-	<script src="../../js/sb-admin-2.min.js"></script>
-
-	<!-- Page level plugins -->
-	<script src="../../vendor/chart.js/Chart.min.js"></script>
-
-	<!-- Page level custom scripts -->
-	<script src="../../js/demo/chart-area-demo.js"></script>
-	<script src="../../js/demo/chart-pie-demo.js"></script>
-	<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script src="../../js/sell.js"></script>
-
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script>
-		function selectedoption(selectElement) {
-			var selectedOption = selectElement.options[selectElement.selectedIndex];
-			var selectedVolume = selectedOption.getAttribute("data-volume");
-			var selectedVal = selectedOption.getAttribute("data-val");
-			var s_volume = selectElement.parentNode.parentNode
-					.getElementsByClassName("s_volume")[0].value;
-			var selectedPrice = selectElement.parentNode.parentNode
-					.getElementsByClassName("selectedvolume")[0];
-			var totalPrice = selectElement.parentNode.parentNode
-					.getElementsByClassName("selectedprice")[0];
-
-			selectElement.parentNode.parentNode
-					.getElementsByClassName("s_volume")[0].value = '0';
-
-			if (!isNaN(parseInt(selectedPrice.textContent) * s_volume)) {
-				totalPrice.textContent = parseInt(selectedPrice.textContent)
-						* s_volume;
-			} else {
-				totalPrice.textContent = 0;
-			}
-
-			selectedPrice.textContent = selectedVolume;
-			selectElement.parentNode.parentNode.getElementsByClassName("s_val")[0].textContent = selectedVal;
-		}
-
-		function changeprice(selectElement) {
-			var s_volume = parseInt(selectElement.value);
-			var selectedPrice = selectElement.parentNode.parentNode
-					.getElementsByClassName("selectedvolume")[0];
-			var totalPrice = selectElement.parentNode.parentNode
-					.getElementsByClassName("selectedprice")[0];
-
-			if (!isNaN(s_volume) && s_volume >= 0) {
-				totalPrice.textContent = parseInt(selectedPrice.textContent)
-						* s_volume;
-			} else {
-				alert("수량은 양수만 입력이 가능합니다");
-				selectElement.value = "";
-			}
-		}
-
-		$(document).ready(function() {
-			$('.click2').click(
-					function() {
-						var scontent = $(this).closest('tr').find('.select_option').val();
-						var selectedPrice = $(this).closest('tr').find('.selectedprice').text();
-						var s_volume = $(this).closest('tr').find('.s_volume').val();
-						var s_val = parseInt($(this).closest('tr').find('.s_val').text());
-												$.ajax({
-															type : 'POST',
-															url : '/company/checks',
-															data : {
-																's_price' : selectedPrice,
-																'scontent' : scontent,
-																's_volume' : s_volume,
-																's_val' : s_val
-															},
-															success : function(result) {
-																$(".s_val").text("");
-																$(".select_option").val("");
-																$(".s_volume").val("");
-																$(".selectedvolume").text("");
-																$(".selectedprice").text("");
-																$(".s_val").trigger("change");
-																$(".selectedvolume").trigger("change");
-																$(".selectedprice").trigger("change");
-																
-																if (result == true) {
-																} else {
-																	alert("한도 부족입니다.");
-																}
-															}
-														});
-											});
-						});
-	</script>
 </body>
 
 </html>
