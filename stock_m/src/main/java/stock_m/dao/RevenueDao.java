@@ -37,9 +37,9 @@ public interface RevenueDao {
 	@Update("UPDATE revenue SET profit=profit-#{s_price} WHERE userid = #{userid}")
 	int updater(@Param("s_price") int s_price, @Param("userid") String userid);
 
-	@Insert("insert into buy(pno,userid,bdate,price) values(#{s_val},#{userid},#{s_date},#{s_price})")
+	@Insert("insert into buy(pno,userid,bdate,price,bcount) values(#{s_val},#{userid},#{s_date},#{s_price},#{s_volume})")
 	int insertb(@Param("s_val") int s_val, @Param("userid") String userid, @Param("s_date") String s_date,
-			@Param("s_price") int s_price);
+			@Param("s_price") int s_price,@Param("s_volume")int s_volume);
 
 	@Insert("insert into sell (sno,userid,pno,sdate,price,scount) values(#{sno},#{userid},#{pno},#{sdate},#{price},#{scount})")
 	int insert(SellDto dto);
@@ -119,5 +119,11 @@ public interface RevenueDao {
 			+ "  (SELECT MONTH(bdate) AS month, SUM(price) AS total_price FROM buy WHERE bdate BETWEEN  #{startDate} AND #{endDate} GROUP BY MONTH(bdate) order by MONTH(bdate)) AS b "
 			+ "ON s.month = b.month")
 	List<Map<String, Object>> gettotalData(@Param("startDate") String startDate, @Param("endDate") String endDate);
+
+	@Select("select count(bno) as bc, bdate from buy where userid=#{userid} group by bdate")
+	List<Map<String, Object>> getmainbuydata(String userid);
+	
+	@Select("select count(sno) as sc, sdate from sell where userid=#{userid} group by sdate")
+	List<Map<String, Object>> getmainselldata(String userid);
 
 }

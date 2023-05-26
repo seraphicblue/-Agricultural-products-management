@@ -43,12 +43,12 @@ public class MarketService {
 		return dao.detailProduct(pno);
 	}
 	
-	public int cartCount(String memberId) {
-		return dao.cartCount(memberId);
+	public int cartCount(String userid) {
+		return dao.cartCount(userid);
 	}
 	
-	public int cartPrice(String memberId) {
-		return dao.cartPrice(memberId);
+	public int cartPrice(String userid) {
+		return dao.cartPrice(userid);
 	}
 	
 	public List<Map<String,Object>> searchP_val(int p_val, int start, List<String> nuserid) {

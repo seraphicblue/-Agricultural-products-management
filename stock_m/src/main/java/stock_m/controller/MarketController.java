@@ -42,9 +42,7 @@ public class MarketController {
 	@GetMapping("/normal/market") // 판매사이트 로그인시 메인화면
 	public String mform(@RequestParam(name = "page", defaultValue = "1") int page,Model m, HttpSession session) {		
 		String userid = (String) session.getAttribute("userid");	//세션의 userid정보를 받아옴
-	    List<Map<String, Object>> list = service.allProduct();		//상품 테이블에 모든 정보를 list에 저장
-	    m.addAttribute("list", list);
-	    															//판매사이트 모든 페이지의 상단 장바구니 아이콘에 나타낼 정보들
+	    //판매사이트 모든 페이지의 상단 장바구니 아이콘에 나타낼 정보들
 	    int cprice = 0;												//cprice : 장바구니에 저장된 모든 상품의 가격 총합
 	    int ccount = service.cartCount(userid);						//ccount : 장바구니에 저장된 모든 상품의 갯수
 	    m.addAttribute("ccount", ccount);
@@ -56,7 +54,6 @@ public class MarketController {
 	    m.addAttribute("cprice", cprice);
 	    
 	    int count =m_service.count();
-
 
 		if (count > 0) {
 
@@ -161,8 +158,7 @@ public class MarketController {
 			int perPage = 9; // 한 페이지에 보일 글의 갯수
 			int startRow = (page - 1) * perPage;
 			
-			List<Map<String,Object>> list = service.searchP_val(p_val, startRow, nuserid);	
-			System.out.println("list : "+list);
+			List<Map<String,Object>> list = service.searchP_val(p_val, startRow, nuserid);
 			m.addAttribute("list", list);
 			
 			int pageNum = 5;//보여줄 페이지 번호 갯수
@@ -224,7 +220,6 @@ public class MarketController {
 		}			
 		m.addAttribute("cprice", cprice);
 		List<Map<String,Object>> cart = service.userCart(userid);
-		System.out.println("cart :"+cart);
 		m.addAttribute("cart", cart);
 		m.addAttribute("uid", userid);
 		return "normal/shoping-cart";

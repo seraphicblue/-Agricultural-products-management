@@ -25,67 +25,113 @@ import jakarta.servlet.http.HttpServletRequest;
 
 @Configuration
 @EnableWebSocket
-
-
 public class WebSocketConfig implements WebSocketConfigurer {
-	
-	
+
+	private final List<WebSocketSession> sessions = new CopyOnWriteArrayList<>();
+	private final HashMap<String, String> socketMap = new LinkedHashMap<>();
+
 	@Override
 	public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-		registry.addHandler(new SocketHandler(), "/websocket")
-		.setAllowedOrigins("*")
-		.addInterceptors(new HttpSessionHandshakeInterceptor());
+		registry.addHandler(new SocketHandler(), "/websocket").setAllowedOrigins("*")
+				.addInterceptors(new HttpSessionHandshakeInterceptor());
 	}
 
-	private static class SocketHandler extends TextWebSocketHandler {
-		
-		private final List<WebSocketSession> sessions = new CopyOnWriteArrayList<>();
-		HashMap<String, String> socketMap = new LinkedHashMap<>();
-		Set<String> keySet = socketMap.keySet();
-					
-		
+	private class SocketHandler extends TextWebSocketHandler {
+
+		private Set<String> keySet;
+
 		@Override
 		public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-			
 			sessions.add(session);
 			String userId = (String) session.getAttributes().get("userid");
 
-			if (!socketMap.containsKey(userId)) {
-				socketMap.put(userId, session.getId());
-			} 
+			synchronized (socketMap) {
+				if (!socketMap.containsKey(userId)) {
+					socketMap.put(userId, session.getId());
+				}
 
-			if ((socketMap.get(userId) == "-")) {
-				socketMap.put(userId, session.getId());
-			} 
+				if ((socketMap.get(userId) == null)) {
+					socketMap.put(userId, session.getId());
+				}
 
-			System.out.println("conn   : " + session.getId());
-			// 소켓 정보와 사용자 유저아이디 연결 출력
-			keySet = socketMap.keySet();
-			for (String key : keySet) {
-				System.out.println(socketMap);
-				System.out.println(key + " : " + socketMap.get(key));
+				System.out.println("conn   : " + session.getId());
+				// 소켓 정보와 사용자 유저아이디 연결 출력
+				keySet = socketMap.keySet();
+				for (String key : keySet) {
+					System.out.println(socketMap);
+					System.out.println(key + " : " + socketMap.get(key));
+				}
 			}
-
 		}
 
 		@Override
 		public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 			String userId = (String) session.getAttributes().get("userid");
 			System.out.println("remove : " + session.getId());
-			
-			socketMap.remove(userId);
-			
-			sessions.remove(session);
 
+			synchronized (socketMap) {
+				socketMap.remove(userId);
+			}
+
+			sessions.remove(session);
 		}
 
 		@Override
 		public void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-
 			String payload = message.getPayload();
 			System.out.println(payload);
-			
-			if (payload.startsWith("/price")) { 
+
+			if (payload.startsWith("/price")) { // 가격 알림
+				String[] tokens = payload.split("_", 4);
+				String useridToken = tokens[1];
+				String target = tokens[2];
+				String textTarget = tokens[3];
+				System.out.println("this is handleTextMessage" + payload);
+
+				for (WebSocketSession webSocketSession : sessions) {
+					for (String key : socketMap.keySet()) {
+
+						String str = socketMap.get(key);
+
+						if (webSocketSession.getId().equals(str) && key.equals(target)) {
+
+							webSocketSession.sendMessage(new TextMessage("P_" + textTarget + "_" + useridToken));
+							System.out.println(webSocketSession.getId());
+							System.out.println("Sent message to user " + useridToken + ": " + target);
+							break;
+						}
+					} // inner_for_end
+				} // outer_for_end
+			} // if /price
+
+			if (payload.startsWith("/stock")) {// 재고 알림
+				String[] tokens = payload.split("_", 4);
+				String useridToken = tokens[1];
+				String target = tokens[2];
+				String name = tokens[3];
+
+				System.out.println("this is payload : " + payload);
+				System.out.println("this is uidToken : " + useridToken);
+				System.out.println("this is target : " + target);
+				System.out.println("this is name : " + name);
+
+				for (WebSocketSession webSocketSession : sessions) {
+					for (String key : socketMap.keySet()) {
+
+						String str = socketMap.get(key);
+
+						if (webSocketSession.getId().equals(str) && key.equals(useridToken)) {
+
+							webSocketSession.sendMessage(new TextMessage("S_" + name + "_" + useridToken));
+							System.out.println(webSocketSession.getId());
+							System.out.println("Sent message to user " + useridToken + ": " + target + name);
+							break;
+						}
+					} // inner_for_end
+				} // outer_for_end
+			} // if /stock
+
+			if (payload.startsWith("/limit")) { // 한도 알림
 				String[] tokens = payload.split("_", 4);
 				String useridToken = tokens[1];
 				String target = tokens[2];
@@ -94,13 +140,12 @@ public class WebSocketConfig implements WebSocketConfigurer {
 
 				for (WebSocketSession webSocketSession : sessions) {
 					for (String key : socketMap.keySet()) {
-						
-						
+
 						String str = socketMap.get(key);
 
 						if (webSocketSession.getId().equals(str) && key.equals(target)) {
 
-							webSocketSession.sendMessage(new TextMessage("P_"+textTarget));
+							webSocketSession.sendMessage(new TextMessage("P_" + textTarget));
 							System.out.println(webSocketSession.getId());
 							System.out.println("Sent message to user " + useridToken + ": " + target);
 							break;
@@ -108,40 +153,10 @@ public class WebSocketConfig implements WebSocketConfigurer {
 					} // inner_for_end
 				} // outer_for_end
 			} // if /price
-			
-			if (payload.startsWith("/stock")) {
-				String[] tokens = payload.split("_", 4);
-				String useridToken = tokens[1]; 
-				String target = tokens[2];
-				String name = tokens[3];
-				
-				System.out.println("this is payload : " + payload);
-				System.out.println("this is uidToken : " + useridToken);
-				System.out.println("this is target : " + target);
-				System.out.println("this is name : " + name);
 
-				for (WebSocketSession webSocketSession : sessions) {
-					for (String key : socketMap.keySet()) {
-						
-						String str = socketMap.get(key);
+		}
+	}
 
-						if (webSocketSession.getId().equals(str) && key.equals(useridToken)) {
-
-							webSocketSession.sendMessage(new TextMessage("S_"+name));
-							System.out.println(webSocketSession.getId());
-							System.out.println("Sent message to user " + useridToken + ": " + target+name);
-							break;
-						}
-					} // inner_for_end
-				} // outer_for_end
-			} // if /stock
-			
-			
-		}//text_send
-		
-		
-	}// handler
-	
 	private class HttpSessionHandshakeInterceptor implements HandshakeInterceptor {
 		@Override
 		public boolean beforeHandshake(ServerHttpRequest request, ServerHttpResponse response,
@@ -158,10 +173,9 @@ public class WebSocketConfig implements WebSocketConfigurer {
 		}
 
 		@Override
-		public void afterHandshake(ServerHttpRequest request, ServerHttpResponse response,
-				WebSocketHandler wsHandler, Exception exception) {
-			// Handshake 이후의 로직이 필요하지 않을 경우, 비워둡니다.
+		public void afterHandshake(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler,
+				Exception exception) {
+			
 		}
 	}
-	
 }

@@ -13,7 +13,7 @@ package stock_m.service;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
+import java.util.List; 
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,14 +59,14 @@ public class StockService {
 		if(s>0) {
 			Date now = new	 Date();
 			SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
-			rdao.insertb(s_val,userid,format.format(now),s_price);
+			rdao.insertb(s_val,userid,format.format(now),s_price,s_volume);
 			rdao.updater(s_price,userid);
 			 return dao.updates(scontent,s_volume,s_val,userid);
 		}else {
 			Date now = new	 Date();
 			SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
 			rdao.updater(s_price,userid);
-			rdao.insertb(s_val,userid,format.format(now),s_price);
+			rdao.insertb(s_val,userid,format.format(now),s_price,s_volume);
 			return dao.inserts(scontent,s_volume,format.format(now), s_val,userid);
 		}
 	}
@@ -86,8 +86,14 @@ public class StockService {
 				return dao.sdelete(sno);
 				
 			}
-			public List<StockDto> searchscontent(String search){
-				return dao.searchscontent(search);
+			public List<StockDto> searchscontent(String search, String userid){
+               Map<String, Object> m = new HashMap<>();
+				
+				m.put("search", search);
+			    m.put("userid",userid);
+				
+				
+				return dao.searchscontent(m);
 			}
 			public int sinsert(String scontent, int s_val, String userid, int s_volume) {
 				Map<String, Object> m = new HashMap<>();
@@ -131,6 +137,51 @@ public class StockService {
 				
 			}
 
+
+
+			public List<Map<String, Object>> getstockData(String userid) {
+				// TODO Auto-generated method stub
+				return dao.getstockData(userid);
+			}
+
+
+
+			
+
+
+			
+
+
+
+			public List<Map<String, Object>> getstockoption(String userid) {
+				
+				return dao.getstockoption(userid);
+			}
+
+
+
+
+
+			public List<Map<String, Object>> getsellcount(String userid, int sno) {
+				Map<String, Object> m = new HashMap<String, Object>();
+				m.put("userid", userid);
+				m.put("sno", sno);
+				return dao.getsellcount(m);
+			}
+
+
+
+			public List<Map<String, Object>> getbuycount(String userid, int sno) {
+				Map<String, Object> m = new HashMap<String, Object>();
+				m.put("userid", userid);
+				m.put("sno", sno);
+				System.out.println(sno);
+				return dao.getbuycount(m);
+			}
+
+
+
+			
 
 
 

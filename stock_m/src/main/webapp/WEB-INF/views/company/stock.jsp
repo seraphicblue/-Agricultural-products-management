@@ -8,15 +8,15 @@
 <body>
 
 	<table border="1">
-		<thead>
+		<thead>  
 			<tr>
 				<th>no</th>
 				<th>재고 번호</th>
-				<th>수량</th>
+				<th>수량</th> 
 				<th>재고 물품</th>
 				<th>가격</th>
 				<th>총가격</th>
-				<th>추가</th>
+				<th>추가</th> 
 			</tr>
 		</thead>
 		<tbody>

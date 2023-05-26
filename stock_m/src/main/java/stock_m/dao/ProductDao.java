@@ -26,7 +26,7 @@ import stock_m.dto.Cart;
 public interface ProductDao {
 	public List<Map<String,Object>> searchPname(@Param("pname")String pname, @Param("start")int start, @Param("nuserid") List<String> nuserid);
 	
-	@Select("select m_content from management where userid like #{userid} and m_val = 1")
+	@Select("select m_content from management where userid like #{userid} and m_val = 0")
 	public List<String> negativeUserid(String userid);
 	
 	//false인 업체(userid)를 제외하고 받아오기
@@ -36,10 +36,10 @@ public interface ProductDao {
 	public Map<String,Object> detailProduct(int pno);
 	
 	@Select("select count(userid) from cart where userid = #{userid}")
-	public int cartCount(String memberId);
+	public int cartCount(String userid);
 	
 	@Select("select sum(count*price) from cart where userid = #{userid}")
-	public int cartPrice(String memberId);
+	public int cartPrice(String userid);
 	
 	public List<Map<String,Object>> searchP_val(@Param("p_val")int p_val, @Param("start")int start, @Param("nuserid") List<String> nuserid);
 	

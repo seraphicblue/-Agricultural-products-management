@@ -30,20 +30,18 @@
 </head>
 
 <body id="page-top">
-
+	<input type="hidden" name="command" id="command" value="All">
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
 		<!-- Sidebar -->
-		<ul
-			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
-			id="accordionSidebar">
+		<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
 			<!-- Sidebar - Brand -->
 			<!-- 홈화면 링크 부분-->
-			<a
-				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="index.jsp">
+
+			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="/company/main">
+
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-laugh-wink"></i>
 				</div>
@@ -66,7 +64,7 @@
 
 			<!-- Nav Item - Pages Collapse Menu -->
 			<!-- data-toggle 제거시 화살표 부분 제거-->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
+			<li class="nav-item"><a class="nav-link collapsed" href="redirect:/index.jsp"
 				data-target="#collapseTwo" aria-expanded="true"
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Components</span>
 			</a></li>
@@ -101,12 +99,16 @@
 
 			<!-- Nav Item - Charts -->
 			<li class="nav-item"><a class="nav-link"
-				href="../../charts.html"> <i class="fas fa-fw fa-chart-area"></i>
-					<span>Charts</span></a></li>
+				href="/company/cs"> <i class="fas fa-fw fa-chart-area"></i>
+					<span>재고 그래프</span></a></li>
+					
+			<li class="nav-item"><a class="nav-link"
+				href="/company/cr"> <i class="fas fa-fw fa-chart-area"></i>
+					<span>장부 그래프</span></a></li>
 
 			<!-- Nav Item - Tables -->
-			<li class="nav-item"><a class="nav-link" href="tables.html">
-					<i class="fas fa-fw fa-table"></i> <span>Tables</span>
+			<li class="nav-item"><a class="nav-link" href="/company/stockmanage">
+					<i class="fas fa-fw fa-table"></i> <span>재고</span>
 			</a></li>
 			
 			<!-- Divider -->
@@ -130,83 +132,51 @@
 			<div id="content">
 
 				<!-- Topbar -->
-				<nav
-					class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+				<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
 					<!-- Sidebar Toggle (Topbar) -->
-					<button id="sidebarToggleTop"
-						class="btn btn-link d-md-none rounded-circle mr-3">
-						<i class="fa fa-bars"></i>
-					</button>
-
+					
 					<!-- Topbar Search -->
-					<form
-						class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-
-					</form>
+					
 
 					<!-- Topbar Navbar -->
 					<ul class="navbar-nav ml-auto">
 
 						<!-- Nav Item - Search Dropdown (Visible Only XS) -->
-						<li class="nav-item dropdown no-arrow d-sm-none"><a
-							class="nav-link dropdown-toggle" href="#" id="searchDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> <i class="fas fa-search fa-fw"></i>
-						</a> <!-- Dropdown - Messages -->
-							<div
-								class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-								aria-labelledby="searchDropdown">
-								<form class="form-inline mr-auto w-100 navbar-search">
-									<div class="input-group">
-										<input type="text"
-											class="form-control bg-light border-0 small"
-											placeholder="Search for..." aria-label="Search"
-											aria-describedby="basic-addon2">
-										<div class="input-group-append">
-											<button class="btn btn-primary" type="button">
-												<i class="fas fa-search fa-sm"></i>
-											</button>
-										</div>
-									</div>
-								</form>
-							</div></li>
+						<!-- Dropdown - Messages -->
+							
 
 						<!-- Nav Item - Alerts -->
-						<li class="nav-item dropdown no-arrow mx-1"></li>
+						
 
 						<!-- Nav Item - Messages -->
-						<li class="nav-item dropdown no-arrow mx-1"></li>
-
-
-
+						
 						<!-- Nav Item - User Information -->
 						<!-- 로그아웃 마이페이 부분-->
-						<li class="nav-item dropdown no-arrow"><a
-							class="nav-link dropdown-toggle" href="#" id="userDropdown"
+						<li class="nav-item dropdown no-arrow">
+						<a  class="nav-link dropdown-toggle" href="#" id="userDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <span
-								class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas
-									McGee</span> <img class="img-profile rounded-circle"
+								class="mr-2 d-none d-lg-inline text-gray-600 small">${uid}</span> <img class="img-profile rounded-circle"
 								src="../../img/undraw_profile.svg">
-						</a> <!-- Dropdown - User Information -->
-							<div
-								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+						</a> 
+						<!-- Dropdown - User Information -->
+							<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 								aria-labelledby="userDropdown">
-								<a class="dropdown-item" href="#"> <i
-									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
+								<a class="dropdown-item" href="#"> 
+									<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 
+									프로필
 								</a>
 
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="#" data-toggle="modal"
-									data-target="#logoutModal"> <i
-									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-									Logout
+									data-target="#logoutModal"> 
+									<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+									로그아웃
 								</a>
-							</div></li>
-
+							</div>
+						</li>
 					</ul>
-
 				</nav>
 				<!-- End of Topbar -->
 
@@ -216,9 +186,8 @@
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+						<h1 class="h3 mb-0 text-gray-800">${uid}의 관리 페이지입니다.</h1>
 					</div>
-
 					<!-- Content Row -->
 					<div class="row">
 
@@ -231,8 +200,8 @@
 											<div
 												class="text-xs font-weight-bold text-primary text-uppercase mb-1"
 												style="font-size: 15px;">재고 알림</div>
-											<div class="h5 mb-0 font-weight-bold text-gray-800"
-												id="position1">알림 메세지</div>
+											<div class="h5 mb-0 font-weight-bold text-800"
+												id="position1"></div>
 										</div>
 										<div class="col-auto"></div>
 									</div>
@@ -249,8 +218,8 @@
 											<div
 												class="text-xs font-weight-bold text-success text-uppercase mb-1"
 												style="font-size: 15px;">가격 알림</div>
-											<div class="h5 mb-0 font-weight-bold text-gray-800"
-												id="position2">알림 메세지</div>
+											<div class="h5 mb-0 font-weight-bold text-800"
+												id="position2"></div>
 										</div>
 										<div class="col-auto"></div>
 									</div>
@@ -261,23 +230,23 @@
 						<!-- Earnings (Monthly) Card Example -->
 						<div class="col-xl-3 col-md-6 mb-4">
 							<div class="card border-left-info shadow h-100 py-2">
-								<div class="card-body">
-									<div class="row no-gutters align-items-center">
+								<div class="card-body"> 
+									<div class="row no-gutters align-items-center"> 
 										<div class="col mr-2">
 											<div
 												class="text-xs font-weight-bold text-info text-uppercase mb-1"
-												style="font-size: 15px;">한도 알림</div>
+												style="font-size: 15px;">한도 알림</div>  
 											<div class="row no-gutters align-items-center">
 												<div class="col-auto">
-													<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"
-														id="position3">알림 메세지</div>
+													<div class="h5 mb-0 mr-3 font-weight-bold text-800"
+														id="position3"></div>
 												</div>
 												<div class="col">
-													<div class="progress progress-sm mr-2">
+													<!-- <div class="progress progress-sm mr-2">
 														<div class="progress-bar bg-info" role="progressbar"
 															style="width: 50%" aria-valuenow="50" aria-valuemin="0"
 															aria-valuemax="100"></div>
-													</div>
+													</div> -->
 												</div>
 											</div>
 										</div>
@@ -289,6 +258,7 @@
 
 						<!-- Pending Requests Card Example -->
 						<div class="col-xl-3 col-md-6 mb-4">
+						
 							<div class="card border-left-warning shadow h-100 py-2">
 								<div class="card-body">
 									<div class="row no-gutters align-items-center">
@@ -296,15 +266,18 @@
 											<div
 												class="text-xs font-weight-bold text-warning text-uppercase mb-1"
 												style="font-size: 15px;">메세지 종합</div>
-											<div class="h5 mb-0 font-weight-bold text-gray-800"
-												id="position4">18</div>
+											<div class="h5 mb-0 font-weight-bold text-800"
+												id="position4"></div>
 										</div>
 										<div class="col-auto">
+										<a href="/company/message">
 											<i class="fas fa-comments fa-2x text-gray-300"></i>
+										</a>
 										</div>
 									</div>
 								</div>
 							</div>
+						
 						</div>
 					</div>
 
@@ -316,10 +289,8 @@
 						<div class="col-xl-8 col-lg-7">
 							<div class="card shadow mb-4">
 								<!-- Card Header - Dropdown -->
-								<div
-									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-									<h6 class="m-0 font-weight-bold text-primary">Earnings
-										Overview</h6>
+								<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+									<h6 class="m-0 font-weight-bold text-primary">일주일간 판구매 동향</h6>
 									<div class="dropdown no-arrow">
 										<a class="dropdown-toggle" href="#" role="button"
 											id="dropdownMenuLink" data-toggle="dropdown"
@@ -340,7 +311,7 @@
 								<!-- Card Body -->
 								<div class="card-body">
 									<div class="chart-area">
-										<canvas id="myAreaChart"></canvas>
+										<canvas id="mymainChart"></canvas>
 									</div>
 								</div>
 							</div>
@@ -350,10 +321,8 @@
 						<div class="col-xl-4 col-lg-5">
 							<div class="card shadow mb-4">
 								<!-- Card Header - Dropdown -->
-								<div
-									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-									<h6 class="m-0 font-weight-bold text-primary">Revenue
-										Sources</h6>
+								<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+									<h6 class="m-0 font-weight-bold text-primary">재고 현황</h6>
 									<div class="dropdown no-arrow">
 										<a class="dropdown-toggle" href="#" role="button"
 											id="dropdownMenuLink" data-toggle="dropdown"
@@ -377,13 +346,11 @@
 										<canvas id="myPieChart"></canvas>
 									</div>
 									<div class="mt-4 text-center small">
-										<span class="mr-2"> <i
-											class="fas fa-circle text-primary"></i> Direct
-										</span> <span class="mr-2"> <i
-											class="fas fa-circle text-success"></i> Social
-										</span> <span class="mr-2"> <i class="fas fa-circle text-info"></i>
-											Referral
-										</span>
+									<c:forEach items="${stockList}" var="s">
+                                        <span class="mr-2" ><i
+											class="fas fa-circle text-primary" value="${s.sno}"></i>${s.scontent}</span>
+                                                      </c:forEach>
+										
 									</div>
 								</div>
 							</div>
@@ -500,24 +467,25 @@
 
 			<!-- End of Footer -->
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">로그아웃</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">로그아웃 하시겠습니까?</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-                    <a class="btn btn-primary" href="/logout">로그아웃</a>
-                </div>
+    		<!-- Logout Modal-->
+    		<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+       			<div class="modal-dialog" role="document">
+            		<div class="modal-content">
+                		<div class="modal-header">
+                    		<h5 class="modal-title" id="exampleModalLabel">로그아웃</h5>
+                    		<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        		<span aria-hidden="true">×</span>
+                    		</button>
+                		</div>
+                		<div class="modal-body">로그아웃 하시겠습니까?</div>
+                		<div class="modal-footer">
+                    		<button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
+                    		<a class="btn btn-primary" href="/logout">로그아웃</a>
+                		</div>
                 
-            </div>
+            		</div>
+        		</div>
+        	</div>
         </div>
     </div>
 	<!-- End of Page Wrapper -->
@@ -567,6 +535,8 @@
 	<!-- Page level custom scripts -->
 	<script src="../../js/demo/chart-area-demo.js"></script>
 	<script src="../../js/demo/chart-pie-demo.js"></script>
+	<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="../../js/sell.js"></script>
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
@@ -612,7 +582,7 @@
 		}
 
 		$(document).ready(function() {
-			$('.click').click(
+			$('.click2').click(
 					function() {
 						var scontent = $(this).closest('tr').find('.select_option').val();
 						var selectedPrice = $(this).closest('tr').find('.selectedprice').text();

@@ -10,10 +10,16 @@
 	  */
 package stock_m.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +28,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 
 import jakarta.servlet.http.HttpSession;
 import stock_m.dto.AdminstockDto;
@@ -69,8 +79,8 @@ public class StockController {
 	 * SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
 	 * service.inserts(scontent,s_volume,format.format(now)); return
 	 * "redirect:/company/stock"; }
-	 * 
 	 */
+	 
 	//main코드 수정 23.05.23
 	
 	
@@ -87,8 +97,9 @@ public class StockController {
 					//@ModelAttribute("user") MemDto dto) {//1.세션서장값 dto 에넘겨줌 2. 파라미터값 저장(id는 그대로) sesssion에 저장되 내용 바뀜=>db도업데이트 해줘야함
 					//dto에 아이디값은 포함되지않았음
 
-					  @RequestMapping("/company/stockmanage")
-						public String slist(@RequestParam(name="p", defaultValue = "1") int page, Model m ) {
+					  @RequestMapping("company/stockmanage")
+						public String slist(HttpSession session,@RequestParam(name="p", defaultValue = "1") int page, Model m ) {
+						  String userid = (String)session.getAttribute("userid");
 						  System.out.println("is");
 							//글이 있는지 체크
 							int count = service.count();//글갯수
@@ -97,7 +108,7 @@ public class StockController {
 								System.out.println("am");
 							int perPage = 10; // 한 페이지에 보일 글의 갯수
 							int startRow = (page - 1) * perPage;//0부터시작하기 때문에 1뺌
-							String userid="1";
+							
 							  
 							  List<StockDto> stockList = service.sList(userid); 
 							  m.addAttribute("stockList",stockList);
@@ -123,8 +134,9 @@ public class StockController {
 							}
 						
 							m.addAttribute("count", count);
+							m.addAttribute("uid", userid);
 							
-							return "/company/stockmanage";
+							return "company/stockmanage";
 						}
 					  	
 						  @GetMapping("/company/sdelete")
@@ -136,26 +148,29 @@ public class StockController {
 							  }
 						  
 						  @GetMapping("/company/scheckdelete")
-						  public String scheckdelete(@RequestParam("selectedItems[]") int[] selectedItems) {
+						  public String scheckdelete(@RequestParam(value = "selectedItems[]") int[] selectedItems) {
 						    for (int selectedItem : selectedItems) {
 						      int sno = selectedItem;
 						      System.out.println(sno);
-						      service.sdelete(sno);
+						      service.sdelete(sno);//여기서 문제 발생
 						    }
 						    return "redirect:/company/stockmanage";
 						  }		
 						  
 						  @GetMapping("company/search")
-						  public String searchscontent(String search,Model m) {
+						  public String searchscontent(HttpSession session,@RequestParam("search") String search,Model m) {
+							  String userid = (String)session.getAttribute("userid");
 							  System.out.println(search);
-	                          String userid="1";
+	                         
 							 // List<StockDto> stockList = service.sList(userid); 
 							  
-							  List<StockDto> sList=service.searchscontent(search);
+							  List<StockDto> sList=service.searchscontent(search,userid);
 							  m.addAttribute("stockList",sList);
 							  m.addAttribute("search", search);
+							  m.addAttribute("uid", userid);
+							  System.out.println("검색 결과 "+sList);
 							 
-						   return "/company/search";
+						   return "company/search";
 						 
 						}	
 
@@ -222,6 +237,64 @@ public class StockController {
 		 * "redirect:/company/stock"; }
 		 */
 		//main코드 수정 23.05.23
+		
+		
+		
+		@GetMapping("company/cs")
+        public String chartr(HttpSession session,Model m) {			
+			String userid = (String) session.getAttribute("userid");
+			List<Map<String, Object>> stockList = service.getstockoption(userid);
+			m.addAttribute("stockList",stockList);
+			m.addAttribute("uid", userid);
+			       
+			return"company/cs";
+		}
+		
+		@GetMapping("company/getstock")
+		@ResponseBody
+		public String getstock(HttpSession session){
+			String userid = (String) session.getAttribute("userid");
+			List<Map<String, Object>> getstockList = service.getstockData(userid);
+			 Gson gson=new Gson();
+			  String stockList =gson.toJson(getstockList);				
+			  System.out.println("stock"+stockList);
+			return stockList;
+			
+			
+			
+		}
+		@GetMapping("company/getStockInfos")
+		@ResponseBody
+		public ResponseEntity<String> getStockInfo(
+				HttpSession session,
+				@RequestParam("selectedsno" )int selectedsno)throws JsonProcessingException{
+			String userid = (String)session.getAttribute("userid");
+			System.out.println(userid);
+			System.out.println("getstockinfo 요청됨");
+			int sno=selectedsno;
+			List<Map<String, Object>> sellcountdate=service.getsellcount(userid, sno);
+			List<Map<String, Object>> buycountdate=service.getbuycount(userid, sno);
+			
+			System.out.println("sellcountdate"+sellcountdate);
+			System.out.println("buycountdate"+buycountdate);
+			
+			//json으로 직렬화
+			ObjectMapper om= new ObjectMapper();
+            
+			//json문자열로 변환
+			String sellcountdateJson = om.writeValueAsString(sellcountdate);
+			String buycountdateJson = om.writeValueAsString(buycountdate);
+			
+            Map<String, String> responseData = new HashMap<>();
+			responseData.put("sellcountdate", sellcountdateJson);
+			responseData.put("buycountdate", buycountdateJson);
+			
+			String jsonResponse = om.writeValueAsString(responseData);
+			
+			return ResponseEntity.ok(jsonResponse);
+			
+		}
+		
 	}
 
 

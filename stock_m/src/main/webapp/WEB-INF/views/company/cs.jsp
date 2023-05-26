@@ -177,69 +177,62 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800" _msttexthash="10366200" _msthash="57">장부 그래프</h1>
-                    
+                    <h1 class="h3 mb-2 text-gray-800" _msttexthash="10366200" _msthash="57">재고 그래프</h1>
+                    <p class="mb-4" _msttexthash="2402823007" _msthash="58">
+</a></p>
 
                     <!-- Content Row -->
                     <div class="row">
 
-                        <div class="col-xl-12 col-lg-7">
-
-                            
-
-                            <!-- Bar Chart -->
+                        <div class="col-xl-12 col-lg-7"> 
+                            <div class="col-xl-12 col-lg-5">
                             <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary" _msttexthash="22221355" _msthash="61">장부 그래프</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">전체 재고 비율</h6>
                                 </div>
-                                <div> <!--  id="B" --> 
-  <div> <!-- style="display:flex; align-items:center;" -->
-  <form id="chartform"action="${pageContext.request.contextPath}/finance/filtered_data_o" method="get">
- <!--  <p><strong>매출 내역</strong></p><br> -->
-    <table id="data-table">
-      <tr>
-        <th id="C"></th>
-      <td id="I">
-   <label class="test_obj">
-    <input type="radio" name="date" value="today">
-    <span>오늘</span>
-</label>
+                                <!-- Card Body -->
+                                <div class="card-body" style="height: 345px">
+                                    <div class="chart-pie pt-4">
+                                        <canvas id="myPieChart"></canvas>
+                                        
+  <label for="stock">재고 선택</label>
+  <select name="selectedStock" onchange="getStockInfo(this)">
+  <option value="${stockList}">Select Stock</option>
+  <c:forEach items="${stockList}" var="s">
+  <option value="${s.sno}">${s.scontent}</option>
+  </c:forEach>
+</select>
  
-<label class="test_obj">
-    <input type="radio" name="date" value="1month">
-    <span>1개월</span>
-</label>
- 
-<label class="test_obj">
-    <input type="radio" name="date" value="3month">
-    <span>3개월</span>
-</label>
-<label class="test_obj">
-    <input type="radio" name="date" value="1year">
-    <span>1년</span>
-</label>
 
- <label for="start-date-input"></label>
-<input type="date" id="start-date-input" name="start-date" min="2021-01-01" max="" value="" required>
-
-<label for="end-date-input"><a id="P">~</a></label>
-<input type="date" id="end-date-input" name="end-date" min="" max="" value="" required>
-<button type="button" class="resetButton" onclick="resetSearch()">X</button>
-<button type="button" id="myButton" onclick="search()">검색 </button>
+                                    </div>
+                                   
+                                   
+                                    <code>
+                                    
+                                    </code>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-12 col-lg-5">
+ 								<div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">최근 1주일간 재고 현황</h6>
+                                </div>
+                               
+                                    
+                                <div class="card-body">
+                                    <div class="chart-area">
+                                        <canvas id="myAreaChart"></canvas>
                                         
                                     </div>
-                                <div class="card-body">
-                                    <div class="chart-bar"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                                        <canvas id="myChart" width="571" height="400" style="display: block; height: 320px; width: 457px;" class="chartjs-render-monitor"></canvas>
-                                        <input type="hidden" id="totalselllist" value="${totalselllist}" />
-                                        </table>
-                                         </form>
-
-                                   </div>
+                                    
+                                    <code></code> 
+                                </div>
+                                </div>
+                                </div>
                             </div>
-
                         </div>
-
                 <!-- /.container-fluid -->
 
             </div>
@@ -302,11 +295,9 @@
     <script src="../../../js/demo/chart-area-demo.js"></script>
     <script src="../../../js/demo/chart-pie-demo.js"></script>
     <script src="../../../js/demo/chart-bar-demo.js"></script>
-<style>
-  #data-table {
-    margin: 20px auto 0;
-  }
-</style>
+
+    
+
 </body>
 
 </html>
