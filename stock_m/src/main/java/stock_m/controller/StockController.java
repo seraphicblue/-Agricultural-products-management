@@ -98,7 +98,8 @@ public class StockController {
 					//dto에 아이디값은 포함되지않았음
 
 					  @RequestMapping("company/stockmanage")
-						public String slist(@RequestParam(name="p", defaultValue = "1") int page, Model m ) {
+						public String slist(HttpSession session,@RequestParam(name="p", defaultValue = "1") int page, Model m ) {
+						  String userid = (String)session.getAttribute("userid");
 						  System.out.println("is");
 							//글이 있는지 체크
 							int count = service.count();//글갯수
@@ -107,7 +108,7 @@ public class StockController {
 								System.out.println("am");
 							int perPage = 10; // 한 페이지에 보일 글의 갯수
 							int startRow = (page - 1) * perPage;//0부터시작하기 때문에 1뺌
-							String userid="1";
+							
 							  
 							  List<StockDto> stockList = service.sList(userid); 
 							  m.addAttribute("stockList",stockList);
@@ -146,26 +147,28 @@ public class StockController {
 							  }
 						  
 						  @GetMapping("/company/scheckdelete")
-						  public String scheckdelete(@RequestParam("selectedItems[]") int[] selectedItems) {
+						  public String scheckdelete(@RequestParam(value = "selectedItems[]") int[] selectedItems) {
 						    for (int selectedItem : selectedItems) {
 						      int sno = selectedItem;
 						      System.out.println(sno);
-						      service.sdelete(sno);
+						      service.sdelete(sno);//여기서 문제 발생
 						    }
 						    return "redirect:/company/stockmanage";
 						  }		
 						  
 						  @GetMapping("company/search")
-						  public String searchscontent(String search,Model m) {
+						  public String searchscontent(HttpSession session,@RequestParam("search") String search,Model m) {
+							  String userid = (String)session.getAttribute("userid");
 							  System.out.println(search);
-	                          String userid="1";
+	                         
 							 // List<StockDto> stockList = service.sList(userid); 
 							  
-							  List<StockDto> sList=service.searchscontent(search);
+							  List<StockDto> sList=service.searchscontent(search,userid);
 							  m.addAttribute("stockList",sList);
 							  m.addAttribute("search", search);
+							  System.out.println("검색 결과 "+sList);
 							 
-						   return "/company/search";
+						   return "company/search";
 						 
 						}	
 

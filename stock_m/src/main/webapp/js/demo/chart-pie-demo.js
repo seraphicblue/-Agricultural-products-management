@@ -20,6 +20,7 @@ function showStockResult() {
                     console.log(stocklist);
                     stockChart(stocklist);
 
+                  
 
 			    	});
 
@@ -56,6 +57,41 @@ var myPieChart = new Chart(ctx, {
   },
   options: {
     maintainAspectRatio: false,
+    responsive: true, // Allow the chart to be responsive
+    onClick: function(event, elements) {
+    // 클릭 이벤트가 발생했을 때 실행할 코드를 작성합니다.
+    if (elements.length > 0) {
+      // 클릭한 요소에 대한 정보를 가져올 수 있습니다.
+      var clickedElement = elements[0];
+      var dataIndex = clickedElement._index;
+      var label = myPieChart.data.labels[dataIndex];
+      var value = myPieChart.data.datasets[0].data[dataIndex];
+      
+      // 예시: 클릭한 요소의 라벨과 값 출력
+      console.log("Clicked:", label, value);
+      
+      var encodedLabel = encodeURIComponent(label);
+      var url = "/company/search?search=" + encodedLabel;
+      
+      $.ajax({
+            url: url,
+            type: "GET",
+            
+            }).done(function(response) {
+				 window.location.href = "/company/search?search=" + encodedLabel;
+				     console.log("도넛클릭이벤트 성공");
+			    	
+
+                    
+
+                  
+
+			    	});
+
+
+    }
+    
+  },
     tooltips: {
       backgroundColor: "rgb(255,255,255)",
       bodyFontColor: "#858796",
@@ -106,27 +142,26 @@ var myPieChart = new Chart(ctx, {
         });
         });
 }
-/////////////////////////////////
+//2차 날짜포멧
 var formatter = new Intl.DateTimeFormat('en-US', {
   year: 'numeric',
   month: 'long',
   day: 'numeric'
 });
- ///////////////////////////////////////
+
 //2차
 function getStockInfo(sellcountdate,buycountdate) {
 var currentDate = new Date();
-// Create an array to store the labels for the past week
 var weekLabels = [];
-// Loop through the past 7 days and format the dates
+
 for (var i = 6; i >= 0; i--) {
   var date = new Date(currentDate);
   date.setDate(date.getDate() - i);
-  // Format the date and push it to the labels array
+ 
   weekLabels.push(formatter.format(date));
 }
 	var ctx = document.getElementById("myAreaChart");
-	console.log("11111111111111111 요청 성공");
+	
 	console.log(sellcountdate);
 	console.log(buycountdate);
 	

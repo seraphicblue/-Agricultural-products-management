@@ -334,22 +334,20 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800" _msttexthash="10366200" _msthash="57">차트</h1>
-                    <p class="mb-4" _msttexthash="2402823007" _msthash="58">Chart.js는 이 테마에서 차트를 생성하는 데 사용되는 타사 플러그인입니다.
- 아래 차트는 사용자 정의되었습니다 - 추가 사용자 정의 옵션을 보려면 <a target="_blank" href="https://www.chartjs.org/docs/latest/" _istranslated="1">공식 차트를 방문하십시오.js
- 선적 서류 비치</a>.</p>
+                    <h1 class="h3 mb-2 text-gray-800" _msttexthash="10366200" _msthash="57">장부 그래프</h1>
+                    
 
                     <!-- Content Row -->
                     <div class="row">
 
-                        <div class="col-xl-8 col-lg-7">
+                        <div class="col-xl-12 col-lg-7">
 
-                           
+                            
 
                             <!-- Bar Chart -->
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary" _msttexthash="22221355" _msthash="61">막대 차트</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary" _msttexthash="22221355" _msthash="61">장부 그래프</h6>
                                 </div>
                                 <div> <!--  id="B" --> 
   <div> <!-- style="display:flex; align-items:center;" -->
@@ -357,7 +355,7 @@
  <!--  <p><strong>매출 내역</strong></p><br> -->
     <table id="data-table">
       <tr>
-        <th id="C">날짜</th>
+        <th id="C"></th>
       <td id="I">
    <label class="test_obj">
     <input type="radio" name="date" value="today">
@@ -394,7 +392,7 @@
                                         </table>
                                          </form>
 
-                                    <hr><font _mstmutation="1" _msttexthash="215074457" _msthash="62"> 막대 차트의 스타일은 파일에서 찾을 수 있습니다. </font><code>/js/demo/chart-bar-demo.js</code></div>
+                                   </div>
                             </div>
 
                         </div>
@@ -461,9 +459,11 @@
     <script src="../../../js/demo/chart-area-demo.js"></script>
     <script src="../../../js/demo/chart-pie-demo.js"></script>
     <script src="../../../js/demo/chart-bar-demo.js"></script>
-
-    
-
+<style>
+  #data-table {
+    margin: 20px auto 0;
+  }
+</style>
 </body>
 
 </html>

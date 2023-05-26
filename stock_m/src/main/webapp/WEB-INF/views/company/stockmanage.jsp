@@ -570,13 +570,14 @@ function selectAll(selectAll){
 
 	    checkboxes.forEach(function (checkbox) {
 	      selectedItems.push(checkbox.value);
-	     
+	     console.log("여긴 아작스"+selectedItems);
 	    });
 	    $.ajax({
 	    	  type: "GET",
 	    	  url: "/company/scheckdelete",
 	    	  data: { selectedItems: selectedItems },
 	    	}).done(function() {
+
 	    	  document.location.reload();
 	    	});
 	    

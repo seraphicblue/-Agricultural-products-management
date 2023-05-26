@@ -38,6 +38,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.websocket.server.PathParam;
 
 import stock_m.dto.BuyDto;
@@ -71,8 +72,8 @@ public class RevenueController {
 	//dto에 아이디값은 포함되지않았음
 
 	  @RequestMapping("company/confirm")
-		public String list(@RequestParam(name="p", defaultValue = "1") int page, Model m ) {
-		  
+		public String list(HttpSession session,@RequestParam(name="p", defaultValue = "1") int page, Model m ) {
+		  String userid = (String)session.getAttribute("userid");
 			//글이 있는지 체크
 			int count = service.count();//글갯수
 			
@@ -80,7 +81,7 @@ public class RevenueController {
 				
 			int perPage = 10; // 한 페이지에 보일 글의 갯수
 			int startRow = (page - 1) * perPage;//0부터시작하기 때문에 1뺌
-			String userid="1";
+			
 			  List<SellDto> rlist = service.selectOne(userid); 
 			  m.addAttribute("rlist",rlist);
 			  
@@ -279,6 +280,30 @@ public class RevenueController {
 							return ResponseEntity.ok(jsonResponse);
 							
 						}
+						
+						@GetMapping("company/getmain")
+						@ResponseBody
+						 public  ResponseEntity<String> getmain(HttpSession session)throws JsonProcessingException {
+							String userid = (String)session.getAttribute("userid");
+							List<Map<String, Object>> getmainselldata = service.getmainselldata(userid);
+							List<Map<String, Object>> getmainbuydata = service.getmainbuydata(userid);
+							
+							System.out.println("getmain"+getmainselldata);
+							System.out.println("getmainbuy"+getmainbuydata);
+							ObjectMapper om= new ObjectMapper();
+							
+							String sellDataJson = om.writeValueAsString(getmainselldata);
+							String buyDataJson = om.writeValueAsString(getmainbuydata);
+							
+							Map<String, String> responseData = new HashMap<>();
+							responseData.put("sellData", sellDataJson);
+							responseData.put("buyData", buyDataJson);
+							
+							String jsonResponse = om.writeValueAsString(responseData);
+							
+							return ResponseEntity.ok(jsonResponse);
+						}
+						
 						 
 
 						

@@ -172,6 +172,18 @@ public class RevenueService {
 		}
 
 
+		public List<Map<String, Object>> getmainbuydata(String userid) {
+			
+			return dao.getmainbuydata(userid);
+		}
+
+
+		public List<Map<String, Object>> getmainselldata(String userid) {
+			
+			return dao.getmainselldata( userid);
+		}
+
+
 	
 		
 	}

@@ -86,8 +86,14 @@ public class StockService {
 				return dao.sdelete(sno);
 				
 			}
-			public List<StockDto> searchscontent(String search){
-				return dao.searchscontent(search);
+			public List<StockDto> searchscontent(String search, String userid){
+               Map<String, Object> m = new HashMap<>();
+				
+				m.put("search", search);
+			    m.put("userid",userid);
+				
+				
+				return dao.searchscontent(m);
 			}
 			public int sinsert(String scontent, int s_val, String userid, int s_volume) {
 				Map<String, Object> m = new HashMap<>();

@@ -120,4 +120,10 @@ public interface RevenueDao {
 			+ "ON s.month = b.month")
 	List<Map<String, Object>> gettotalData(@Param("startDate") String startDate, @Param("endDate") String endDate);
 
+	@Select("select count(bno) as bc, bdate from buy where userid=#{userid} group by bdate")
+	List<Map<String, Object>> getmainbuydata(String userid);
+	
+	@Select("select count(sno) as sc, sdate from sell where userid=#{userid} group by sdate")
+	List<Map<String, Object>> getmainselldata(String userid);
+
 }

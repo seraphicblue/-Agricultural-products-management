@@ -334,26 +334,22 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800" _msttexthash="10366200" _msthash="57">차트</h1>
-                    <p class="mb-4" _msttexthash="2402823007" _msthash="58">Chart.js는 이 테마에서 차트를 생성하는 데 사용되는 타사 플러그인입니다.
- 아래 차트는 사용자 정의되었습니다 - 추가 사용자 정의 옵션을 보려면 <a target="_blank" href="https://www.chartjs.org/docs/latest/" _istranslated="1">공식 차트를 방문하십시오.js
- 선적 서류 비치</a>.</p>
+                    <h1 class="h3 mb-2 text-gray-800" _msttexthash="10366200" _msthash="57">재고 그래프</h1>
+                    <p class="mb-4" _msttexthash="2402823007" _msthash="58">
+</a></p>
 
                     <!-- Content Row -->
                     <div class="row">
 
-                        <div class="col-xl-8 col-lg-7">
-
-                           
-
-                            <div class="col-xl-4 col-lg-5">
+                        <div class="col-xl-12 col-lg-7"> 
+                            <div class="col-xl-12 col-lg-5">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">재고 현황</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">전체 재고 비율</h6>
                                 </div>
                                 <!-- Card Body -->
-                                <div class="card-body">
+                                <div class="card-body" style="height: 345px">
                                     <div class="chart-pie pt-4">
                                         <canvas id="myPieChart"></canvas>
                                         
@@ -367,28 +363,32 @@
  
 
                                     </div>
-                                    <hr>
-                                    Styling for the donut chart can be found in the
-                                    <code>/js/demo/chart-pie-demo.js</code> file.
+                                   
+                                   
+                                    <code>
+                                    
+                                    </code>
                                 </div>
                             </div>
                         </div>
- <div class="card shadow mb-4">
+                        <div class="col-xl-12 col-lg-5">
+ 								<div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Area Chart</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">최근 1주일간 재고 현황</h6>
                                 </div>
                                
-                                    </div>
+                                    
                                 <div class="card-body">
                                     <div class="chart-area">
                                         <canvas id="myAreaChart"></canvas>
                                         
                                     </div>
-                                    <hr>
-                                    Styling for the area chart can be found in the
-                                    <code>/js/demo/chart-area-demo.js</code> file.
+                                    
+                                    <code></code> 
+                                </div>
                                 </div>
                             </div>
+                        </div>
                 <!-- /.container-fluid -->
 
             </div>

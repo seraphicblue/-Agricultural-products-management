@@ -107,8 +107,8 @@
 					<span>Charts</span></a></li>
 
 			<!-- Nav Item - Tables -->
-			<li class="nav-item"><a class="nav-link" href="tables.html">
-					<i class="fas fa-fw fa-table"></i> <span>Tables</span>
+			<li class="nav-item"><a class="nav-link" href="/company/stockmanage">
+					<i class="fas fa-fw fa-table"></i> <span>재고</span>
 			</a></li>
 			
 			<!-- Divider -->
@@ -318,8 +318,7 @@
 								<!-- Card Header - Dropdown -->
 								<div
 									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-									<h6 class="m-0 font-weight-bold text-primary">Earnings
-										Overview</h6>
+									<h6 class="m-0 font-weight-bold text-primary">일주일간 판구매 동향</h6>
 									<div class="dropdown no-arrow">
 										<a class="dropdown-toggle" href="#" role="button"
 											id="dropdownMenuLink" data-toggle="dropdown"
@@ -340,7 +339,7 @@
 								<!-- Card Body -->
 								<div class="card-body">
 									<div class="chart-area">
-										<canvas id="myAreaChart"></canvas>
+										<canvas id="mymainChart"></canvas>
 									</div>
 								</div>
 							</div>
@@ -352,8 +351,7 @@
 								<!-- Card Header - Dropdown -->
 								<div
 									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-									<h6 class="m-0 font-weight-bold text-primary">Revenue
-										Sources</h6>
+									<h6 class="m-0 font-weight-bold text-primary">재고 현황</h6>
 									<div class="dropdown no-arrow">
 										<a class="dropdown-toggle" href="#" role="button"
 											id="dropdownMenuLink" data-toggle="dropdown"
@@ -377,13 +375,11 @@
 										<canvas id="myPieChart"></canvas>
 									</div>
 									<div class="mt-4 text-center small">
-										<span class="mr-2"> <i
-											class="fas fa-circle text-primary"></i> Direct
-										</span> <span class="mr-2"> <i
-											class="fas fa-circle text-success"></i> Social
-										</span> <span class="mr-2"> <i class="fas fa-circle text-info"></i>
-											Referral
-										</span>
+									<c:forEach items="${stockList}" var="s">
+                                        <span class="mr-2" ><i
+											class="fas fa-circle text-primary" value="${s.sno}"></i>${s.scontent}</span>
+                                                      </c:forEach>
+										
 									</div>
 								</div>
 							</div>
