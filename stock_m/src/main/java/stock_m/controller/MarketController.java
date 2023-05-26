@@ -59,7 +59,7 @@ public class MarketController {
 
 			int perPage = 3; // 한 페이지에 보일 글의 갯수
 			int startRow = (page - 1) * perPage;
-			List<ManagementDto> mainList = m_service.mainList(startRow,userid);
+			List<ManagementDto> mainList = m_service.managementListall(startRow,userid);
 			m.addAttribute("userid", userid);
 			m.addAttribute("mainList", mainList);
 
