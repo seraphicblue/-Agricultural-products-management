@@ -97,6 +97,13 @@ input:checked+.slider:before {
 .slider.round:before {
 	border-radius: 50%;
 }
+
+    thead {
+        background-color: #7fad39;
+    }
+
+
+
 </style>
      
      
@@ -201,9 +208,9 @@ input:checked+.slider:before {
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="hero__categories">
-                        <div class="hero__categories__all">
+                        <div class="hero__categories__box">
                         <!--hero__categories__all 이 부분 변경 필요 -->
-                            <span >관심 업체</span>
+                            <h4 align="center">관리 업체</h4>
                         </div>
                         <div class="shoping__cart__table">
                         <table>
@@ -211,7 +218,7 @@ input:checked+.slider:before {
 										<tr>
 											<th>no.</th>
 											<th>회사 이름</th>
-											<th>알림 설정</th>
+											<th> 관리 상태</th>
 											<th>삭제</th>
 											<th>상태 변경</th>
 										</tr>
@@ -221,9 +228,16 @@ input:checked+.slider:before {
 										<tr>
 											<th>${count.index+1}</th>
 											<th class="m_content">${management.m_content}</th>
-											<th><label class="switch"> <input
-													type="checkbox"> <span class="slider round"></span>
-											</label></th>
+											<th> 
+											<c:set var="type" value="${management.m_val}" />
+											<c:choose>
+											<c:when test="${type}">
+											관심 업체
+											</c:when>
+											<c:when test="${!type}">
+											유의 업체
+											</c:when>
+											</c:choose></th>
 											<th><button class="click"
 													data-userid="${management.userid}">삭제</button></th>
 											<th><button class="click2"
@@ -334,7 +348,7 @@ input:checked+.slider:before {
 													});
 								});
 
-				$(document).ready(
+				/* $(document).ready(
 						function() {
 							$('.switch input').change(
 									function() {
@@ -360,7 +374,7 @@ input:checked+.slider:before {
 
 										});
 									});
-						});
+						}); */
 			</script>
 
 </body>

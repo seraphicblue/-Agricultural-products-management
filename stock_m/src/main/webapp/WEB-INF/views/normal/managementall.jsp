@@ -227,7 +227,17 @@ input:checked+.slider:before {
 									<tr>
 										<th>${count.index+1}</th>
 										<th class="m_content">${management.m_content}</th>
-										<th class="m_val">${management.m_val}</th>
+										<th>
+										<c:set var="type" value="${management.m_val}" />
+											<c:choose>
+											<c:when test="${type}">
+											관심 업체
+											</c:when>
+											<c:when test="${!type}">
+											유의 업체
+											</c:when>
+											</c:choose>
+											</th>
 										<th><button class="click">삭제</button></th>
 										<th><button class="click2">변경</button></th>
 									</tr>

@@ -56,16 +56,14 @@ public class MarketController {
 	    m.addAttribute("cprice", cprice);
 	    
 	    int count =m_service.count();
-		System.out.println(count);
+
 
 		if (count > 0) {
 
-			int perPage = 4; // 한 페이지에 보일 글의 갯수
+			int perPage = 3; // 한 페이지에 보일 글의 갯수
 			int startRow = (page - 1) * perPage;
-			System.out.println(startRow);
-			List<ManagementDto> mainList = m_service.mainList(startRow,userid);
+			List<ManagementDto> mainList = m_service.managementListall(startRow,userid);
 			m.addAttribute("userid", userid);
-			System.out.println(mainList);
 			m.addAttribute("mainList", mainList);
 
 			int pageNum = 5;
