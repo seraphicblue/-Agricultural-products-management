@@ -31,7 +31,7 @@
 
 <body id="page-top">
 	<input type="hidden" name="command" id="command" value="All">
-	<!-- Page Wrapper -->	
+	<!-- Page Wrapper -->
 	<div id="wrapper">
 
 		<!-- Sidebar -->
