@@ -53,9 +53,7 @@ public class StockService {
 
 
 	public int checki(int s_price, String scontent, int s_volume,int s_val, int ano, String userid) {
-		System.out.println(userid);
 		int s = dao.checki(scontent,userid);
-		System.out.println(s);
 		if(s>0) {
 			Date now = new	 Date();
 			SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
