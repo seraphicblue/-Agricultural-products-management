@@ -31,12 +31,15 @@ import stock_m.dto.StockDto;
 @Mapper
 public interface RevenueDao {
 
+	//userid의 현재 잔고를 확인
 	@Select("select profit from revenue where userid =#{userid}")
 	int checks(String userid);
-
+	
+	//userid의 정보를 가지고 장부 테이블의 잔고를 업데이트
 	@Update("UPDATE revenue SET profit=profit-#{s_price} WHERE userid = #{userid}")
 	int updater(@Param("s_price") int s_price, @Param("userid") String userid);
-
+	
+	//구매가 이루어진다면 해당 param 값들을 이용해 저장
 	@Insert("insert into buy(pno,userid,bdate,price) values(#{ano},#{userid},#{s_date},#{s_price})")
 	int insertb(@Param("ano") int ano, @Param("userid") String userid, @Param("s_date") String s_date,
 			@Param("s_price") int s_price);
