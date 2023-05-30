@@ -284,7 +284,7 @@
 								data-dismiss="modal">Cancel</button>
 							<a class="btn btn-primary" href="login.html">Logout</a>
 						</div>
-
+  
 					</div>
 				</div>
 			</div>
