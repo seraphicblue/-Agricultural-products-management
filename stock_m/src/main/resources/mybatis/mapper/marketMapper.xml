@@ -27,6 +27,18 @@
 		limit #{start} , 9
 	</select>
 	
+	<select id="palarmSearch" parameterType="java.util.Map" resultType="map">
+		SELECT *
+		FROM product
+		INNER JOIN stock ON product.sno = stock.sno
+		WHERE pname LIKE  concat('%',#{pname},'%')
+		AND NOT userid IN
+		<foreach item="item" index="index" collection="nuserid" open="(" separator="," close=")">
+		#{item}
+		</foreach>
+		limit #{start} , 30
+	</select>
+	
 	<select id="searchP_val" parameterType="java.util.Map" resultType="map">
 		select * from product inner join stock on product.sno = stock.sno where p_val = #{p_val} and not userid in 
 		<foreach item="item" index="index" collection="nuserid" open="(" separator="," close=")">
