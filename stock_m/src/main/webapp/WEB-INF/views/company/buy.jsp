@@ -31,30 +31,22 @@
 </head>
 
 <body id="page-top">
+<<<<<<< HEAD
 
+=======
 <input type="hidden" name="command" id="command" value="limit">
-<input type="hidden" name="uid" id="uid" value="${uid}">
+<input type="hidden" name="command" id="uid" value="${uid}">
 									
 	<!-- Page Wrapper -->	
-
+>>>>>>> refs/heads/kim2
 	<div id="wrapper">
 	
 		<!-- Sidebar -->
-		<ul
-			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
-			id="accordionSidebar">
+		<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
 			<!-- Sidebar - Brand -->
 			<!-- 홈화면 링크 부분-->
-
-
-			<a
-				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="/company/main">
-
-
 			<a href="/company/main" class="sidebar-brand d-flex align-items-center justify-content-center" > 
-
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-laugh-wink"></i>
 				</div>
@@ -85,20 +77,13 @@
 				</div></li>
 
 			<!-- Nav Item - Charts -->
-
-			<li class="nav-item"><a class="nav-link" href="/company/cs">
-					<i class="fas fa-fw fa-chart-area"></i> <span>재고 그래프</span>
-			</a></li>
-
-			<li class="nav-item"><a class="nav-link" href="/company/cr">
-					<i class="fas fa-fw fa-chart-area"></i> <span>장부 그래프</span>
-			</a></li>
+			<li class="nav-item"><a class="nav-link"
+				href="../../charts.html"> <i class="fas fa-fw fa-chart-area"></i>
+					<span>Charts</span></a></li>
 
 			<!-- Nav Item - Tables -->
-			<li class="nav-item"><a class="nav-link"
-				href="/company/stockmanage"> <i class="fas fa-fw fa-table"></i>
-					<span>재고</span>
-
+			<li class="nav-item"><a class="nav-link" href="tables.html">
+					<i class="fas fa-fw fa-table"></i> <span>Tables</span>
 			</a></li>
 
 			<!-- Divider -->
@@ -126,7 +111,6 @@
 					class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
 					<!-- Sidebar Toggle (Topbar) -->
-
 					<button id="sidebarToggleTop"
 						class="btn btn-link d-md-none rounded-circle mr-3">
 						<i class="fa fa-bars"></i>
@@ -138,12 +122,10 @@
 
 					</form>
 
-
 					<!-- Topbar Navbar -->
 					<ul class="navbar-nav ml-auto">
 
 						<!-- Nav Item - Search Dropdown (Visible Only XS) -->
-
 						<li class="nav-item dropdown no-arrow d-sm-none"><a
 							class="nav-link dropdown-toggle" href="#" id="searchDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -175,34 +157,27 @@
 
 
 
-
 						<!-- Nav Item - User Information -->
 						<!-- 로그아웃 마이페이 부분-->
 						<li class="nav-item dropdown no-arrow"><a
 							class="nav-link dropdown-toggle" href="#" id="userDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <span
-
-
 								class="mr-2 d-none d-lg-inline text-gray-600 small">${userid}</span> <img class="img-profile rounded-circle"
-
 								src="../../img/undraw_profile.svg">
 						</a> <!-- Dropdown - User Information -->
 							<div
 								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 								aria-labelledby="userDropdown">
 								<a class="dropdown-item" href="#"> <i
-
-									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 프로필
-
+									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
 								</a>
 
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="#" data-toggle="modal"
 									data-target="#logoutModal"> <i
 									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-
-									로그아웃
+									Logout
 								</a>
 							</div></li>
 
@@ -224,21 +199,20 @@
 					<div class="row">
 
 						<!-- Earnings (Monthly) Card Example -->
-						<div id="Message" class="col-lg-6 mb-4">
+						<div id="Message" class="col-lg-6 mb-4" >
 							<div class="card shadow mb-4" style="width: 1600px;">
 								<div class="card-header py-3">
 									<h6 class="m-0 font-weight-bold text-primary">물품 발주</h6>
 								</div>
-								<table
-									class="table table-bordered dataTable copyright text-center my-auto"
-									id="dataTable" width="100%" cellspacing="0" role="grid"
+								<table class="table table-bordered dataTable copyright text-center my-auto" id="dataTable"
+									width="100%" cellspacing="0" role="grid"
 									aria-describedby="dataTable_info" style="width: 100%;">
 									<thead>
 										<tr>
 											<th>재고 번호</th>
 											<th>재고 물품</th>
 											<th>수량</th>
-
+											
 											<th>가격</th>
 											<th>총가격</th>
 											<th>추가</th>
@@ -247,12 +221,6 @@
 									<tbody>
 
 										<tr>
-
-											<td class="s_val"></td>
-											<td align="center"><select
-												class="navbar navbar-expand select_option" onchange="selectedoption(this)">
-													<option value="">선택하세요</option>
-
 											<td class="sno"></td>
 											<td style="padding-top: 12px">
 											<input type="text" class="s_volume" value=0 size="10"
@@ -261,7 +229,6 @@
 												<td align="center">
 												<select class="navbar navbar-expand select_option" onchange="selectedoption(this)">
 													<option value="">--------------------</option>
-
 													<c:forEach items="${adminstockList}" var="option">
 														<option value="${option.acontent}"
 															data-volume="${option.a_volume}"
@@ -269,7 +236,6 @@
 															title="${option.a_val}">${option.acontent}</option>
 													</c:forEach>
 											</select></td>
-
 											<td style="padding-top: 12px">
 											<input type="text" class="s_volume" placeholder="0" size="10"
 											style="width:45px;height:41px;text-align:right;"
@@ -280,7 +246,6 @@
 											<!-- <i class="fas fa-check" ></i> -->
 											<span>추가</span>
 											</button></td>
-
 										</tr>
 									</tbody>
 								</table>
@@ -291,59 +256,53 @@
 				<!-- /.container-fluid -->
 
 			</div>
-			<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-				aria-labelledby="exampleModalLabel" aria-hidden="true">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel">로그아웃</h5>
-							<button class="close" type="button" data-dismiss="modal"
-								aria-label="Close">
-								<span aria-hidden="true">×</span>
-							</button>
-						</div>
-						<div class="modal-body">로그아웃 하시겠습니까?</div>
-						<div class="modal-footer">
-							<button class="btn btn-secondary" type="button"
-								data-dismiss="modal">취소</button>
-							<a class="btn btn-primary" href="/logout">로그아웃</a>
-						</div>
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">로그아웃</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">로그아웃 하시겠습니까?</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
+                    <a class="btn btn-primary" href="/logout">로그아웃</a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+	<!-- End of Page Wrapper -->
 
-					</div>
+	<!-- Scroll to Top Button-->
+	<a class="scroll-to-top rounded" href="#page-top"> <i
+		class="fas fa-angle-up"></i>
+	</a>
+
+	<!-- Logout Modal-->
+	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+					<button class="close" type="button" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
 				</div>
-			</div>
-			<!-- End of Page Wrapper -->
-
-			<!-- Scroll to Top Button-->
-			<a class="scroll-to-top rounded" href="#page-top"> <i
-				class="fas fa-angle-up"></i>
-			</a>
-
-			<!-- Logout Modal-->
-			<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-				aria-labelledby="exampleModalLabel" aria-hidden="true">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel">Ready to
-								Leave?</h5>
-							<button class="close" type="button" data-dismiss="modal"
-								aria-label="Close">
-								<span aria-hidden="true">×</span>
-							</button>
-						</div>
-						<div class="modal-body">Select "Logout" below if you are
-							ready to end your current session.</div>
-						<div class="modal-footer">
-							<button class="btn btn-secondary" type="button"
-								data-dismiss="modal">Cancel</button>
-							<a class="btn btn-primary" href="login.html">Logout</a>
-						</div>
-
-					</div>
+				<div class="modal-body">Select "Logout" below if you are ready
+					to end your current session.</div>
+				<div class="modal-footer">
+					<button class="btn btn-secondary" type="button"
+						data-dismiss="modal">Cancel</button>
+					<a class="btn btn-primary" href="login.html">Logout</a>
 				</div>
-			</div>
 
+			</div>
 		</div>
 	</div>
 
@@ -410,7 +369,7 @@
 		$(document).ready(function() {
 			$('.click2').click(
 					function() {
-
+<<<<<<< HEAD
 						var scontent = $(this).closest('tr').find('.select_option').val();
 						var selectedPrice = $(this).closest('tr').find('.selectedprice').text();
 						var s_volume = $(this).closest('tr').find('.s_volume').val();
@@ -418,13 +377,12 @@
 						var s_val = parseInt($(this).closest('tr').find('.select_option :selected').attr('title'));
 						console.log(s_val);
 						
-<!--
+=======
 						var scontent = $(this).closest('tr').find('.select_option').val();//상품 이름
 						var selectedPrice = $(this).closest('tr').find('.selectedprice').text();//가격
 						var s_volume = $(this).closest('tr').find('.s_volume').val();//재고량
-            var ano = parseInt($(this).closest('tr').find('.sno').text());
 						var s_val = parseInt($(this).closest('tr').find('.s_val').text());//품목 번호
--->
+>>>>>>> refs/heads/kim2
 												$.ajax({
 															type : 'POST',
 															url : '/company/checks',
@@ -436,12 +394,12 @@
 																's_val': s_val
 															},
 															success : function(result) {
-
+<<<<<<< HEAD
 																$(".sno").text("");
-
+=======
 																
 																$(".s_val").text("");
-
+>>>>>>> refs/heads/kim2
 																$(".select_option").val("");
 																$(".s_volume").val("");
 																$(".selectedvolume").text("");
@@ -460,9 +418,8 @@
 															}
 														});
 											});
-
 						});
-			</script>
+	</script>
 </body>
 
 </html>

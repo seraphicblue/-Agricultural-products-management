@@ -451,7 +451,7 @@
 											<td style="padding-top: 12px"><input type="text"
 												class="s_volume" value=0 size="10"
 												style="width: 45px; height: 41px;"
-
+ 
 												onchange="changeprice(this)"></td>
 											<td align="center"><select
 												class="navbar navbar-expand select_option"
