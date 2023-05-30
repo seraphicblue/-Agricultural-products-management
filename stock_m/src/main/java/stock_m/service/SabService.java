@@ -81,7 +81,6 @@ public class SabService {
 			int Vol=product_dao.selecVol(sno);
 			p_count = Vol+p_count;
 			product_dao.updateproduct(price,p_count, sno);
-
 		
 
 		}

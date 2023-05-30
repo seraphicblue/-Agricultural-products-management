@@ -439,7 +439,7 @@
 						}else{
 							return false;
 						} 
-                		sendMessage()//웹 알림 발생
+                		sendMessage("S")//웹 알림 발생
                 		location.reload();
                 	};
                 </script>

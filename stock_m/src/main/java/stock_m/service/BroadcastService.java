@@ -34,13 +34,25 @@ public class BroadcastService {
 
 	}
 
-	public void stockMessage(String userid, String content) {
-		String sub = content.split("_")[0];
-		int sno = Integer.parseInt(content.split("_")[1]);
-		int param = Broadcast_dao.getParam(sno);
-		int volume =Broadcast_dao.getVolume(sno);
-		content= "현재 알림 수치는 "+param + "개 이고 현재 재고량은 " +volume+"개로 설정량의 "+ Math.round(((double)volume/param)*100)/100.0+"% 입니다.";
-		Broadcast_dao.insertMessage(userid, sub, content);
+	public void stockMessage(String sep,String userid, String content) {
+		if(sep.equals("S")) {
+			String sub = content.split("_")[0];
+			int sno = Integer.parseInt(content.split("_")[1]);
+			int param = Broadcast_dao.getParam(sno);
+			int volume =Broadcast_dao.getVolume(sno);
+			content= "현재 알림 수치는 "+param + "개 이고 현재 재고량은 " +volume+"개로 설정량의 "+ Math.round(((double)volume/param)*100)/100.0+"% 입니다.";
+			Broadcast_dao.insertMessage(userid, sub, content);
+		}
+		else if(sep.equals("L")) {
+			System.out.println("this is :::::::"+content);
+			String sub = content.split("_")[0];
+			int sno = Integer.parseInt(content.split("_")[1]);
+			int param = sno;
+			int volume =Integer.parseInt(content.split("_")[2]);
+			content= "현재 알림 수치는 "+volume + "원 이고 현재 잔고는 " +param+"원 으로 설정량의 "+ Math.round((param/(double)volume)*100)/100.0+"% 입니다.";
+			Broadcast_dao.insertMessage(userid, sub, content);
+		}
+		
 	}
 
 	public int countMsg(String userid) {
@@ -61,6 +73,18 @@ public class BroadcastService {
 		Broadcast_dao.turnMsg(mesno);
 		return Broadcast_dao.showMsg(mesno);
 	}
-
+	
+	public String broadlimit(String userid) {
+		int profit = Broadcast_dao.getProfit(userid);
+		int limit =Broadcast_dao.broadlimit(userid);
+		String text = "";
+		if(limit>profit) {
+			text = profit+"_"+limit;
+		}
+		else {
+			text = "none";
+		}
+		return text;
+	}
 
 }

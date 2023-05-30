@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import stock_m.dto.Message;
 
@@ -39,8 +40,12 @@ public interface BroadcastDao {
 	@Select("select content from message where mesno=#{mesno}")
 	public String showMsg(@Param("mesno") int mesno);
 	
-	@Select("update message set rcheck = true where mesno=#{mesno}")
+	@Update("update message set rcheck = true where mesno=#{mesno}")
 	public void turnMsg(@Param("mesno") int mesno);
 	
-
+	@Select("select broadcastlimit from limitbroadcast where userid=#{userid}")
+	public int broadlimit(@Param("userid")String userid);
+	
+	@Select("select profit from revenue where userid=#{userid}")
+	public int getProfit(@Param("userid")String userid);
 }

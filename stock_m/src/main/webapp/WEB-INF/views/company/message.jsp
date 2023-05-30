@@ -34,6 +34,7 @@
 
 <!-- Custom styles for this template -->
 <link href="../../../css/sb-admin-2.min.css" rel="stylesheet">
+<link href="../../../css/sb-admin-2.min2.css" rel="stylesheet">
 
 <!-- Custom styles for this page -->
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
@@ -119,6 +120,23 @@
 				href="/company/stockmanage"> <i class="fas fa-fw fa-table"></i>
 					<span>재고</span>
 			</a></li>
+			
+			
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#collapse2Pages"
+				aria-expanded="true" aria-controls="collapse2Pages"> 
+				<i class="fas fa-fw fa-folder"></i> <span>알림 탭</span>
+			</a>
+				<div id="collapse2Pages" class="collapse"
+					aria-labelledby="headingPages" data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<h6 class="collapse-header">알림 목록</h6>
+						<a class="collapse-item" href="broadSelecStock">재고 알림</a> 
+						<a class="collapse-item" href="broadSelecPrice">가격 알림</a>
+						<a class="collapse-item" href="broadSelecLimit">한도 알림</a>
+					</div>
+				</div>
+			</li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider d-none d-md-block">
@@ -221,9 +239,9 @@
 										
 											<tbody>
 
-												<c:forEach items="${page}" var="page">
+												<c:forEach items="${page}" var="page" varStatus = "index">
 													<tr onclick="show(${page.mesno})">
-														<td>${page.mesno}</td>
+														<td >${index.index+1}</td>
 														<td>${page.sub}</td>
 													</tr>
 												</c:forEach>
