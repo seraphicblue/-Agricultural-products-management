@@ -73,6 +73,10 @@ public class BroadcastService {
 		return Broadcast_dao.countMsg(userid);
 	}
 	
+	public String showMsg(int mesno) {
+		Broadcast_dao.turnMsg(mesno);
+		return Broadcast_dao.showMsg(mesno);
+	}
 
 	public String broadlimit(String userid) {
 		int profit = Broadcast_dao.getProfit(userid);

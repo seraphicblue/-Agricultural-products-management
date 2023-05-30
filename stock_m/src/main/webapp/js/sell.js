@@ -51,59 +51,30 @@ function checkStock() {
 	var stock = parseInt(document.getElementById("s_volume").value);
 	var select = parseInt(document.getElementById("scontent").value);
 	var scontent = $("#scontent option:checked").text();
-<<<<<<< HEAD
-	console.log(scontent);
-	document.getElementById("pname").value=scontent;
-	
-	if (scontent == "------------------") { 
-		alert("물품 정보를 선택해주세요."); 
 
-=======
 	document.getElementById("pname").value = scontent;
 
 	if (scontent.trim() === "--------------------") {
 		alert("물품 정보를 선택해주세요.");
->>>>>>> refs/heads/kim2
 		return false;
-<<<<<<< HEAD
-	}
-
-	else if (stock <= 0) {
-=======
 
 	} else if (stock <= 0 || document.getElementById("s_volume").value.trim() === "") {//s_volume
->>>>>>> refs/heads/kim2
 		alert("재고 정보를 입력해주세요.");
 		return false;
-<<<<<<< HEAD
-	}
-
-	else if (stock > select) {
-=======
+	
 
 	} else if (stock > select) {
->>>>>>> refs/heads/kim2
 		alert("재고량을 넘는 입력입니다.");
 		return false;
-<<<<<<< HEAD
-	}
-
-	else if (price <= 0) {
-		alert("가격 정보를 선택해주세요.");
-=======
->>>>>>> refs/heads/kim2
+	
 
 	} else if (price <= 0 || document.getElementById("price").value.trim() === "") {//price
 		alert("가격 정보를 선택해주세요.");
 		return false;
-<<<<<<< HEAD
-	}
-	else {
-		sendMessage();
-=======
+
 	} else {
 		sendMessage("P");
->>>>>>> refs/heads/kim2
+
 		return true;
 	}
 

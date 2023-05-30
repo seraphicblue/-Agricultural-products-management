@@ -53,7 +53,6 @@ socket.onmessage = function(event) {
 		}
 
 
->>>>>>> refs/heads/kim2
 
 	}
 	else {
@@ -195,9 +194,6 @@ function stockMessage(sep, uid, text) {
 	$.ajax({
 		url: '/stockmessage',
 		type: 'get',
-<<<<<<< HEAD
-		data: { userid: uid, content: text }
-=======
 		data: { sep: sep, userid: uid, content: text },
 		success: function() {
 			$.ajax({
@@ -214,7 +210,6 @@ function stockMessage(sep, uid, text) {
 				}
 			});
 		}
->>>>>>> refs/heads/kim2
 	});
 }
 
