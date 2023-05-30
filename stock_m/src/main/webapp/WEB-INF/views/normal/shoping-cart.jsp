@@ -433,8 +433,6 @@
                         			
                         		}//결제후 구매내역 저장
                         		
-                        		sendMessage()//웹 알림 발생
-                        		
 							}else{
 								return false
 							}
@@ -452,7 +450,7 @@
         </div>
     </section>
     <!-- Shoping Cart Section End -->
-
+    
     <!-- Footer Section Begin -->
     
     <!-- Footer Section End -->
