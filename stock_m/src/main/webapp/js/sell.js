@@ -50,7 +50,9 @@ function checkStock() {
 	var stock = parseInt(document.getElementById("s_volume").value);
 	var select = parseInt(document.getElementById("scontent").value);
 	var scontent = $("#scontent option:checked").text();
+
 	document.getElementById("pname").value = scontent;
+
 
 	if (scontent.trim() === "--------------------") {
 		alert("물품 정보를 선택해주세요.");
@@ -65,6 +67,7 @@ function checkStock() {
 		return false;
 
 	} else if (price <= 0 || document.getElementById("price").value.trim() === "") {//price
+
 		alert("가격 정보를 선택해주세요.");
 		return false;
 	} else {

@@ -141,6 +141,7 @@ input:checked+.slider:before {
                         </ul>
                         <%-- 장바구니에 저장된 상품들의 가격 총합 출력 --%>
                         <div class="header__cart__price">총 액: <span id="cprice">${cprice}원</span></div>
+                        <a href="broadSelecMenu"><i class="fa fa-user"></i> 알람설정</a>
                     </div>
                 </div>
             </div>            

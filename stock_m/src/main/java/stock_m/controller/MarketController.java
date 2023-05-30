@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import jakarta.servlet.http.HttpSession;
 import stock_m.dto.Cart;
 import stock_m.dto.ManagementDto;
+import stock_m.service.BroadcastService;
 import stock_m.service.ManagementService;
 import stock_m.service.MarketService;
 
@@ -38,6 +39,9 @@ public class MarketController {
 	
 	@Autowired
 	ManagementService m_service;
+	
+	@Autowired
+	BroadcastService b_service;
 	
 	@GetMapping("/normal/market") // 판매사이트 로그인시 메인화면
 	public String mform(@RequestParam(name = "page", defaultValue = "1") int page,Model m, HttpSession session) {		
@@ -258,6 +262,29 @@ public class MarketController {
         // 세션에서 사용자 정보 제거
         session.removeAttribute("userid");
         return "redirect:/login";
+	}
+	
+	@GetMapping("/normal/broadSelecMenu") // 특정상품 클릭시 그 상품 상세페이지로 이동
+	public String bsform(Model m, HttpSession session) {		
+		String userid = (String) session.getAttribute("userid");
+        
+		int cprice =0;
+		int ccount = service.cartCount(userid);
+		m.addAttribute("ccount", ccount);
+		if(ccount == 0) {
+			cprice = 0;
+		}
+		else if(ccount > 0) {
+			cprice = service.cartPrice(userid);
+		}			
+		m.addAttribute("cprice", cprice);							//공통부분
+		
+		int palarmcount = b_service.palarmCount(userid);
+		m.addAttribute("palarmcount", palarmcount);
+		List<Map<String,Object>> palist = b_service.paAll(userid);			
+		m.addAttribute("palist", palist);
+		
+		return "normal/broadSelecMenu";
 	}
 	
 	

@@ -26,11 +26,11 @@
 
 <!-- Custom styles for this template-->
 
+
 <link href="../../../css/sb-admin-2.min.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="../../../js/sell.js"></script>
 <script src="../../../js/webSocket.js"></script>
-
 
 
 </head>
@@ -156,9 +156,9 @@
 						<li class="nav-item dropdown no-arrow">
 						<a  class="nav-link dropdown-toggle" href="#" id="userDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> <span
-								class="mr-2 d-none d-lg-inline text-gray-600 small">${uid}</span> <img class="img-profile rounded-circle"
-								src="../../img/undraw_profile.svg">
+							aria-expanded="false"> 
+							<span class="mr-2 d-none d-lg-inline text-gray-600 small">${uid}</span> 
+							<img class="img-profile rounded-circle" src="../../img/undraw_profile.svg">
 						</a> 
 						<!-- Dropdown - User Information -->
 							<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -203,7 +203,7 @@
 									<input type="hidden" name="pname" id="pname"> 
 									<input type="hidden" name="uid" id="uid" value="${uid}"> 
 									<input type="hidden" name="command" id="command" value="price">
-									
+
 									<table class="table table-bordered dataTable copyright text-center my-auto"
 										id="dataTable" width="100%" cellspacing="0" role="grid"
 										aria-describedby="dataTable_info" style="width: 100%;">
@@ -304,7 +304,7 @@
 
 			<!-- Page level custom scripts -->
 
-			
+	
 			<script src="../../../js/demo/chart-area-demo.js"></script>
 			<script src="../../../js/demo/chart-pie-demo.js"></script>
 			
