@@ -81,14 +81,21 @@ public class SabService {
 			int Vol=product_dao.selecVol(sno);
 			p_count = Vol+p_count;
 			product_dao.updateproduct(price,p_count, sno);
-
 		
 
 		}
 	}
 
 	public int inserta(@Param("a_content") String a_content, @Param("a_val") int a_val, @Param("a_volum") int a_volum) {
-		return admin_dao.inserta(a_content, a_val, a_volum);
+		int a =admin_dao.admincheck(a_content,a_val);
+		System.out.println(a);
+		if(a ==0) {
+			admin_dao.inserta(a_content, a_val, a_volum);
+			return 1;
+		}else {
+			admin_dao.updatea(a_content, a_val, a_volum);
+			return 1;
+		}
 	}
 
 }

@@ -40,7 +40,7 @@
 
 <body id="page-top">
 
-    <!-- Page Wrapper -->	
+    <!-- Page Wrapper -->
 	<div id="wrapper">
 
 		<!-- Sidebar -->
@@ -69,13 +69,24 @@
 			<hr class="sidebar-divider">
 
 			<!-- Heading -->
-			
+			<div class="sidebar-heading">Interface</div>
+
 			<!-- Nav Item - Pages Collapse Menu -->
 			<!-- data-toggle 제거시 화살표 부분 제거-->
+			<li class="nav-item"><a class="nav-link collapsed" href="redirect:/index.jsp"
+				data-target="#collapseTwo" aria-expanded="true"
+				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Components</span>
+			</a></li>
 
-			<!-- Nav Item - Utilities Collapse Menu -->			
+			<!-- Nav Item - Utilities Collapse Menu -->
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#collapseUtilities"
+				aria-expanded="true" aria-controls="collapseUtilities"> <i
+					class="fas fa-fw fa-wrench"></i> <span>Utilities</span>
+			</a></li>
 
 			<!-- Divider -->
+			<hr class="sidebar-divider">
 
 			<!-- Heading -->
 			<div class="sidebar-heading">Addons</div>
@@ -182,10 +193,8 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-                        For more information about DataTables, please visit the <a target="_blank"
-                            href="https://datatables.net">official DataTables documentation</a>.</p>
+                    <h1 class="h3 mb-2 text-gray-800">재고 관리</h1>
+                    
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">

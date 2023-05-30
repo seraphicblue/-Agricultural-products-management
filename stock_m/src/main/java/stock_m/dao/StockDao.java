@@ -46,8 +46,8 @@ public interface StockDao {
 	 */
 	//main코드 수정 23.05.23
 	
-	@Update("UPDATE stock SET s_volume = s_volume + #{s_volume} WHERE userid = #{userid} and scontent = #{scontent} AND s_val = #{s_val}")
-	int updates(@Param("scontent") String scontent, @Param("s_volume") int s_volume, @Param("s_val") int s_val,@Param("userid") String userid);
+	@Update("UPDATE stock SET s_volume = s_volume + #{s_volume} WHERE userid = #{userid} and scontent = #{scontent} and s_val=#{ano}")
+	int updates(@Param("scontent") String scontent, @Param("s_volume") int s_volume,@Param("ano") int ano, @Param("userid") String userid);
 	
 			@Select("select * from stock where userid = #{'1'}")
 			List<StockDto> sList(String userid);

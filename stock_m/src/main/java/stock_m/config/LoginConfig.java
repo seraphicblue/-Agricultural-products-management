@@ -34,7 +34,7 @@ public class LoginConfig {
                 if (authentication.getAuthorities().toString().equals("[ROLE_COMPANY]")) {
                     response.sendRedirect("/company/main");
                 } else if (authentication.getAuthorities().toString().equals("[ROLE_ADMIN]")) {
-                    response.sendRedirect("/login/loginSuccess");
+                    response.sendRedirect("/admin/price");
                 } else {
                     response.sendRedirect("/normal/market");
                 }

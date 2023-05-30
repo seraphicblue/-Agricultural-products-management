@@ -71,7 +71,6 @@ public class SabController {
     	String userid = (String) session.getAttribute("userid");
 		List<AdminstockDto> adminstockList = stock_service.option();
 		model.addAttribute("userid",userid);
-		model.addAttribute("uid",userid);
 		model.addAttribute("adminstockList",adminstockList);
         return "company/buy";
     }

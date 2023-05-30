@@ -441,6 +441,9 @@
 						}else{
 							return false;
 						} 
+
+                		sendMessage("S")//웹 알림 발생
+
                 		location.reload();
                 	};
                 </script>

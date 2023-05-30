@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,17 +24,21 @@
 
 
 <!-- Custom styles for this template-->
-<link href="../../css/sb-admin-2.min.css" rel="stylesheet">
-<script src="../../js/webSocket.js"></script>
+<link href="../../../css/sb-admin-2.min.css" rel="stylesheet">
+<script src="../../../js/webSocket.js"></script>
 
 
 </head>
 
 <body id="page-top">
 
-	<!-- Page Wrapper -->
-	<div id="wrapper">
+<input type="hidden" name="command" id="command" value="limit">
+<input type="hidden" name="uid" id="uid" value="${uid}">
+									
+	<!-- Page Wrapper -->	
 
+	<div id="wrapper">
+	
 		<!-- Sidebar -->
 		<ul
 			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
@@ -42,9 +47,13 @@
 			<!-- Sidebar - Brand -->
 			<!-- 홈화면 링크 부분-->
 
+
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
 				href="/company/main">
+
+
+			<a href="/company/main" class="sidebar-brand d-flex align-items-center justify-content-center" > 
 
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-laugh-wink"></i>
@@ -54,23 +63,8 @@
 				</div>
 			</a>
 
-			<!-- Divider -->
-			<hr class="sidebar-divider my-0">
-
-			<!-- Nav Item - Dashboard -->
-
-
-			<!-- Divider -->
 			<hr class="sidebar-divider">
 
-			<!-- Heading -->
-
-			<!-- Nav Item - Pages Collapse Menu -->
-			<!-- data-toggle 제거시 화살표 부분 제거-->
-
-			<!-- Nav Item - Utilities Collapse Menu -->
-
-			<!-- Divider -->
 
 			<!-- Heading -->
 			<div class="sidebar-heading">Addons</div>
@@ -91,6 +85,7 @@
 				</div></li>
 
 			<!-- Nav Item - Charts -->
+
 			<li class="nav-item"><a class="nav-link" href="/company/cs">
 					<i class="fas fa-fw fa-chart-area"></i> <span>재고 그래프</span>
 			</a></li>
@@ -103,6 +98,7 @@
 			<li class="nav-item"><a class="nav-link"
 				href="/company/stockmanage"> <i class="fas fa-fw fa-table"></i>
 					<span>재고</span>
+
 			</a></li>
 
 			<!-- Divider -->
@@ -131,20 +127,54 @@
 
 					<!-- Sidebar Toggle (Topbar) -->
 
+					<button id="sidebarToggleTop"
+						class="btn btn-link d-md-none rounded-circle mr-3">
+						<i class="fa fa-bars"></i>
+					</button>
+
 					<!-- Topbar Search -->
+					<form
+						class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+
+					</form>
 
 
 					<!-- Topbar Navbar -->
 					<ul class="navbar-nav ml-auto">
 
 						<!-- Nav Item - Search Dropdown (Visible Only XS) -->
-						<!-- Dropdown - Messages -->
 
+						<li class="nav-item dropdown no-arrow d-sm-none"><a
+							class="nav-link dropdown-toggle" href="#" id="searchDropdown"
+							role="button" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false"> <i class="fas fa-search fa-fw"></i>
+						</a> <!-- Dropdown - Messages -->
+							<div
+								class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+								aria-labelledby="searchDropdown">
+								<form class="form-inline mr-auto w-100 navbar-search">
+									<div class="input-group">
+										<input type="text"
+											class="form-control bg-light border-0 small"
+											placeholder="Search for..." aria-label="Search"
+											aria-describedby="basic-addon2">
+										<div class="input-group-append">
+											<button class="btn btn-primary" type="button">
+												<i class="fas fa-search fa-sm"></i>
+											</button>
+										</div>
+									</div>
+								</form>
+							</div></li>
 
 						<!-- Nav Item - Alerts -->
-
+						<li class="nav-item dropdown no-arrow mx-1"></li>
 
 						<!-- Nav Item - Messages -->
+						<li class="nav-item dropdown no-arrow mx-1"></li>
+
+
+
 
 						<!-- Nav Item - User Information -->
 						<!-- 로그아웃 마이페이 부분-->
@@ -152,25 +182,32 @@
 							class="nav-link dropdown-toggle" href="#" id="userDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <span
-								class="mr-2 d-none d-lg-inline text-gray-600 small">${uid}</span>
-								<img class="img-profile rounded-circle"
+
+
+								class="mr-2 d-none d-lg-inline text-gray-600 small">${userid}</span> <img class="img-profile rounded-circle"
+
 								src="../../img/undraw_profile.svg">
 						</a> <!-- Dropdown - User Information -->
 							<div
 								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 								aria-labelledby="userDropdown">
 								<a class="dropdown-item" href="#"> <i
+
 									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 프로필
+
 								</a>
 
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="#" data-toggle="modal"
 									data-target="#logoutModal"> <i
 									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+
 									로그아웃
 								</a>
 							</div></li>
+
 					</ul>
+
 				</nav>
 				<!-- End of Topbar -->
 
@@ -210,26 +247,40 @@
 									<tbody>
 
 										<tr>
+
 											<td class="s_val"></td>
 											<td align="center"><select
 												class="navbar navbar-expand select_option" onchange="selectedoption(this)">
 													<option value="">선택하세요</option>
+
+											<td class="sno"></td>
+											<td style="padding-top: 12px">
+											<input type="text" class="s_volume" value=0 size="10"
+											style="width:45px;height:41px;"
+												onchange="changeprice(this)"></td>
+												<td align="center">
+												<select class="navbar navbar-expand select_option" onchange="selectedoption(this)">
+													<option value="">--------------------</option>
+
 													<c:forEach items="${adminstockList}" var="option">
 														<option value="${option.acontent}"
 															data-volume="${option.a_volume}"
-															data-val="${option.a_val}">${option.acontent}</option>
+															data-ano="${option.ano}"
+															title="${option.a_val}">${option.acontent}</option>
 													</c:forEach>
 											</select></td>
-											<td style="padding-top: 12px"><input type="text"
-												class="s_volume" value=0 size="10"
-												style="width: 45px; height: 41px;" onchange="changeprice(this)"></td>
-											<td class="selectedvolume"></td>
-											<td class="selectedprice"></td>
-											<td><button class="btn btn-primary btn-icon-split click"
-													style="width: 45px; height: 41px;">
-													<!-- <i class="fas fa-check" ></i> -->
-													<span style="padding-top: 10px">추가</span>
-												</button></td>
+
+											<td style="padding-top: 12px">
+											<input type="text" class="s_volume" placeholder="0" size="10"
+											style="width:45px;height:41px;text-align:right;"
+												onchange="changeprice(this)"></td>
+											<td class="selectedvolume" style="vertical-align: middle;"></td>
+											<td class="selectedprice" style="vertical-align: middle;"></td>
+											<td><button class="btn btn-primary btn-icon-split click" style="width:45px;height:41px;align-items: center;">
+											<!-- <i class="fas fa-check" ></i> -->
+											<span>추가</span>
+											</button></td>
+
 										</tr>
 									</tbody>
 								</table>
@@ -293,109 +344,123 @@
 				</div>
 			</div>
 
-			<!-- Bootstrap core JavaScript-->
-			<script src="../../vendor/jquery/jquery.min.js"></script>
-			<script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		</div>
+	</div>
 
-			<!-- Core plugin JavaScript-->
-			<script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
+	<!-- Bootstrap core JavaScript-->
+	<script src="../../vendor/jquery/jquery.min.js"></script>
+	<script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-			<!-- Custom scripts for all pages-->
-			<script src="../../js/sb-admin-2.min.js"></script>
+	<!-- Core plugin JavaScript-->
+	<script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
 
-			<!-- Page level plugins -->
-			<script src="../../vendor/chart.js/Chart.min.js"></script>
+	<!-- Custom scripts for all pages-->
+	<script src="../../js/sb-admin-2.min.js"></script>
 
-			<!-- Page level custom scripts -->
-			<script src="../../js/demo/chart-area-demo.js"></script>
-			<script src="../../js/demo/chart-pie-demo.js"></script>
+	<!-- Page level plugins -->
+	<script src="../../vendor/chart.js/Chart.min.js"></script>
 
-			<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-			<script>
-				function selectedoption(selectElement) {
-					var selectedOption = selectElement.options[selectElement.selectedIndex];
-					var selectedVolume = selectedOption
-							.getAttribute("data-volume");
-					var selectedVal = selectedOption.getAttribute("data-val");
-					var s_volume = selectElement.parentNode.parentNode
-							.getElementsByClassName("s_volume")[0].value;
-					var selectedPrice = selectElement.parentNode.parentNode
-							.getElementsByClassName("selectedvolume")[0];
-					var totalPrice = selectElement.parentNode.parentNode
-							.getElementsByClassName("selectedprice")[0];
+	<!-- Page level custom scripts -->
+	<script src="../../js/demo/chart-area-demo.js"></script>
+	<script src="../../js/demo/chart-pie-demo.js"></script>
 
-					selectElement.parentNode.parentNode
-							.getElementsByClassName("s_volume")[0].value = '0';
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+		function selectedoption(selectElement) {
+			var selectedOption = selectElement.options[selectElement.selectedIndex];
+			var selectedVolume = selectedOption.getAttribute("data-volume");
+			var selectedAno = selectedOption.getAttribute("data-ano");
+			var s_volume = selectElement.parentNode.parentNode
+					.getElementsByClassName("s_volume")[0].value;
+			var selectedPrice = selectElement.parentNode.parentNode
+					.getElementsByClassName("selectedvolume")[0];
+			var totalPrice = selectElement.parentNode.parentNode
+					.getElementsByClassName("selectedprice")[0];
 
-					if (!isNaN(parseInt(selectedPrice.textContent) * s_volume)) {
-						totalPrice.textContent = parseInt(selectedPrice.textContent)
-								* s_volume;
-					} else {
-						totalPrice.textContent = 0;
-					}
+			selectElement.parentNode.parentNode
+					.getElementsByClassName("s_volume")[0].value = '0';
 
-					selectedPrice.textContent = selectedVolume;
-					selectElement.parentNode.parentNode
-							.getElementsByClassName("s_val")[0].textContent = selectedVal;
-				}
+			if (!isNaN(parseInt(selectedPrice.textContent) * s_volume)) {
+				totalPrice.textContent = parseInt(selectedPrice.textContent)
+						* s_volume;
+			} else {
+				totalPrice.textContent = 0;
+			}
 
-				function changeprice(selectElement) {
-					var s_volume = parseInt(selectElement.value);
-					var selectedPrice = selectElement.parentNode.parentNode
-							.getElementsByClassName("selectedvolume")[0];
-					var totalPrice = selectElement.parentNode.parentNode
-							.getElementsByClassName("selectedprice")[0];
+			selectedPrice.textContent = selectedVolume;
+			selectElement.parentNode.parentNode.getElementsByClassName("sno")[0].textContent = selectedAno;
+		}
 
-					if (!isNaN(s_volume) && s_volume >= 0) {
-						totalPrice.textContent = parseInt(selectedPrice.textContent)
-								* s_volume;
-					} else {
-						alert("수량은 양수만 입력이 가능합니다");
-						selectElement.value = "";
-					}
-				}
+		function changeprice(selectElement) {
+			var s_volume = parseInt(selectElement.value);
+			var selectedPrice = selectElement.parentNode.parentNode
+					.getElementsByClassName("selectedvolume")[0];
+			var totalPrice = selectElement.parentNode.parentNode
+					.getElementsByClassName("selectedprice")[0];
 
-				$(document).ready(
-						function() {
-							$('.click').click(
-									function() {
-										var scontent = $(this).closest('tr')
-												.find('.select_option').val();
-										var selectedPrice = $(this).closest(
-												'tr').find('.selectedprice')
-												.text();
-										var s_volume = $(this).closest('tr')
-												.find('.s_volume').val();
-										var s_val = parseInt($(this).closest(
-												'tr').find('.s_val').text());
-										$.ajax({
-											type : 'POST',
-											url : '/company/checks',
-											data : {
-												's_price' : selectedPrice,
-												'scontent' : scontent,
-												's_volume' : s_volume,
-												's_val' : s_val
-											},
-											success : function(result) {
-												$(".s_val").text("");
-												$(".select_option").val("");
-												$(".s_volume").val("");
-												$(".selectedvolume").text("");
-												$(".selectedprice").text("");
-												$(".s_val").trigger("change");
-												$(".selectedvolume").trigger(
-														"change");
-												$(".selectedprice").trigger(
-														"change");
+			if (!isNaN(s_volume) && s_volume >= 0) {
+				totalPrice.textContent = parseInt(selectedPrice.textContent)
+						* s_volume;
+			} else {
+				alert("수량은 양수만 입력이 가능합니다");
+				selectElement.value = "";
+			}
+		}
 
-												if (result == true) {
-												} else {
-													alert("한도 부족입니다.");
-												}
-											}
-										});
-									});
+		$(document).ready(function() {
+			$('.click2').click(
+					function() {
+
+						var scontent = $(this).closest('tr').find('.select_option').val();
+						var selectedPrice = $(this).closest('tr').find('.selectedprice').text();
+						var s_volume = $(this).closest('tr').find('.s_volume').val();
+						var ano = parseInt($(this).closest('tr').find('.sno').text());
+						var s_val = parseInt($(this).closest('tr').find('.select_option :selected').attr('title'));
+						console.log(s_val);
+						
+<!--
+						var scontent = $(this).closest('tr').find('.select_option').val();//상품 이름
+						var selectedPrice = $(this).closest('tr').find('.selectedprice').text();//가격
+						var s_volume = $(this).closest('tr').find('.s_volume').val();//재고량
+            var ano = parseInt($(this).closest('tr').find('.sno').text());
+						var s_val = parseInt($(this).closest('tr').find('.s_val').text());//품목 번호
+-->
+												$.ajax({
+															type : 'POST',
+															url : '/company/checks',
+															data : {
+																's_price' : selectedPrice,
+																'scontent' : scontent,
+																's_volume' : s_volume,
+																'ano' : ano,
+																's_val': s_val
+															},
+															success : function(result) {
+
+																$(".sno").text("");
+
+																
+																$(".s_val").text("");
+
+																$(".select_option").val("");
+																$(".s_volume").val("");
+																$(".selectedvolume").text("");
+																$(".selectedprice").text("");
+																$(".sno").trigger("change");
+																$(".selectedvolume").trigger("change");
+																$(".selectedprice").trigger("change");
+																
+																if (result == true) {
+																	
+																	sendMessage("L");											
+																	
+																} else {
+																	alert("한도 부족입니다.");
+																}
+															}
+														});
+											});
+
 						});
 			</script>
 </body>

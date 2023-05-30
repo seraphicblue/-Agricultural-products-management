@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import stock_m.component.KamisApiCaller;
 import stock_m.dto.PriceDto;
@@ -23,13 +24,15 @@ public class ApiController {
 	@Autowired
 	SabService service;
 
-	@GetMapping("company/price")
+	@GetMapping("admin/price")
 	public String showPrice(Model model) throws Exception {
-		
+		// 현재 받아오는 api의 최대 size는 1page당 10개 입니다.
+		// DailyPriceByCategoryList메서드를 실행시켜 당일 몇개의 데이터가 있는지 확인합니다.
 		int a =kamisApiCaller.DailyPriceByCategoryList();
 		  List<PriceDto> priceDataList = new ArrayList<>();
-
+		  	
 		    for (int i = a; 1 < i; i--) {
+			    //중복성을 검사하여 같은 정보가 넘어올 경우 하나의 데이터만 가져옵니다.
 		    	if(!kamisApiCaller.priceinfo(i).toString().equals(kamisApiCaller.priceinfo(i-1).toString())) {
 		    		priceDataList.add(kamisApiCaller.priceinfo(i));
 		    	}
@@ -39,13 +42,14 @@ public class ApiController {
 		    model.addAttribute("aValue", a);
 		
 		System.out.println("controller END");
-		return "company/price";
+		return "admin/price";
 	}
 
 	@PostMapping("company/inserta")
-	public String inserta(@RequestParam("a_content") String a_content, @RequestParam("a_val") int a_val, @RequestParam("a_volum") int a_volum) {	
-		service.inserta(a_content, a_val, a_volum);
-		return "redirect:/comapny/price";
+	@ResponseBody
+	public int inserta(@RequestParam("a_content") String a_content, @RequestParam("a_val") int a_val, @RequestParam("a_volum") int a_volum) {	
+		int a =service.inserta(a_content, a_val, a_volum);
+		return a;
 	}
 
 }

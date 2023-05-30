@@ -50,28 +50,27 @@ function checkStock() {
 	var stock = parseInt(document.getElementById("s_volume").value);
 	var select = parseInt(document.getElementById("scontent").value);
 	var scontent = $("#scontent option:checked").text();
-
+	console.log(scontent);
 	document.getElementById("pname").value = scontent;
-
-
 	if (scontent.trim() === "--------------------") {
 		alert("물품 정보를 선택해주세요.");
-		return false;
 
-	} else if (stock <= 0 || document.getElementById("s_volume").value.trim() === "") {//s_volume
+		return false;
+	} else if (stock <= 0 || document.getElementById("stock").value.trim() === "") {
 		alert("재고 정보를 입력해주세요.");
-		return false;
 
+		return false;
 	} else if (stock > select) {
 		alert("재고량을 넘는 입력입니다.");
+
 		return false;
-
-	} else if (price <= 0 || document.getElementById("price").value.trim() === "") {//price
-
+	} else if (price <= 0 || document.getElementById("price").value.trim() === "") {
+		console.log(price);
 		alert("가격 정보를 선택해주세요.");
+
 		return false;
 	} else {
-		sendMessage("P");
+		sendMessage();
 		return true;
 	}
 }

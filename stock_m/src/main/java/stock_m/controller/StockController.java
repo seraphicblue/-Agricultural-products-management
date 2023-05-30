@@ -59,12 +59,14 @@ public class StockController {
 	
 	@PostMapping("/company/checks")
 	@ResponseBody
-	public boolean checks(int s_price, String scontent, @RequestParam("s_volume") int s_volume, int s_val ,HttpSession session) {
-		String userid = (String) session.getAttribute("userid"); 
+	public boolean checks(int s_price, String scontent, @RequestParam("s_volume") int s_volume,int s_val, int ano ,HttpSession session) {
+		String userid = (String) session.getAttribute("userid");
+		// 유저 아이디를 가져가 유저의 잔고를 확인 함
 		int a = r_service.checks(userid);
 		System.out.println(a);
+		// 총 가격 정보와 유저의 잔고를 비교하여 실행
 		if(a> s_price) {
-			service.checki(s_price,scontent, s_volume, s_val,userid);
+			service.checki(s_price,scontent, s_volume,s_val, ano,userid);
 			return true;
 		}else {
 			return false;
