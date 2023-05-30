@@ -176,7 +176,7 @@ input:checked+.slider:before {
 				<div class="col-lg-12 text-center">
 					<%-- 장바구니 페이지의 중단부에 토마토 부분 --%>
 					<div class="breadcrumb__text">
-						<h2>유의 업체</h2>
+						<h2>관심 업체</h2>
 						<div class="breadcrumb__option">
 							<a href="/normal/market">홈</a> <span>유의 업체</span>
 							<%-- MarketController에서 받은 userid를 받아놓은 부분 --%>
@@ -193,7 +193,6 @@ input:checked+.slider:before {
 	<section class="shoping-cart spad">
 		<div class="container">
 			<div class="row">
-
 				<div class="col-lg-3 col-md-5">
 					<div class="sidebar">
 						<div class="sidebar__item">
@@ -209,48 +208,45 @@ input:checked+.slider:before {
 					</div>
 				</div>
 
-
 				<div class="col-lg-9">
-
 					<div>
 						<!-- Page Heading -->
 
-						<h1 class="h3 mb-2 text-gray-800">유의 업체</h1>
+						<h1 class="h3 mb-2 text-gray-800">가격 알림</h1>
 
 						<div class="hero__search__form">
-							<form action="/normal/inmasearch" method="GET">
+							<form action="/normal/palarmsearch" method="GET">
 
 								<div class="search">
-									<input type="text" name="keyword" placeholder="추가하실 기업을 입력해주세요">
+									<input type="text" name="pname"
+										placeholder="알림 받을 상품을 입력해주세요">
 									<button type="submit" class="site-btn">검색</button>
 								</div>
 							</form>
 						</div>
 					</div>
-
 					<div class="shoping__cart__table">
 						<table>
-							<c:if test="${count != 0 }">
+							<thead>
 								<tr>
 									<th>no.</th>
-									<th>회사 명</th>
-									<th>회사 홈페이지</th>
-									<th>사업자 번호</th>
-									<th>추가</th>
+									<th>상품명</th>
+									<th>상품가격</th>
+									<th>가격한도</th>
+									<th>삭제</th>
 								</tr>
-								<c:forEach items="${mList}" var="user" varStatus="count">
-									<tr>
-										<td>${count.index+1}</td>
-										<td class="username">${user.username}</td>
-										<td>${user.gender}</td>
-										<td>${user.age}</td>
-										<td><button class="click">추가</button></td>
-									</tr>
-								</c:forEach>
-							</c:if>
-							<c:if test="${count == 0 }">
-	검색 조건에 맞는 글이 없습니다.
-	</c:if>
+							</thead>
+							<c:forEach items="${palist}" var="pa" varStatus="count">
+								<tr>
+									<th>${count.index+1}</th>
+									<th>${pa.pname}</th>
+									<td class="pno" hidden>${pa.pno}</td>
+									<th><input class="br_param" value="${pa.br_param}">
+									</th>
+									<th><button class="click2">변경</button></th>
+									<th><button class="click">삭제</button></th>
+								</tr>
+							</c:forEach>
 							</tbody>
 						</table>
 					</div>
@@ -277,26 +273,26 @@ input:checked+.slider:before {
 	<!--js list made by kim -->
 	<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="../../js/priceWebSocket.js"></script>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+	<!-- End of Main Content -->
 	<script>
 		$(document).ready(function() {
-			$(".click").click(function() {
-				var username = $(this).parent().siblings('.username').text();
-				$.ajax({
-					type : 'POST',
-					url : '/normal/check',
-					data : {
-						'username' : username
-					},
-					success : function(result) {
-						if (result === false) {
-							alert('이미 추가된 업체입니다.');
-						} else {
-							location.href = "/normal/insert2?id=" + username;
-						}
-					}
+			$('.click').click(function() {
+				var pno = $(this).closest('tr').find('.pno').text();
+				location.href = "/normal/padelete?pno=" + pno;
+			});
+		});
 
+		$(document).ready(function() {
+			$('.click2').click(function() {
+				var pno = $(this).closest('tr').find('.pno').text();
+				var br_param = $(this).closest('tr').find('.br_param').val();
+				$.ajax({
+						type : 'POST',
+						url : '/normal/paupdate',
+						data : {
+								'pno' : pno,
+								'br_param' : br_param
+						}
 				});
 			});
 		});

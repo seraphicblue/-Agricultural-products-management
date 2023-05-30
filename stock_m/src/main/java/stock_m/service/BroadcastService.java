@@ -1,6 +1,8 @@
 package stock_m.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,6 +41,38 @@ public class BroadcastService {
 	
 	public int countMsg(String userid){
 		return Broadcast_dao.countMsg(userid);
+	}
+
+	public int pacheck(String userid, int pno, int aprice) {
+		int a =Broadcast_dao.pacheck(userid,pno);
+		if(a >0) {
+			return Broadcast_dao.paupdate(userid,pno,aprice);
+		}else{
+			return Broadcast_dao.painsert(userid,pno,aprice);
+		}
+	}
+
+	public int palarmCount(String userid) {		
+		return Broadcast_dao.palarmCount(userid);
+	}
+
+	public List<Map<String, Object>> paAll(String userid) {
+		return Broadcast_dao.paAll(userid);
+	}
+
+	public int padelete(String userid, int pno) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("userid", userid);
+		map.put("pno", pno);
+		return Broadcast_dao.padelete(map);
+	}
+
+	public int palarmupdate(String userid, int pno, int br_param) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("userid", userid);
+		map.put("pno", pno);
+		map.put("br_param", br_param);
+		return Broadcast_dao.palarmupdate(map);
 	}
 	
 	
