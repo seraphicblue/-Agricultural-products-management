@@ -30,13 +30,13 @@ public interface BroadcastDao {
 	int countMsg(@Param("userid") String userid);
 
 
-	@Select("select count(*) from pricebroadcast where userid=#{userid} and search=#{pno}")
+	@Select("select count(*) from pricebroadcast where userid=#{userid} and pno=#{pno}")
 	public int pacheck(@Param("userid")String userid,@Param("pno")int pno);
 
-	@Update("update pricebroadcast set param=#{aprice} where userid=#{userid} and search=#{pno}")
+	@Update("update pricebroadcast set param=#{aprice} where userid=#{userid} and pno=#{pno}")
 	public int paupdate(@Param("userid")String userid, @Param("pno")int pno,@Param("aprice") int aprice);
 
-	@Insert("insert into pricebroadcast(userid,search,param) values(#{userid},#{pno},#{aprice})")
+	@Insert("insert into pricebroadcast(userid,pno,param) values(#{userid},#{pno},#{aprice})")
 	public int painsert(@Param("userid")String userid,@Param("pno")int pno,@Param("aprice") int aprice);
 
 	@Select("select count(*) from pricebroadcast where userid=#{userid}")
@@ -45,10 +45,10 @@ public interface BroadcastDao {
 	@Select("select product.pno as pno, pname, pbrno, param from pricebroadcast inner join product on pricebroadcast.pno = product.pno where userid=#{userid}")
 	public List<Map<String, Object>> paAll(String userid);
 
-	@Delete("delete from pricebroadcast where search = #{pno} and userid=#{userid}")
+	@Delete("delete from pricebroadcast where pno = #{pno} and userid=#{userid}")
 	public int padelete(Map<String, Object> map);
 
-	@Update("update pricebroadcast set param = #{param} where userid = #{userid} and search = #{pno}")
+	@Update("update pricebroadcast set param = #{param} where userid = #{userid} and pno = #{pno}")
 	public int palarmupdate(Map<String, Object> map);
 	
 
@@ -78,6 +78,10 @@ public interface BroadcastDao {
 
 	@Select("select count(*) from limitbroadcast where userid=#{userid}")
 	public int getlimitCount(@Param("userid") String userid);
+	
+	@Update("updatelimitbroadcast set limit=#{limit}  where userid=#{userid}")
+	public void updateLimit(@Param("userid") String userid,@Param("limit") int limit);
 
-
+	@Insert("insert into limitbroadcast(userid,broadcastlimit) values(#{userid},#{limit})")
+	public int insertLimit(@Param("userid")String userid, @Param("limit")int limit);
 }

@@ -13,7 +13,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>판매</title>
+<title>한도 알림 입력</title>
 
 <!-- Custom fonts for this template-->
 <link href="../../vendor/fontawesome-free/css/all.min.css"
@@ -29,7 +29,6 @@
 <link href="../../../css/sb-admin-2.min.css" rel="stylesheet">
 <link href="../../../css/sb-admin-2.min2.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="../../../js/sell.js"></script>
 <script src="../../../js/webSocket.js"></script>
 
 
@@ -214,7 +213,7 @@
 								<div class="card-header py-3">
 									<h6 class="m-0 font-weight-bold text-primary">알림 등록</h6>
 								</div>
-								<form action="sell" method="post" id="sellform" onsubmit="return checkStock();">
+								<form method="Get" id="inputform" onsubmit="return insertLimit();">
 									<input type="hidden" name="sno" id="val" value=0> 
 									<input type="hidden" name="pname" id="pname"> 
 									<input type="hidden" name="uid" id="uid" value="${uid}"> 
@@ -316,10 +315,21 @@
 			<script src="../../../js/demo/chart-area-demo.js"></script>
 			<script src="../../../js/demo/chart-pie-demo.js"></script>
 			<script type="text/javascript">
-				function(){}
+				function insertLimit(){
+					var limit = document.getElementById("limit").value;
+					
+					$.ajax({
+						url: "/insertLimit",
+						type: "GET",
+						data: {"limit" : limit},
+						success: function(response) {
+							alert("입력 성공");
+							location.reload();
+						}
+					});
+				}
 			</script>
 			
 
 </body>
 </html>
-l>

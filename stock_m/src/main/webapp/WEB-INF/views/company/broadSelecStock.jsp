@@ -29,7 +29,6 @@
 <link href="../../../css/sb-admin-2.min.css" rel="stylesheet">
 <link href="../../../css/sb-admin-2.min2.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="../../../js/sell.js"></script>
 <script src="../../../js/webSocket.js"></script>
 
 
@@ -215,7 +214,7 @@
 								<div class="card-header py-3">
 									<h6 class="m-0 font-weight-bold text-primary">알림 등록</h6>
 								</div>
-								<form action="sell" method="post" id="sellform" onsubmit="return checkStock();">
+								<form method="get" id="sboardform" onsubmit="return stockbroad();">
 									<input type="hidden" name="sno" id="val" value=0> 
 									<input type="hidden" name="pname" id="pname"> 
 									<input type="hidden" name="uid" id="uid" value="${uid}"> 
@@ -231,7 +230,7 @@
 										
 										<tr>
 											<td>상품 선택</td>
-											<td><select id="scontent" onchange="check()">
+											<td><select id="scontent">
 													<option>--------------------</option>
 													<c:forEach items="${npList}" var="np">
 														<option value="${np.s_volume}" id="${np.sno}">${np.scontent}</option>
@@ -326,7 +325,28 @@
 			<script src="../../../js/demo/chart-area-demo.js"></script>
 			<script src="../../../js/demo/chart-pie-demo.js"></script>
 			<script type="text/javascript">
-				function(){}
+				function stockbroad(){
+					var scontent = document.getElementById("scontent").getId();
+					var stock = parseInt(document.getElementById("s_volume").value);
+					var select = parseInt(document.getElementById("scontent").value);
+				
+					
+					document.getElementById("pname").value = scontent;
+					alert(scontent+" : "+stock);	
+
+					if (scontent.trim() === "--------------------") {
+						alert("물품 정보를 선택해주세요.");
+						return false;
+
+					} else if (stock <= 0 || document.getElementById("s_volume").value.trim() === "") {//s_volume
+						alert("수량 정보를 입력해주세요.");
+						return false;
+
+					} else {
+						return true;
+					}
+					
+				}
 			</script>
 			
 

@@ -131,6 +131,16 @@ public class BroadcastService {
 		}
 		return text;
 	}
-
+	
+	
+	public void insertAndUpdate(int limit,String userid) {
+		int chk=Broadcast_dao.getlimitCount(userid);
+		if(chk>0) {
+			Broadcast_dao.updateLimit(userid,limit);
+		}else {
+			Broadcast_dao.insertLimit(userid,limit);
+		}
+	
+	}
 
 }

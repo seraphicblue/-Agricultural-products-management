@@ -136,12 +136,12 @@ public class BroadcastController {
 		return "redirect:" + url;
 	}
 	
-	@RequestMapping("/normal/paupdate")
-	public String palarmupdate(@RequestParam("pno") int pno, @RequestParam("br_param") int br_param, HttpSession session, HttpServletRequest request) {
+	@PostMapping("/normal/paupdate")
+	public String palarmupdate(@RequestParam("pno") int pno, @RequestParam("param") int param, HttpSession session, HttpServletRequest request) {
 		String userid = (String) session.getAttribute("userid");
 		// HttpServletRequest을 이용해 현재 페이지의 접속 경로를 받아 저장
 		String url = request.getHeader("Referer");
-		broad_service.palarmupdate(userid, pno, br_param);
+		broad_service.palarmupdate(userid, pno, param);
 		return "redirect:" + url;
 	}
 
@@ -184,10 +184,7 @@ public class BroadcastController {
 	@GetMapping("company/broadSelecLimit")
 	public String broadSelL(HttpSession session, Model m) {
 		String userid = (String) session.getAttribute("userid");
-		List<NameAndPrice_sabDto> npList = sab_service.namePrice(userid);
-		m.addAttribute("npList", npList);
 		m.addAttribute("uid", userid);
-		
 		
 		return "company/broadSelecLimit";
 	}
@@ -200,6 +197,14 @@ public class BroadcastController {
 		m.addAttribute("uid", userid);
 		
 		return "company/broadSelecPrice";
+	}
+	
+	@GetMapping("/insertLimit")
+	@ResponseBody
+	public void insertAndUp(int limit, HttpSession session ) {
+		String userid = (String) session.getAttribute("userid");
+		broad_service.insertAndUpdate(limit,userid);
+		
 	}
 	
 
