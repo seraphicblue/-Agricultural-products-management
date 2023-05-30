@@ -146,7 +146,7 @@ public class WebSocketConfig implements WebSocketConfigurer {
 						if (webSocketSession.getId().equals(str) && key.equals(useridToken)) {
 
 							webSocketSession.sendMessage(new TextMessage("L_" +useridToken+"_"+ target +"_"+ textTarget));
-							System.out.println(webSocketSession.getId());
+							System.out.println(webSocketSession.getId()); 
 							System.out.println("Sent message to user " + useridToken + ": " + target);
 							break;
 						}
