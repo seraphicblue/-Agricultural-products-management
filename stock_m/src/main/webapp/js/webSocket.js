@@ -3,13 +3,10 @@ var socket = new WebSocket(uri);
 
 socket.onopen = function(event) {
 	console.log("WebSocket is open now.");
-<<<<<<< HEAD
-=======
 	if (document.getElementById('command').value == "All") {
 
 		messageCount = countMessage(uid.value);
 	}
->>>>>>> refs/heads/kim2
 };
 
 socket.onmessage = function(event) {
@@ -17,7 +14,9 @@ socket.onmessage = function(event) {
 	var sep = arr[0];
 	var content = arr[1];
 	var sentUserid = arr[2];
+	var targetSno = arr[3];
 	var contents = "";
+	var count;
 
 	if (document.getElementById('command').value == "All") {
 		if (sep == 'S') {
@@ -40,10 +39,6 @@ socket.onmessage = function(event) {
 			newWindow.document.write("<br><button onclick='window.close()'>Close</button>");
 		}
 
-<<<<<<< HEAD
-		stockMessage(sentUserid, contents);
-		messageCount = countMessage(sentUserid);
-=======
 		else if (sep == 'L') {
 			contents = "한도 도달";
 			document.getElementById('position3').textContent = contents;
@@ -220,7 +215,8 @@ function countMessage(uid) {
 		data: { userid: uid },
 		dataType: 'text',
 		success: function(data) {
-			document.getElementById('position4').textContent = data;
+			count = data;
+			document.getElementById('position4').textContent = count;
 		}
 	});
 }

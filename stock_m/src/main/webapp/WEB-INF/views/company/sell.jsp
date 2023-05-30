@@ -81,16 +81,13 @@
 			<li class="nav-item"><a class="nav-link" href="tables.html">
 					<i class="fas fa-fw fa-table"></i> <span>Tables</span>
 			</a></li>
-<<<<<<< HEAD
 
-=======
 			
 			<!-- Nav Item - broad -->
 			<li class="nav-item"><a class="nav-link" href="/company/broadSelM">
 					<i class="fas fa-fw fa-table"></i> <span>알림</span>
 			</a></li>
 			
->>>>>>> refs/heads/kim2
 			<!-- Divider -->
 			<hr class="sidebar-divider d-none d-md-block">
 
@@ -185,13 +182,9 @@
 									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
 									Logout
 								</a>
-<<<<<<< HEAD
-							</div></li>
 
-=======
 							</div>  
 						</li>
->>>>>>> refs/heads/kim2
 					</ul>
 
 				</nav>

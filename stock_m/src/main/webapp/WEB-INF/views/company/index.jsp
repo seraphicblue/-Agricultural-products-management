@@ -163,19 +163,8 @@
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
-<<<<<<< HEAD
-=======
 
-			<!-- Heading -->
 
-			<!-- Nav Item - Pages Collapse Menu -->
-			<!-- data-toggle 제거시 화살표 부분 제거-->
-
-			<!-- Nav Item - Utilities Collapse Menu -->
-
-			<!-- Divider -->
-
->>>>>>> branch 'main' of https://github.com/marionest98/stock.git
 			<!-- Heading -->
 			<div class="sidebar-heading">Addons</div>
 
@@ -400,16 +389,12 @@
 						<div class="col-xl-8 col-lg-7">
 							<div class="card shadow mb-4">
 								<!-- Card Header - Dropdown -->
-<<<<<<< HEAD
-								<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-									<h6 class="m-0 font-weight-bold text-primary">일주일간 판구매 동향</h6>
-									<div class="dropdown no-arrow">
-=======
+
 								<div
 									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 									<h6 class="m-0 font-weight-bold text-primary">일주일간 거래 동향</h6>
 									<!-- <div class="dropdown no-arrow">
->>>>>>> refs/heads/kim2
+
 										<a class="dropdown-toggle" href="#" role="button"
 											id="dropdownMenuLink" data-toggle="dropdown"
 											aria-haspopup="true" aria-expanded="false"> <i
@@ -482,20 +467,12 @@
 						<!-- Content Column -->
 
 						<div id="Message" class="col-lg-6 mb-4">
-<<<<<<< HEAD
 						<form action="sell" method="post" id="sellform"onsubmit="return checkStock();">
 							<input type="hidden" name="sno" id="val" value=0> 
 							<input type="hidden" name="pname" id="pname">
 							<input type="hidden" name="uid" id="uid" value="${uid}"> 
 							<input type="hidden" name="command" id="command" value="price">
-=======
-							<form action="sell" method="post" id="sellform"
-								onsubmit="return checkStock();">
-								<input type="hidden" name="sno" id="val" value=0> <input
-									type="hidden" name="pname" id="pname"> <input
-									type="hidden" name="uid" id="uid" value="${uid}"> <input
-									type="hidden" name="command" id="command" value="price">
->>>>>>> refs/heads/kim2
+
 
 								<div class="card shadow mb-4">
 									<div class="card-header py-3">
@@ -536,7 +513,6 @@
 										</tbody>
 									</table>
 								</div>
-<<<<<<< HEAD
 								<table class="table table-bordered dataTable" id="dataTable"
 									width="100%" cellspacing="0" role="grid"
 									aria-describedby="dataTable_info" style="width: 100%;">
@@ -571,8 +547,7 @@
 									</tbody>
 								</table>
 							</div>
-=======
->>>>>>> refs/heads/kim2
+
 							</form>
 						</div>
 
@@ -599,26 +574,13 @@
 									<tbody>
 
 										<tr>
-<<<<<<< HEAD
 											<td class="sno"></td>
 											<td style="padding-top: 12px">
 											<input type="text" class="s_volume" value=0 size="10"
 											style="width:45px;height:41px;"
-=======
-											<td class="s_val" style="vertical-align: middle;"></td>
-											<td style="padding-top: 12px"><input type="text"
-												class="s_volume" value=0 size="10"
-												style="width: 45px; height: 41px; text-align: right;"
->>>>>>> refs/heads/kim2
 												onchange="changeprice(this)"></td>
-<<<<<<< HEAD
 												<td align="center">
 												<select class="navbar navbar-expand select_option" onchange="selectedoption(this)">
-=======
-											<td align="center"><select
-												class="navbar navbar-expand select_option"
-												onchange="selectedoption(this)">
->>>>>>> refs/heads/kim2
 													<option value="">--------------------</option>
 													<c:forEach items="${adminstockList}" var="option">
 														<option value="${option.acontent}"
@@ -627,18 +589,11 @@
 															title="${option.a_val}">${option.acontent}</option>
 													</c:forEach>
 											</select></td>
-<<<<<<< HEAD
-											<td class="selectedvolume"></td>
-											<td class="selectedprice"></td>
-											<td><button class="btn btn-primary btn-icon-split click2" style="width:45px;height:41px;">
-											<span style="padding-top:10px">추가</span>
-=======
+
 											<td class="selectedvolume" style="vertical-align: middle;"></td>
 											<td class="selectedprice" style="vertical-align: middle;"></td>
-<<<<<<< HEAD
 											<td><button class="btn btn-primary btn-icon-split click2" style="width:45px;height:41px;align-items: center;">
 											<span>추가</span>
->>>>>>> branch 'main' of https://github.com/marionest98/stock.git
 											</button></td>
 =======
 											<td><button
