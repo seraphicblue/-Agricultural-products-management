@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,16 +24,23 @@
 
 
 <!-- Custom styles for this template-->
-<link href="../../css/sb-admin-2.min.css" rel="stylesheet">
-<script src="../../js/webSocket.js"></script>
+<link href="../../../css/sb-admin-2.min.css" rel="stylesheet">
+<script src="../../../js/webSocket.js"></script>
 
 
 </head>
 
 <body id="page-top">
+<<<<<<< HEAD
 
+=======
+<input type="hidden" name="command" id="command" value="limit">
+<input type="hidden" name="command" id="uid" value="${uid}">
+									
+	<!-- Page Wrapper -->	
+>>>>>>> refs/heads/kim2
 	<div id="wrapper">
-
+	
 		<!-- Sidebar -->
 		<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -361,6 +369,7 @@
 		$(document).ready(function() {
 			$('.click2').click(
 					function() {
+<<<<<<< HEAD
 						var scontent = $(this).closest('tr').find('.select_option').val();
 						var selectedPrice = $(this).closest('tr').find('.selectedprice').text();
 						var s_volume = $(this).closest('tr').find('.s_volume').val();
@@ -368,6 +377,12 @@
 						var s_val = parseInt($(this).closest('tr').find('.select_option :selected').attr('title'));
 						console.log(s_val);
 						
+=======
+						var scontent = $(this).closest('tr').find('.select_option').val();//상품 이름
+						var selectedPrice = $(this).closest('tr').find('.selectedprice').text();//가격
+						var s_volume = $(this).closest('tr').find('.s_volume').val();//재고량
+						var s_val = parseInt($(this).closest('tr').find('.s_val').text());//품목 번호
+>>>>>>> refs/heads/kim2
 												$.ajax({
 															type : 'POST',
 															url : '/company/checks',
@@ -379,7 +394,12 @@
 																's_val': s_val
 															},
 															success : function(result) {
+<<<<<<< HEAD
 																$(".sno").text("");
+=======
+																
+																$(".s_val").text("");
+>>>>>>> refs/heads/kim2
 																$(".select_option").val("");
 																$(".s_volume").val("");
 																$(".selectedvolume").text("");
@@ -389,6 +409,9 @@
 																$(".selectedprice").trigger("change");
 																
 																if (result == true) {
+																	
+																	sendMessage("L");											
+																	
 																} else {
 																	alert("한도 부족입니다.");
 																}

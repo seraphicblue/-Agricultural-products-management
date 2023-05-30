@@ -441,6 +441,10 @@
 						}else{
 							return false;
 						} 
+<<<<<<< HEAD
+=======
+                		sendMessage("S")//웹 알림 발생
+>>>>>>> refs/heads/kim2
                 		location.reload();
                 	};
                 </script>
