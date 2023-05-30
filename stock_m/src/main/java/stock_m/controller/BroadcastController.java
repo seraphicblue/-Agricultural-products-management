@@ -39,7 +39,7 @@ public class BroadcastController {
 	@ResponseBody
 
 	public void stockBroad(String sep, String userid, String content) {
-		System.out.println("constroller");
+		
 		broad_service.stockMessage(sep,userid, content);
 
 	}

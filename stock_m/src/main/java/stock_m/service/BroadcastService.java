@@ -43,7 +43,8 @@ public class BroadcastService {
 			content = "현재 알림 수치는 " + param + "개 이고 현재 재고량은 " + volume + "개로 설정량의 "
 					+ Math.round(((double) volume / param) * 100) / 100.0 + "% 입니다.";
 			Broadcast_dao.insertMessage(userid, sub, content);
-		} else if (sep.equals("L")) {
+		} 
+		else if (sep.equals("L")) {
 			System.out.println("this is :::::::" + content);
 			String sub = content.split("_")[0];
 			int sno = Integer.parseInt(content.split("_")[1]);

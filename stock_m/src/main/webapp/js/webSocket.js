@@ -24,6 +24,7 @@ socket.onmessage = function(event) {
 			document.getElementById('position1').textContent = contents;
 			document.getElementById('position1').style.color = "#FF0000";
 			stockMessage(sep, sentUserid, contents + "_" + targetSno);
+			console.log("111111111");
 		}
 
 		else if (sep == 'CP') {
@@ -147,6 +148,7 @@ function sendMessage(te) {
 							if (data == message) {
 
 								text = "/" + "stock" + '_' + userid + '_' + message + '_' + pname;
+								
 								socket.send(text);
 							}
 
@@ -220,4 +222,3 @@ function countMessage(uid) {
 		}
 	});
 }
-
