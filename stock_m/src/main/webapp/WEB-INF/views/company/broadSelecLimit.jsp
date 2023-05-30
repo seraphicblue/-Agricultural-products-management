@@ -229,15 +229,6 @@
 										</tr>
 										
 										<tr>
-											<td>상품 선택</td>
-											<td><select id="scontent" onchange="check()">
-													<option>--------------------</option>
-													<c:forEach items="${npList}" var="np">
-														<option value="${np.s_volume}" id="${np.sno}">${np.scontent}</option>
-													</c:forEach>
-											</select></td>
-										</tr>
-										<tr>
 											<td>한도 금액</td>
 											<td><input name="limit" id="limit" placeholder="0"  style="text-align: right;"></td>
 										</tr>
