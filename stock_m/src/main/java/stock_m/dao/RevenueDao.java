@@ -40,9 +40,9 @@ public interface RevenueDao {
 	int updater(@Param("s_price") int s_price, @Param("userid") String userid);
 	
 	//구매가 이루어진다면 해당 param 값들을 이용해 저장
-	@Insert("insert into buy(pno,userid,bdate,price) values(#{ano},#{userid},#{s_date},#{s_price})")
+	@Insert("insert into buy(pno,userid,bdate,price,bcount) values(#{ano},#{userid},#{s_date},#{s_price},#{s_volume})")
 	int insertb(@Param("ano") int ano, @Param("userid") String userid, @Param("s_date") String s_date,
-			@Param("s_price") int s_price);
+			@Param("s_price") int s_price, @Param("s_volume") int s_volume);
 
 	@Insert("insert into sell (sno,userid,pno,sdate,price,scount) values(#{sno},#{userid},#{pno},#{sdate},#{price},#{scount})")
 	int insert(SellDto dto);

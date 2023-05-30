@@ -29,105 +29,6 @@
 <script src="../../js/sell.js"></script>
 
 
-	<script src="../../vendor/jquery/jquery.min.js"></script>
-	<script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-	<!-- Core plugin JavaScript-->
-	<script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
-
-	<!-- Custom scripts for all pages-->
-	<script src="../../js/sb-admin-2.min.js"></script>
-
-	<!-- Page level plugins -->
-	<script src="../../vendor/chart.js/Chart.min.js"></script>
-
-	<!-- Page level custom scripts -->
-	<script src="../../js/demo/chart-area-demo.js"></script>
-	<script src="../../js/demo/chart-pie-demo.js"></script>
-
-
-
-	<script>
-		function selectedoption(selectElement) {
-			var selectedOption = selectElement.options[selectElement.selectedIndex];
-			var selectedVolume = selectedOption.getAttribute("data-volume");
-			var selectedAno = selectedOption.getAttribute("data-ano");
-			var s_volume = selectElement.parentNode.parentNode
-					.getElementsByClassName("s_volume")[0].value;
-			var selectedPrice = selectElement.parentNode.parentNode
-					.getElementsByClassName("selectedvolume")[0];
-			var totalPrice = selectElement.parentNode.parentNode
-					.getElementsByClassName("selectedprice")[0];
-
-			selectElement.parentNode.parentNode
-					.getElementsByClassName("s_volume")[0].value = '0';
-
-			if (!isNaN(parseInt(selectedPrice.textContent) * s_volume)) {
-				totalPrice.textContent = parseInt(selectedPrice.textContent)
-						* s_volume;
-			} else {
-				totalPrice.textContent = 0;
-			}
-
-			selectedPrice.textContent = selectedVolume;
-			selectElement.parentNode.parentNode.getElementsByClassName("sno")[0].textContent = selectedAno;
-		}
-
-		function changeprice(selectElement) {
-			var s_volume = parseInt(selectElement.value);
-			var selectedPrice = selectElement.parentNode.parentNode
-					.getElementsByClassName("selectedvolume")[0];
-			var totalPrice = selectElement.parentNode.parentNode
-					.getElementsByClassName("selectedprice")[0];
-
-			if (!isNaN(s_volume) && s_volume >= 0) {
-				totalPrice.textContent = parseInt(selectedPrice.textContent)
-						* s_volume;
-			} else {
-				alert("수량은 양수만 입력이 가능합니다");
-				selectElement.value = "";
-			}
-		}
-
-		$(document).ready(function() {
-			$('.click2').click(
-					function() {
-						var scontent = $(this).closest('tr').find('.select_option').val();
-						var selectedPrice = $(this).closest('tr').find('.selectedprice').text();
-						var s_volume = $(this).closest('tr').find('.s_volume').val();
-						var ano = parseInt($(this).closest('tr').find('.sno').text());
-						var s_val = parseInt($(this).closest('tr').find('.select_option :selected').attr('title'));
-						console.log(s_val);
-						
-												$.ajax({
-															type : 'POST',
-															url : '/company/checks',
-															data : {
-																's_price' : selectedPrice,
-																'scontent' : scontent,
-																's_volume' : s_volume,
-																'ano' : ano,
-																's_val': s_val
-															},
-															success : function(result) {
-																$(".sno").text("");
-																$(".select_option").val("");
-																$(".s_volume").val("");
-																$(".selectedvolume").text("");
-																$(".selectedprice").text("");
-																$(".sno").trigger("change");
-																$(".selectedvolume").trigger("change");
-																$(".selectedprice").trigger("change");
-																
-																if (result == true) {
-																} else {
-																	alert("한도 부족입니다.");
-																}
-															}
-														});
-											});
-						});
-	</script>
 </head>
 
 <body id="page-top">
@@ -164,6 +65,14 @@
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 
+			<!-- Heading -->
+
+			<!-- Nav Item - Pages Collapse Menu -->
+			<!-- data-toggle 제거시 화살표 부분 제거-->
+
+			<!-- Nav Item - Utilities Collapse Menu -->
+
+			<!-- Divider -->
 
 			<!-- Heading -->
 			<div class="sidebar-heading">Addons</div>
@@ -289,7 +198,7 @@
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">${uid}의관리 페이지입니다.</h1>
+						<h1 class="h3 mb-0 text-gray-800">${uid}의관리페이지입니다.</h1>
 					</div>
 					<!-- Content Row -->
 					<div class="row">
@@ -389,12 +298,10 @@
 						<div class="col-xl-8 col-lg-7">
 							<div class="card shadow mb-4">
 								<!-- Card Header - Dropdown -->
-
 								<div
 									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 									<h6 class="m-0 font-weight-bold text-primary">일주일간 거래 동향</h6>
 									<!-- <div class="dropdown no-arrow">
-
 										<a class="dropdown-toggle" href="#" role="button"
 											id="dropdownMenuLink" data-toggle="dropdown"
 											aria-haspopup="true" aria-expanded="false"> <i
@@ -409,7 +316,7 @@
 											<div class="dropdown-divider"></div>
 											<a class="dropdown-item" href="#">Something else here</a>
 										</div>
-									</div>
+									</div> -->
 								</div>
 								<!-- Card Body -->
 								<div class="card-body">
@@ -427,7 +334,7 @@
 								<div
 									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 									<h6 class="m-0 font-weight-bold text-primary">재고 현황</h6>
-									<div class="dropdown no-arrow">
+									<!-- <div class="dropdown no-arrow">
 										<a class="dropdown-toggle" href="#" role="button"
 											id="dropdownMenuLink" data-toggle="dropdown"
 											aria-haspopup="true" aria-expanded="false"> <i
@@ -442,7 +349,7 @@
 											<div class="dropdown-divider"></div>
 											<a class="dropdown-item" href="#">Something else here</a>
 										</div>
-									</div>
+									</div> -->
 								</div>
 								<!-- Card Body -->
 								<div class="card-body">
@@ -467,12 +374,12 @@
 						<!-- Content Column -->
 
 						<div id="Message" class="col-lg-6 mb-4">
-						<form action="sell" method="post" id="sellform"onsubmit="return checkStock();">
-							<input type="hidden" name="sno" id="val" value=0> 
-							<input type="hidden" name="pname" id="pname">
-							<input type="hidden" name="uid" id="uid" value="${uid}"> 
-							<input type="hidden" name="command" id="command" value="price">
-
+							<form action="sell" method="post" id="sellform"
+								onsubmit="return checkStock();">
+								<input type="hidden" name="sno" id="val" value=0> <input
+									type="hidden" name="pname" id="pname"> <input
+									type="hidden" name="uid" id="uid" value="${uid}"> <input
+									type="hidden" name="command" id="command" value="price">
 
 								<div class="card shadow mb-4">
 									<div class="card-header py-3">
@@ -513,41 +420,6 @@
 										</tbody>
 									</table>
 								</div>
-								<table class="table table-bordered dataTable" id="dataTable"
-									width="100%" cellspacing="0" role="grid"
-									aria-describedby="dataTable_info" style="width: 100%;">
-									<thead>
-										<tr>
-											<th>재고 번호</th>
-											<th>재고 물품</th>
-											<th>수량(KG)</th>
-											<th>가격</th>
-											<th>총가격</th>
-											<th>판매</th>
-										</tr>
-									</thead>
-									<tbody>
-
-										<tr>
-											<td class="ano"></td>
-											<td ><input name="p_count" id="s_volume" value=0 size="10"
-											style="width:45px;height:41px;"></td>
-											<td align="center"><select class="navbar navbar-expand" id="scontent" onchange="check()">
-													<option>--------------------</option> 
-													<c:forEach items="${npList}" var="np">
-														<option value="${np.s_volume}" id="${np.sno}">${np.scontent}</option>
-													</c:forEach> 
-												</select>
-											</td>
-											<td><input name="price" id="price" value=0 ize="10"
-											style="width:100px;height:41px;"></td>
-											<td class="productprice"></td>
-											<td><input type="submit" class="btn btn-primary btn-icon-split" style="width:45px;height:41px;padding-top:5px;" value="판매"></td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-
 							</form>
 						</div>
 
@@ -575,33 +447,28 @@
 
 										<tr>
 											<td class="sno"></td>
-											<td style="padding-top: 12px">
-											<input type="text" class="s_volume" value=0 size="10"
-											style="width:45px;height:41px;"
+											<td style="padding-top: 12px"><input type="text"
+												class="s_volume" value=0 size="10"
+												style="width: 45px; height: 41px;"
 												onchange="changeprice(this)"></td>
-												<td align="center">
-												<select class="navbar navbar-expand select_option" onchange="selectedoption(this)">
+											<td align="center"><select
+												class="navbar navbar-expand select_option"
+												onchange="selectedoption(this)">
 													<option value="">--------------------</option>
 													<c:forEach items="${adminstockList}" var="option">
 														<option value="${option.acontent}"
-															data-volume="${option.a_volume}"
-															data-ano="${option.ano}"
+															data-volume="${option.a_volume}" data-ano="${option.ano}"
 															title="${option.a_val}">${option.acontent}</option>
 													</c:forEach>
 											</select></td>
 
 											<td class="selectedvolume" style="vertical-align: middle;"></td>
 											<td class="selectedprice" style="vertical-align: middle;"></td>
-											<td><button class="btn btn-primary btn-icon-split click2" style="width:45px;height:41px;align-items: center;">
-											<span>추가</span>
-											</button></td>
-=======
 											<td><button
 													class="btn btn-primary btn-icon-split click2"
 													style="width: 45px; height: 41px; align-items: center;">
 													<span>추가</span>
 												</button></td>
->>>>>>> refs/heads/kim2
 										</tr>
 									</tbody>
 								</table>
@@ -656,7 +523,8 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-					<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+					<button class="close" type="button" data-dismiss="modal"
+						aria-label="Close">
 						<span aria-hidden="true">×</span>
 					</button>
 				</div>
@@ -673,12 +541,9 @@
 	</div>
 
 	<!-- Bootstrap core JavaScript-->
-<<<<<<< HEAD
+	<script src="../../vendor/jquery/jquery.min.js"></script>
+	<script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-<<<<<<< HEAD
-=======
->>>>>>> branch 'main' of https://github.com/marionest98/stock.git
-=======
 	<!-- Core plugin JavaScript-->
 	<script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
 
@@ -700,7 +565,7 @@
 		function selectedoption(selectElement) {
 			var selectedOption = selectElement.options[selectElement.selectedIndex];
 			var selectedVolume = selectedOption.getAttribute("data-volume");
-			var selectedVal = selectedOption.getAttribute("data-val");
+			var selectedAno = selectedOption.getAttribute("data-ano");
 			var s_volume = selectElement.parentNode.parentNode
 					.getElementsByClassName("s_volume")[0].value;
 			var selectedPrice = selectElement.parentNode.parentNode
@@ -719,7 +584,7 @@
 			}
 
 			selectedPrice.textContent = selectedVolume;
-			selectElement.parentNode.parentNode.getElementsByClassName("s_val")[0].textContent = selectedVal;
+			selectElement.parentNode.parentNode.getElementsByClassName("sno")[0].textContent = selectedAno;
 		}
 
 		function changeprice(selectElement) {
@@ -730,7 +595,8 @@
 					.getElementsByClassName("selectedprice")[0];
 
 			if (!isNaN(s_volume) && s_volume >= 0) {
-				totalPrice.textContent = parseInt(selectedPrice.textContent)*s_volume;
+				totalPrice.textContent = parseInt(selectedPrice.textContent)
+						* s_volume;
 			} else {
 				alert("수량은 양수만 입력이 가능합니다");
 				selectElement.value = "";
@@ -747,8 +613,13 @@
 										'.selectedprice').text();
 								var s_volume = $(this).closest('tr').find(
 										'.s_volume').val();
+								var ano = parseInt($(this).closest('tr').find(
+										'.sno').text());
 								var s_val = parseInt($(this).closest('tr')
-										.find('.s_val').text());
+										.find('.select_option :selected').attr(
+												'title'));
+								console.log(s_val);
+
 								$.ajax({
 									type : 'POST',
 									url : '/company/checks',
@@ -756,18 +627,18 @@
 										's_price' : selectedPrice,
 										'scontent' : scontent,
 										's_volume' : s_volume,
+										'ano' : ano,
 										's_val' : s_val
 									},
 									success : function(result) {
-										$(".s_val").text("");
+										$(".sno").text("");
 										$(".select_option").val("");
 										$(".s_volume").val("");
 										$(".selectedvolume").text("");
 										$(".selectedprice").text("");
-										$(".s_val").trigger("change");
+										$(".sno").trigger("change");
 										$(".selectedvolume").trigger("change");
 										$(".selectedprice").trigger("change");
-
 										if (result == true) {
 											sendMessage("L");
 										} else {
@@ -778,7 +649,6 @@
 							});
 				});
 	</script>
->>>>>>> refs/heads/kim2
 </body>
 
 </html>

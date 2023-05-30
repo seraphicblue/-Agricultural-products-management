@@ -20,32 +20,36 @@ public interface BroadcastDao {
 	public int broadStock(@Param("sno") int sno, @Param("userid") String userid);
 
 	@Insert("insert into message(userid, sub,content) values(#{userid},#{sub}, #{content})")
-	int insertMessage(@Param("userid") String userid,@Param("sub") String sub ,@Param("content") String content);
-	
+	int insertMessage(@Param("userid") String userid, @Param("sub") String sub, @Param("content") String content);
+
 	@Select("select count(userid) from message where userid=#{userid} AND rcheck = false")
 	int countMsg(@Param("userid") String userid);
 
 	@Select("select count(userid) from message where userid=#{userid}")
 	int messageCount(@Param("userid") String userid);
-	
+
 	@Select("select * from message where userid=#{userid}")
 	public List<Message> messageList(@Param("userid") String userid);
-	
+
 	@Select("select stock_param from stockbroadcast where stock_selec=#{sno}")
 	public int getParam(@Param("sno") int sno);
-	
+
 	@Select("select s_volume from stock where sno=#{sno}")
 	public int getVolume(@Param("sno") int sno);
-	
+
 	@Select("select content from message where mesno=#{mesno}")
 	public String showMsg(@Param("mesno") int mesno);
-	
+
 	@Update("update message set rcheck = true where mesno=#{mesno}")
 	public void turnMsg(@Param("mesno") int mesno);
 
 	@Select("select broadcastlimit from limitbroadcast where userid=#{userid}")
-	public int broadlimit(@Param("userid")String userid);
-	
+	public int broadlimit(@Param("userid") String userid);
+
 	@Select("select profit from revenue where userid=#{userid}")
-	public int getProfit(@Param("userid")String userid);
+	public int getProfit(@Param("userid") String userid);
+
+	@Select("select count(*) from limitbroadcast where userid=#{userid}")
+	public int getlimitCount(@Param("userid") String userid);
+
 }
