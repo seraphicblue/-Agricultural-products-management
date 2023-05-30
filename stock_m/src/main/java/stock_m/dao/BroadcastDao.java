@@ -24,7 +24,6 @@ public interface BroadcastDao {
 	
 	@Select("select count(userid) from message where userid=#{userid} AND rcheck = false")
 	int countMsg(@Param("userid") String userid);
-	
 
 	@Select("select count(userid) from message where userid=#{userid}")
 	int messageCount(@Param("userid") String userid);

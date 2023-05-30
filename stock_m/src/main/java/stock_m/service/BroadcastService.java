@@ -57,9 +57,6 @@ public class BroadcastService {
 		
 	}
 
-	public int countMsg(String userid) {
-		return Broadcast_dao.countMsg(userid);
-	}
 
 	public List<Message> messagepg(String userid) {
 
