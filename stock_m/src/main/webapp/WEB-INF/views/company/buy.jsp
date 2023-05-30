@@ -1,6 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,29 +23,24 @@
 
 
 <!-- Custom styles for this template-->
-<link href="../../../css/sb-admin-2.min.css" rel="stylesheet">
-<script src="../../../js/webSocket.js"></script>
+<link href="../../css/sb-admin-2.min.css" rel="stylesheet">
+<script src="../../js/webSocket.js"></script>
 
 
 </head>
 
 <body id="page-top">
-<<<<<<< HEAD
 
-=======
-<input type="hidden" name="command" id="command" value="limit">
-<input type="hidden" name="command" id="uid" value="${uid}">
-									
-	<!-- Page Wrapper -->	
->>>>>>> refs/heads/kim2
 	<div id="wrapper">
-	
+
 		<!-- Sidebar -->
 		<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
 			<!-- Sidebar - Brand -->
 			<!-- 홈화면 링크 부분-->
+
 			<a href="/company/main" class="sidebar-brand d-flex align-items-center justify-content-center" > 
+
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-laugh-wink"></i>
 				</div>
@@ -71,21 +65,25 @@
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">발주 / 판매</h6>
-						<a class="collapse-item" href="/company/buy">발주</a> <a
-							class="collapse-item" href="/company/sell">판매</a>
+						<a class="collapse-item" href="/company/buy">발주</a> 
+						<a class="collapse-item" href="/company/sell">판매</a>
 					</div>
 				</div></li>
 
 			<!-- Nav Item - Charts -->
 			<li class="nav-item"><a class="nav-link"
-				href="../../charts.html"> <i class="fas fa-fw fa-chart-area"></i>
-					<span>Charts</span></a></li>
+				href="/company/cs"> <i class="fas fa-fw fa-chart-area"></i>
+					<span>재고 그래프</span></a></li>
+					
+			<li class="nav-item"><a class="nav-link"
+				href="/company/cr"> <i class="fas fa-fw fa-chart-area"></i>
+					<span>장부 그래프</span></a></li>
 
 			<!-- Nav Item - Tables -->
-			<li class="nav-item"><a class="nav-link" href="tables.html">
-					<i class="fas fa-fw fa-table"></i> <span>Tables</span>
+			<li class="nav-item"><a class="nav-link" href="/company/stockmanage">
+					<i class="fas fa-fw fa-table"></i> <span>재고</span>
 			</a></li>
-
+			
 			<!-- Divider -->
 			<hr class="sidebar-divider d-none d-md-block">
 
@@ -107,82 +105,51 @@
 			<div id="content">
 
 				<!-- Topbar -->
-				<nav
-					class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+				<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
 					<!-- Sidebar Toggle (Topbar) -->
-					<button id="sidebarToggleTop"
-						class="btn btn-link d-md-none rounded-circle mr-3">
-						<i class="fa fa-bars"></i>
-					</button>
-
+					
 					<!-- Topbar Search -->
-					<form
-						class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-
-					</form>
+					
 
 					<!-- Topbar Navbar -->
 					<ul class="navbar-nav ml-auto">
 
 						<!-- Nav Item - Search Dropdown (Visible Only XS) -->
-						<li class="nav-item dropdown no-arrow d-sm-none"><a
-							class="nav-link dropdown-toggle" href="#" id="searchDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> <i class="fas fa-search fa-fw"></i>
-						</a> <!-- Dropdown - Messages -->
-							<div
-								class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-								aria-labelledby="searchDropdown">
-								<form class="form-inline mr-auto w-100 navbar-search">
-									<div class="input-group">
-										<input type="text"
-											class="form-control bg-light border-0 small"
-											placeholder="Search for..." aria-label="Search"
-											aria-describedby="basic-addon2">
-										<div class="input-group-append">
-											<button class="btn btn-primary" type="button">
-												<i class="fas fa-search fa-sm"></i>
-											</button>
-										</div>
-									</div>
-								</form>
-							</div></li>
+						<!-- Dropdown - Messages -->
+							
 
 						<!-- Nav Item - Alerts -->
-						<li class="nav-item dropdown no-arrow mx-1"></li>
+						
 
 						<!-- Nav Item - Messages -->
-						<li class="nav-item dropdown no-arrow mx-1"></li>
-
-
-
+						
 						<!-- Nav Item - User Information -->
 						<!-- 로그아웃 마이페이 부분-->
-						<li class="nav-item dropdown no-arrow"><a
-							class="nav-link dropdown-toggle" href="#" id="userDropdown"
+						<li class="nav-item dropdown no-arrow">
+						<a  class="nav-link dropdown-toggle" href="#" id="userDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <span
-								class="mr-2 d-none d-lg-inline text-gray-600 small">${userid}</span> <img class="img-profile rounded-circle"
+								class="mr-2 d-none d-lg-inline text-gray-600 small">${uid}</span> <img class="img-profile rounded-circle"
 								src="../../img/undraw_profile.svg">
-						</a> <!-- Dropdown - User Information -->
-							<div
-								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+						</a> 
+						<!-- Dropdown - User Information -->
+							<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 								aria-labelledby="userDropdown">
-								<a class="dropdown-item" href="#"> <i
-									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
+								<a class="dropdown-item" href="#"> 
+									<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 
+									프로필
 								</a>
 
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="#" data-toggle="modal"
-									data-target="#logoutModal"> <i
-									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-									Logout
+									data-target="#logoutModal"> 
+									<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+									로그아웃
 								</a>
-							</div></li>
-
+							</div>
+						</li>
 					</ul>
-
 				</nav>
 				<!-- End of Topbar -->
 
@@ -210,9 +177,8 @@
 									<thead>
 										<tr>
 											<th>재고 번호</th>
-											<th>재고 물품</th>
 											<th>수량</th>
-											
+											<th>재고 물품</th>
 											<th>가격</th>
 											<th>총가격</th>
 											<th>추가</th>
@@ -236,10 +202,6 @@
 															title="${option.a_val}">${option.acontent}</option>
 													</c:forEach>
 											</select></td>
-											<td style="padding-top: 12px">
-											<input type="text" class="s_volume" placeholder="0" size="10"
-											style="width:45px;height:41px;text-align:right;"
-												onchange="changeprice(this)"></td>
 											<td class="selectedvolume" style="vertical-align: middle;"></td>
 											<td class="selectedprice" style="vertical-align: middle;"></td>
 											<td><button class="btn btn-primary btn-icon-split click" style="width:45px;height:41px;align-items: center;">
@@ -367,9 +329,8 @@
 		}
 
 		$(document).ready(function() {
-			$('.click2').click(
+			$('.click').click(
 					function() {
-<<<<<<< HEAD
 						var scontent = $(this).closest('tr').find('.select_option').val();
 						var selectedPrice = $(this).closest('tr').find('.selectedprice').text();
 						var s_volume = $(this).closest('tr').find('.s_volume').val();
@@ -377,12 +338,6 @@
 						var s_val = parseInt($(this).closest('tr').find('.select_option :selected').attr('title'));
 						console.log(s_val);
 						
-=======
-						var scontent = $(this).closest('tr').find('.select_option').val();//상품 이름
-						var selectedPrice = $(this).closest('tr').find('.selectedprice').text();//가격
-						var s_volume = $(this).closest('tr').find('.s_volume').val();//재고량
-						var s_val = parseInt($(this).closest('tr').find('.s_val').text());//품목 번호
->>>>>>> refs/heads/kim2
 												$.ajax({
 															type : 'POST',
 															url : '/company/checks',
@@ -394,12 +349,7 @@
 																's_val': s_val
 															},
 															success : function(result) {
-<<<<<<< HEAD
 																$(".sno").text("");
-=======
-																
-																$(".s_val").text("");
->>>>>>> refs/heads/kim2
 																$(".select_option").val("");
 																$(".s_volume").val("");
 																$(".selectedvolume").text("");
@@ -409,9 +359,6 @@
 																$(".selectedprice").trigger("change");
 																
 																if (result == true) {
-																	
-																	sendMessage("L");											
-																	
 																} else {
 																	alert("한도 부족입니다.");
 																}
