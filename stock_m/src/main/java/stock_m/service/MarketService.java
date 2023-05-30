@@ -32,6 +32,10 @@ public class MarketService {
 		return dao.searchPname(pname, start, nuserid);
 	}
 	
+	public List<Map<String,Object>> palarmSearch(String pname, int start, List<String> nuserid) {
+		return dao.palarmSearch(pname, start, nuserid);
+	}
+	
 	public int countProduct(String pname, int p_val, List<String> nuserid) {
 		if(pname == null) {
 			pname = "없음";			

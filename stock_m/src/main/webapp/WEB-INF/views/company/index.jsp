@@ -29,6 +29,7 @@
 <script src="../../js/sell.js"></script>
 
 
+
 </head>
 
 <body id="page-top">
@@ -298,8 +299,9 @@
 						<div class="col-xl-8 col-lg-7">
 							<div class="card shadow mb-4">
 								<!-- Card Header - Dropdown -->
-								<div
-									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+
+								<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+
 									<h6 class="m-0 font-weight-bold text-primary">일주일간 거래 동향</h6>
 									<!-- <div class="dropdown no-arrow">
 										<a class="dropdown-toggle" href="#" role="button"
@@ -373,53 +375,51 @@
 
 						<!-- Content Column -->
 
+						
 						<div id="Message" class="col-lg-6 mb-4">
-							<form action="sell" method="post" id="sellform"
-								onsubmit="return checkStock();">
-								<input type="hidden" name="sno" id="val" value=0> <input
-									type="hidden" name="pname" id="pname"> <input
-									type="hidden" name="uid" id="uid" value="${uid}"> <input
-									type="hidden" name="command" id="command" value="price">
+						<form action="sell" method="post" id="sellform" onsubmit="return checkStock();">
+							<input type="hidden" name="sno" id="val" value=0> 
+							<input type="hidden" name="pname" id="pname">
+							<input type="hidden" name="uid" id="uid" value="${uid}"> 
+							<input type="hidden" name="command" id="command" value="price">
+
 
 								<div class="card shadow mb-4">
 									<div class="card-header py-3">
 										<h6 class="m-0 font-weight-bold text-primary">물품 판매</h6>
 									</div>
-									<table
-										class="table table-bordered dataTable copyright text-center my-auto"
-										id="dataTable" width="100%" cellspacing="0" role="grid"
-										aria-describedby="dataTable_info" style="width: 100%;">
-										<thead>
-											<tr>
-												<th>수량(KG)</th>
-												<th>재고 물품</th>
-												<th>가격</th>
-												<th>판매</th>
-											</tr>
-										</thead>
-										<tbody>
+									
+								<table class="table table-bordered dataTable copyright text-center my-auto" id="dataTable"
+									width="100%" cellspacing="0" role="grid"
+									aria-describedby="dataTable_info" style="width: 100%;">
+									<thead>
+										<tr>
+											<th>수량(KG)</th>
+											<th>재고 물품</th>											
+											<th>가격</th>
+											<th>판매</th>
+										</tr>
+									</thead>
+									<tbody>
 
-											<tr>
-												<td><input name="p_count" id="s_volume" value=0
-													size="10"
-													style="width: 45px; height: 41px; text-align: right;"></td>
-												<td align="center"><select class="navbar navbar-expand"
-													id="scontent" onchange="check()">
-														<option>--------------------</option>
-														<c:forEach items="${npList}" var="np">
-															<option value="${np.s_volume}" id="${np.sno}">${np.scontent}</option>
-														</c:forEach>
-												</select></td>
-												<td><input name="price" id="price" value=0 size="10"
-													style="width: 100px; height: 41px; text-align: right;"></td>
-												<td><input type="submit"
-													class="btn btn-primary btn-icon-split"
-													style="width: 45px; height: 41px; vertical-align: middle;"
-													value="판매"></td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
+										<tr>
+											<td ><input name="p_count" id="s_volume" value=0 size="10"
+											style="width:45px;height:41px; text-align:right;"></td>
+											<td align="center"><select class="navbar navbar-expand" id="scontent" onchange="check()">
+													<option>--------------------</option> 
+													<c:forEach items="${npList}" var="np">
+														<option value="${np.s_volume}" id="${np.sno}">${np.scontent}</option>
+													</c:forEach> 
+												</select>
+											</td>
+											<td><input name="price" id="price" value=0 size="10"
+											style="width:100px;height:41px; text-align:right;"></td>
+											<td><input type="submit" class="btn btn-primary btn-icon-split" style="width:45px;height:41px; vertical-align: middle;" value="판매"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+
 							</form>
 						</div>
 
@@ -446,10 +446,12 @@
 									<tbody>
 
 										<tr>
+
 											<td class="sno"></td>
 											<td style="padding-top: 12px"><input type="text"
 												class="s_volume" value=0 size="10"
 												style="width: 45px; height: 41px;"
+
 												onchange="changeprice(this)"></td>
 											<td align="center"><select
 												class="navbar navbar-expand select_option"
@@ -464,11 +466,11 @@
 
 											<td class="selectedvolume" style="vertical-align: middle;"></td>
 											<td class="selectedprice" style="vertical-align: middle;"></td>
-											<td><button
-													class="btn btn-primary btn-icon-split click2"
-													style="width: 45px; height: 41px; align-items: center;">
-													<span>추가</span>
-												</button></td>
+
+											<td><button class="btn btn-primary btn-icon-split click2" style="width:45px;height:41px;align-items: center;">
+											<span>추가</span>
+											</button></td>
+
 										</tr>
 									</tbody>
 								</table>
