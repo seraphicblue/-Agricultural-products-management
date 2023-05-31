@@ -265,7 +265,7 @@ input:checked+.slider:before {
 			<!-- End of Main Content -->
 			<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
 			<script>
-				$(document) 
+				$(document)  
 						.ready(
 								function() {
 									$('.click')
