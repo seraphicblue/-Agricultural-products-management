@@ -181,6 +181,15 @@ public class BroadcastController {
 		return "company/broadSelecStock";
 	}
 	
+	@PostMapping("company/broadSelecStock")
+	public String broadSelMS(@RequestParam("stock_selec") int stock_selec, @RequestParam("stock_param") int stock_param, HttpSession session) {
+		String userid = (String) session.getAttribute("userid");
+		System.out.println(stock_selec);
+		broad_service.stockinsertAndUpdate(stock_selec, stock_param, userid);		
+		
+		return "company/broadSelecStock";
+	}
+	
 	@GetMapping("company/broadSelecLimit")
 	public String broadSelL(HttpSession session, Model m) {
 		String userid = (String) session.getAttribute("userid");

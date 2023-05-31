@@ -90,4 +90,13 @@ public interface BroadcastDao {
 	
 	@Select("select userid from management where c_userid = #{userid} and m_val = true")
 	public List<String> manageGet(@Param("userid") String userid);
+	
+	@Select("select count(*) from stockbroadcast where userid = #{userid} and stock_selec = #{stock_selec}")
+	public int salarmCount(@Param("userid") String userid, @Param("stock_selec")int stock_selec);
+	
+	@Insert("INSERT INTO stockbroadcast(userid,stock_selec,stock_param) values(#{userid},#{stock_selec},#{stock_param})")
+	public int sainsert(@Param("userid")String userid,@Param("stock_selec")int stock_selec,@Param("stock_param") int stock_param);
+	
+	@Update("update stockbroadcast set stock_param = #{stock_param} where userid = #{userid} and stock_selec = #{stock_selec}")
+	public int saupdate(@Param("userid")String userid, @Param("stock_selec")int pstock_selecno, @Param("stock_param") int stock_param);
 }
