@@ -137,7 +137,10 @@ thead {
 							<li>
 								<div class="header__top__right__auth">
 									<%-- logout기능 클릭시 MarketController에 logout메서드로 세션에 저장된 userid 정보를 삭제 --%>
-									<a href="/logout"><i class="fa fa-user"></i> 로그아웃</a>
+									<a href="/logout"><i class="fa fa-user"></i> 로그아웃</a>									
+								</div>
+								<div class="header__top__right__auth">
+								<a href="broadSelecMenu"><i class="fa fa-user"></i> 알람설정</a>
 								</div>
 							</li>
 							<%-- 장바구니에 저장된 상품수 출력 및 클릭시 MarketController에 cform메서드로 해당유저의 장바구니로 이동 --%>
@@ -147,8 +150,7 @@ thead {
 						<%-- 장바구니에 저장된 상품들의 가격 총합 출력 --%>
 						<div class="header__cart__price">
 							총 액: <span id="cprice">${cprice}원</span>
-						</div>
-						<a href="broadSelecMenu"><i class="fa fa-user"></i> 알람설정</a>
+						</div>						
 					</div>
 				</div>
 			</div>

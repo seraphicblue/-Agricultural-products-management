@@ -85,10 +85,10 @@ public interface StockDao {
 	@Select("select sno,scontent from stock where userid=#{userid}")
 	List<Map<String, Object>> getstockoption(String userid);
 
-	@Select("select sum(scount)as sc ,DATE_FORMAT(sdate, \"%Y/%m/%d\")sdate from sell where pno=(select product.pno from product,stock where stock.sno=product.sno and stock.sno=#{sno} and userid=#{userid})and userid=#{userid} group by sdate order by sdate")
+	@Select("select sum(scount)as sc ,sdate from sell where pno=(select product.pno from product,stock where stock.sno=product.sno and stock.sno=#{sno} and userid=#{userid})and userid=#{userid} group by sdate order by sdate")
 	List<Map<String, Object>> getsellcount(Map<String, Object> m);
 
-	@Select("select sum(bcount)as bc, DATE_FORMAT(bdate, \"%Y/%m/%d\")bdate from buy b join (select ano from adminstock a join stock s on a.acontent=s.scontent where s.userid= #{userid} and sno=#{sno}) a on a.ano = b.pno group by bdate")
+	@Select("select sum(bcount)as bc, bdate from buy b join (select ano from adminstock a join stock s on a.acontent=s.scontent where s.userid= #{userid} and sno=#{sno}) a on a.ano = b.pno group by bdate")
 	List<Map<String, Object>> getbuycount(Map<String, Object> m);
 
 	// @Insert("insert into stock(userid, s_val, scontent, s_volume, s_date)

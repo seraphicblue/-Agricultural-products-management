@@ -151,6 +151,15 @@ public class BroadcastService {
 		}
 		return null;
 	}
+
+	public void stockinsertAndUpdate(int stock_selec, int stock_param, String userid) {
+		int chk=Broadcast_dao.salarmCount(userid, stock_selec);
+		if(chk>0) {
+			Broadcast_dao.saupdate(userid, stock_selec, stock_param);
+		}else {
+			Broadcast_dao.sainsert(userid, stock_selec, stock_param);
+		}
+	}
 	
 
 }

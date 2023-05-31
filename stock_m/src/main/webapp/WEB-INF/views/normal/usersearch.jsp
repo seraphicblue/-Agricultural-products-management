@@ -97,6 +97,7 @@ input:checked+.slider:before {
 </head>
 
 <body>
+
 	<input type="hidden" name="command" id="command" value="common">
 	<!-- Header Section Begin -->
 	<%-- ------------------------- 다른 페이지들과 공통부분 시작 ------------------------- --%>
@@ -212,6 +213,7 @@ input:checked+.slider:before {
 
 				<div class="col-lg-9">
 
+          
 					<div>
 						<!-- Page Heading -->
 

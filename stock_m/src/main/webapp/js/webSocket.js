@@ -182,7 +182,37 @@ function sendMessage(te) {
 	}// else if limit
 	
 	else if (te =="A") {
-		alert("aaaa");
+		var message = document.getElementById('val').value;
+		var userid = document.getElementById('uid').value;
+		var param = document.getElementById('price').value;
+		var textTarget = document.getElementById('scontent')[document.getElementById('scontent').selectedIndex].textContent;
+		var text;
+
+		$.ajax({
+			url: '/broadprice',
+			type: 'get',
+			data: { sno: parseInt(message) },
+			dataType: 'text',
+			success: function(data) {
+				$.ajax({
+					url: '/mangeAlram',
+					type: 'get',
+					data: { pno: parseInt(data), param: param },
+					dataType: 'json',
+					success: function(data) {
+						message = data;
+						for (var i = 0; i < data.length; i++) {
+							text = "/" + "manage" + '_' + userid + '_' + data[i] + '_' + textTarget;
+
+							socket.send(text);
+						}
+
+					}
+
+				})
+			}
+
+		});
 	}
 	
 

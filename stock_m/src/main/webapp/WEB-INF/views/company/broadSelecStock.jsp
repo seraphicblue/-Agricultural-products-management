@@ -214,7 +214,7 @@
 								<div class="card-header py-3">
 									<h6 class="m-0 font-weight-bold text-primary">알림 등록</h6>
 								</div>
-								<form method="get" id="sboardform" onsubmit="return stockbroad();">
+								<form  id="sboardform" onsubmit="return stockbroad();">
 									<input type="hidden" name="sno" id="val" value=0> 
 									<input type="hidden" name="pname" id="pname"> 
 									<input type="hidden" name="uid" id="uid" value="${uid}"> 
@@ -233,13 +233,13 @@
 											<td><select id="scontent">
 													<option>--------------------</option>
 													<c:forEach items="${npList}" var="np">
-														<option value="${np.s_volume}" id="${np.sno}">${np.scontent}</option>
+														<option value="${np.sno}" id="${np.s_volume}">${np.scontent}</option>
 													</c:forEach>
 											</select></td>
 										</tr>
 										<tr>
 											<td>수량</td>
-											<td><input name="p_count" id="s_volume" placeholder="0"  style="text-align: right;"></td>
+											<td><input name="p_count" id="s_volume" placeholder="0"  style="text-align: right;" oninput="validateInput()"></td>
 										</tr>
 										
 									</table>
@@ -326,13 +326,14 @@
 			<script src="../../../js/demo/chart-pie-demo.js"></script>
 			<script type="text/javascript">
 				function stockbroad(){
-					var scontent = document.getElementById("scontent").getId();
+					
+					var scontent = document.getElementById("scontent").value;
 					var stock = parseInt(document.getElementById("s_volume").value);
 					var select = parseInt(document.getElementById("scontent").value);
-				
+					
 					
 					document.getElementById("pname").value = scontent;
-					alert(scontent+" : "+stock);	
+					
 
 					if (scontent.trim() === "--------------------") {
 						alert("물품 정보를 선택해주세요.");
@@ -343,9 +344,26 @@
 						return false;
 
 					} else {
+						$.ajax({
+							type : 'post',
+							url : '/company/broadSelecStock',
+							data : {
+									'stock_selec' : scontent,
+									'stock_param' : stock
+							}
+						});
+						
 						return true;
 					}
 					
+				}
+				function validateInput() {
+				    var input = document.getElementById("s_volume").value;
+				    var isValid = /^\d+$/.test(input) && parseInt(input) >= 1;
+				    if (!isValid) {
+				      alert("1이상의 숫자만 입력해주세요.");
+				      document.getElementById("s_volume").value = "";
+				    }
 				}
 			</script>
 			

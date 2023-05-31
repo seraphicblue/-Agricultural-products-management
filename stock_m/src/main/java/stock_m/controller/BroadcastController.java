@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
+
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import stock_m.service.BroadcastService;
@@ -181,6 +183,15 @@ public class BroadcastController {
 		return "company/broadSelecStock";
 	}
 	
+	@PostMapping("company/broadSelecStock")
+	public String broadSelMS(@RequestParam("stock_selec") int stock_selec, @RequestParam("stock_param") int stock_param, HttpSession session) {
+		String userid = (String) session.getAttribute("userid");
+		System.out.println(stock_selec);
+		broad_service.stockinsertAndUpdate(stock_selec, stock_param, userid);		
+		
+		return "company/broadSelecStock";
+	}
+	
 	@GetMapping("company/broadSelecLimit")
 	public String broadSelL(HttpSession session, Model m) {
 		String userid = (String) session.getAttribute("userid");
@@ -215,5 +226,13 @@ public class BroadcastController {
 		
 	}
 	
+	@GetMapping("/mangeAlram")
+	@ResponseBody
+	public String broadCprice(Model m, int pno, int param) {
+		List<String>userList = broad_service. broadPriceCheck(pno, param);
+		Gson gson = new Gson();
+		String ulist=gson.toJson(userList);		
+		return ulist;
+	}
 
 }
