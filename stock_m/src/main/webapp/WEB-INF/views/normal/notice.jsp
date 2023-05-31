@@ -188,6 +188,7 @@ input:checked+.slider:before {
                                 <li><a href="/normal/interest">관심 업체 관리</a></li>
                             	<li><a href="/normal/management2">유의 업체관리</a></li>
                             	<li><a href="/normal/listall">전체 관리</a></li>
+                            	<li><a href="/normal/broadSelecMenu">가격 알림 관리</a></li>
                             </ul>
                         </div>
                 	</div>

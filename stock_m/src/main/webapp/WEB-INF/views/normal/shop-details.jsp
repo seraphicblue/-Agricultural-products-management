@@ -136,59 +136,59 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__pic">
                         <div class="product__details__pic__item">
-                        <c:if test="${product.pname == '감자'}">
+                        <c:if test="${product.pname.contains('감자')}">
                             <img class="product__details__pic__item--large"
                                 src="../../market/img/product/potato.jpg" height="360" width="330"alt="">
                         </c:if>
-                        <c:if test="${product.pname == '양파'}">
+                        <c:if test="${product.pname.contains('양파')}">
                             <img class="product__details__pic__item--large"
                                 src="../../market/img/product/onion.jpg" height="360" width="330"alt="">
                         </c:if>
-                        <c:if test="${product.pname == '가지'}">
+                        <c:if test="${product.pname.contains('가지')}">
                             <img class="product__details__pic__item--large"
                                 src="../../market/img/product/eggplant.jpg" height="360" width="330"alt="">
                         </c:if>
-                        <c:if test="${product.pname == '토마토'}">
+                        <c:if test="${product.pname.contains('토마토')}">
                             <img class="product__details__pic__item--large"
                                 src="../../market/img/product/tomato.jpg" height="360" width="330"alt="">
                         </c:if>
-                        <c:if test="${product.pname == '당근'}">
+                        <c:if test="${product.pname.contains('당근')}">
                             <img class="product__details__pic__item--large"
                                 src="../../market/img/product/carrot.jpg" height="360" width="330"alt="">
                         </c:if>
-                        <c:if test="${product.pname == '사과'}">
+                        <c:if test="${product.pname.contains('사과')}">
                             <img class="product__details__pic__item--large"
                                 src="../../market/img/product/apple.jpg" height="360" width="330"alt="">
                         </c:if>
-                        <c:if test="${product.pname == '바나나'}">
+                        <c:if test="${product.pname.contains('바나나')}">
                             <img class="product__details__pic__item--large"
                                 src="../../market/img/product/banana.jpg" height="360" width="330"alt="">
                         </c:if>
-                        <c:if test="${product.pname == '배추'}">
+                        <c:if test="${product.pname.contains('배추')}">
                             <img class="product__details__pic__item--large"
                                 src="../../market/img/product/cabbage.jpg" height="360" width="330"alt="">
                         </c:if>
-                        <c:if test="${product.pname == '고추'}">
+                        <c:if test="${product.pname.contains('고추')}">
                             <img class="product__details__pic__item--large"
                                 src="../../market/img/product/chilipepper.jpg" height="360" width="330"alt="">
                         </c:if>
-                        <c:if test="${product.pname == '포도'}">
+                        <c:if test="${product.pname.contains('포도')}">
                             <img class="product__details__pic__item--large"
                                 src="../../market/img/product/grape.jpg" height="360" width="330"alt="">
                         </c:if>
-                        <c:if test="${product.pname == '메론'}">
+                        <c:if test="${product.pname.contains('멜론')}">
                             <img class="product__details__pic__item--large"
                                 src="../../market/img/product/melon.jpg" height="360" width="330"alt="">
                         </c:if>
-                        <c:if test="${product.pname == '호박'}">
+                        <c:if test="${product.pname.contains('호박')}">
                             <img class="product__details__pic__item--large"
                                 src="../../market/img/product/pumpkin.jpg" height="360" width="330"alt="">
                         </c:if>
-                        <c:if test="${product.pname == '딸기'}">
+                        <c:if test="${product.pname.contains('딸기')}">
                             <img class="product__details__pic__item--large"
                                 src="../../market/img/product/strawberry.jpg" height="360" width="330"alt="">
                         </c:if>
-                        <c:if test="${product.pname == '수박'}">
+                        <c:if test="${product.pname.contains('수박')}">
                             <img class="product__details__pic__item--large"
                                 src="../../market/img/product/watermelon.jpg" height="360" width="330"alt="">
                         </c:if>
