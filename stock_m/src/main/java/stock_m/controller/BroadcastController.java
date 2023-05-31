@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
+
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import stock_m.service.BroadcastService;
@@ -215,5 +217,13 @@ public class BroadcastController {
 		
 	}
 	
+	@GetMapping("/mangeAlram")
+	@ResponseBody
+	public String broadCprice(Model m, int pno, int param) {
+		List<String>userList = broad_service. broadPriceCheck(pno, param);
+		Gson gson = new Gson();
+		String ulist=gson.toJson(userList);		
+		return ulist;
+	}
 
 }

@@ -110,7 +110,7 @@ input:checked+.slider:before {
 						<a href="/normal/market"><img src="../../market/img/logo.png"
 							alt=""></a>
 					</div>
-				</div>
+				</div> 
 				<div class="col-lg-6"></div>
 				<div class="col-lg-3">
 					<div class="header__cart">
