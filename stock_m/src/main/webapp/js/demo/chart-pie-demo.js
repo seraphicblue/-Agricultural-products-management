@@ -203,109 +203,111 @@ var formatter = new Intl.DateTimeFormat('en-US', {
 });
 
 //2차
-function getStockInfo(sellcountdate,buycountdate) {
-var currentDate = new Date();
-var weekLabels = [];
+function getStockInfo(sellcountdate, buycountdate) {
+  var currentDate = new Date();
+  var weekLabels = [];
 
-for (var i = 6; i >= 0; i--) {
-  var date = new Date(currentDate);
-  date.setDate(date.getDate() - i);
- 
-  weekLabels.push(formatter.format(date));
-}
-	var ctx = document.getElementById("myAreaChart");
-	
-	console.log(sellcountdate);
-	console.log(buycountdate);
-	
-	var sdates=[];
-	var scs=[];
-	var bdates=[];
-	var bcs=[];
-	
-    sellcountdate.forEach(function({ sdate, sc }) {
-    sdates.push(formatter.format(sdate));
-    console.log("여기임");
-    console.log(sdate);
-    console.log(formatter.format(sdate));
+  for (var i = 6; i >= 0; i--) {
+    var date = new Date(currentDate);
+    date.setDate(date.getDate() - i);
+
+    weekLabels.push(formatter.format(date));
+  }
+  
+  var ctx = document.getElementById("myAreaChart");
+  
+  console.log(sellcountdate);
+  console.log(buycountdate);
+  
+  var sdates = [];
+  var scs = [];
+  var bdates = [];
+  var bcs = [];
+  
+  sellcountdate.forEach(function({ sdate, sc }) {
+    sdates.push(formatter.format(new Date(sdate)));
     scs.push(sc);
   });
-    buycountdate.forEach(function({ bdate, bc }) {
-    bdates.push(formatter.format(bdate));
+  
+  buycountdate.forEach(function({ bdate, bc }) {
+    bdates.push(formatter.format(new Date(bdate)));
     bcs.push(bc);
   });
 
-//console.log(sellcountobj.sdate);
-//console.log(sellcountobj.sc);
-if (window.myLineChart) {
-	  
+  if (window.myLineChart) {
     window.myLineChart.destroy();
   }
-var salesData = [];
-var purchaseData = [];
+  
+  var salesData = [];
+  var purchaseData = [];
 
-// Loop through the past 7 days and check if there is data available
-for (var i = 6; i >= 0; i--) {
-  var date = new Date(currentDate);
-  date.setDate(date.getDate() - i);
-  var formattedDate = formatter.format(date);
+  // Loop through the past 7 days and check if there is data available
+  for (var i = 6; i >= 0; i--) {
+    var date = new Date(currentDate);
+    date.setDate(date.getDate() - i);
+    var formattedDate = formatter.format(date);
 
-  // Check if there is sales data available for the current date
-  var salesIndex = sdates.indexOf(formattedDate);
-  if (salesIndex !== -1) {
-    // Sales data exists for the current date, add it to the salesData array
-    salesData.push(scs[salesIndex]);
-  } else {
-    // No sales data available for the current date, add 0
-    salesData.push(0);
+    // Check if there is sales data available for the current date
+    var salesIndex = sdates.indexOf(formattedDate);
+    if (salesIndex !== -1) {
+      // Sales data exists for the current date, add it to the salesData array
+      salesData.push(scs[salesIndex]);
+    } else {
+      // No sales data available for the current date, add 0
+      salesData.push(0);
+    }
+    console.log("bc여기")
+    console.log(bcs);
+    console.log(bdates);
+    // Check if there is purchase data available for the current date
+    var purchaseIndex = bdates.indexOf(formattedDate);
+    if (purchaseIndex !== -1) {
+      // Purchase data exists for the current date, add it to the purchaseData array
+      purchaseData.push(bcs[purchaseIndex]);
+      console.log("값이존재");
+    } else {
+      // No purchase data available for the current date, add 0
+      purchaseData.push(0);//데이터가 없으면 0반환
+      console.log("empty");
+    }
   }
 
-  // Check if there is purchase data available for the current date
-  var purchaseIndex = bdates.indexOf(formattedDate);
-  if (purchaseIndex !== -1) {
-    // Purchase data exists for the current date, add it to the purchaseData array
-    purchaseData.push(bcs[purchaseIndex]);
-  } else {
-    // No purchase data available for the current date, add 0
-    purchaseData.push(0);
-  }
-}
-var myLineChart = new Chart(ctx, {
-	
-  type: 'line',
-  data: {
-    labels: weekLabels, 
-    datasets: [{
-      label: "판매량",
-      lineTension: 0.3,
-      backgroundColor: "rgba(78, 115, 223, 0.05)",
-      borderColor: "rgba(78, 115, 223, 1)",
-      pointRadius: 3,
-      pointBackgroundColor: "rgba(78, 115, 223, 1)",
-      pointBorderColor: "rgba(78, 115, 223, 1)",
-      pointHoverRadius: 3,
-      pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-      pointHoverBorderColor: "rgba(78, 115, 223, 1)",
-      pointHitRadius: 10,
-      pointBorderWidth: 2,
-      data: salesData,
-    },
-    {
-      label: "구매량",
-      lineTension: 0.3,
-      backgroundColor: "rgba(231, 76, 60, 0.05)",
-      borderColor: "rgba(231, 76, 60, 1)",
-      pointRadius: 3,
-      pointBackgroundColor: "rgba(231, 76, 60, 1)",
-      pointBorderColor: "rgba(231, 76, 60, 1)",
-      pointHoverRadius: 3,
-      pointHoverBackgroundColor: "rgba(231, 76, 60, 1)",
-      pointHoverBorderColor: "rgba(231, 76, 60, 1)",
-      pointHitRadius: 10,
-      pointBorderWidth: 2,
-      data: purchaseData ,
-    } ],
-   
+  var myLineChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: weekLabels, 
+      datasets: [
+        {
+          label: "판매량",
+          lineTension: 0.3,
+          backgroundColor: "rgba(78, 115, 223, 0.05)",
+          borderColor: "rgba(78, 115, 223, 1)",
+          pointRadius: 3,
+          pointBackgroundColor: "rgba(78, 115, 223, 1)",
+          pointBorderColor: "rgba(78, 115, 223, 1)",
+          pointHoverRadius: 3,
+          pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+          pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+          pointHitRadius: 10,
+          pointBorderWidth: 2,
+          data: salesData,
+        },
+        {
+          label: "구매량",
+          lineTension: 0.3,
+          backgroundColor: "rgba(231, 76, 60, 0.05)",
+          borderColor: "rgba(231, 76, 60, 1)",
+          pointRadius: 3,
+          pointBackgroundColor: "rgba(231, 76, 60, 1)",
+          pointBorderColor: "rgba(231, 76, 60, 1)",
+          pointHoverRadius: 3,
+          pointHoverBackgroundColor: "rgba(231, 76, 60, 1)",
+          pointHoverBorderColor: "rgba(231, 76, 60, 1)",
+          pointHitRadius: 10,
+          pointBorderWidth: 2,
+          data: purchaseData,
+        }
+      ],
    
   },
   options: {
