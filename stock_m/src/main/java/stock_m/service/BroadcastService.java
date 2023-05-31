@@ -103,11 +103,7 @@ public class BroadcastService {
 		Map<String, Object> map = new HashMap<>();
 		map.put("userid", userid);
 		map.put("pno", pno);
-<<<<<<< HEAD
-		map.put("param", br_param);
-=======
 		map.put("param", param);
->>>>>>> branch 'main' of https://github.com/marionest98/stock
 		return Broadcast_dao.palarmupdate(map);
 	}
 	
