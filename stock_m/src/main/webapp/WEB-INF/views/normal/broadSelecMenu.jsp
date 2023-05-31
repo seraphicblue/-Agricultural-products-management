@@ -272,7 +272,7 @@ input:checked+.slider:before {
 	<script src="../market/js/main.js"></script>
 	<!--js list made by kim -->
 	<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script src="../../js/priceWebSocket.js"></script>
+	<script src="../../../js/webSocket.js"></script>
 	<!-- End of Main Content -->
 	<script>
 		$(document).ready(function() {
@@ -291,7 +291,7 @@ input:checked+.slider:before {
 						url : '/normal/paupdate',
 						data : {
 								'pno' : pno,
-								'br_param' : br_param
+								'param' : br_param
 						}
 				});
 			});

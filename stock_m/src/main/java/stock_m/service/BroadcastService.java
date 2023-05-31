@@ -99,11 +99,11 @@ public class BroadcastService {
 		return Broadcast_dao.padelete(map);
 	}
 
-	public int palarmupdate(String userid, int pno, int br_param) {
+	public int palarmupdate(String userid, int pno, int param) {
 		Map<String, Object> map = new HashMap<>();
 		map.put("userid", userid);
 		map.put("pno", pno);
-		map.put("br_param", br_param);
+		map.put("param", param);
 		return Broadcast_dao.palarmupdate(map);
 	}
 	

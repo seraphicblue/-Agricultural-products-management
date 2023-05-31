@@ -182,7 +182,7 @@ function sendMessage(te) {
 	}// else if limit
 	
 	else if (te =="A") {
-		
+		alert("aaaa");
 	}
 	
 
