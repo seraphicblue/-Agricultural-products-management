@@ -52,25 +52,7 @@
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 
-			<!-- Heading -->
-			<div class="sidebar-heading">Interface</div>
-
-			<!-- Nav Item - Pages Collapse Menu -->
-			<!-- data-toggle 제거시 화살표 부분 제거-->
-			<li class="nav-item"><a class="nav-link collapsed" href="redirect:/index.jsp"
-				data-target="#collapseTwo" aria-expanded="true"
-				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Components</span>
-			</a></li>
-
-			<!-- Nav Item - Utilities Collapse Menu -->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseUtilities"
-				aria-expanded="true" aria-controls="collapseUtilities"> <i
-					class="fas fa-fw fa-wrench"></i> <span>Utilities</span>
-			</a></li>
-
-			<!-- Divider -->
-			<hr class="sidebar-divider">
+			
 
 			<!-- Heading -->
 			<div class="sidebar-heading">Addons</div>
@@ -106,6 +88,21 @@
 			<li class="nav-item"><a class="nav-link" href="/company/confirm">
 					<i class="fas fa-fw fa-table"></i> <span>장부</span>
 			</a></li>
+			<!-- Nav Item - broad -->
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#collapse2Pages"
+				aria-expanded="true" aria-controls="collapse2Pages"> <i
+					class="fas fa-fw fa-folder"></i> <span>알림 탭</span>
+			</a>
+				<div id="collapse2Pages" class="collapse"
+					aria-labelledby="headingPages" data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<h6 class="collapse-header">알림 목록</h6>
+						<a class="collapse-item" href="broadSelecStock">재고 알림</a> <a
+							class="collapse-item" href="broadSelecPrice">가격 알림</a> <a
+							class="collapse-item" href="broadSelecLimit">한도 알림</a>
+					</div>
+				</div></li>
 			
 			<!-- Divider -->
 			<hr class="sidebar-divider d-none d-md-block">
@@ -153,7 +150,7 @@
 						<a  class="nav-link dropdown-toggle" href="#" id="userDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <span
-								class="mr-2 d-none d-lg-inline text-gray-600 small">${uid}</span> <img class="img-profile rounded-circle"
+								class="mr-2 d-none d-lg-inline text-gray-600 small">${userid}</span> <img class="img-profile rounded-circle"
 								src="../../img/undraw_profile.svg">
 						</a> 
 						<!-- Dropdown - User Information -->
@@ -248,15 +245,6 @@
             </div>
             <!-- End of Main Content -->
 
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span _msttexthash="48660001" _msthash="65">저작권 © 웹 사이트 2020</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
 
         </div>
         <!-- End of Content Wrapper -->
