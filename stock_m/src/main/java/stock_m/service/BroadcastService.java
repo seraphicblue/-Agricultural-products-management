@@ -161,7 +161,10 @@ public class BroadcastService {
 		}
 	}
 	
-	
+	public List<String> broadMange(int pno, int param) {
+		List<String> userList = Broadcast_dao.broadPriceCheck(pno, param);
+		return userList;
+	}
 	
 
 }
