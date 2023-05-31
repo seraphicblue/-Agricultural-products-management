@@ -51,6 +51,28 @@ public class SabController {
 		return "company/index";
 	}
 
+	
+	@GetMapping("normal/main")
+	public String normalindex() {
+		return "/normal/marketform";
+	}
+	
+	/*
+	 * @GetMapping("/company/buy") public String buyForm(Model model) {
+	 * 
+	 * URI uri = UriComponentsBuilder .fromUriString("http://www.kobis.or.kr")
+	 * .path(
+	 * "/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json")
+	 * .queryParam("key","f5eef3421c602c6cb7ea224104795888")
+	 * .queryParam("targetDt","20230418") .encode() .build() .toUri();
+	 * 
+	 * MovieList list =restTemplate.getForObject(uri, MovieList.class);
+	 * model.addAttribute("boxOfficeList", list); return "movie/boxOffice";
+	 * 
+	 * 
+	 * return "company/buy"; }
+	 */
+	
 	@GetMapping("/company/{sno}")
 	@ResponseBody // view없이 바로 보냄
 	public int snoCount(Model m, @PathVariable int sno) {

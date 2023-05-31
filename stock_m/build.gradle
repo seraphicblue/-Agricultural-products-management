@@ -1,7 +1,7 @@
 plugins {
-	id 'java'
-	id 'org.springframework.boot' version '3.0.6'
-	id 'io.spring.dependency-management' version '1.1.0'
+   id 'java'
+   id 'org.springframework.boot' version '3.0.6'
+   id 'io.spring.dependency-management' version '1.1.0'
 }
 
 group = 'stock_m'
@@ -9,58 +9,58 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '17'
 
 configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
+   compileOnly {
+      extendsFrom annotationProcessor
+   }
 }
 
 repositories {
-	mavenCentral()
+   mavenCentral()
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.0'
-	implementation 'org.springframework.session:spring-session-core'
-	compileOnly 'org.projectlombok:lombok'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	runtimeOnly 'com.mysql:mysql-connector-j'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.springframework.security:spring-security-test'
-	
-	implementation group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version: '10.1.7'
-	implementation group: 'org.glassfish.web', name: 'jakarta.servlet.jsp.jstl', version: '3.0.1'
-	implementation group: 'jakarta.servlet.jsp.jstl', name: 'jakarta.servlet.jsp.jstl-api', version: '3.0.0'
-	// https://mvnrepository.com/artifact/org.springframework.security/spring-security-taglibs
-	implementation group: 'org.springframework.security', name: 'spring-security-taglibs', version: '6.0.3'
-	//xml to json parse
-	// https://mvnrepository.com/artifact/org.json/json
-	implementation group: 'org.json', name: 'json', version: '20160810'
-	// https://mvnrepository.com/artifact/commons-io/commons-io
-	implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
-	
-	// https://mvnrepository.com/artifact/com.google.code.gson/gson
-	implementation group: 'com.google.code.gson', name: 'gson', version: '2.10.1'
-	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation
-	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation'
-	
-	//ì—‘ì…€ gradle
-	// https://mvnrepository.com/artifact/org.apache.poi/poi
-	implementation group: 'org.apache.poi', name: 'poi', version: '5.2.3'
-	// https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml
-	implementation group: 'org.apache.poi', name: 'poi-ooxml', version: '5.2.3'
-	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mail
-	implementation 'org.springframework.boot:spring-boot-starter-mail'
-	
-	//ì†Œì¼“ ì¶”ê°€
-	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-websocket
-	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-websocket', version: '2.4.9'
+   implementation 'org.springframework.boot:spring-boot-starter-security'
+   implementation 'org.springframework.boot:spring-boot-starter-web'
+   implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.0'
+   implementation 'org.springframework.session:spring-session-core'
+   compileOnly 'org.projectlombok:lombok'
+   developmentOnly 'org.springframework.boot:spring-boot-devtools'
+   runtimeOnly 'com.mysql:mysql-connector-j'
+   annotationProcessor 'org.projectlombok:lombok'
+   testImplementation 'org.springframework.boot:spring-boot-starter-test'
+   testImplementation 'org.springframework.security:spring-security-test'
+   
+   implementation group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version: '10.1.7'
+   implementation group: 'org.glassfish.web', name: 'jakarta.servlet.jsp.jstl', version: '3.0.1'
+   implementation group: 'jakarta.servlet.jsp.jstl', name: 'jakarta.servlet.jsp.jstl-api', version: '3.0.0'
+   // https://mvnrepository.com/artifact/org.springframework.security/spring-security-taglibs
+   implementation group: 'org.springframework.security', name: 'spring-security-taglibs', version: '6.0.3'
+   //xml to json parse
+   // https://mvnrepository.com/artifact/org.json/json
+   implementation group: 'org.json', name: 'json', version: '20160810'
+   // https://mvnrepository.com/artifact/commons-io/commons-io
+   implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
+   
+   // https://mvnrepository.com/artifact/com.google.code.gson/gson
+   implementation group: 'com.google.code.gson', name: 'gson', version: '2.10.1'
+   // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation
+   implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation'
+   
+   //¿¢¼¿ gradle
+   // https://mvnrepository.com/artifact/org.apache.poi/poi
+   implementation group: 'org.apache.poi', name: 'poi', version: '5.2.3'
+   // https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml
+   implementation group: 'org.apache.poi', name: 'poi-ooxml', version: '5.2.3'
+   // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mail
+   implementation 'org.springframework.boot:spring-boot-starter-mail'
+   
+   //¼ÒÄÏ Ãß°¡
+   // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-websocket
+   implementation group: 'org.springframework.boot', name: 'spring-boot-starter-websocket', version: '2.4.9'
 
-	
+   
 }
 
 tasks.named('test') {
-	useJUnitPlatform()
+   useJUnitPlatform()
 }
