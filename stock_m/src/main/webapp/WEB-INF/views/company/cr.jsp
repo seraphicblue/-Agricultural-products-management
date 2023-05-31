@@ -103,23 +103,9 @@
 			<li class="nav-item"><a class="nav-link" href="/company/stockmanage">
 					<i class="fas fa-fw fa-table"></i> <span>재고</span>
 			</a></li>
-			
-			
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapse2Pages"
-				aria-expanded="true" aria-controls="collapse2Pages"> 
-				<i class="fas fa-fw fa-folder"></i> <span>알림 탭</span>
-			</a>
-				<div id="collapse2Pages" class="collapse"
-					aria-labelledby="headingPages" data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">알림 목록</h6>
-						<a class="collapse-item" href="broadSelecStock">재고 알림</a> 
-						<a class="collapse-item" href="broadSelecPrice">가격 알림</a>
-						<a class="collapse-item" href="broadSelecLimit">한도 알림</a>
-					</div>
-				</div>
-			</li>
+			<li class="nav-item"><a class="nav-link" href="/company/confirm">
+					<i class="fas fa-fw fa-table"></i> <span>장부</span>
+			</a></li>
 			
 			<!-- Divider -->
 			<hr class="sidebar-divider d-none d-md-block">
@@ -241,7 +227,7 @@
 
 <label for="end-date-input"><a id="P">~</a></label>
 <input type="date" id="end-date-input" name="end-date" min="" max="" value="" required>
-<button type="button" class="resetButton" onclick="resetSearch()">X</button>
+<button type="button" class="resetButton" onclick="resetSearch()">리셋</button>
 <button type="button" id="myButton" onclick="search()">검색 </button>
                                         
                                     </div>
@@ -311,7 +297,6 @@
 
     <!-- Custom scripts for all pages-->
     <script src="../../../js/sb-admin-2.min.js"></script>
-    <script src="../../../js/sb-admin-2.min2.js"></script>
 
     <!-- Page level plugins -->
     <script src="../../../vendor/chart.js/Chart.min.js"></script>

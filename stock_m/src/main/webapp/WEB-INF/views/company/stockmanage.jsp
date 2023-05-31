@@ -119,7 +119,9 @@
 			<li class="nav-item"><a class="nav-link" href="/company/stockmanage">
 					<i class="fas fa-fw fa-table"></i> <span>재고</span>
 			</a></li>
-			
+			<li class="nav-item"><a class="nav-link" href="/company/confirm">
+					<i class="fas fa-fw fa-table"></i> <span>장부</span>
+			</a></li>
 			<!-- Divider -->
 			<hr class="sidebar-divider d-none d-md-block">
 
@@ -193,8 +195,10 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">재고 관리</h1>
-                    
+                    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
+                        For more information about DataTables, please visit the <a target="_blank"
+                            href="https://datatables.net">official DataTables documentation</a>.</p>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -311,7 +315,18 @@ inputElements.forEach(function(inputElement) {
   inputElement.addEventListener('change', function(event) {
     var sno = event.target.id.toString().split("_")[2];
     var s_volume = event.target.value;
+    var original_s_volume = event.target.defaultValue;
     var str = sno.toString() + "A" + s_volume.toString();
+    if (!/^\d+$/.test(s_volume)) {
+        alert("숫자만 입력할 수 있습니다.");
+        event.target.value = original_s_volume; 
+        return; 
+      }
+    if(parseInt(s_volume) > parseInt(original_s_volume)){
+    	alert("재고추가는 발주만 가능합니다.")
+    	 event.target.value = original_s_volume; // 원래 값으로 되돌립니다.
+      return; // 함수 실행을 중지합니다.
+    }
     console.log(str);
     console.log('Value changed: ' + event.target.value, sno);
 
@@ -325,7 +340,7 @@ inputElements.forEach(function(inputElement) {
   });
 });
 
-//"/company/ssupdate?sno=" + sno + "&s_volume=" + s_volume
+
 function selectAll(selectAll){
 	  const checkboxes 
 	     = document.querySelectorAll('input[name="test_check"]');
