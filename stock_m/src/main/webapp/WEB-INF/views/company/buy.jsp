@@ -146,7 +146,7 @@
 						<a  class="nav-link dropdown-toggle" href="#" id="userDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <span
-								class="mr-2 d-none d-lg-inline text-gray-600 small">${uid}</span> <img class="img-profile rounded-circle"
+								class="mr-2 d-none d-lg-inline text-gray-600 small">${userid}</span> <img class="img-profile rounded-circle"
 								src="../../img/undraw_profile.svg">
 						</a> 
 						<!-- Dropdown - User Information -->
@@ -182,10 +182,10 @@
 					<div class="row">
 
 						<!-- Earnings (Monthly) Card Example -->
-						<div id="Message" class="col-lg-6 mb-4" >
-							<div class="card shadow mb-4" style="width: 1600px;">
+						<div id="Message" class="col-lg-12 mb-4" >
+							<div class="card shadow mb-4 my-auto" >
 								<div class="card-header py-3">
-									<h6 class="m-0 font-weight-bold text-primary">물품 발주</h6>
+									<h6 class="m-0 font-weight-bold text-primary my-auto">물품 발주</h6>
 								</div>
 								<table class="table table-bordered dataTable copyright text-center my-auto" id="dataTable"
 									width="100%" cellspacing="0" role="grid"
