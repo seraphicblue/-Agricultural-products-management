@@ -87,7 +87,7 @@ public class WebSocketConfig implements WebSocketConfigurer {
 				String target = tokens[2];
 				String textTarget = tokens[3];
 				System.out.println("this is handleTextMessage" + payload);
-				
+
 				for (WebSocketSession webSocketSession : sessions) {
 					for (String key : socketMap.keySet()) {
 
@@ -95,7 +95,7 @@ public class WebSocketConfig implements WebSocketConfigurer {
 
 						if (webSocketSession.getId().equals(str) && key.equals(target)) {
 
-							webSocketSession.sendMessage(new TextMessage("P_" + textTarget + "_" + useridToken +"_" +target));
+							webSocketSession.sendMessage(new TextMessage("P_" + textTarget + "_" + useridToken + "_" + target));
 							System.out.println(webSocketSession.getId());
 							System.out.println("Sent message to user " + useridToken + ": " + target);
 							break;
@@ -145,9 +145,30 @@ public class WebSocketConfig implements WebSocketConfigurer {
 
 						if (webSocketSession.getId().equals(str) && key.equals(useridToken)) {
 
-							webSocketSession.sendMessage(new TextMessage("L_" +useridToken+"_"+ target +"_"+ textTarget));
-							System.out.println(webSocketSession.getId()); 
+							webSocketSession.sendMessage(new TextMessage("L_" + useridToken + "_" + target + "_" + textTarget));
+							System.out.println(webSocketSession.getId());
 							System.out.println("Sent message to user " + useridToken + ": " + target);
+							break;
+						}
+					} // inner_for_end
+				} // outer_for_end
+			} // if /limit
+
+			if (payload.startsWith("/")) { // 가격 알림
+				String[] tokens = payload.split("_", 4);
+				String useridToken = tokens[1];
+				String target = tokens[2];
+				String textTarget = tokens[3];
+				System.out.println("this is handleTextMessage" + payload);
+
+				for (WebSocketSession webSocketSession : sessions) {
+					for (String key : socketMap.keySet()) {
+
+						String str = socketMap.get(key);
+
+						if (webSocketSession.getId().equals(str) && key.equals(target)) {
+
+							webSocketSession.sendMessage(new TextMessage("M_" + textTarget + "_" + useridToken + "_" + target));
 							break;
 						}
 					} // inner_for_end
@@ -175,7 +196,7 @@ public class WebSocketConfig implements WebSocketConfigurer {
 		@Override
 		public void afterHandshake(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler,
 				Exception exception) {
-			
+
 		}
 	}
 }

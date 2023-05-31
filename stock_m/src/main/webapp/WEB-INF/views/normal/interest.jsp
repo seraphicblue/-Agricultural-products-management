@@ -189,6 +189,7 @@ input:checked+.slider:before {
                                 <li><a href="/normal/interest">관심 업체 관리</a></li>
                             	<li><a href="/normal/management2">유의 업체관리</a></li>
                             	<li><a href="/normal/listall">전체 관리</a></li>
+                            	<li><a href="/normal/broadSelecMenu">가격 알림 관리</a></li>
                             </ul>
                         </div>
                 	</div>
@@ -257,7 +258,7 @@ input:checked+.slider:before {
     <script src="../market/js/jquery-ui.min.js"></script>
     <script src="../market/js/jquery.slicknav.js"></script>
     <script src="../market/js/mixitup.min.js"></script>
-    <script src="../market/js/owl.carousel.min.js"></script>
+    <script src="../market/js/owl.carousel.min.js"></script> 
     <script src="../market/js/main.js"></script>	
     <!--js list made by kim -->
 	<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>

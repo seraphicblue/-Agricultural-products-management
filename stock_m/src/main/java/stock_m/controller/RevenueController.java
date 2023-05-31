@@ -320,6 +320,29 @@ public class RevenueController {
 							return ResponseEntity.ok(jsonResponse);
 						}
 						
+						
+						@GetMapping("normal/getmain")
+						@ResponseBody
+						 public  ResponseEntity<String> getmain2(HttpSession session)throws JsonProcessingException {
+							String userid = (String)session.getAttribute("userid");
+							List<Map<String, Object>> getmainselldata = service.getmainselldata(userid);
+							List<Map<String, Object>> getmainbuydata = service.getmainbuydata(userid);
+							
+							System.out.println("getmain"+getmainselldata);
+							System.out.println("getmainbuy"+getmainbuydata);
+							ObjectMapper om= new ObjectMapper();
+							
+							String sellDataJson = om.writeValueAsString(getmainselldata);
+							String buyDataJson = om.writeValueAsString(getmainbuydata);
+							
+							Map<String, String> responseData = new HashMap<>();
+							responseData.put("sellData", sellDataJson);
+							responseData.put("buyData", buyDataJson);
+							
+							String jsonResponse = om.writeValueAsString(responseData);
+							
+							return ResponseEntity.ok(jsonResponse);
+						}
 						 
 
 						

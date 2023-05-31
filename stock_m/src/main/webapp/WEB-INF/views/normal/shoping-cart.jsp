@@ -195,33 +195,33 @@
                         	var fin = "${fina}"; 
                     		for(var i = 1; i < parseInt(fin)+1; i++){
                             	console.log(document.getElementById("h"+i+"name").value);
-                    			if(document.getElementById("h"+i+"name").value == "감자"){
+                    			if(document.getElementById("h"+i+"name").value.includes("감자")){
                     				document.getElementById("h"+i+"img").setAttribute("src", "../../market/img/cart/potato.jpg");
-                    			}else if(document.getElementById("h"+i+"name").value == "양파"){
+                    			}else if(document.getElementById("h"+i+"name").value.includes("양파")){
                     				document.getElementById("h"+i+"img").setAttribute("src", "../../market/img/cart/onion.jpg");
-                    			}else if(document.getElementById("h"+i+"name").value == "가지"){
+                    			}else if(document.getElementById("h"+i+"name").value.includes("가지")){
                     				document.getElementById("h"+i+"img").setAttribute("src", "../../market/img/cart/eggplant.jpg");
-                    			}else if(document.getElementById("h"+i+"name").value == "토마토"){
+                    			}else if(document.getElementById("h"+i+"name").value.includes("토마토")){
                     				document.getElementById("h"+i+"img").setAttribute("src", "../../market/img/cart/tomato.jpg");
-                    			}else if(document.getElementById("h"+i+"name").value == "당근"){
+                    			}else if(document.getElementById("h"+i+"name").value.includes("당근")){
                     				document.getElementById("h"+i+"img").setAttribute("src", "../../market/img/cart/carrot.jpg");
-                    			}else if(document.getElementById("h"+i+"name").value == "사과"){
+                    			}else if(document.getElementById("h"+i+"name").value.includes("사과")){
                     				document.getElementById("h"+i+"img").setAttribute("src", "../../market/img/cart/apple.jpg");
-                    			}else if(document.getElementById("h"+i+"name").value == "바나나"){
+                    			}else if(document.getElementById("h"+i+"name").value.includes("바나나")){
                     				document.getElementById("h"+i+"img").setAttribute("src", "../../market/img/cart/banana.jpg");
-                    			}else if(document.getElementById("h"+i+"name").value == "배추"){
+                    			}else if(document.getElementById("h"+i+"name").value.includes("배추")){
                     				document.getElementById("h"+i+"img").setAttribute("src", "../../market/img/cart/cabbage.jpg");
-                    			}else if(document.getElementById("h"+i+"name").value == "고추"){
+                    			}else if(document.getElementById("h"+i+"name").value.includes("고추")){
                     				document.getElementById("h"+i+"img").setAttribute("src", "../../market/img/cart/chilipepper.jpg");
-                    			}else if(document.getElementById("h"+i+"name").value == "포도"){
+                    			}else if(document.getElementById("h"+i+"name").value.includes("포도")){
                     				document.getElementById("h"+i+"img").setAttribute("src", "../../market/img/cart/grape.jpg");
-                    			}else if(document.getElementById("h"+i+"name").value == "메론"){
+                    			}else if(document.getElementById("h"+i+"name").value.includes("메론")){
                     				document.getElementById("h"+i+"img").setAttribute("src", "../../market/img/cart/melon.jpg");
-                    			}else if(document.getElementById("h"+i+"name").value == "호박"){
+                    			}else if(document.getElementById("h"+i+"name").value.includes("호박")){
                     				document.getElementById("h"+i+"img").setAttribute("src", "../../market/img/cart/pumpkin.jpg");
-                    			}else if(document.getElementById("h"+i+"name").value == "딸기"){
+                    			}else if(document.getElementById("h"+i+"name").value.includes("딸기")){
                     				document.getElementById("h"+i+"img").setAttribute("src", "../../market/img/cart/strawberry.jpg");
-                    			}else if(document.getElementById("h"+i+"name").value == "수박"){
+                    			}else if(document.getElementById("h"+i+"name").value.includes("수박")){
                     				document.getElementById("h"+i+"img").setAttribute("src", "../../market/img/cart/watermelon.jpg");
                     			}
                     		}

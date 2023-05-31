@@ -110,7 +110,7 @@ input:checked+.slider:before {
 						<a href="/normal/market"><img src="../../market/img/logo.png"
 							alt=""></a>
 					</div>
-				</div>
+				</div> 
 				<div class="col-lg-6"></div>
 				<div class="col-lg-3">
 					<div class="header__cart">
@@ -203,6 +203,7 @@ input:checked+.slider:before {
 								<li><a href="/normal/interest">관심 업체 관리</a></li>
 								<li><a href="/normal/management2">유의 업체관리</a></li>
 								<li><a href="/normal/listall">전체 관리</a></li>
+								<li><a href="/normal/broadSelecMenu">가격 알림 관리</a></li>
 							</ul>
 						</div>
 					</div>
@@ -231,17 +232,17 @@ input:checked+.slider:before {
 								<tr>
 									<th>no.</th>
 									<th>상품명</th>
-									<th>상품가격</th>
-									<th>가격한도</th>
+									<th>알림가격</th>
+									<th>변경</th>
 									<th>삭제</th>
 								</tr>
 							</thead>
 							<c:forEach items="${palist}" var="pa" varStatus="count">
 								<tr>
 									<th>${count.index+1}</th>
-									<th>${pa.pname}</th>
+									<th class="pname">${pa.pname}</th>
 									<td class="pno" hidden>${pa.pno}</td>
-									<th><input class="br_param" value="${pa.br_param}">
+									<th><input class="br_param" id="param" value="${pa.br_param}" oninput="validateInput()">
 									</th>
 									<th><button class="click2">변경</button></th>
 									<th><button class="click">삭제</button></th>
@@ -284,7 +285,15 @@ input:checked+.slider:before {
 
 		$(document).ready(function() {
 			$('.click2').click(function() {
+				var input = document.getElementById("param").value;
+			    var isValid = /^\d+$/.test(input) && parseInt(input) >= 1;
+			    if (!isValid) {
+			      alert("1이상의 숫자만 입력해주세요.");
+			      document.getElementById("param").value = "";
+			      return;
+			    }
 				var pno = $(this).closest('tr').find('.pno').text();
+				var pname = $(this).closest('tr').find('.pname').text();
 				var br_param = $(this).closest('tr').find('.br_param').val();
 				$.ajax({
 						type : 'POST',
@@ -292,10 +301,24 @@ input:checked+.slider:before {
 						data : {
 								'pno' : pno,
 								'param' : br_param
-						}
+						},
+					    success: function(result) {
+					        alert(pname+'의 알림 가격이 '+br_param+'원으로 변경되었습니다.');
+					    },
+					    error: function() {
+					        alert('알림 가격 변경에 실패했습니다.');
+					    }
 				});
 			});
 		});
+		function validateInput() {
+		    var input = document.getElementById("param").value;
+		    var isValid = /^\d*$/.test(input) && (input === "" || parseInt(input) >= 1);
+		    if (!isValid) {
+		      alert("1이상의 숫자만 입력해주세요.");
+		      document.getElementById("param").value = 1;
+		    }
+		}
 	</script>
 </body>
 </html>
