@@ -212,7 +212,7 @@ input:checked+.slider:before {
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="hero__categories">
-                        <div class="hero__categories__box">
+                        <div class="hero__categories__box2">
                         <!--hero__categories__all 이 부분 변경 필요 -->
                             <h4 align="center">관리 업체</h4>
                         </div>
@@ -220,11 +220,11 @@ input:checked+.slider:before {
                         <table>
 									<thead>
 										<tr>
-											<th>no.</th>
-											<th>회사 이름</th>
-											<th> 관리 상태</th>
-											<th>삭제</th>
-											<th>상태 변경</th>
+											<th style="color: white;">no.</th>
+											<th style="color: white;">회사 이름</th>
+											<th style="color: white;"> 관리 상태</th>
+											<th style="color: white;">삭제</th>
+											<th style="color: white;">상태 변경</th>
 										</tr>
 									</thead>
 									<c:forEach items="${mainList}" var="management"
@@ -250,7 +250,7 @@ input:checked+.slider:before {
 									</c:forEach>
 									</tbody>
 								</table>
-								<div class="header__cart"><div class="site-btn"><a href="interest"> 전체 보기</a></div></div>
+								<div class="header__cart"><div class="site-btn"><a href="interest" style="color: #fff;"> 전체 보기</a></div></div>
                         </div>
                     </div>
                 </div>
