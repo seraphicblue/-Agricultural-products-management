@@ -68,25 +68,7 @@
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 
-			<!-- Heading -->
-			<div class="sidebar-heading">Interface</div>
-
-			<!-- Nav Item - Pages Collapse Menu -->
-			<!-- data-toggle 제거시 화살표 부분 제거-->
-			<li class="nav-item"><a class="nav-link collapsed" href="redirect:/index.jsp"
-				data-target="#collapseTwo" aria-expanded="true"
-				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Components</span>
-			</a></li>
-
-			<!-- Nav Item - Utilities Collapse Menu -->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseUtilities"
-				aria-expanded="true" aria-controls="collapseUtilities"> <i
-					class="fas fa-fw fa-wrench"></i> <span>Utilities</span>
-			</a></li>
-
-			<!-- Divider -->
-			<hr class="sidebar-divider">
+			
 
 			<!-- Heading -->
 			<div class="sidebar-heading">Addons</div>
@@ -119,6 +101,24 @@
 			<li class="nav-item"><a class="nav-link" href="/company/stockmanage">
 					<i class="fas fa-fw fa-table"></i> <span>재고</span>
 			</a></li>
+			<li class="nav-item"><a class="nav-link" href="/company/confirm">
+					<i class="fas fa-fw fa-table"></i> <span>장부</span>
+			</a></li>
+			<!-- Nav Item - broad -->
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#collapse2Pages"
+				aria-expanded="true" aria-controls="collapse2Pages"> <i
+					class="fas fa-fw fa-folder"></i> <span>알림 탭</span>
+			</a>
+				<div id="collapse2Pages" class="collapse"
+					aria-labelledby="headingPages" data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<h6 class="collapse-header">알림 목록</h6>
+						<a class="collapse-item" href="broadSelecStock">재고 알림</a> <a
+							class="collapse-item" href="broadSelecPrice">가격 알림</a> <a
+							class="collapse-item" href="broadSelecLimit">한도 알림</a>
+					</div>
+				</div></li>
 			
 			<!-- Divider -->
 			<hr class="sidebar-divider d-none d-md-block">
@@ -287,16 +287,17 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">로그아웃</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">로그아웃 하시겠습니까?</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
+                    <a class="btn btn-primary" href="/logout">로그아웃</a>
                 </div>
+                
             </div>
         </div>
     </div>

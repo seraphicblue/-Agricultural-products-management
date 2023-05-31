@@ -45,31 +45,40 @@ socket.onmessage = function(event) {
 	}
 	else {
 		console.log("WebSocket message received:" + event.data);
-		const newWindow = window.open('', 'New Window', "top=1000,left=1500,width=400,height=100");
 		if (sep == 'P') {
 			contents = '<h3>' + "(" + content + ")가 가격에 도달했습니다" + '</h3>';
+
+			const newWindow = window.open('', 'New Window', "top=1000,left=1500,width=400,height=100");
+			newWindow.document.write(contents);
+			newWindow.document.write("<br><button onclick='window.close()'>Close</button>");
+
 		}
 
 		else if (sep == 'S') {
 			var str = content + " 재고량이 위험 수치에 도달했습니다";
 			contents = '<h3>' + str + '</h3>';
 			stockMessage(sep, sentUserid, str + "_" + targetSno);
+			
+			const newWindowS = window.open('', 'New Window', "top=1000,left=1500,width=400,height=100");
+			newWindowS.document.write(contents);
+			newWindowS.document.write("<br><button onclick='window.close()'>Close</button>");
 		}
 		else if (sep == 'L') {
 			var str = " 한도가 위험 수치에 도달했습니다";
 			contents = '<h3>' + str + '</h3>';
 			stockMessage(sep, content, str + "_" + sentUserid + "_" + targetSno);
+			
+			const newWindowL = window.open('', 'New Window', "top=1000,left=1500,width=400,height=100");
+			newWindowL.document.write(contents);
+			newWindowL.document.write("<br><button onclick='window.close()'>Close</button>");
 		}
 		if (sep == 'M') {
-			contents = '<h3>' +sentUserid+"업체에서" + "(" + content + ")상품을 등록했습니다." + '</h3>';
+			contents = '<h3>' + sentUserid + "업체에서" + "(" + content + ")상품을 등록했습니다." + '</h3>';
+			
+			const newWindowM = window.open('', 'New Window', "top=1000,left=1500,width=400,height=100");
+			newWindowM.document.write(contents);
+			newWindowM.document.write("<br><button onclick='window.close()'>Close</button>");
 		}
-		
-
-		// 새 창에 내용 삽입
-		newWindow.document.write(contents);
-
-		// 창 닫기 버튼 추가 
-		newWindow.document.write("<br><button onclick='window.close()'>Close</button>");
 
 	}
 
@@ -83,7 +92,7 @@ socket.onclose = function(event) {
 function sendMessage(te) {
 
 
-	if (document.getElementById('command').value == "price"|| te =="P") {
+	if (document.getElementById('command').value == "price" || te == "P") {
 
 		var message = document.getElementById('val').value;
 		var userid = document.getElementById('uid').value;
@@ -117,7 +126,7 @@ function sendMessage(te) {
 
 		});
 	}
-	else if (document.getElementById('command').value == "stock" || te =="S") {
+	else if (document.getElementById('command').value == "stock" || te == "S") {
 		var message = "";
 		var userid = "";
 		var param = document.getElementById('fina').value; //반복 횟수
@@ -144,7 +153,7 @@ function sendMessage(te) {
 							if (data == message) {
 
 								text = "/" + "stock" + '_' + userid + '_' + message + '_' + pname;
-								
+
 								socket.send(text);
 							}
 
@@ -157,7 +166,7 @@ function sendMessage(te) {
 
 
 
-	else if (document.getElementById('command').value == "limit" || te =="L") {
+	else if (document.getElementById('command').value == "limit" || te == "L") {
 		var userid = uid.value;
 		var text = "";
 		$.ajax({
@@ -176,8 +185,8 @@ function sendMessage(te) {
 
 		})
 	}// else if limit
-	
-	else if (te =="M") {
+
+	else if (te == "M") {
 		var message = document.getElementById('val').value;
 		var userid = document.getElementById('uid').value;
 		var param = document.getElementById('price').value;
@@ -185,35 +194,20 @@ function sendMessage(te) {
 		var text;
 
 		$.ajax({
-			url: '/broadmanage',
+			url: '/broadMange',
 			type: 'get',
-			data: { sno: parseInt(message) },
-			dataType: 'text',
+			data: { userid: userid },
+			dataType: 'json',
 			success: function(data) {
-				$.ajax({
-					url: '/mangeAlram',
-					type: 'get',
-					data: { pno: parseInt(data), param: param },
-					dataType: 'json',
-					success: function(data) {
-						message = data;
-						for (var i = 0; i < data.length; i++) {
-							text = "/" + "manage" + '_' + userid + '_' + data[i] + '_' + textTarget;
-
-							socket.send(text);
-						}
-
-					}
-
-				})
-			}
-
-		});
-	}
-	
-
-
+				for (var i = 0; i < data.length; i++) {
+					text = "/" + "manage" + '_' + userid + '_' + data[i] + '_' + textTarget;
+					socket.send(text);
+				}
+			}//seccuss end
+		})//ajax end
+	}//if end
 }//send Message
+
 
 function stockMessage(sep, uid, text) {
 	$.ajax({

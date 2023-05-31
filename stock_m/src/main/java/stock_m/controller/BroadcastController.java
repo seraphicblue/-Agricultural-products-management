@@ -220,19 +220,10 @@ public class BroadcastController {
 	
 	@GetMapping("/broadMange")
 	@ResponseBody
-	public void broadMange(int limit, HttpSession session ) {
+	public List<String> broadMange(HttpSession session ) {
 		String userid = (String) session.getAttribute("userid");
-		broad_service.insertAndUpdate(limit,userid);
-		
+		return broad_service.manageGet(userid);
 	}
 	
-	@GetMapping("/mangeAlram")
-	@ResponseBody
-	public String broadCprice(Model m, int pno, int param) {
-		List<String>userList = broad_service. broadPriceCheck(pno, param);
-		Gson gson = new Gson();
-		String ulist=gson.toJson(userList);		
-		return ulist;
-	}
 
 }
