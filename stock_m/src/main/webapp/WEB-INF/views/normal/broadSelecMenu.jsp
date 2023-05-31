@@ -313,7 +313,7 @@ input:checked+.slider:before {
 		});
 		function validateInput() {
 		    var input = document.getElementById("param").value;
-		    var isValid = /^\d+$/.test(input) && parseInt(input) >= 1;
+		    var isValid = /^\d*$/.test(input) && (input === "" || parseInt(input) >= 1);
 		    if (!isValid) {
 		      alert("1이상의 숫자만 입력해주세요.");
 		      document.getElementById("param").value = 1;
