@@ -32,22 +32,21 @@
 
 <!-- 답글 표시 -->
 <table border="1">
-    <thead>
+    
         <tr>
-            <th>답글 제목</th>
+
             <th>작성자</th>
             <th>내용</th>
-        </tr>
-    </thead>
-    <tbody>
-        <c:forEach var="comment" items="${commentList}">
-            <tr>
-                <td>${comment.subject}</td>
-                <td>${comment.userid}</td>
-                <td>${comment.content}</td>
-            </tr>
+
+    	</tr>
+        <c:forEach var="qnacomment" items="${commentList}">
+            
+<tr>
+                <td>${qnacomment.userid}</td>
+                <td>${qnacomment.content}</td>
+            
         </c:forEach>
-    </tbody>
+  </tr>
 </table>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

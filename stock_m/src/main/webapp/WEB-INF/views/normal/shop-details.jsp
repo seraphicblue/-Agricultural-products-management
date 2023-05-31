@@ -1,20 +1,20 @@
-<!--      
-   Date    : 2023.05.10
+<%--      
+   Date    : 2023.05.22
    name    : shop-details
    type    : form
-   ver     : 2.0
+   ver     : 6.0
    conect  : MarketController
    content : 상품의 상세페이지
    writer  : 김기덕
    api     : x
--->
+--%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="zxx">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"> 
     <meta name="description" content="Ogani Template">
     <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,89 +25,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="../css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="../css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="../css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="../css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="../css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="../css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="../css/style.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="../../market/css/style.css" type="text/css">
 </head>
 
 <body>
-    <!-- Page Preloder -->
-    <div id="preloder">
-        <div class="loader"></div>
-    </div>
-
-    <!-- Humberger Begin -->
-    <div class="humberger__menu__overlay"></div>
-    <div class="humberger__menu__wrapper">
-        <div class="humberger__menu__logo">
-            <a href="#"><img src="../img/logo.png" alt=""></a>
-        </div>
-        <div class="humberger__menu__cart">
-            <ul>
-                <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
-            </ul>
-            <div class="header__cart__price">item: <span>$150.00</span></div>
-        </div>
-        <div class="humberger__menu__widget">
-            <div class="header__top__right__language">
-                <img src="../img/language.png" alt="">
-                <div>English</div>
-                <span class="arrow_carrot-down"></span>
-                <ul>
-                    <li><a href="#">Spanis</a></li>
-                    <li><a href="#">English</a></li>
-                </ul>
-            </div>
-            <div class="header__top__right__auth">
-                <a href="#"><i class="fa fa-user"></i> Login</a>
-            </div>
-        </div>
-        <nav class="humberger__menu__nav mobile-menu">
-            <ul>
-                <li class="active"><a href="../market">Home</a></li>
-                <li><a href="./shop-grid.html">Shop</a></li>
-                <li><a href="#">Pages</a>
-                    <ul class="header__menu__dropdown">
-                        <li><a href="./shop-details.html">Shop Details</a></li>
-                        <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                        <li><a href="./checkout.html">Check Out</a></li>
-                        <li><a href="./blog-details.html">Blog Details</a></li>
-                    </ul>
-                </li>
-                <li><a href="./blog.html">Blog</a></li>
-                <li><a href="./contact.html">Contact</a></li>
-            </ul>
-        </nav>
-        <div id="mobile-menu-wrap"></div>
-        <div class="header__top__right__social">
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-linkedin"></i></a>
-            <a href="#"><i class="fa fa-pinterest-p"></i></a>
-        </div>
-        <div class="humberger__menu__contact">
-            <ul>
-                <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-                <li>Free Shipping for all Order of $99</li>
-            </ul>
-        </div>
-    </div>
-    <!-- Humberger End -->
-
-    <!-- Header Section Begin -->
+<!-- Header Section Begin --> <%-- ------------------------- 다른 페이지들과 공통부분 시작 ------------------------- --%>
+<input type="hidden" name="command" id="command" value="common">
     <header class="header">
-        
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="../market"><img src="../img/logo.png" alt=""></a>
+                        <a href="/normal/market"><img src="../../market/img/logo.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -118,17 +54,14 @@
                         <ul>
                             <li>
                                 <div class="header__top__right__auth">  
-                                    <a href="#"><i class="fa fa-user"></i> Logout</a>
+                                    <a href="/logout"><i class="fa fa-user"></i> 로그아웃</a>
                                 </div>
                             </li>
-                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                            <li><a href="/normal/cart/${userid}"><i class="fa fa-shopping-bag"></i> <span id="ccount">${ccount}</span></a></li>
                         </ul>
-                        <div class="header__cart__price">item: <span>$150</span></div>
+                        <div class="header__cart__price">총 액: <span id="cprice">${cprice}원</span></div>
                     </div>
                 </div>
-            </div>
-            <div class="humberger__open">
-                <i class="fa fa-bars"></i>
             </div>
         </div>
     </header>
@@ -145,23 +78,18 @@
                             <span>전체 분류</span>
                         </div>
                         <ul>
-                            <li><a href="../search/100">식량작물</a></li>
-                            <li><a href="../search/200">채소류</a></li>
-                            <li><a href="../search/300">특용작물</a></li>
-                            <li><a href="../search/400">과일류</a></li>
-                            <li><a href="../search/500">축산물</a></li>
-                            <li><a href="../search/600">수산물</a></li>
+                            <li><a href="/normal/p_val?p_val=100">식량작물</a></li>
+                            	<li><a href="/normal/p_val?p_val=200">채소류</a></li>
+                            	<li><a href="/normal/p_val?p_val=300">특용작물</a></li>
+                            	<li><a href="/normal/p_val?p_val=400">과일류</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-9">
                     <div class="hero__search">
                         <div class="hero__search__form">
-                            <form method="post" action="../search">
-                                <div class="hero__search__categories">
-                                    모든 카테고리
-                                    <span class="arrow_carrot-down"></span>
-                                </div>
+                            <form action="/normal/search">
+                                
                                 <input type="text" placeholder="검색할 상품명" name="pname">
                                 <button type="submit" class="site-btn">검색</button>
                             </form>
@@ -171,28 +99,27 @@
             </div>
         </div>
     </section>
-    <!-- Hero Section End -->
+    <!-- Hero Section End --> <%-- ------------------------- 다른 페이지들과 공통부분 끝 ------------------------- --%>
 
     <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="../img/breadcrumb.jpg">
+    <section class="breadcrumb-section set-bg" data-setbg="../../market/img/breadcrumb.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
+                	<%-- 장바구니 페이지의 중단부에 토마토 부분 해당 상품의 분류 코드에 따라 링크 변경 및 출력 텍스트 변경--%>
                     <div class="breadcrumb__text">
                         <h2>${product.pname}</h2>
                         <div class="breadcrumb__option">
-                            <a href="../market">홈</a>
-                            <a href="./index.html">
+                            <a href="/normal/market">홈</a>
                             <c:choose>
-                            	<c:when test="${product.p_val eq 100}">식량작물</c:when>
-                            	<c:when test="${product.p_val eq 200}">채소류</c:when>
-                            	<c:when test="${product.p_val eq 300}">특용작물</c:when>
-                            	<c:when test="${product.p_val eq 400}">과일류</c:when>
-                            	<c:when test="${product.p_val eq 500}">축산물</c:when>
-                            	<c:when test="${product.p_val eq 600}">수산물</c:when>
+                            	<c:when test="${product.p_val eq 100}"><a href="/normal/p_val?p_val=100">식량작물</a></c:when>
+                            	<c:when test="${product.p_val eq 200}"><a href="/normal/p_val?p_val=200">채소류</a></c:when>
+                            	<c:when test="${product.p_val eq 300}"><a href="/normal/p_val?p_val=300">특용작물</a></c:when>
+                            	<c:when test="${product.p_val eq 400}"><a href="/normal/p_val?p_val=400">과일류</a></c:when>
+                            	<c:when test="${product.p_val eq 500}"><a href="/normal/p_val?p_val=500">축산물</a></c:when>
+                            	<c:when test="${product.p_val eq 600}"><a href="/normal/p_val?p_val=600">수산물</a></c:when>
                             	<c:otherwise>없는분류코드입니다.</c:otherwise>
                             </c:choose>
-                            </a>
                             <span>${product.pname}</span>
                         </div>
                     </div>
@@ -209,22 +136,67 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__pic">
                         <div class="product__details__pic__item">
+                        <c:if test="${product.pname == '감자'}">
                             <img class="product__details__pic__item--large"
-                                src="../img/product/details/product-details-1.jpg" alt="">
-                        </div>
-                        <div class="product__details__pic__slider owl-carousel">
-                            <img data-imgbigurl="../img/product/details/product-details-2.jpg"
-                                src="../img/product/details/thumb-1.jpg" alt="">
-                            <img data-imgbigurl="../img/product/details/product-details-3.jpg"
-                                src="../img/product/details/thumb-2.jpg" alt="">
-                            <img data-imgbigurl="../img/product/details/product-details-5.jpg"
-                                src="../img/product/details/thumb-3.jpg" alt="">
-                            <img data-imgbigurl="../img/product/details/product-details-4.jpg"
-                                src="../img/product/details/thumb-4.jpg" alt="">
-                        </div>
+                                src="../../market/img/product/potato.jpg" height="360" width="330"alt="">
+                        </c:if>
+                        <c:if test="${product.pname == '양파'}">
+                            <img class="product__details__pic__item--large"
+                                src="../../market/img/product/onion.jpg" height="360" width="330"alt="">
+                        </c:if>
+                        <c:if test="${product.pname == '가지'}">
+                            <img class="product__details__pic__item--large"
+                                src="../../market/img/product/eggplant.jpg" height="360" width="330"alt="">
+                        </c:if>
+                        <c:if test="${product.pname == '토마토'}">
+                            <img class="product__details__pic__item--large"
+                                src="../../market/img/product/tomato.jpg" height="360" width="330"alt="">
+                        </c:if>
+                        <c:if test="${product.pname == '당근'}">
+                            <img class="product__details__pic__item--large"
+                                src="../../market/img/product/carrot.jpg" height="360" width="330"alt="">
+                        </c:if>
+                        <c:if test="${product.pname == '사과'}">
+                            <img class="product__details__pic__item--large"
+                                src="../../market/img/product/apple.jpg" height="360" width="330"alt="">
+                        </c:if>
+                        <c:if test="${product.pname == '바나나'}">
+                            <img class="product__details__pic__item--large"
+                                src="../../market/img/product/banana.jpg" height="360" width="330"alt="">
+                        </c:if>
+                        <c:if test="${product.pname == '배추'}">
+                            <img class="product__details__pic__item--large"
+                                src="../../market/img/product/cabbage.jpg" height="360" width="330"alt="">
+                        </c:if>
+                        <c:if test="${product.pname == '고추'}">
+                            <img class="product__details__pic__item--large"
+                                src="../../market/img/product/chilipepper.jpg" height="360" width="330"alt="">
+                        </c:if>
+                        <c:if test="${product.pname == '포도'}">
+                            <img class="product__details__pic__item--large"
+                                src="../../market/img/product/grape.jpg" height="360" width="330"alt="">
+                        </c:if>
+                        <c:if test="${product.pname == '메론'}">
+                            <img class="product__details__pic__item--large"
+                                src="../../market/img/product/melon.jpg" height="360" width="330"alt="">
+                        </c:if>
+                        <c:if test="${product.pname == '호박'}">
+                            <img class="product__details__pic__item--large"
+                                src="../../market/img/product/pumpkin.jpg" height="360" width="330"alt="">
+                        </c:if>
+                        <c:if test="${product.pname == '딸기'}">
+                            <img class="product__details__pic__item--large"
+                                src="../../market/img/product/strawberry.jpg" height="360" width="330"alt="">
+                        </c:if>
+                        <c:if test="${product.pname == '수박'}">
+                            <img class="product__details__pic__item--large"
+                                src="../../market/img/product/watermelon.jpg" height="360" width="330"alt="">
+                        </c:if>
+                        </div>                        
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
+                	<%-- 상품명 및 별점(삭제할생각) --%>
                     <div class="product__details__text">
                         <h3>${product.pname}</h3>
                         <div class="product__details__rating">
@@ -235,6 +207,7 @@
                             <i class="fa fa-star-half-o"></i>
                             <span>(18 reviews)</span>
                         </div>
+                        <%-- 상품가격 및 상품 정보(정보를 판매자가 작성하게 할 생각 그렇게되면 상품 테이블에 상품설명 컬럼을 추가해야함) --%>
                         <div class="product__details__price">${product.price}원</div>
                         <p>Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam
                             vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet
@@ -243,12 +216,14 @@
                         
                         <div class="product__details__quantity">
                             <div class="quantity">
+                            	<%-- 구입할 상품의 수량을 +,-버튼 또는 직접입력하여 변경 --%>
                                 <div class="pro-qty">
-                                    <input type="text" id="count" value="1">
+                                    <input type="text" id="count" value="1" onchange="cchange(this)">
                                 </div>
                             </div>
+                        <%-- 사용자의 userid, 상품의 상품번호, 가격, 상품명 받아오는 부분 --%>    
                         </div>                        
-							<input id="userid" value="test1" hidden="hidden">
+							<input id="userid" value="${userid}" hidden="hidden">
 							<input id="product_pno" value="${product.pno}" hidden="hidden">
 							<input id="price" value="${product.price}" hidden="hidden">
 							<input id="name" value="${product.pname}" hidden="hidden">
@@ -264,17 +239,37 @@
 					                    , price : $("#price").val()
 					                    , name : $("#name").val()
 					            };
-								$.ajax({
-									type:"post",
-									url: "../addcart",
-									data:params
-								}).done(function(reponse){
-									if(confirm('장바구니로 이동하시겠습니까?')){
-										window.location.replace('../cart/test1');
-									}else{
-										return false;
-									}
-								});	
+								if(${product.p_count} >= $("#count").val() && $("#count").val() > 0){
+									$.ajax({
+										type:"post",
+										url: "../addcart",
+										data:params
+									}).done(function(reponse){
+										if(confirm('장바구니로 이동하시겠습니까?')){
+											window.location.replace('../cart/${userid}');
+										}else{
+											return false;
+										}
+									});
+								}else if(${product.p_count} < $("#count").val()){
+									alert("준비된 상품갯수를 초과했습니다.");
+									alert("${product.pname}" + "의 남은 수량은 " + ${product.p_count} +"개 입니다.");									
+								}else {
+									alert("1이상의 숫자만 입력해 주세요.");
+								}																	
+							}
+							
+							function cchange(obj){
+								var inputValue = $(obj).val();
+								  
+								  if (/^\d+$/.test(inputValue)) {
+								    // 입력된 값이 숫자인 경우
+								    // 원하는 작업을 수행하세요.
+								  } else {
+								    // 입력된 값이 숫자가 아닌 경우
+								    alert("1이상의 숫자만 입력해 주세요.");
+								    $(obj).val(""); // 입력된 값을 비워줍니다.
+								  }
 							}
 						</script>                      
                         <ul>
@@ -390,7 +385,7 @@
             <div class="row">
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="../img/product/product-1.jpg">
+                        <div class="product__item__pic set-bg" data-setbg="../../market/img/product/product-1.jpg">
                             <ul class="product__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -405,7 +400,7 @@
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="../img/product/product-2.jpg">
+                        <div class="product__item__pic set-bg" data-setbg="../../market/img/product/product-2.jpg">
                             <ul class="product__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -420,7 +415,7 @@
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="../img/product/product-3.jpg">
+                        <div class="product__item__pic set-bg" data-setbg="../../market/img/product/product-3.jpg">
                             <ul class="product__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -435,7 +430,7 @@
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="../img/product/product-7.jpg">
+                        <div class="product__item__pic set-bg" data-setbg="../../market/img/product/product-7.jpg">
                             <ul class="product__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -454,14 +449,17 @@
     <!-- Related Product Section End -->
 
     <!-- Js Plugins -->
-    <script src="../js/jquery-3.3.1.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/jquery.nice-select.min.js"></script>
-    <script src="../js/jquery-ui.min.js"></script>
-    <script src="../js/jquery.slicknav.js"></script>
-    <script src="../js/mixitup.min.js"></script>
-    <script src="../js/owl.carousel.min.js"></script>
-    <script src="../js/main.js"></script>
+    <script src="../../market/js/jquery-3.3.1.min.js"></script>
+    <script src="../../market/js/bootstrap.min.js"></script>
+    <script src="../../market/js/jquery.nice-select.min.js"></script>
+    <script src="../../market/js/jquery-ui.min.js"></script>
+    <script src="../../market/js/jquery.slicknav.js"></script>
+    <script src="../../market/js/mixitup.min.js"></script>
+    <script src="../../market/js/owl.carousel.min.js"></script>
+    <script src="../../market/js/main.js"></script>
+    
+    <!--js list made by kim -->
+	<script src="../../js/webSocket.js"></script>
 
 
 </body>

@@ -6,9 +6,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import stock_m.dto.CommentDto;
 import stock_m.dto.QnABoardDto;
 import stock_m.dto.UserDto;
-
+import stock_m.service.CommentService;
 import stock_m.service.QnABoardService;
 
 import java.util.Date;
@@ -20,6 +21,8 @@ public class QnABoardController {
 
     @Autowired
     QnABoardService service;
+    @Autowired
+    CommentService Cservice;
 
     // "user"��� �̸����� UserDto ��ü�� Model�� �߰��ϴ� �޼���
     @ModelAttribute("user")
@@ -91,7 +94,10 @@ public class QnABoardController {
         service.qnaaddReadcount(qnaboardid);
         QnABoardDto dto = service.qnaboardOne(qnaboardid);
         m.addAttribute("dto", dto);
+        List<CommentDto> commentList = Cservice.commentList();
+        m.addAttribute("commentList", commentList);
         return "normal/qnacontent";
+        
     }
 
     // �� ���� ���� �����ִ� GET ��û ó�� �޼���
@@ -101,6 +107,7 @@ public class QnABoardController {
         m.addAttribute("dto", dto);
         return "normal/qnaupdate";
     }
+    
 
     // �� ������ ó���ϴ� PUT ��û ó�� �޼���
     @PostMapping("/normal/qnaupdate")

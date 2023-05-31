@@ -6,6 +6,7 @@ import lombok.Data;
 public class UserDto {
 
 	
+<<<<<<< HEAD
 	/*
 	 * Date : 2023.05.06 
 	 * name : user 
@@ -19,10 +20,15 @@ public class UserDto {
 	 
 	
 	private String userid="testuser1";
+=======
+
+	private String userid;
+>>>>>>> branch 'choi' of https://github.com/marionest98/stock
 	private String userpw;
 	private String gender;
 	private int age;
 	private String username;
-	private String role="admin";
-	private String enable;
+	private LoginRole role;
+	private String enabled;
+
 }

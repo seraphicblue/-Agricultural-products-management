@@ -31,6 +31,10 @@
         select * from board
         order by boardno desc limit #{start}, #{count}
     </select>
+        <select id="boardList2" parameterType="map" resultType="stock_m.dto.BoardDto">
+        select * from board
+        order by boardno desc limit #{start}, #{count}
+    </select>
 
     <!-- 게시글 총 개수 조회 -->
     <select id="count" resultType="int">

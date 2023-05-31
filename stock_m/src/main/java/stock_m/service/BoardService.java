@@ -27,6 +27,12 @@ public class BoardService {
         m.put("count", 10);
         return dao.boardList(m);
     }
+    public List<BoardDto> boardList2(int start) {
+        Map<String, Object> m = new HashMap<String, Object>();
+        m.put("start", start);
+        m.put("count", 3);
+        return dao.boardList(m);
+    }
     // 특정 조건에 맞는 게시글 목록 검색
     public List<BoardDto> searchDateBoard(String field, String keyword, int start, Date startDate, Date endDate) {
         Map<String, Object> m = new HashMap<String, Object>();

@@ -21,31 +21,41 @@ import org.springframework.stereotype.Service;
 import stock_m.dao.ManagementDao;
 import stock_m.dto.ManagementDto;
 import stock_m.dto.UserDto;
-
+//dao(bean)객체에 mapper를 이용해 받아온 값들을 저장
 @Service
 public class ManagementService {
 	@Autowired
 	ManagementDao dao;
 
-	public List<ManagementDto> managementList(int start, String keyword) {
+	public List<ManagementDto> managementList(int start, String keyword, String userid) {
 		Map<String, Object> m = new HashMap<String, Object>();
 		m.put("start", start);
 		m.put("count", 5);
 		m.put("keyword", keyword);
+		m.put("userid", userid);
 		return dao.managementList(m);
 	}
 
-	public List<ManagementDto> mainList(int startRow) {
+	public List<ManagementDto> mainList(int startRow, String userid) {
 		Map<String, Object> m = new HashMap<String, Object>();
-		m.put("start", startRow);
-		m.put("count", 5);
+		m.put("userid", userid);
+		m.put("count", 3);
+		m.put("startRow", startRow);
 		return dao.mainList(m);
 	}
 	
-	public List<ManagementDto> maList(int start) {
+	public List<ManagementDto> mainList2(int startRow, String userid) {
+		Map<String, Object> m = new HashMap<String, Object>();
+		m.put("userid", userid);
+		m.put("count", 10);
+		m.put("startRow", startRow);
+		return dao.mainList2(m);
+	}
+	public List<ManagementDto> maList(int start, String userid) {
 		Map<String, Object> m = new HashMap<String, Object>();
 		m.put("start", start);
 		m.put("count", 5);
+		m.put("userid", userid);
 		return dao.maList(m);
 	}
 
@@ -53,21 +63,25 @@ public class ManagementService {
 		return dao.countSearch(keyword);
 	}
 
-	public int insert(String id) {
-		return dao.insert(id);
+	public int insert(String userid, String username) {
+		return dao.insert(userid,username);
 
 	}
 
-	public int insert2(String id) {
-		return dao.insert2(id);
+	public int insert2(String userid,String id) {
+		return dao.insert2(userid,id);
 	}
 
-	public int find(String m_content) {
-		return dao.find(m_content);
+	public int find(String m_content, String userid) {
+		return dao.find(m_content, userid);
 	}
 
-	public int delete(int mno) {
-		return dao.delete(mno);
+	public int delete(int mno, String userid) {
+		Map<String, Object> m = new HashMap<>();
+		m.put("mno", mno);
+		m.put("userid", userid);
+		System.out.println(mno);
+		return dao.delete(m);
 	}
 
 	public int count() {
@@ -94,29 +108,34 @@ public class ManagementService {
 	}
 
 	
-	public int check(String id) {
-		return dao.check(id);
+	public int check(String username,String userid) {
+		return dao.check(username, userid);
 	}
 	
 
-	public int update(String m_content) {
-		return dao.update(m_content);
+	public int update(String m_content, String userid) {
+		return dao.update(m_content, userid);
 	}
 	
 
-	public int update2(String m_content) {
-		return dao.update2(m_content);
+	public int update2(String m_content, String userid) {
+		return dao.update2(m_content, userid);
 	}
 
-	public boolean check2(String m_content) {
-		return dao.check2(m_content);
+	public boolean check2(String m_content, String userid) {
+		return dao.check2(m_content, userid);
 	}
 
 	public boolean switch1(String m_content) {
 		return dao.switch1(m_content);
 	}
 
-	
-	
+	public List<ManagementDto> managementListall(int startRow, String userid) {
+		Map<String, Object> m = new HashMap<String, Object>();
+		m.put("start", startRow);
+		m.put("count", 5);
+		m.put("userid", userid);
+		return dao.managementListall(m);
+	}
 
 }

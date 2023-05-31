@@ -2,6 +2,8 @@ package stock_m.dto;
 
 import java.util.Date;
 
+import lombok.Data;
+@Data
 public class SellDto {
 
 	private int sno; 

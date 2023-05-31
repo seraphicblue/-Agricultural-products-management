@@ -26,15 +26,102 @@ function number_format(number, decimals, dec_point, thousands_sep) {
   }
   return s.join(dec);
 }
+$(document).ready(function() {
+  showmain();
+});
+
+function showmain() {
+       
+			$.ajax({
+            url: "/company/getmain",
+            type: "GET"
+            }).done(function(response) {
+				     console.log("showmain 호출");
+				     var parsedResponse = JSON.parse(response);
+                     var sellData =JSON.parse(parsedResponse.sellData);
+                     var buyData = JSON.parse(parsedResponse.buyData);
+			    	
+                    
+                    console.log(sellData);
+                    console.log(buyData);
+                    getmaininfo(sellData,buyData);
+			    	 
+			    	
+			    	});
+             
+        }
+        
+var formatter = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+        
 
 // Area Chart Example
-var ctx = document.getElementById("myAreaChart");
-var myLineChart = new Chart(ctx, {
+function getmaininfo(sellData,buyData){
+	
+var currentDate = new Date();
+var weekLabels = [];
+
+for (var i = 6; i >= 0; i--) {
+  var date = new Date(currentDate);
+  date.setDate(date.getDate() - i);
+ 
+  weekLabels.push(formatter.format(date));
+}
+var ctx = document.getElementById("mymainChart");
+    var sdates=[];
+	var scs=[];
+	var bdates=[];
+	var bcs=[];
+	
+ buyData.forEach(function({ bdate, bc }) {
+    bdates.push(formatter.format(bdate));
+    bcs.push(bc);
+  });
+sellData.forEach(function({ sdate, sc }) {
+    sdates.push(formatter.format(sdate));
+    scs.push(sc);
+  });
+  
+var salesData = [];
+var purchaseData = [];
+
+// Loop through the past 7 days and check if there is data available
+for (var i = 6; i >= 0; i--) {
+  var date = new Date(currentDate);
+  date.setDate(date.getDate() - i);
+  var formattedDate = formatter.format(date);
+
+  // Check if there is sales data available for the current date
+  var salesIndex = sdates.indexOf(formattedDate);
+  if (salesIndex !== -1) {
+    // Sales data exists for the current date, add it to the salesData array
+    salesData.push(scs[salesIndex]);
+  } else {
+    // No sales data available for the current date, add 0
+    salesData.push(0);
+  }
+
+  // Check if there is purchase data available for the current date
+  var purchaseIndex = bdates.indexOf(formattedDate);
+  if (purchaseIndex !== -1) {
+    // Purchase data exists for the current date, add it to the purchaseData array
+    purchaseData.push(bcs[purchaseIndex]);
+  } else {
+    // No purchase data available for the current date, add 0
+    purchaseData.push(0);
+  }
+}
+  
+var mymainChart = new Chart(ctx, {
+
   type: 'line',
   data: {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    labels: weekLabels, 
     datasets: [{
-      label: "Earnings",
+      label: "판매량",
       lineTension: 0.3,
       backgroundColor: "rgba(78, 115, 223, 0.05)",
       borderColor: "rgba(78, 115, 223, 1)",
@@ -46,8 +133,25 @@ var myLineChart = new Chart(ctx, {
       pointHoverBorderColor: "rgba(78, 115, 223, 1)",
       pointHitRadius: 10,
       pointBorderWidth: 2,
-      data: [0, 10000, 5000, 15000, 10000, 20000, 15000, 25000, 20000, 30000, 25000, 40000],
-    }],
+      data: salesData,
+    },
+    {
+      label: "구매량",
+      lineTension: 0.3,
+      backgroundColor: "rgba(231, 76, 60, 0.05)",
+      borderColor: "rgba(231, 76, 60, 1)",
+      pointRadius: 3,
+      pointBackgroundColor: "rgba(231, 76, 60, 1)",
+      pointBorderColor: "rgba(231, 76, 60, 1)",
+      pointHoverRadius: 3,
+      pointHoverBackgroundColor: "rgba(231, 76, 60, 1)",
+      pointHoverBorderColor: "rgba(231, 76, 60, 1)",
+      pointHitRadius: 10,
+      pointBorderWidth: 2,
+      data: purchaseData ,
+    } ],
+   
+   
   },
   options: {
     maintainAspectRatio: false,
@@ -78,7 +182,7 @@ var myLineChart = new Chart(ctx, {
           padding: 10,
           // Include a dollar sign in the ticks
           callback: function(value, index, values) {
-            return '$' + number_format(value);
+            return '' + number_format(value);
           }
         },
         gridLines: {
@@ -110,9 +214,10 @@ var myLineChart = new Chart(ctx, {
       callbacks: {
         label: function(tooltipItem, chart) {
           var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-          return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+          return datasetLabel + ': ' + number_format(tooltipItem.yLabel);
         }
       }
     }
   }
 });
+}

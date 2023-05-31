@@ -6,13 +6,13 @@
 	<insert id="insert" parameterType="List">
 		insert into
 		management(userid,m_val,m_content)
-		values('testcompany1',true,#{username})
+		values(#{userid},true,#{username})
 	</insert>
 
 	<insert id="insert2" parameterType="List">
 		insert into
 		management(userid,m_val,m_content)
-		values('testcompany1',false,#{username})
+		values(#{userid},false,#{username})
 	</insert>
 
 	<select id="count" resultType="int">
@@ -22,33 +22,33 @@
 	<select id="check" parameterType="String" resultType="int">
 		select
 		count(*) from management
-		where m_content = #{id}
+		where m_content = #{username} and userid=#{userid}
 	</select>
 
 	<select id="count1" resultType="int">
 		select count(*)from user where
-		role='업체'
+		role= 'ROLE_COMPANY'
 	</select>
 
 	<select id="countSearch" parameterType="String" resultType="int">
 
 		select count(*) from user
 		where username like concat
-		('%',#{keyword},'%') and role = '업체'
+		('%',#{keyword},'%') and role = 'ROLE_COMPANY'
 
 	</select>
 
 	<select id="find" parameterType="String" resultType="int">
 		select mno
 		from management
-		where m_content = #{m_content}
+		where m_content = #{m_content} and userid=#{userid}
 	</select>
 
 	<select id="UList" parameterType="map"
 		resultType="stock_m.dto.UserDto">
 
 		select userid, username, age, gender from user where
-		role='업체'
+		role='ROLE_COMPANY'
 	</select>
 
 	<select id="UserList" parameterType="map"
@@ -56,7 +56,7 @@
 
 		select userid, username, age, gender from user
 		where
-		username like concat ('%',#{keyword},'%') and role = '업체'
+		username like concat ('%',#{keyword},'%') and role = 'ROLE_COMPANY'
 	</select>
 
 	<select id="managementList" parameterType="map"
@@ -64,42 +64,57 @@
 
 		select mno, userid, m_val, m_content from management
 		where
-		m_content like concat ('%',#{keyword},'%')
+		m_content like concat ('%',#{keyword},'%') AND userid=#{userid}
+	</select>
+	
+	<select id="managementListall" parameterType="map"
+		resultType="stock_m.dto.ManagementDto">
+
+		select mno, userid, m_val, m_content from management
+		where
+	 	userid=#{userid}
 	</select>
 
 	<select id="mainList" parameterType="map"
 		resultType="stock_m.dto.ManagementDto">
 
 		select mno, userid, m_val, m_content from management where
-		m_val=true
-	</select>
+		m_val=true and userid=#{userid} LIMIT #{startRow},#{count}
+		</select>
+		
+	<select id="mainList2" parameterType="map"
+		resultType="stock_m.dto.ManagementDto">
+
+		select mno, userid, m_val, m_content from management where
+		m_val=true and userid=#{userid} LIMIT #{startRow},#{count}
+		</select>	
 
 	<select id="maList" parameterType="map"
 		resultType="stock_m.dto.ManagementDto">
 
 		select mno, userid, m_val, m_content from management where
-		m_val=false
+		m_val=false and userid=#{userid}
 	</select>
 
-	<delete id="delete" parameterType="int">
+	<delete id="delete" parameterType="map">
 		delete from management
 		where
-		mno=#{mno}
+		mno=#{mno} and userid=#{userid}
 	</delete>
 
 	<update id="update" parameterType="String">
 		update management set
-		m_val=false where m_content=#{m_content}
+		m_val=false where m_content=#{m_content} and userid=#{userid}
 	</update>
 
 	<update id="update2" parameterType="String">
 		update management set
-		m_val=true where m_content=#{m_content}
+		m_val=true where m_content=#{m_content} and userid=#{userid}
 	</update>
 
 	<select id="check2" parameterType="String" resultType="boolean">
 		select
-		m_val from management where m_content=#{m_content}
+		m_val from management where m_content=#{m_content} and userid=#{userid}
 	</select>
 
 	<update id="switch1" parameterType="String">
@@ -109,4 +124,6 @@
 		SET user broadcast.user_aram = !user_aram
 		WHERE user broadcast.userid = #{userid}
 	</update>
+	
+
 </mapper>
