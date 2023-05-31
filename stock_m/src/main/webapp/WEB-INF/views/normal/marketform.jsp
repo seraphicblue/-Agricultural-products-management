@@ -179,7 +179,6 @@ thead {
 				<div class="col-lg-9">
 					<div class="hero__search">
 						<div class="hero__search__form">
-
 							<%-- 상품을 상품명으로 검색하여 상품정보를 MarketController에 sform메서드로 shop-grid.jsp에 출력 --%>
 							<form action="/normal/search">
 								<input type="text" placeholder="검색할 상품명" name="pname">
@@ -243,18 +242,18 @@ thead {
 							<table>
 								<thead>
 									<tr>
-										<th>no.</th>
-										<th>회사 이름</th>
-										<th>관리 상태</th>
-										<th>삭제</th>
-										<th>상태 변경</th>
+										<th style="color: white;">no.</th>
+											<th style="color: white;">회사 이름</th>
+											<th style="color: white;"> 관리 상태</th>
+											<th style="color: white;">삭제</th>
+											<th style="color: white;">상태 변경</th>
 									</tr>
 								</thead>
 								<c:forEach items="${mainList}" var="management"
 									varStatus="count">
 									<tr>
 										<th>${count.index+1}</th>
-										<th class="m_content">${management.m_content}</th>
+										<th class="m_content" data-c_userid="${management.c_userid}">${management.m_content}</th>
 										<th><c:set var="type" value="${management.m_val}" /> <c:choose>
 												<c:when test="${type}">
 											관심 업체
@@ -263,26 +262,21 @@ thead {
 											유의 업체
 											</c:when>
 											</c:choose></th>
-										<th><button class="click"
-												data-userid="${management.userid}">삭제</button></th>
-										<th><button class="click2"
-												data-userid="${management.userid}">변경</button></th>
-									</tr>
-								</c:forEach>
-								</tbody>
-							</table>
-							<div class="header__cart">
-								<div class="site-btn">
-									<a href="interest"> 전체 보기</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- Banner End -->
+											<th><button class="click">삭제</button></th>
+											<th><button class="click2">변경</button></th>
+										</tr>
+									</c:forEach>
+									</tbody>
+								</table>
+								<div class="header__cart"><div class="site-btn"><a href="interest" style="color: #fff;"> 전체 보기</a></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Banner End -->
+
 
 	<!-- Latest Product Section Begin -->
 	<!-- Blog Section End -->

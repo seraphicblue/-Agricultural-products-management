@@ -242,7 +242,7 @@ input:checked+.slider:before {
 								<c:forEach items="${mList}" var="user" varStatus="count">
 									<tr>
 										<td>${count.index+1}</td>
-										<td class="username">${user.username}</td>
+										<td class="username" data-userid="${user.userid}">${user.username}</td>
 										<td>${user.gender}</td>
 										<td>${user.age}</td>
 										<td><button class="click">추가</button></td>
@@ -284,17 +284,19 @@ input:checked+.slider:before {
 		$(document).ready(function() {
 			$(".click").click(function() {
 				var username = $(this).parent().siblings('.username').text();
+				var c_userid = $(this).parent().siblings('.username').attr('data-userid');
 				$.ajax({
 					type : 'POST',
 					url : '/normal/check',
 					data : {
-						'username' : username
+						'username' : username,
+						'c_userid' : c_userid
 					},
 					success : function(result) {
 						if (result === false) {
 							alert('이미 추가된 업체입니다.');
 						} else {
-							location.href = "/normal/insert2?id=" + username;
+							location.href = "/normal/insert2?id=" + username+"&c_userid="+c_userid;
 						}
 					}
 

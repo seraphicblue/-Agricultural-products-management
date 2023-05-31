@@ -45,7 +45,7 @@ h4,
 h5,
 h6 {
 	margin: 0;
-	color: #111111;
+	color: #fff;
 	font-weight: 400;
 	font-family: "Cairo", sans-serif;
 }
@@ -599,6 +599,12 @@ ol {
 	position: relative;
 	padding: 10px 25px 10px 40px;
 	cursor: pointer;
+}
+
+.hero__categories__box2 {
+	background: #7fad39;
+	position: relative;
+	padding: 10px 25px 10px 40px;
 }
 
 .hero__categories__all i {
@@ -1934,9 +1940,10 @@ ol {
 .shoping__cart__table table thead th {
 	font-size: 20px;
 	font-weight: 700;
-	color: #1c1c1c;
+	color: #fff;
 	padding-bottom: 20px;
 }
+
 
 .shoping__cart__table table thead th.shoping__product {
 	text-align: left;

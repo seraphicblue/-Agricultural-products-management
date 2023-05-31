@@ -5,14 +5,14 @@
 <mapper namespace="stock_m.dao.ManagementDao">
 	<insert id="insert" parameterType="List">
 		insert into
-		management(userid,m_val,m_content)
-		values(#{userid},true,#{username})
+		management(userid,m_val,m_content,c_userid)
+		values(#{userid},true,#{username},#{c_userid})
 	</insert>
 
 	<insert id="insert2" parameterType="List">
 		insert into
-		management(userid,m_val,m_content)
-		values(#{userid},false,#{username})
+		management(userid,m_val,m_content,c_userid)
+		values(#{userid},false,#{username},#{c_userid})
 	</insert>
 
 	<select id="count" resultType="int">
@@ -70,7 +70,7 @@
 	<select id="managementListall" parameterType="map"
 		resultType="stock_m.dto.ManagementDto">
 
-		select mno, userid, m_val, m_content from management
+		select mno, userid, m_val, m_content ,c_userid from management
 		where
 	 	userid=#{userid}
 	</select>
@@ -85,7 +85,7 @@
 	<select id="mainList2" parameterType="map"
 		resultType="stock_m.dto.ManagementDto">
 
-		select mno, userid, m_val, m_content from management where
+		select mno, userid, m_val, m_content, c_userid from management where
 		m_val=true and userid=#{userid} LIMIT #{startRow},#{count}
 		</select>	
 
