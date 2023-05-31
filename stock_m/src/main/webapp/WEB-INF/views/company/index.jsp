@@ -107,9 +107,10 @@
 				href="/company/stockmanage"> <i class="fas fa-fw fa-table"></i>
 					<span>재고</span>
 			</a></li>
-            <li class="nav-item"><a class="nav-link" href="/company/confirm">
+			<li class="nav-item"><a class="nav-link" href="/company/confirm">
 					<i class="fas fa-fw fa-table"></i> <span>장부</span>
 			</a></li>
+
 			<!-- Nav Item - broad -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapse2Pages"
@@ -126,14 +127,14 @@
 					</div>
 				</div></li>
 
-			<!-- Divider -->
-			<hr class="sidebar-divider d-none d-md-block">
+			<!-- Sidebar Message -->
 
-			<!-- Sidebar Toggler (Sidebar) -->
-			<div class="text-center d-none d-md-inline">
+	<hr class="sidebar-divider d-none d-md-block">
+	<div class="text-center d-none d-md-inline">
 				<button class="rounded-circle border-0" id="sidebarToggle"></button>
 			</div>
 
+		</ul>
 			<!-- Sidebar Message -->
 
 
@@ -553,7 +554,7 @@
 
 	<!-- Custom scripts for all pages-->
 	<script src="../../js/sb-admin-2.min.js"></script>
-	<script src="../../js/sb-admin-2.min2.js"></script>
+	<!-- <script src="../../js/sb-admin-2.min2.js"></script> -->
 
 	<!-- Page level plugins -->
 	<script src="../../vendor/chart.js/Chart.min.js"></script>

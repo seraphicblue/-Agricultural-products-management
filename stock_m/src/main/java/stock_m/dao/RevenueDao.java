@@ -98,7 +98,7 @@ public interface RevenueDao {
 	@Delete("delete from sell where sno=#{sno}")
 	int deletesell(int sno);
 
-	@Select("select s.sno as no, p.pname,DATE_FORMAT(s.sdate, \"%Y/%m/%d\") as 'date', p.price, s.scount as count ,'판매' as kind  from sell s, product p  where s.pno=p.pno union select b.bno as no, p.pname, DATE_FORMAT(b.bdate, \"%Y/%m/%d\") as 'date', p.price, b.bcount as count ,'구매' as kind  from buy b, product p  where b.pno=p.pno  and userid =#{userid} order by date")
+	@Select("select s.sno as no, p.pname,DATE_FORMAT(s.sdate, \"%Y/%m/%d\") as 'date', p.price, s.scount as count ,'판매' as kind  from sell s, product p  where s.pno=p.pno union select b.bno as no, p.pname, DATE_FORMAT(b.bdate, \"%Y/%m/%d\") as 'date', p.price, b.bcount as count ,'구매' as kind  from buy b, product p  where b.pno=p.pno  and userid =#{userid} order by date desc")
 	List<Map<String, Object>> totalList(String userid);
 
 	@Select("select *from sell,buy where pname=#{search}")
