@@ -162,7 +162,6 @@ function sendMessage(te) {
 
 
 	else if (document.getElementById('command').value == "limit" || te =="L") {
-		console.log("sssssssssssssssssss");
 		var userid = uid.value;
 		var text = "";
 		$.ajax({
@@ -171,7 +170,6 @@ function sendMessage(te) {
 			data: { userid: userid },
 			dataType: 'text',
 			success: function(data) {
-				console.log("thisssssssssssssss");
 				if (data != "none") {
 					console.log("this is" + data);
 					text = "/" + "limit" + '_' + userid + '_' + data;
@@ -182,7 +180,11 @@ function sendMessage(te) {
 
 		})
 	}// else if limit
-
+	
+	else if (te =="A") {
+		
+	}
+	
 
 
 }//send Message

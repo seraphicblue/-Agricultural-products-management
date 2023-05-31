@@ -84,4 +84,10 @@ public interface BroadcastDao {
 
 	@Insert("insert into limitbroadcast(userid,broadcastlimit) values(#{userid},#{limit})")
 	public int insertLimit(@Param("userid")String userid, @Param("limit")int limit);
+	
+	@Select("select count(*) from management where c_userid = #{userid} and m_val = true")
+	public int manageCount(@Param("userid") String userid);
+	
+	@Select("select userid from management where c_userid = #{userid} and m_val = true")
+	public List<String> manageGet(@Param("userid") String userid);
 }

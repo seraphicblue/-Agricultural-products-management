@@ -43,7 +43,7 @@ public class BroadcastService {
 			int param = Broadcast_dao.getParam(sno);
 			int volume = Broadcast_dao.getVolume(sno);
 			content = "현재 알림 수치는 " + param + "개 이고 현재 재고량은 " + volume + "개로 설정량의 "
-					+ Math.round(((double) volume / param) * 100) / 100.0 + "% 입니다.";
+					+ (Math.round(((double) volume / param) * 100) / 100.0) *100 + "% 입니다.";
 			Broadcast_dao.insertMessage(userid, sub, content);
 		} 
 		else if (sep.equals("L")) {
@@ -53,7 +53,7 @@ public class BroadcastService {
 			int param = sno;
 			int volume = Integer.parseInt(content.split("_")[2]);
 			content = "현재 알림 수치는 " + volume + "원 이고 현재 잔고는 " + param + "원 으로 설정량의 "
-					+ Math.round((param / (double) volume) * 100) / 100.0 + "% 입니다.";
+					+ (Math.round((param / (double) volume) * 100) / 100.0) * 100 + "% 입니다.";
 			Broadcast_dao.insertMessage(userid, sub, content);
 		}
 
@@ -129,7 +129,7 @@ public class BroadcastService {
 		} else {
 			text = "none";
 		}
-		return text;
+		return text; 
 	}
 	
 	
@@ -142,5 +142,15 @@ public class BroadcastService {
 		}
 	
 	}
+	
+	public List<String> manageGet(String userid) {
+		int chk = Broadcast_dao.manageCount(userid);
+		if(chk>0) {
+			List<String> mList = Broadcast_dao.manageGet(userid);
+			return mList;
+		}
+		return null;
+	}
+	
 
 }

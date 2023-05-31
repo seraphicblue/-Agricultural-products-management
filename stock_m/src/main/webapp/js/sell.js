@@ -72,6 +72,7 @@ function checkStock() {
 		return false;
 	} else {
 		sendMessage("P");
+		sendMessage("A");
 		return true;
 	}
 }

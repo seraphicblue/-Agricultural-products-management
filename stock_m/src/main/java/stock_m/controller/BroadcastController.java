@@ -207,5 +207,13 @@ public class BroadcastController {
 		
 	}
 	
+	@GetMapping("/broadMange")
+	@ResponseBody
+	public void broadMange(int limit, HttpSession session ) {
+		String userid = (String) session.getAttribute("userid");
+		broad_service.insertAndUpdate(limit,userid);
+		
+	}
+	
 
 }
