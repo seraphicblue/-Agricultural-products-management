@@ -100,8 +100,8 @@ public interface RevenueDao {
 	@Delete("delete from sell where sno=#{sno}")
 	int deletesell(int sno);
 
-	@Select("SELECT s.sno AS no, p.pname, s.sdate AS 'date', p.price, s.scount AS count, '판매' AS kind FROM sell s INNER JOIN product p ON s.pno = p.pno  UNION\r\n"
-			+ "SELECT a.bno AS no, adminstock.acontent, a.bdate AS 'date', a.price, a.bcount AS count, '구매' AS kind FROM buy a\r\n"
+	@Select("SELECT s.sno AS no, p.pname, DATE_FORMAT(s.sdate, \"%Y/%m/%d\") AS 'date', p.price, s.scount AS count, '판매' AS kind FROM sell s INNER JOIN product p ON s.pno = p.pno  UNION\r\n"
+			+ "SELECT a.bno AS no, adminstock.acontent,  DATE_FORMAT(a.bdate, \"%Y/%m/%d\") AS 'date', a.price, a.bcount AS count, '구매' AS kind FROM buy a\r\n"
 			+ "INNER JOIN adminstock ON a.pno = adminstock.ano\r\n"
 			+ "WHERE a.userid = #{userid}\r\n"
 			+ "ORDER BY date DESC, no DESC;")
