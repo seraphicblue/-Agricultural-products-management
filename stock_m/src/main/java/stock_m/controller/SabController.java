@@ -50,7 +50,7 @@ public class SabController {
 		m.addAttribute("uid", userid);
 		return "company/index";
 	}
-<<<<<<< HEAD
+
 	
 	@GetMapping("normal/main")
 	public String normalindex() {
@@ -73,9 +73,6 @@ public class SabController {
 	 * return "company/buy"; }
 	 */
 	
-=======
-
->>>>>>> branch 'choi' of https://github.com/marionest98/stock
 	@GetMapping("/company/{sno}")
 	@ResponseBody // view없이 바로 보냄
 	public int snoCount(Model m, @PathVariable int sno) {
