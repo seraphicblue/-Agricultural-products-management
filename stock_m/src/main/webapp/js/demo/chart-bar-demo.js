@@ -91,7 +91,7 @@
 
        -
         $("#saled").empty();
-       $("#saled").append(table_data);
+       //$("#saled").append(table_data);
         
 
   $("#start-date-input, .test_obj").on("change", function() {
@@ -216,7 +216,7 @@ var myBarChart = new Chart(ctx, {
       yAxes: [{
         ticks: {
           min: 0,
-          max: 15000,
+          max: 1000000,
           maxTicksLimit: 5,
           padding: 10,
           // Include a dollar sign in the ticks

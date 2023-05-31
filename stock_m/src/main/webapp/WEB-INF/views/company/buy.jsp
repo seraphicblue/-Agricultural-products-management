@@ -84,6 +84,9 @@
 				href="/company/stockmanage"> <i class="fas fa-fw fa-table"></i>
 					<span>재고</span>
 			</a></li>
+			<li class="nav-item"><a class="nav-link" href="/company/confirm">
+					<i class="fas fa-fw fa-table"></i> <span>장부</span>
+			</a></li>
 
 			<!-- Nav Item - broad -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
