@@ -260,7 +260,7 @@ input:checked+.slider:before {
     <script src="../market/js/mixitup.min.js"></script>
     <script src="../market/js/owl.carousel.min.js"></script>  
     <script src="../market/js/main.js"></script>	
-    <!--js list made by kim -->
+    <!--js list made by kim --> 
 	<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 			<!-- End of Main Content -->
 			<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
