@@ -203,6 +203,7 @@ input:checked+.slider:before {
 								<li><a href="/normal/interest">관심 업체 관리</a></li>
 								<li><a href="/normal/management2">유의 업체관리</a></li>
 								<li><a href="/normal/listall">전체 관리</a></li>
+								<li><a href="/normal/broadSelecMenu">가격 알림 관리</a></li>
 							</ul>
 						</div>
 					</div>
@@ -231,15 +232,15 @@ input:checked+.slider:before {
 								<tr>
 									<th>no.</th>
 									<th>상품명</th>
-									<th>상품가격</th>
-									<th>가격한도</th>
+									<th>알림가격</th>
+									<th>변경</th>
 									<th>삭제</th>
 								</tr>
 							</thead>
 							<c:forEach items="${palist}" var="pa" varStatus="count">
 								<tr>
 									<th>${count.index+1}</th>
-									<th>${pa.pname}</th>
+									<th class="pname">${pa.pname}</th>
 									<td class="pno" hidden>${pa.pno}</td>
 									<th><input class="br_param" id="param" value="${pa.br_param}" oninput="validateInput()">
 									</th>
@@ -292,6 +293,7 @@ input:checked+.slider:before {
 			      return;
 			    }
 				var pno = $(this).closest('tr').find('.pno').text();
+				var pname = $(this).closest('tr').find('.pname').text();
 				var br_param = $(this).closest('tr').find('.br_param').val();
 				$.ajax({
 						type : 'POST',
@@ -299,7 +301,13 @@ input:checked+.slider:before {
 						data : {
 								'pno' : pno,
 								'param' : br_param
-						}
+						},
+					    success: function(result) {
+					        alert(pname+'의 알림 가격이 '+br_param+'원으로 변경되었습니다.');
+					    },
+					    error: function() {
+					        alert('알림 가격 변경에 실패했습니다.');
+					    }
 				});
 			});
 		});

@@ -204,6 +204,7 @@ input:checked+.slider:before {
 								<li><a href="/normal/interest">관심 업체 관리</a></li>
 								<li><a href="/normal/management2">유의 업체관리</a></li>
 								<li><a href="/normal/listall">전체 관리</a></li>
+								<li><a href="/normal/broadSelecMenu">가격 알림 관리</a></li>
 							</ul>
 						</div>
 					</div>
@@ -306,7 +307,7 @@ input:checked+.slider:before {
 						if(result==0){
 						alert('실패');	
 						}else{
-						alert('상품번호 '+pno+'번 상품명 '+pname+ '의 알림 가격을 '+ aprice +'원으로 설정했습니다.');
+						alert('상품번호 '+pno+' '+pname+ '의 알림 가격을 '+ aprice +'원으로 설정했습니다.');
 						$(".aprice").text("");
 						}
 					}
