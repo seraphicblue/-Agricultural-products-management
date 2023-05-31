@@ -297,7 +297,7 @@ thead {
 
 	<!--chart  -->
 	<script src="../../../vendor/chart.js/Chart.min.js"></script>
-	<script src="../../../js/demo/chart-area-demo.js"></script>
+	<script src="../../../js/demo/chart-area-demo2.js"></script>
 
 	<!--js list made by kim -->
 	<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>

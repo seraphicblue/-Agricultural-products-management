@@ -127,4 +127,11 @@ public interface RevenueDao {
 		@Select("select sum(scount) as sc, sdate from sell where userid=#{userid} group by sdate")
 		List<Map<String, Object>> getmainselldata(String userid);
 		
+		
+		@Select("select sum(bcount) as bc, bdate from buy group by bdate")
+		List<Map<String, Object>> getmainbuydata2();
+		
+		@Select("select sum(scount) as sc, sdate from sell group by sdate")
+		List<Map<String, Object>> getmainselldata2();
+		
 }

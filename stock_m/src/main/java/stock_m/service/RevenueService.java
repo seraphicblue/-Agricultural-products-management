@@ -200,6 +200,16 @@ public class RevenueService {
 
 		return dao.getmainselldata(userid);
 	}
+	
+	public List<Map<String, Object>> getmainbuydata2() {
+
+		return dao.getmainbuydata2();
+	}
+
+	public List<Map<String, Object>> getmainselldata2() {
+
+		return dao.getmainselldata2();
+	}
 
 	public int deletemix(String k, int no) {
 

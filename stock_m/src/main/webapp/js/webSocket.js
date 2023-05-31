@@ -24,20 +24,12 @@ socket.onmessage = function(event) {
 			document.getElementById('position1').textContent = contents;
 			document.getElementById('position1').style.color = "#FF0000";
 			stockMessage(sep, sentUserid, contents + "_" + targetSno);
-			console.log("111111111");
 		}
 
 		else if (sep == 'CP') {
 			contents = content + "가격 도달";
 			document.getElementById('position2').textContent = contents;
 			document.getElementById('position2').style.color = "#FF0000";
-		}
-
-		else if (sep == 'P') {
-			const newWindow = window.open('', 'New Window', "top=1000,left=1500,width=400,height=100");
-			contents = '<h3>' + "(" + content + ")가 가격에 도달했습니다" + '</h3>';
-			newWindow.document.write(contents);
-			newWindow.document.write("<br><button onclick='window.close()'>Close</button>");
 		}
 
 		else if (sep == 'L') {
@@ -68,6 +60,10 @@ socket.onmessage = function(event) {
 			contents = '<h3>' + str + '</h3>';
 			stockMessage(sep, content, str + "_" + sentUserid + "_" + targetSno);
 		}
+		if (sep == 'M') {
+			contents = '<h3>' +sentUserid+"업체에서" + "(" + content + ")상품을 등록했습니다." + '</h3>';
+		}
+		
 
 		// 새 창에 내용 삽입
 		newWindow.document.write(contents);
@@ -181,7 +177,7 @@ function sendMessage(te) {
 		})
 	}// else if limit
 	
-	else if (te =="A") {
+	else if (te =="M") {
 		var message = document.getElementById('val').value;
 		var userid = document.getElementById('uid').value;
 		var param = document.getElementById('price').value;
@@ -189,7 +185,7 @@ function sendMessage(te) {
 		var text;
 
 		$.ajax({
-			url: '/broadprice',
+			url: '/broadmanage',
 			type: 'get',
 			data: { sno: parseInt(message) },
 			dataType: 'text',

@@ -325,8 +325,8 @@ public class RevenueController {
 						@ResponseBody
 						 public  ResponseEntity<String> getmain2(HttpSession session)throws JsonProcessingException {
 							String userid = (String)session.getAttribute("userid");
-							List<Map<String, Object>> getmainselldata = service.getmainselldata(userid);
-							List<Map<String, Object>> getmainbuydata = service.getmainbuydata(userid);
+							List<Map<String, Object>> getmainselldata = service.getmainselldata2();
+							List<Map<String, Object>> getmainbuydata = service.getmainbuydata2();
 							
 							System.out.println("getmain"+getmainselldata);
 							System.out.println("getmainbuy"+getmainbuydata);
