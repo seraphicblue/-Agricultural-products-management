@@ -89,12 +89,16 @@ public class SabService {
 	public int inserta(@Param("a_content") String a_content, @Param("a_val") int a_val, @Param("a_volum") int a_volum) {
 		int a =admin_dao.admincheck(a_content,a_val);
 		System.out.println(a);
+		if(a_volum>0) {
 		if(a ==0) {
 			admin_dao.inserta(a_content, a_val, a_volum);
 			return 1;
 		}else {
 			admin_dao.updatea(a_content, a_val, a_volum);
 			return 1;
+		}
+		}else {
+			return 0;
 		}
 	}
 

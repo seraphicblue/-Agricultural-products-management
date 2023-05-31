@@ -185,7 +185,7 @@ function sendMessage(te) {
 		var text;
 
 		$.ajax({
-			url: '/broadprice',
+			url: '/broadmanage',
 			type: 'get',
 			data: { sno: parseInt(message) },
 			dataType: 'text',

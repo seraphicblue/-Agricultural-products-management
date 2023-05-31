@@ -352,18 +352,18 @@ public class ManagementController {
 	}
 
 	@RequestMapping("/normal/insert")
-	public String insert(@RequestParam("username") String username, HttpSession session) {
+	public String insert(@RequestParam("username") String username,@RequestParam("c_userid")String c_userid, HttpSession session) {
 		// 요청 파라미터 값 id를 받아오고 service에 넘겨줌
 		String userid = (String) session.getAttribute("userid");
-		service.insert(userid, username);
+		service.insert(userid, username,c_userid);
 		// redirec:/+url를 사용해서 현재 페이지를 다시 요청
 		return "redirect:/normal/interest";
 	}
 
 	@RequestMapping("/normal/insert2")
-	public String insert2(@RequestParam("id") String id, HttpSession session) {
+	public String insert2(@RequestParam("id") String id,@RequestParam("c_userid")String c_userid, HttpSession session) {
 		String userid = (String) session.getAttribute("userid");
-		service.insert2(userid, id);
+		service.insert2(userid, id,c_userid);
 		return "redirect:/normal/management2";
 	}
 
