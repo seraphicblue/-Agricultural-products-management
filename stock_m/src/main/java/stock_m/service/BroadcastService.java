@@ -103,7 +103,7 @@ public class BroadcastService {
 		Map<String, Object> map = new HashMap<>();
 		map.put("userid", userid);
 		map.put("pno", pno);
-		map.put("br_param", br_param);
+		map.put("param", br_param);
 		return Broadcast_dao.palarmupdate(map);
 	}
 	
@@ -150,6 +150,15 @@ public class BroadcastService {
 			return mList;
 		}
 		return null;
+	}
+
+	public void stockinsertAndUpdate(int stock_selec, int stock_param, String userid) {
+		int chk=Broadcast_dao.salarmCount(userid, stock_selec);
+		if(chk>0) {
+			Broadcast_dao.saupdate(userid, stock_selec, stock_param);
+		}else {
+			Broadcast_dao.sainsert(userid, stock_selec, stock_param);
+		}
 	}
 	
 
