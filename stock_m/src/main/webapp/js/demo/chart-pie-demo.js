@@ -213,10 +213,14 @@ for (var i = 6; i >= 0; i--) {
  
   weekLabels.push(formatter.format(date));
 }
+var sampleDate = new Date(); // 실제 데이터에서 날짜 값을 사용하여 이 부분을 대체하십시오.
+var formattedSampleDate = formatter.format(sampleDate);
+console.log(formattedSampleDate);
+
 	var ctx = document.getElementById("myAreaChart");
 	
 	console.log(sellcountdate);
-	console.log("여기 바카"+buycountdate);
+	console.log(buycountdate);
 	
 	var sdates=[];
 	var scs=[];
