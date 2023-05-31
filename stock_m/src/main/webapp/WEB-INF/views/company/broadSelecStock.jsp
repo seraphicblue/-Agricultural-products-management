@@ -26,11 +26,11 @@
 
 <!-- Custom styles for this template-->
 
-
 <link href="../../../css/sb-admin-2.min.css" rel="stylesheet">
+<link href="../../../css/sb-admin-2.min2.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="../../../js/sell.js"></script>
 <script src="../../../js/webSocket.js"></script>
+
 
 
 </head>
@@ -80,8 +80,8 @@
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapsePages"
-				aria-expanded="true" aria-controls="collapsePages"> <i
-					class="fas fa-fw fa-folder"></i> <span>거래 탭</span>
+				aria-expanded="true" aria-controls="collapsePages"> 
+				<i class="fas fa-fw fa-folder"></i> <span>거래 탭</span>
 			</a>
 				<div id="collapsePages" class="collapse"
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
@@ -90,7 +90,8 @@
 						<a class="collapse-item" href="/company/buy">발주</a> 
 						<a class="collapse-item" href="/company/sell">판매</a>
 					</div>
-				</div></li>
+				</div>
+			</li>
 
 			<!-- Nav Item - Charts -->
 			<li class="nav-item"><a class="nav-link"
@@ -106,10 +107,25 @@
 					<i class="fas fa-fw fa-table"></i> <span>재고</span>
 			</a></li>
 			
-			<!-- Nav Item - broad -->
-			<li class="nav-item"><a class="nav-link" href="/company/broadSelM">
-					<i class="fas fa-fw fa-table"></i> <span>알림</span>
-			</a></li>
+			
+			
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#collapse2Pages"
+				aria-expanded="true" aria-controls="collapse2Pages"> 
+				<i class="fas fa-fw fa-folder"></i> <span>알림 탭</span>
+			</a>
+				<div id="collapse2Pages" class="collapse"
+					aria-labelledby="headingPages" data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<h6 class="collapse-header">알림 목록</h6>
+						<a class="collapse-item" href="broadSelecStock">재고 알림</a> 
+						<a class="collapse-item" href="broadSelecPrice">가격 알림</a>
+						<a class="collapse-item" href="broadSelecLimit">한도 알림</a>
+					</div>
+				</div>
+			</li>
+			
+			
 			
 			<!-- Divider -->
 			<hr class="sidebar-divider d-none d-md-block">
@@ -156,9 +172,9 @@
 						<li class="nav-item dropdown no-arrow">
 						<a  class="nav-link dropdown-toggle" href="#" id="userDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> 
-							<span class="mr-2 d-none d-lg-inline text-gray-600 small">${uid}</span> 
-							<img class="img-profile rounded-circle" src="../../img/undraw_profile.svg">
+							aria-expanded="false"> <span
+								class="mr-2 d-none d-lg-inline text-gray-600 small">${uid}</span> <img class="img-profile rounded-circle"
+								src="../../img/undraw_profile.svg">
 						</a> 
 						<!-- Dropdown - User Information -->
 							<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -186,7 +202,7 @@
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">판매 등록</h1>
+						<h1 class="h3 mb-0 text-gray-800">알림 선택</h1>
 					</div>
 
 					<!-- Content Row -->
@@ -196,21 +212,25 @@
 						<div id="Message" class="col-lg-12 mb-4">
 							<div class="card shadow mb-4">
 								<div class="card-header py-3">
-									<h6 class="m-0 font-weight-bold text-primary">판매 등록</h6>
+									<h6 class="m-0 font-weight-bold text-primary">알림 등록</h6>
 								</div>
-								<form action="sell" method="post" id="sellform" onsubmit="return checkStock();">
+								<form method="get" id="sboardform" onsubmit="return stockbroad();">
 									<input type="hidden" name="sno" id="val" value=0> 
 									<input type="hidden" name="pname" id="pname"> 
 									<input type="hidden" name="uid" id="uid" value="${uid}"> 
-									<input type="hidden" name="command" id="command" value="price">
-
+									<input type="hidden" name="command" id="command" value="common">
+									
 									<table class="table table-bordered dataTable copyright text-center my-auto"
 										id="dataTable" width="100%" cellspacing="0" role="grid"
 										aria-describedby="dataTable_info" style="width: 100%;">
+										<tr>
+											<td>알림 종류</td><!-- onchange="check()" -->
+											<td>재고 알림</td>
+										</tr>
 										
 										<tr>
-											<td>상품명</td>
-											<td><select id="scontent" onchange="check()">
+											<td>상품 선택</td>
+											<td><select id="scontent">
 													<option>--------------------</option>
 													<c:forEach items="${npList}" var="np">
 														<option value="${np.s_volume}" id="${np.sno}">${np.scontent}</option>
@@ -218,15 +238,12 @@
 											</select></td>
 										</tr>
 										<tr>
-											<td>가격</td>
-											<td><input name="price" id="price" placeholder="0" value=0 style="text-align: right;"></td>
-										</tr>
-										<tr>
 											<td>수량</td>
 											<td><input name="p_count" id="s_volume" placeholder="0"  style="text-align: right;"></td>
 										</tr>
+										
 									</table>
-									<input type="submit" class="btn btn-primary btn-icon-split" value="판매" style="width:70px;height:41px;float: right;" >
+									<input type="submit" class="btn btn-primary btn-icon-split" value="등록" style="width:70px;height:41px;float: right;" >
 								</form>						
 							</div>
 	
@@ -284,7 +301,7 @@
 								data-dismiss="modal">Cancel</button>
 							<a class="btn btn-primary" href="login.html">Logout</a>
 						</div>
-  
+
 					</div>
 				</div>
 			</div>
@@ -304,9 +321,33 @@
 
 			<!-- Page level custom scripts -->
 
-	
+			
 			<script src="../../../js/demo/chart-area-demo.js"></script>
 			<script src="../../../js/demo/chart-pie-demo.js"></script>
+			<script type="text/javascript">
+				function stockbroad(){
+					var scontent = document.getElementById("scontent").getId();
+					var stock = parseInt(document.getElementById("s_volume").value);
+					var select = parseInt(document.getElementById("scontent").value);
+				
+					
+					document.getElementById("pname").value = scontent;
+					alert(scontent+" : "+stock);	
+
+					if (scontent.trim() === "--------------------") {
+						alert("물품 정보를 선택해주세요.");
+						return false;
+
+					} else if (stock <= 0 || document.getElementById("s_volume").value.trim() === "") {//s_volume
+						alert("수량 정보를 입력해주세요.");
+						return false;
+
+					} else {
+						return true;
+					}
+					
+				}
+			</script>
 			
 
 </body>

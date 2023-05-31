@@ -53,20 +53,18 @@ public class StockService {
 
 
 	public int checki(int s_price, String scontent, int s_volume,int s_val, int ano, String userid) {
-		System.out.println(userid);
 		int s = dao.checki(scontent,userid);
-		System.out.println(s);
 		if(s>0) {
 			Date now = new	 Date();
 			SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
-			rdao.insertb(ano,userid,format.format(now),s_price);
+			rdao.insertb(ano,userid,format.format(now),s_price,s_volume);
 			rdao.updater(s_price,userid);
-			 return dao.updates(scontent,s_volume,ano,userid);
+			 return dao.updates(scontent,s_volume,s_val,userid);
 		}else {
 			Date now = new	 Date();
 			SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
 			rdao.updater(s_price,userid);
-			rdao.insertb(ano,userid,format.format(now),s_price);
+			rdao.insertb(ano,userid,format.format(now),s_price,s_volume);
 			return dao.inserts(scontent,s_volume,format.format(now), s_val,userid);
 		}
 	}

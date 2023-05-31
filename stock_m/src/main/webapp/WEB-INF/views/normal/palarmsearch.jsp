@@ -215,13 +215,14 @@ input:checked+.slider:before {
 					<div>
 						<!-- Page Heading -->
 
-						<h1 class="h3 mb-2 text-gray-800">유의 업체</h1>
+						<h1 class="h3 mb-2 text-gray-800">가격 알림</h1>
 
 						<div class="hero__search__form">
-							<form action="/normal/inmasearch" method="GET">
+							<form action="/normal/palarmsearch" method="GET">
 
 								<div class="search">
-									<input type="text" name="keyword" placeholder="추가하실 기업을 입력해주세요">
+									<input type="text" name="pname"
+										placeholder="알림 받을 상품을 입력해주세요">
 									<button type="submit" class="site-btn">검색</button>
 								</div>
 							</form>
@@ -233,17 +234,18 @@ input:checked+.slider:before {
 							<c:if test="${count != 0 }">
 								<tr>
 									<th>no.</th>
-									<th>회사 명</th>
-									<th>회사 홈페이지</th>
-									<th>사업자 번호</th>
+									<th>상품명</th>
+									<th>상품가격</th>
+									<th>가격알림설정</th>
 									<th>추가</th>
 								</tr>
-								<c:forEach items="${mList}" var="user" varStatus="count">
+								<c:forEach items="${palist}" var="pa" varStatus="count">
 									<tr>
 										<td>${count.index+1}</td>
-										<td class="username" data-userid="${user.userid}">${user.username}</td>
-										<td>${user.gender}</td>
-										<td>${user.age}</td>
+										<td class="pname">${pa.pname}</td>
+										<td class="pno" hidden>${pa.pno}</td>
+										<td>${pa.price}</td>
+										<td><input class="aprice"></td>
 										<td><button class="click">추가</button></td>
 									</tr>
 								</c:forEach>
@@ -282,20 +284,22 @@ input:checked+.slider:before {
 	<script>
 		$(document).ready(function() {
 			$(".click").click(function() {
-				var username = $(this).parent().siblings('.username').text();
-				var c_userid = $(this).parent().siblings('.username').attr('data-userid');
+				var pno = parseInt($(this).parent().siblings('.pno').text());
+				var pname = $(this).parent().siblings('.pname').text();
+				var aprice = $(this).closest('tr').find('.aprice').val();
 				$.ajax({
 					type : 'POST',
-					url : '/normal/check',
+					url : '/normal/palarm',
 					data : {
-						'username' : username,
-						'c_userid' : c_userid
+						'pno' : pno,
+						'aprice' : aprice
 					},
 					success : function(result) {
-						if (result === false) {
-							alert('이미 추가된 업체입니다.');
-						} else {
-							location.href = "/normal/insert2?id=" + username+"&c_userid="+c_userid;
+						if(result==0){
+						alert('실패');	
+						}else{
+						alert('상품번호 '+pno+'번 상품명 '+pname+ '의 알림 가격을 '+ aprice +'원으로 설정했습니다.');
+						$(".aprice").text("");
 						}
 					}
 

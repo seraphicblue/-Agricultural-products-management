@@ -25,8 +25,8 @@ public interface ManagementDao {
 
 		int count();
 		int countSearch(String keyword);
-		int insert(@Param("userid")String userid, @Param("username")String username);
-		int insert2(@Param("userid")String userid, @Param("username")String id);
+		int insert(@Param("userid")String userid, @Param("username")String username,@Param("c_userid") String c_userid);
+		int insert2(@Param("userid")String userid, @Param("username")String id,@Param("c_userid")  String c_userid);
 		int find(@Param("m_content")String m_content,@Param("userid") String userid);
 		int delete(@Param("mno")int mno,@Param("userid") String userid); // insert,update,delete는 리턴 값 int
 		int count1();

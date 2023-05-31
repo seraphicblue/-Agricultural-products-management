@@ -63,13 +63,13 @@ public class ManagementService {
 		return dao.countSearch(keyword);
 	}
 
-	public int insert(String userid, String username) {
-		return dao.insert(userid,username);
+	public int insert(String userid, String username, String c_userid) {
+		return dao.insert(userid,username,c_userid);
 
 	}
 
-	public int insert2(String userid,String id) {
-		return dao.insert2(userid,id);
+	public int insert2(String userid,String id, String c_userid) {
+		return dao.insert2(userid,id,c_userid);
 	}
 
 	public int find(String m_content, String userid) {

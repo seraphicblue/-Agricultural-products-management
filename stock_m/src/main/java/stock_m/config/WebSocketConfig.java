@@ -87,7 +87,7 @@ public class WebSocketConfig implements WebSocketConfigurer {
 				String target = tokens[2];
 				String textTarget = tokens[3];
 				System.out.println("this is handleTextMessage" + payload);
-
+				
 				for (WebSocketSession webSocketSession : sessions) {
 					for (String key : socketMap.keySet()) {
 
@@ -95,7 +95,7 @@ public class WebSocketConfig implements WebSocketConfigurer {
 
 						if (webSocketSession.getId().equals(str) && key.equals(target)) {
 
-							webSocketSession.sendMessage(new TextMessage("P_" + textTarget + "_" + useridToken));
+							webSocketSession.sendMessage(new TextMessage("P_" + textTarget + "_" + useridToken +"_" +target));
 							System.out.println(webSocketSession.getId());
 							System.out.println("Sent message to user " + useridToken + ": " + target);
 							break;
@@ -122,7 +122,7 @@ public class WebSocketConfig implements WebSocketConfigurer {
 
 						if (webSocketSession.getId().equals(str) && key.equals(useridToken)) {
 
-							webSocketSession.sendMessage(new TextMessage("S_" + name + "_" + useridToken));
+							webSocketSession.sendMessage(new TextMessage("S_" + name + "_" + useridToken + "_" + target));
 							System.out.println(webSocketSession.getId());
 							System.out.println("Sent message to user " + useridToken + ": " + target + name);
 							break;
@@ -143,10 +143,10 @@ public class WebSocketConfig implements WebSocketConfigurer {
 
 						String str = socketMap.get(key);
 
-						if (webSocketSession.getId().equals(str) && key.equals(target)) {
+						if (webSocketSession.getId().equals(str) && key.equals(useridToken)) {
 
-							webSocketSession.sendMessage(new TextMessage("P_" + textTarget));
-							System.out.println(webSocketSession.getId());
+							webSocketSession.sendMessage(new TextMessage("L_" +useridToken+"_"+ target +"_"+ textTarget));
+							System.out.println(webSocketSession.getId()); 
 							System.out.println("Sent message to user " + useridToken + ": " + target);
 							break;
 						}

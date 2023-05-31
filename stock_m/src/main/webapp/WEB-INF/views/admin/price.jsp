@@ -26,7 +26,18 @@
 
 <!-- Custom styles for this template-->
 <link href="../../css/sb-admin-2.min.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="../../js/webSocket.js"></script>
+<script src="../../js/sell.js"></script>
+
+<script src="../../vendor/jquery/jquery.min.js"></script>
+	<script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Core plugin JavaScript-->
+	<script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+	<!-- Custom scripts for all pages-->
+	<script src="../../js/sb-admin-2.min2.js"></script>
 
 </head>
 
@@ -82,50 +93,11 @@
 					<ul class="navbar-nav ml-auto">
 
 						<!-- Nav Item - Search Dropdown (Visible Only XS) -->
-						<li class="nav-item dropdown no-arrow d-sm-none"><a
-							class="nav-link dropdown-toggle" href="#" id="searchDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> <i class="fas fa-search fa-fw"></i>
-						</a>
-						<!-- Nav Item - Search Dropdown (Visible Only XS) -->
-						<li class="nav-item dropdown no-arrow d-sm-none"><a
-							class="nav-link dropdown-toggle" href="#" id="searchDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> <i class="fas fa-search fa-fw"></i>
-						</a> <!-- Dropdown - Messages -->
-							<div
-								class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-								aria-labelledby="searchDropdown">
-								<form class="form-inline mr-auto w-100 navbar-search">
-									<div class="input-group">
-										<input type="text"
-											class="form-control bg-light border-0 small"
-											placeholder="Search for..." aria-label="Search"
-											aria-describedby="basic-addon2">
-										<div class="input-group-append">
-											<button class="btn btn-primary" type="button">
-												<i class="fas fa-search fa-sm"></i>
-											</button>
-										</div>
-									</div>
-								</form>
-							</div></li>
-
-						<!-- Nav Item - Alerts -->
-						<li class="nav-item dropdown no-arrow mx-1"></li>
-
-						<!-- Nav Item - Messages -->
-						<li class="nav-item dropdown no-arrow mx-1"></li>
-
-
-
-						<!-- Nav Item - User Information -->
-						<!-- 로그아웃 마이페이 부분-->
 						<li class="nav-item dropdown no-arrow"><a
 							class="nav-link dropdown-toggle" href="#" id="userDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <span
-								class="mr-2 d-none d-lg-inline text-gray-600 small">${userid}</span>
+								class="mr-2 d-none d-lg-inline text-gray-600 small">${uid}</span>
 								<img class="img-profile rounded-circle"
 								src="../../img/undraw_profile.svg">
 						</a> <!-- Dropdown - User Information -->
@@ -133,20 +105,27 @@
 								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 								aria-labelledby="userDropdown">
 								<a class="dropdown-item" href="#"> <i
-									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
+									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 프로필
 								</a>
 
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="#" data-toggle="modal"
 									data-target="#logoutModal"> <i
 									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-									Logout
+									로그아웃
 								</a>
 							</div></li>
-
 					</ul>
 
 				</nav>
+
+
+
+						<!-- Nav Item - User Information -->
+						<!-- 로그아웃 마이페이 부분-->
+						
+						
+				
 				<!-- End of Topbar -->
 
 				<!-- Begin Page Content -->
@@ -194,7 +173,30 @@
    </div>
    </div>
    </div>
-    
+    				<div>
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+				aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">로그아웃</h5>
+							<button class="close" type="button" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">×</span>
+							</button>
+						</div>
+						<div class="modal-body">로그아웃 하시겠습니까?</div>
+						<div class="modal-footer">
+							<button class="btn btn-secondary" type="button"
+								data-dismiss="modal">취소</button>
+							<a class="btn btn-primary" href="/logout">로그아웃</a>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
     

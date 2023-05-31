@@ -103,6 +103,9 @@
 			<li class="nav-item"><a class="nav-link" href="/company/stockmanage">
 					<i class="fas fa-fw fa-table"></i> <span>재고</span>
 			</a></li>
+			<li class="nav-item"><a class="nav-link" href="/company/confirm">
+					<i class="fas fa-fw fa-table"></i> <span>장부</span>
+			</a></li>
 			
 			<!-- Divider -->
 			<hr class="sidebar-divider d-none d-md-block">
@@ -224,7 +227,7 @@
 
 <label for="end-date-input"><a id="P">~</a></label>
 <input type="date" id="end-date-input" name="end-date" min="" max="" value="" required>
-<button type="button" class="resetButton" onclick="resetSearch()">X</button>
+<button type="button" class="resetButton" onclick="resetSearch()">리셋</button>
 <button type="button" id="myButton" onclick="search()">검색 </button>
                                         
                                     </div>

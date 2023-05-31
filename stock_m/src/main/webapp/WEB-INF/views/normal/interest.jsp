@@ -220,7 +220,6 @@ input:checked+.slider:before {
                                     <th>no.</th>
                                     <th>회사 이름</th>
                                     <th>회사 여부</th>
-                                    <th>알림 설정</th>
                                     <th>삭제</th>
                                     <th>상태 변경</th>
                                 </tr>
@@ -231,9 +230,6 @@ input:checked+.slider:before {
                                     <th>${count.index+1}</th>
                                     <th class="m_content">${management.m_content}</th>
                                     <th>${management.m_val}</th>
-                                    <th><label class="switch"> <input
-                                            type="checkbox"> <span class="slider round"></span>
-                                    </label></th>
                                     <th><button class="click"
                                             data-userid="${management.userid}">삭제</button></th>
                                     <th><button class="click2"
@@ -265,7 +261,6 @@ input:checked+.slider:before {
     <script src="../market/js/main.js"></script>	
     <!--js list made by kim -->
 	<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script src="../../js/priceWebSocket.js"></script>
 			<!-- End of Main Content -->
 			<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 			<script>
@@ -325,32 +320,6 @@ input:checked+.slider:before {
 													});
 								});
 
-				$(document).ready(
-						function() {
-							$('.switch input').change(
-									function() {
-										var Checked = $(this).is(":checked");
-										var userid = $(this).closest('tr')
-												.find('.userid').val();
-										console.log("슬라이드 바 상태: " + Checked);
-										console.log(userid);
-										$.ajax({
-											type : 'POST',
-											url : '/normal/switch',
-											data : {
-												Checked : Checked
-											},
-											success : function(result) {
-												if (result == true) {
-
-												} else {
-
-												}
-											}
-
-										});
-									});
-						});
 			</script>
 </body>
 </html>

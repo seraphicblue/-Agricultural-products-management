@@ -49,23 +49,22 @@
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
-            </a>
+         	<!-- Sidebar - Brand -->
+			<!-- 홈화면 링크 부분-->
 
+			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="/company/main">
+
+				<div class="sidebar-brand-icon rotate-n-15">
+					<i class="fas fa-laugh-wink"></i>
+				</div>
+				<div class="sidebar-brand-text mx-3">
+					관리해줘 <sup>업체</sup>
+				</div>
+			</a>
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
+            
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -119,39 +118,37 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.html">Login</a>
-                        <a class="collapse-item" href="register.html">Register</a>
-                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item" href="blank.html">Blank Page</a>
-                    </div>
-                </div>
-            </li>
+            <li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#collapsePages"
+				aria-expanded="true" aria-controls="collapsePages"> <i
+					class="fas fa-fw fa-folder"></i> <span>거래 탭</span>
+			</a>
+				<div id="collapsePages" class="collapse"
+					aria-labelledby="headingPages" data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<h6 class="collapse-header">발주 / 판매</h6>
+						<a class="collapse-item" href="/company/buy">발주</a> 
+						<a class="collapse-item" href="/company/sell">판매</a>
+					</div>
+				</div></li>
 
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span></a>
-            </li>
+			<!-- Nav Item - Charts -->
+			<li class="nav-item"><a class="nav-link"
+				href="/company/cs"> <i class="fas fa-fw fa-chart-area"></i>
+					<span>재고 그래프</span></a></li>
+					
+			<li class="nav-item"><a class="nav-link"
+				href="/company/cr"> <i class="fas fa-fw fa-chart-area"></i>
+					<span>장부 그래프</span></a></li>
 
-            <!-- Nav Item - Tables -->
-            <li class="nav-item active">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
-            </li>
+			<!-- Nav Item - Tables -->
+			<li class="nav-item"><a class="nav-link" href="/company/stockmanage">
+					<i class="fas fa-fw fa-table"></i> <span>재고</span>
+			</a></li>
+			<li class="nav-item"><a class="nav-link" href="/company/confirm">
+					<i class="fas fa-fw fa-table"></i> <span>장부</span>
+			</a></li>
+			
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -380,10 +377,8 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-                        For more information about DataTables, please visit the <a target="_blank"
-                            href="https://datatables.net">official DataTables documentation</a>.</p>
+                    <h1 class="h3 mb-2 text-gray-800"></h1>
+                    <p class="mb-4"></p>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -417,7 +412,7 @@
 					                       <th>구분</th>
                                            <th>상품명</th>
 					                       <th>금액</th>
-					                       <th>재고량</th>
+					                       <th>거래량</th>
 					                       <th>관리버튼</th>
                                         </tr>
                                     </thead>
@@ -432,7 +427,7 @@
                                     <c:forEach items="${totalList}" var="t">
                                    	<tr>
 		     	    			
-		     	    			<td><input id="test_check" name="test_check" value="${t.no}" type="checkbox"></td>
+		     	    			<td><input id="test_check" name="test_check" title="${t.kind}" value="${t.no}" type="checkbox"></td>
 		     	    			<td>${t.date}</td>
 		     	    		         <td>${t.no}</td>
 		     	    		         <td>${t.kind}</td>
@@ -447,11 +442,15 @@
                                    
                                 </table>
                                  
+                                 
                                    <form action='/company/buyinsert'  id='buyinsert' >
                                     </form>
                                       <form action='/company/sellinsert'  id='sellinsert' >
                                     </form>
-                            <button onclick='totaldel(this)'>통합삭제</button>
+                                     <button id="buychecksellbutton" onclick='delchecksell(this)'>판매통합삭제</button>
+                                   <button id="buycheckdelbutton" onclick='delcheckit(this)' >구매통합삭제</button>
+                              
+                            <button id="wholedel" onclick='totaldel(this)'>통합삭제</button>
                                 </c:if>
                                 <c:if test="${count == 0 }">
 	아직 거래가 없습니다.
@@ -518,6 +517,55 @@
 	    checkbox.checked = selectAll.checked
 	  })
 	} */
+	$(document).ready(function() {
+		
+		  $("#buychecksellbutton").css("display", "none");
+		  $("#sellinsert").css("display", "none");
+		  $("#buycheckdelbutton").css("display", "none");
+		  $("#buyinsert").css("display", "none");
+
+		  $("#buyinsert").on("submit", function(event) {
+		    event.preventDefault();
+
+		    var pno = $("input[name='pno']").val();
+		    var price = $("input[name='price']").val();
+		    var bcount = $("input[name='bcount']").val();
+
+		    if (!isNumeric(pno) || !isNumeric(price) || !isNumeric(bcount)) {
+		      alert("상품번호, 가격, 구매량은 숫자만 입력 가능합니다.");
+		      return;
+		    }else{
+
+		    
+		    this.submit(); }
+		  });
+
+		  $("#sellinsert").on("submit", function(event) {
+		    event.preventDefault();
+
+		    var pno = $("input[name='pno']").val();
+		    var price = $("input[name='price']").val();
+		    var bcount = $("input[name='scount']").val();
+
+		    if (!isNumeric(pno) || !isNumeric(price) || !isNumeric(bcount)) {
+		      alert("재고번호, 가격, 구매량은 숫자만 입력 가능합니다.");
+		      return;
+		    }else{
+		    	 
+
+				    this.submit(); 
+		    	
+		    }
+
+		   
+		  });
+
+		  function isNumeric(value) {
+		    return /^\d+$/.test(value);
+		  }
+		});
+	
+	
 	 function selectAll(selectAll){
 		  const checkboxes 
 		     = document.querySelectorAll('input[type="checkbox"]');
@@ -527,24 +575,7 @@
 		  })
 		} 	
 	
-/* //sell 전체선택	
-function sellselectAll(selectAll){
-	  const checkboxes 
-	     = document.querySelectorAll('input[name="sell_check"]');
-	  
-	  checkboxes.forEach((checkbox) => {
-	    checkbox.checked = selectAll.checked
-	  })
-	}
-//buy 전체선택
-function buyselectAll(selectAll){
-	  const checkboxes 
-	     = document.querySelectorAll('input[name="buy_check"]');
-	  
-	  checkboxes.forEach((checkbox) => {
-	    checkbox.checked = selectAll.checked
-	  })
-	} */
+
 
 function submitForm(){
 	document.getElementById("upform").submit();
@@ -597,228 +628,126 @@ $.ajax({
 
 })
 }
-	/*function dc(obj){
-		var params = {
-				sno : obj.getAttribute("id")
-        };
-		$.ajax({
+	
+	function totaldel(obj) {
+	    var elements = document.querySelectorAll('input[name="test_check"]:checked');
+	    var selectedItems = [];
+	    var kinds = [];
+
+	    Array.from(elements).forEach(function(checkbox) {
+	        selectedItems.push(checkbox.value);
+	        kinds.push(checkbox.title);
+	    });
+          console.log(selectedItems);
+          console.log(kinds);
+          
+	   
+
+	   
+	        
+	            $.ajax({
+	                type: "GET",
+	                url: "/company/revmixdel",
+	                data: { selectedItems: selectedItems, kind: kinds },
+	            }).done(function() {
+	    		    document.location.reload();
+	  		  });
+	        
+	   
+
+	  
+	}
+
+		// 구매체크 삭제
+		function delcheckit(obj) {
+		  var checkboxes = document.querySelectorAll('input[name="buy_check"]:checked');
+		  var selectedItems = [];
+		  checkboxes.forEach(function(checkbox) {
+		    selectedItems.push(checkbox.value);
+		  });
+		  $.ajax({
+		    type: "GET",
+		    url: "/company/rcheckdelete",
+		    data: { selectedItems: selectedItems },
+		    success: function() {
+		    checkboxes.forEach(function(checkbox) {
+		      var row = checkbox.closest("tr"); // 체크박스가 속한 행
+		      row.remove(); // 행을 삭제
+		    });
+		   
+		    
+		    }
+		  });
+		}
+		
+		// 판매체크 삭제
+		function delchecksell(obj) {
+		  var checkboxes = document.querySelectorAll('input[name="sell_check"]:checked');
+		  var selectedItems = [];
+		  console.log(selectedItems);
+		  checkboxes.forEach(function(checkbox) {
+		    selectedItems.push(checkbox.value);
+		  });
+		  $.ajax({
+		    type: "GET",
+		    url: "/company/revsellcheckdel",
+		    data: { selectedItems: selectedItems },
+		    success: function() {
+			    checkboxes.forEach(function(checkbox) {
+			      var row = checkbox.closest("tr"); // 체크박스가 속한 행
+			      row.remove(); // 행을 삭제
+			    });
+			   
+			    
+			    }
+			  });
+		}
+
+		function upcheckit(button) {
+		  var checkboxes = document.querySelectorAll('input[name="test_check"]:checked');
+		  var selectedItems = [];
+		  checkboxes.forEach(function(checkbox) {
+		    selectedItems.push(checkbox.value);
+		  });
+		  $.ajax({
+		    type: "GET",
+		    url: "/company/rcheckupdate",
+		    data: { selectedItems: selectedItems },
+		  }).done(function() {
+		    document.location.reload();
+		  });
+		}
+
+		function nodelete(obj) {
+		  var no = obj.getAttribute("id");
+		  var kind = obj.getAttribute("title");
+		  console.log(no);
+		  console.log(kind);
+		  if (obj.getAttribute("title") == "판매") {
+		    $.ajax({
+		      type: "GET",
+		      url: "/company/revselldel",
+		      data: { "sno": no },
+		    }).done(function() {
+		      alert(no);
+		      alert(kind);
+		      document.location.reload();
+		    });
+		  } else {
+		    $.ajax({
 		      type: "GET",
 		      url: "/company/rdelete",
-		      data: params,
-		   
-		      
-		    }).done(function(){
-		    	//document.location.reload();
- 
-		})
-	}*/
-	function totaldel(obj){
-		var element = document.getElementById("test_check");
-		 var no=obj.getAttribute("id");
-		 var kind=obj.getAttribute("title");
-			console.log(no);
-			console.log(kind);
-		 if(obj.getAttribute("title") == "판매"){
-			
-
-			 var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
-			    var selectedItems = [];
-		        console.log(selectedItems);
-			    checkboxes.forEach(function (checkbox) {
-			      selectedItems.push(checkbox.value);
-			    });
-			    $.ajax({
-			    	  type: "GET",
-			    	  url: "/company/rcheckdelete",
-			    	  data: { selectedItems: selectedItems },
-			    	}).done(function() {
-			    	  document.location.reload();
-			    	});
-			}
-			else{
-				var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
-			    var selectedItems = [];
-		        
-			    checkboxes.forEach(function (checkbox) {
-			      selectedItems.push(checkbox.value);
-			     
-			    });
-			    $.ajax({
-			    	  type: "GET",
-			    	  url: "/company/revsellcheckdel",
-			    	  data: { selectedItems: selectedItems },
-			    	}).done(function() {
-			    		 
-			    	  document.location.reload();
-			    	 
-			    	});
-	    
-	  } 
-	}
-	
-	//구매체크 삭제
-	  function delcheckit(obj) {
-	    var checkboxes = document.querySelectorAll('input[name="buy_check"]:checked');
-	    var selectedItems = [];
-        
-	    checkboxes.forEach(function (checkbox) {
-	      selectedItems.push(checkbox.value);
-	     
-	    });
-	    $.ajax({
-	    	  type: "GET",
-	    	  url: "/company/rcheckdelete",
-	    	  data: { selectedItems: selectedItems },
-	    	}).done(function() {
-	    		 
-	    	  document.location.reload();
-	    	 
-	    	});
-	    
-	}
-	//판매체크 삭제
-	function delchecksell(obj) {
-	    var checkboxes = document.querySelectorAll('input[name="sell_check"]:checked');
-	    var selectedItems = [];
-        console.log(selectedItems);
-	    checkboxes.forEach(function (checkbox) {
-	      selectedItems.push(checkbox.value);
-	    });
-	    $.ajax({
-	    	  type: "GET",
-	    	  url: "/company/revsellcheckdel",
-	    	  data: { selectedItems: selectedItems },
-	    	}).done(function() {
-	    	  document.location.reload();
-	    	});
-	    
-	  } 
-	
-	   function upcheckit(button) {
-		 
-		   
-		    var checkboxes = document.querySelectorAll('input[name="test_check"]:checked');
-		    var selectedItems = [];
-		  
-		   
-		   
-		    checkboxes.forEach(function (checkbox) {
-		      selectedItems.push(checkbox.value);
-		      
+		      data: { "bno": no },
+		    }).done(function() {
+		      alert(no);
+		      alert(kind);
+		      document.location.reload();
 		    });
-		    $.ajax({
-		    	  type: "GET",
-		    	  url: '/company/rcheckupdate',
-		    	  data:  { selectedItems: selectedItems },
-		                      
-		    	}).done(function() {
-		    	  document.location.reload();
-		    	});
-		    
-		  } 
-	   
-	    function nodelete(obj){
-		 var no=obj.getAttribute("id");
-		 var kind=obj.getAttribute("title");
-			console.log(no);
-			console.log(kind);
-		 if(obj.getAttribute("title") == "판매"){
-			 $.ajax({
-				  type: "GET",
-				  url: "/company/revselldel",
-				  data: {"sno":no}
-					
-				  
-				}).done(function(){
-					 //$("#sbchange").val("buy");
-					 alert(no);
-			        alert(kind);
-					document.location.reload();
-					 
-
-				})
-			}
-			else{
-				$.ajax({
-				      type: "GET",
-				      url: "/company/rdelete",
-				      data: {"bno":no}
-				   	
-				      
-				    }).done(function(){
-				    	alert(no);
-						alert(kind);
-				    	 //$("#sbchange").val("buy");
-				    		document.location.reload();
-				    	 
-
-				})
-				
-				
-			} 
-
-	$.ajax({
-	      type: "GET",
-	      url: "/company/rdelete",
-	      data: {no:no}
-	   	
-	      
-	    }).done(function(){
-	    	 //$("#sbchange").val("buy");
-	    	document.location.reload();
-	    	 
-
-	})
-		   
-	   } 
-	  
-	  /*  function checksnb(button) {
-			
-
-	    });
-	    $.ajax({
-	    	  type: "GET",
-	    	  url: '/company/total',
-	    	  data:  { "list":sellList, rbuyList:rbuyList },
-	                      
-	    	}).done(function() {
-	    	  document.location.reload();
-	    	});
-	    
-	  }  */
-	  
-	/*   function checkbuy(button) {
-			
-
-	    });
-	    $.ajax({
-	    	  type: "GET",
-	    	  url: '/company/rbuy',
-	    	  data:  { "list": rbuyList },
-	                      
-	    	}).done(function() {
-	    	  document.location.reload();
-	    	});
-	    
-	  } 
-
-	   function checksell(button) {
-			
-
-		    });
-		    $.ajax({
-		    	  type: "GET",
-		    	  url: '/company/confirm',
-		    	  data:  { "list": sellList },
-		                      
-		    	}).done(function() {
-		    	  document.location.reload();
-		    	});
-		    
-		  }  */
-	   
+		  }
+		}
+	
           //option 선택
-		  $("#sbchange").change(function(event){
+		$("#sbchange").change(function(event){
 			   if($(this).val() == "snb"){
 				   $.ajax({
 				    	  type: "GET",
@@ -827,20 +756,22 @@ $.ajax({
 				                      
 				    	}).done(function(response) {
 				    		
-				    		$("#sbchange").val("total");
+				    		//$("#sbchange").val("total");
 				    		console.log("totalList");
 				    		$("input:checkbox[id='checkall']").prop("checked", false);
 				    		
 				    		 document.getElementById("buyinsert").style.display = "none";
+				    		 document.getElementById("buycheckdelbutton").style.display = "none";
 		     	    		document.getElementById("sellinsert").style.display = "none";
+		     	    		document.getElementById("buychecksellbutton").style.display = "none";
+		     	    		document.getElementById("wholedel").style.display = "block";
 		     	    		
-		     	    		 
 		     	    		var str = "";
 		     	    		for(let rb in response){
 		     	    			console.log(response[rb]["date"]);
 		     	    			
 		     	    			str += "<tr>";
-		     	    			str+= "<td><input id='total_check' name='total_check' value="+response[rb]["no"]+" type='checkbox'></td>";
+		     	    			str += "<td><input id='test_check' name='test_check' title='" + response[rb]["kind"] + "' value='" + response[rb]["no"] + "' type='checkbox'></td>";
 		     	    			str += "<td>"+response[rb]["date"]+"</td>"
 		     	    		          +"<td>"+response[rb]["no"]+"</td>"
 		     	    		          +"<td>"+response[rb]["kind"]+"</td>"
@@ -857,7 +788,7 @@ $.ajax({
 				    		 
 				    		
 				    	});
-	           } else if($(this).val() == "sell"){
+	           }else if($(this).val() == "sell"){
 	        	   
 	        	   $.ajax({
 	 		    	  type: "GET",
@@ -867,8 +798,11 @@ $.ajax({
 	 		    		
 	 		    		$("#sbchange").val("sell");
 	 		    		$("input:checkbox[id='checkall']").prop("checked", false);
+	 		    		document.getElementById("buychecksellbutton").style.display = "block";
 	 		    		document.getElementById("sellinsert").style.display = "block";
+	 		    		 document.getElementById("buycheckdelbutton").style.display = "none";
 	 		    		document.getElementById("buyinsert").style.display = "none";
+	 		    		document.getElementById("wholedel").style.display = "none";
 	 		    		
 	 		    		
 	 		    		console.log("sellList");
@@ -893,20 +827,21 @@ $.ajax({
 	     	    		 $("#formin").html(str);
 
 	     	    		
-	     	    		 var sts="";
-	     	    		 sts+= "<button onclick='delchecksell(this)'>판매통합삭제</button>"
-     	    	    	 sts +=  "<tr>"
-     	    	    		sts +=  "<th><button type='button' id='plus' >+</button></th>"
-     	    	    			sts += "<th></th>"
-     	    	    				sts += "<th></th>"
-     	    	    					sts += "<th>판매</th>"
-     	    	    						sts += "<th><input type='text' name='pno'></th>"
-     	    	    							sts += "<th><input type='text' name='price'></th>"
-     	    	    								sts +="<th><input type='text' name='scount'></th>"
-     	    	    									sts +="<th><input type='submit' value='입력'> </th>"
-     	    	    										sts += "</tr>"
-     	    	    											
-     	    		   $("#sellinsert").html(sts);
+	     	    		
+	     	    		 var stb="";
+	     	    		stb +=  "<tr>"
+	     	    			stb +=  "<th><button type='button' id='plus' >+</button></th>"
+	     	    				stb += "<th></th>"
+	     	    					stb += "<th></th>"
+     	    	    					stb += "<th>판매</th>"
+     	    	    						stb += "<th><input type='text' name='pno' placeholder='상품번호'></th>"
+     	    	    							stb += "<th><input type='text' name='price' placeholder='가격'></th>"
+     	    	    								stb +="<th><input type='text' name='scount' placeholder='판매량'></th>"
+     	    	    									stb +="<th><input type='submit' value='입력'> </th>"
+     	    	    										stb += "</tr>"
+     	    	    	
+     	    	    							
+     	    		   $("#sellinsert").html(stb);
 	     	    		
 	     	    	   
 	     	    		});//done
@@ -927,8 +862,10 @@ $.ajax({
 	     	    		$("input:checkbox[id='checkall']").prop("checked", false);
 	     	    		
 	     	    		document.getElementById("buyinsert").style.display = "block";
+	     	    		 document.getElementById("buycheckdelbutton").style.display = "block";
 	     	    		document.getElementById("sellinsert").style.display = "none";
-	     	    		
+	     	    		document.getElementById("buychecksellbutton").style.display = "none";
+	     	    		document.getElementById("wholedel").style.display = "none";
 	     	    		
 	     	    		var str = "";
 	     	    		for(let rb in response){
@@ -939,7 +876,7 @@ $.ajax({
 	     	    			str += "<td>"+response[rb]["bdate"]+"</td>"
 	     	    		          +"<td>"+response[rb]["bno"]+"</td>"
 	     	    		          +"<td>"+"구매"+"</td>"
-	     	    		          +"<td>"+response[rb]["pname"]+"</td>"
+	     	    		          +"<td>"+response[rb]["acontent"]+"</td>"
 	     	    		         +"<td>"+response[rb]["price"]+"</td>"
 	     	    		        +"<td>"+response[rb]["bcount"]+"</td>"
 	     	    		      str += "<td><button type='button' id= "+response[rb]["bno"]+" onclick=dc(this)>삭제</button></td>";
@@ -949,35 +886,33 @@ $.ajax({
 	     	    		 $("#formin").html(str);
 	     	    		    //$("#formin").append(str);
 
-	     	    		
-	     	    		 var sts="";
-	     	    		 sts +="<button onclick='delcheckit(this)'>구매통합삭제</button>"
-     	    	    	 sts +=  "<tr>"
-     	    	    		sts +=  "<th><button type='button' id='plus' >+</button></th>"
-     	    	    			sts += "<th></th>"
-     	    	    				sts += "<th></th>"
-     	    	    					sts += "<th>구매</th>"
-     	    	    						sts += "<th><input type='text' name='pno'></th>"
-     	    	    							sts += "<th><input type='text' name='price'></th>"
-     	    	    								sts +="<th><input type='text' name='bcount'></th>"
-     	    	    									sts +="<th><input type='submit' value='입력'> </th>"
-     	    	    										sts += "</tr>"
-     	    	    										
-     	    	    											
-     	    		   $("#buyinsert").html(sts);
-	     	    		})
-	     	    
-	     	    		
-	     	    
+
+	     	    	   
+	     	    	    
+	     	    	    var stb = "";
+	     	    	    stb += "<tr>"
+	     	    	    stb += "<th><button type='button' id='plus'>+</button></th>"
+	     	    	    stb += "<th></th>"
+	     	    	    stb += "<th></th>"
+	     	    	    stb += "<th>구매</th>"
+	     	    	    stb += "<th><input type='text' name='pno' placeholder='재고번호'></th>"
+	     	    	    stb += "<th><input type='text' name='price'  placeholder='가격'></th>"
+	     	    	    stb += "<th><input type='text' name='bcount'  placeholder='구매량'></th>"
+	     	    	    stb += "<th><input type='submit' value='입력'></th>"
+	     	    	    stb += "</tr>"
+
+	     	    	    $("#buyinsert").html(stb);
+	     	    	  });
 	     	    		
 	     	    		
 					 
 	           }//else if
 		   
 		   })//function 
-		   
+
+
 	  </script>
-	 
+	  
 	  
 	 <!-- Bootstrap core JavaScript-->
   <script src="../../../vendor/jquery/jquery.min.js"></script>

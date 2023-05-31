@@ -103,6 +103,9 @@
 			<li class="nav-item"><a class="nav-link" href="/company/stockmanage">
 					<i class="fas fa-fw fa-table"></i> <span>재고</span>
 			</a></li>
+			<li class="nav-item"><a class="nav-link" href="/company/confirm">
+					<i class="fas fa-fw fa-table"></i> <span>장부</span>
+			</a></li>
 			
 			<!-- Divider -->
 			<hr class="sidebar-divider d-none d-md-block">

@@ -26,6 +26,8 @@ import stock_m.dto.Cart;
 public interface ProductDao {
 	public List<Map<String,Object>> searchPname(@Param("pname")String pname, @Param("start")int start, @Param("nuserid") List<String> nuserid);
 	
+	public List<Map<String,Object>> palarmSearch(@Param("pname")String pname, @Param("start")int start, @Param("nuserid") List<String> nuserid);
+	
 	@Select("select m_content from management where userid like #{userid} and m_val = 0")
 	public List<String> negativeUserid(String userid);
 	
@@ -73,7 +75,7 @@ public interface ProductDao {
 	@Insert("INSERT INTO buy(pno,userid,bdate,price,bcount) values(#{pno},#{userid},#{bdate},#{price},#{bcount})")
 	public int addbuy(Map<String, Object> abmap);
 	
-	@Insert("INSERT INTO sell(product_pno,userid,sdate,price,scount) values(#{pno},#{suserid},#{bdate},#{price},#{bcount})")
+	@Insert("INSERT INTO sell(pno,userid,sdate,price,scount) values(#{pno},#{suserid},#{bdate},#{price},#{bcount})")
 	public int addsell(Map<String, Object> asmap);
 	
 	@Update("update stock set s_volume = #{s_volume}-#{bcount} where sno = #{sno} and userid = #{suserid}")
@@ -99,4 +101,6 @@ public interface ProductDao {
 	
 	@Select("select pno from product where sno=#{sno}")
 	int broadprice(@Param("sno")int sno);
+
+	
 }

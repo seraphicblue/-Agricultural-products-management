@@ -38,6 +38,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 
+
 import jakarta.servlet.http.HttpSession;
 import jakarta.websocket.server.PathParam;
 
@@ -57,14 +58,14 @@ public class RevenueController {
 	RevenueService service;
  
 	  @GetMapping("/company/sellinsert") 
-	  public String sellwrite(@Param("userid") String userid ,@Param("pno")String pno ,@Param("price")int price, @Param("scount") int scount) {
-	  		userid ="1" ; 
+	  public String sellwrite(HttpSession session ,@Param("pno")String pno ,@Param("price")int price, @Param("scount") int scount) {
+		  String userid = (String)session.getAttribute("userid");
 		  service.sellinsert(userid,pno,price,scount); 
 	  return "redirect:/company/confirm"; }
 	  
 	  @GetMapping("/company/buyinsert") 
-	  public String buywrite( @Param("userid") String userid ,@Param("pno")String pno ,@Param("price")int price, @Param("bcount") int bcount) {
-	  		userid ="1" ; 
+	  public String buywrite(HttpSession session ,@Param("pno")String pno ,@Param("price")int price, @Param("bcount") int bcount) {
+		  String userid = (String)session.getAttribute("userid");
 		  service.buyinsert(userid,pno,price,bcount); 
 	  return "redirect:/company/confirm"; }
 	
@@ -81,6 +82,7 @@ public class RevenueController {
 				
 			int perPage = 10; // 한 페이지에 보일 글의 갯수
 			int startRow = (page - 1) * perPage;//0부터시작하기 때문에 1뺌
+			
 			
 			  List<SellDto> rlist = service.selectOne(userid); 
 			  m.addAttribute("rlist",rlist);
@@ -134,9 +136,9 @@ public class RevenueController {
 			//dto에 아이디값은 포함되지않았음
 		  @RequestMapping("/company/rsell")
 		  @ResponseBody
-			public String rselllist( ) {
+			public String rselllist(HttpSession session ) {
 		
-				String userid="1";
+			  String userid = (String)session.getAttribute("userid");
 				 
 				  List<Map<String, Object>> sellList = service.sellList(userid); 
 				  Gson gson=new Gson();
@@ -155,18 +157,40 @@ public class RevenueController {
 			  
 			  @GetMapping("/company/revsellcheckdel")
 			  public String revsellcheckdel(@RequestParam("selectedItems[]") int[] selectedItems) {
+				  
+				  
 			    for (int selectedItem : selectedItems) {
 			      int sno = selectedItem;
+			     
 			      System.out.println(sno);
 			      service.deletesell(sno);
 			    }
 			    return "redirect:/company/rsell";
 			  }
+			  
+			  @GetMapping("/company/revmixdel")
+			  public String revsellcheckdel(@RequestParam("selectedItems[]") int[] selectedItems,@RequestParam("kind[]") String[] kind) {
+				  
+				  for (String k: kind) {
+				      
+				      System.out.println("kind"+k);
+				      //service.deletesell(sno);
+				      for (int selectedItem : selectedItems) {
+					      int no = selectedItem;
+					     
+					      System.out.println(no);
+					      service.deletemix(k,no);
+					    }
+				    }
+			   
+			    
+			    return "redirect:/company/rsell";
+			  }
 			  @RequestMapping("/company/rbuy")
 			  @ResponseBody
-				public String rbuylist(Model m ) {
+				public String rbuylist(HttpSession session,Model m ) {
 			
-					String userid="1";
+				  String userid = (String)session.getAttribute("userid");
 					 
 					  List<Map<String, Object>> rbuyList = service.rbuyList(userid); 
 					  Gson gson=new Gson();
@@ -185,6 +209,7 @@ public class RevenueController {
 				  
 				  @GetMapping("/company/revbuycheckdel")
 				  public String revbuycheckdel(@RequestParam("selectedItems[]") int[] selectedItems) {
+
 				    for (int selectedItem : selectedItems) {
 				      int bno = selectedItem;
 				      System.out.println(bno);
@@ -204,10 +229,10 @@ public class RevenueController {
 					
 					  @RequestMapping("/company/total")
 					  @ResponseBody
-						public String totallist(Model m ) {
+						public String totallist(HttpSession session,Model m ) {
 						 System.out.println("totallist실행");
-						 
-						  String userid="1";
+						 String userid = (String)session.getAttribute("userid");
+						  
 						 
 						List<Map<String, Object>> totalList = service.totalList(userid); 
 						  Gson gson=new Gson();
@@ -218,8 +243,7 @@ public class RevenueController {
 						  @GetMapping("company/rsearch")
 						  public String searchrcontent(String search,Model m) {
 							  System.out.println(search);
-	                          String userid="1";
-							 // List<StockDto> stockList = service.sList(userid); 
+	                         
 							  
 							  List<StockDto> sList=service.searchrcontent(search);
 							  m.addAttribute("stockList",sList);
@@ -227,38 +251,28 @@ public class RevenueController {
 							 
 						   return "/company/search";
 						 
-						}				
+						}	
+						  
 							
-						  //chart
+					//chart
 						
-						@GetMapping("company/cr")
-                      public String chartr(String userid,Model m, HttpSession session) {
-							String uid = (String) session.getAttribute("userid");
-							m.addAttribute("uid", uid);
-							  userid="1";
-							    Calendar calendar = Calendar.getInstance();
-						        calendar.set(Calendar.YEAR, 2023);
-						        calendar.set(Calendar.MONTH, Calendar.MAY);
-						        calendar.set(Calendar.DAY_OF_MONTH, 15);
-						        
-						        Date date = calendar.getTime();
-						        
-						        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-						        String sdate = dateFormat.format(date);
-						        
-						       
-							return"company/cr";
-						}
+					
+					  @GetMapping("company/cr") public String chartr(HttpSession session,Model m) {
+					  String userid = (String) session.getAttribute("userid"); return"company/cr";
+					  }
+					 
+						
 						
 						@GetMapping("company/getsdate")
 						@ResponseBody
-						public ResponseEntity<String> getsdate(@RequestParam("start-date") String startDate,
+						public ResponseEntity<String> getsdate(HttpSession session,@RequestParam("start-date") String startDate,
                                 @RequestParam("end-date") String endDate)throws JsonProcessingException{
 							
+							String userid = (String) session.getAttribute("userid");
 							
-							List<Map<String, Object>> filteredData = service.getFilteredData(startDate, endDate);
-							List<Map<String, Object>> buyData =service.getbuyData(startDate, endDate);
-							List<Map<String, Object>> totalData=service.gettotalData(startDate, endDate);
+							List<Map<String, Object>> filteredData = service.getFilteredData(startDate, endDate ,userid);
+							List<Map<String, Object>> buyData =service.getbuyData(startDate, endDate, userid);
+							List<Map<String, Object>> totalData=service.gettotalData(startDate, endDate, userid);
 							
 							System.out.println(filteredData);
 							System.out.println(buyData);
