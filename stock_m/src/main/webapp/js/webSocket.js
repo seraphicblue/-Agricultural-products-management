@@ -61,9 +61,9 @@ socket.onmessage = function(event) {
 			stockMessage(sep, content, str + "_" + sentUserid + "_" + targetSno);
 		}
 		if (sep == 'M') {
-			contents = '<h3>' +sentUserid+"업체에서" + "(" + content + ")상품을 등록했습니다." + '</h3>';
+			contents = '<h3>' + sentUserid + "업체에서" + "(" + content + ")상품을 등록했습니다." + '</h3>';
 		}
-		
+
 
 		// 새 창에 내용 삽입
 		newWindow.document.write(contents);
@@ -83,7 +83,7 @@ socket.onclose = function(event) {
 function sendMessage(te) {
 
 
-	if (document.getElementById('command').value == "price"|| te =="P") {
+	if (document.getElementById('command').value == "price" || te == "P") {
 
 		var message = document.getElementById('val').value;
 		var userid = document.getElementById('uid').value;
@@ -117,7 +117,7 @@ function sendMessage(te) {
 
 		});
 	}
-	else if (document.getElementById('command').value == "stock" || te =="S") {
+	else if (document.getElementById('command').value == "stock" || te == "S") {
 		var message = "";
 		var userid = "";
 		var param = document.getElementById('fina').value; //반복 횟수
@@ -144,7 +144,7 @@ function sendMessage(te) {
 							if (data == message) {
 
 								text = "/" + "stock" + '_' + userid + '_' + message + '_' + pname;
-								
+
 								socket.send(text);
 							}
 
@@ -157,7 +157,7 @@ function sendMessage(te) {
 
 
 
-	else if (document.getElementById('command').value == "limit" || te =="L") {
+	else if (document.getElementById('command').value == "limit" || te == "L") {
 		var userid = uid.value;
 		var text = "";
 		$.ajax({
@@ -176,20 +176,29 @@ function sendMessage(te) {
 
 		})
 	}// else if limit
-	
-	else if (te =="M") {
-		var message = document.getElementById('val').value; //sno
+
+	else if (te == "M") {
+		var message = document.getElementById('val').value;
 		var userid = document.getElementById('uid').value;
 		var param = document.getElementById('price').value;
 		var textTarget = document.getElementById('scontent')[document.getElementById('scontent').selectedIndex].textContent;
 		var text;
-
-		alert("message : "+message +"userid : "+userid+"param : "+param+"textTarget : "+textTarget);
-	}
-	
-
-
+		
+		$.ajax({
+			url: '/broadMange',
+			type: 'get',
+			data: { userid: userid },
+			dataType: 'json',
+			success: function(data) {
+				for (var i = 0; i < data.length; i++) {
+					text = "/" + "manage" + '_' + userid + '_' + data[i] + '_' + textTarget;
+					socket.send(text);
+				}
+			}//seccuss end
+		})//ajax end
+	}//if end
 }//send Message
+
 
 function stockMessage(sep, uid, text) {
 	$.ajax({

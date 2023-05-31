@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 
-
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import stock_m.dto.AdminstockDto;
 import stock_m.dto.BroadcastPriceDto;
@@ -44,7 +44,7 @@ public class SabController {
 		String userid = (String) session.getAttribute("userid");
 		List<AdminstockDto> adminstockList = stock_service.option();
 		System.out.println(adminstockList);
-		m.addAttribute("adminstockList",adminstockList);
+		m.addAttribute("adminstockList", adminstockList);
 		List<NameAndPrice_sabDto> npList = sab_service.namePrice(userid);
 		m.addAttribute("npList", npList);
 		m.addAttribute("uid", userid);
@@ -65,15 +65,15 @@ public class SabController {
 		int Vol = sab_service.selecVol(sno);
 		return Vol;
 	}
-	
-    @GetMapping("/company/buy")
-    public String buy(Model model,HttpSession session) {
-    	String userid = (String) session.getAttribute("userid");
+
+	@GetMapping("/company/buy")
+	public String buy(Model model, HttpSession session) {
+		String userid = (String) session.getAttribute("userid");
 		List<AdminstockDto> adminstockList = stock_service.option();
-		model.addAttribute("userid",userid);
-		model.addAttribute("adminstockList",adminstockList);
-        return "company/buy";
-    }
+		model.addAttribute("userid", userid);
+		model.addAttribute("adminstockList", adminstockList);
+		return "company/buy";
+	}
 
 	@GetMapping("/company/sell")
 	public String sellForm(Model m, HttpSession session) {
@@ -85,30 +85,28 @@ public class SabController {
 	}
 
 	@PostMapping("/company/sell")
-	public void sellpost(int sno, String pname, int price, int p_count) {
-		
+	public String sellpost(int sno, String pname, int price, int p_count,HttpServletRequest request) {
+
 		sab_service.updateAndInsert(sno, pname, price, p_count);
-		/*
-		 * return "company/index";
-		 */
+		String url = request.getHeader("Referer");
+		return "redirect:" + url;
 	}
-	
+
 	@GetMapping("/broadprice")
 	@ResponseBody
 	public String broadprice(int sno) {
-		
+
 		String bno = String.valueOf(sab_service.broadprice(sno));
-		
+
 		return bno;
 	}
-	
-	
+
 	@GetMapping("/broadCprice")
 	@ResponseBody
 	public String broadCprice(Model m, int pno, int param) {
-		List<String>userList = broad_service. broadPriceCheck(pno, param);
+		List<String> userList = broad_service.broadPriceCheck(pno, param);
 		Gson gson = new Gson();
-		String ulist=gson.toJson(userList);		
+		String ulist = gson.toJson(userList);
 		return ulist;
 	}
 
