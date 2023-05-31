@@ -196,7 +196,7 @@ function generateColors(length) {
         });
 
 //2차 날짜포멧
-var formatter = new Intl.DateTimeFormat('ko-KR', {
+var formatter = new Intl.DateTimeFormat('en-US', {
   year: 'numeric',
   month: 'long',
   day: 'numeric'
@@ -213,10 +213,6 @@ for (var i = 6; i >= 0; i--) {
  
   weekLabels.push(formatter.format(date));
 }
-var sampleDate = new Date(); // 실제 데이터에서 날짜 값을 사용하여 이 부분을 대체하십시오.
-var formattedSampleDate = formatter.format(sampleDate);
-console.log(formattedSampleDate);
-
 	var ctx = document.getElementById("myAreaChart");
 	
 	console.log(sellcountdate);
@@ -231,7 +227,7 @@ console.log(formattedSampleDate);
     sdates.push(formatter.format(sdate));
     console.log("여기임");
     console.log(sdate);
-   // console.log(formatter.format(sdate));
+    console.log(formatter.format(sdate));
     scs.push(sc);
   });
     buycountdate.forEach(function({ bdate, bc }) {
@@ -247,7 +243,7 @@ if (window.myLineChart) {
   }
 var salesData = [];
 var purchaseData = [];
-console.log(purchaseData);
+
 // Loop through the past 7 days and check if there is data available
 for (var i = 6; i >= 0; i--) {
   var date = new Date(currentDate);
