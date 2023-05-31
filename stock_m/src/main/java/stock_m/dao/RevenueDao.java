@@ -31,6 +31,8 @@ import stock_m.dto.StockDto;
 @Mapper
 public interface RevenueDao {
 
+	
+
 	//userid의 현재 잔고를 확인
 	@Select("select profit from revenue where userid =#{userid}")
 	int checks(String userid);
@@ -98,9 +100,13 @@ public interface RevenueDao {
 	@Delete("delete from sell where sno=#{sno}")
 	int deletesell(int sno);
 
-	@Select("select s.sno as no, p.pname,DATE_FORMAT(s.sdate, \"%Y/%m/%d\") as 'date', p.price, s.scount as count ,'판매' as kind  from sell s, product p  where s.pno=p.pno union select b.bno as no, p.pname, DATE_FORMAT(b.bdate, \"%Y/%m/%d\") as 'date', p.price, b.bcount as count ,'구매' as kind  from buy b, product p  where b.pno=p.pno  and userid =#{userid} order by date desc")
+	@Select("SELECT s.sno AS no, p.pname, s.sdate AS 'date', p.price, s.scount AS count, '판매' AS kind FROM sell s INNER JOIN product p ON s.pno = p.pno  UNION\r\n"
+			+ "SELECT a.bno AS no, adminstock.acontent, a.bdate AS 'date', a.price, a.bcount AS count, '구매' AS kind FROM buy a\r\n"
+			+ "INNER JOIN adminstock ON a.pno = adminstock.ano\r\n"
+			+ "WHERE a.userid = #{userid}\r\n"
+			+ "ORDER BY date DESC, no DESC;")
 	List<Map<String, Object>> totalList(String userid);
-
+	                                                                                                                                                                            
 	@Select("select *from sell,buy where pname=#{search}")
 	List<StockDto> searchrcontent(String search);
 
@@ -133,5 +139,6 @@ public interface RevenueDao {
 		
 		@Select("select sum(scount) as sc, sdate from sell group by sdate")
 		List<Map<String, Object>> getmainselldata2();
+		
 		
 }

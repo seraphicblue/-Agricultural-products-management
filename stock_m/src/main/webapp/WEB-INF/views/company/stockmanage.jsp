@@ -240,7 +240,7 @@
 				
                                     </tbody>
                                      </form> 
-                                    <button type="submit"> 통합수정</button>
+                                   
 				                    <button onclick="delcheckit()">통합삭제</button>
                                 </table>
                                 </form>

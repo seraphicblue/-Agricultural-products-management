@@ -367,12 +367,10 @@
 		                                   </select>
 	                                       	
                                           <!--  </div> -->
-                         </div>  
-                        </div>
-                        
+                       
+                    
                      
-                        
-                        
+               
                         <div class="card-body">
                             <div class="table-responsive">
                               <c:if test="${count != 0 }">
@@ -490,6 +488,7 @@
 	    checkbox.checked = selectAll.checked
 	  })
 	} */
+	
 	$(document).ready(function() {
 		
 		  $("#buychecksellbutton").css("display", "none");
