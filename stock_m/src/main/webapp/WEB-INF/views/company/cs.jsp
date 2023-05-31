@@ -262,20 +262,22 @@
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" _msthidden="6">
-        <div class="modal-dialog" role="document" _msthidden="6">
-            <div class="modal-content" _msthidden="6">
-                <div class="modal-header" _msthidden="3">
-                    <h5 class="modal-title" id="exampleModalLabel" _msttexthash="215449" _msthidden="1" _msthash="66">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close" _msthidden="1" _mstaria-label="59709" _msthash="67">
-                        <span aria-hidden="true" _msttexthash="19565" _msthidden="1" _msthash="68">×</span>
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">로그아웃</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body" _msttexthash="2662309" _msthidden="1" _msthash="69">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer" _msthidden="2">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal" _msttexthash="73216" _msthidden="1" _msthash="70">Cancel</button>
-                    <a class="btn btn-primary" href="login.html" _msttexthash="79768" _msthidden="1" _msthash="71">Logout</a>
+                <div class="modal-body">로그아웃 하시겠습니까?</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
+                    <a class="btn btn-primary" href="/logout">로그아웃</a>
                 </div>
+                
             </div>
         </div>
     </div>
