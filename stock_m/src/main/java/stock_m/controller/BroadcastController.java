@@ -228,8 +228,9 @@ public class BroadcastController {
 	
 	@GetMapping("/mangeAlram")
 	@ResponseBody
-	public String broadCprice(Model m, int pno, int param) {
-		List<String>userList = broad_service. broadPriceCheck(pno, param);
+	public String manageGet(Model m,HttpSession session) {
+		String userid = (String) session.getAttribute("userid");
+		List<String>userList = broad_service. manageGet(userid);
 		Gson gson = new Gson();
 		String ulist=gson.toJson(userList);		
 		return ulist;

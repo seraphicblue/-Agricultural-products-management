@@ -154,7 +154,7 @@ public class WebSocketConfig implements WebSocketConfigurer {
 				} // outer_for_end
 			} // if /limit
 
-			if (payload.startsWith("/")) { // 가격 알림
+			if (payload.startsWith("/manage")) { // 가격 알림
 				String[] tokens = payload.split("_", 4);
 				String useridToken = tokens[1];
 				String target = tokens[2];
@@ -169,6 +169,7 @@ public class WebSocketConfig implements WebSocketConfigurer {
 						if (webSocketSession.getId().equals(str) && key.equals(target)) {
 
 							webSocketSession.sendMessage(new TextMessage("M_" + textTarget + "_" + useridToken + "_" + target));
+							System.out.println("M_" + textTarget + "_" + useridToken + "_" + target);
 							break;
 						}
 					} // inner_for_end

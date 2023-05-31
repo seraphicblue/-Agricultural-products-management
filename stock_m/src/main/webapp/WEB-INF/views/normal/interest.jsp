@@ -241,7 +241,7 @@ input:checked+.slider:before {
                     </div>
                 </div>
             </div>
-            </div>     
+            </div>      
 
     </section>
     <!-- Shoping Cart Section End -->
