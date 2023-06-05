@@ -176,9 +176,9 @@ input:checked+.slider:before {
 				<div class="col-lg-12 text-center">
 					<%-- 장바구니 페이지의 중단부에 토마토 부분 --%>
 					<div class="breadcrumb__text">
-						<h2>관심 업체</h2>
+						<h2>가격 알림</h2>
 						<div class="breadcrumb__option">
-							<a href="/normal/market">홈</a> <span>유의 업체</span>
+							<a href="/normal/market">홈</a> <span>가격 알림</span>
 							<%-- MarketController에서 받은 userid를 받아놓은 부분 --%>
 							<input id="userid" value="${userid}" hidden="hidden">
 						</div>
