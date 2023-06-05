@@ -242,7 +242,7 @@ input:checked+.slider:before {
 									<th>${count.index+1}</th>
 									<th class="pname">${pa.pname}</th>
 									<td class="pno" hidden>${pa.pno}</td>
-									<th><input class="br_param" id="param" value="${pa.br_param}" oninput="validateInput()">
+									<th><input class="br_param" id="param" value="${pa.br_param}">
 									</th>
 									<th><button class="click2">변경</button></th>
 									<th><button class="click">삭제</button></th>
@@ -285,7 +285,7 @@ input:checked+.slider:before {
 
 		$(document).ready(function() {
 			$('.click2').click(function() {
-				var input = document.getElementById("param").value;
+				var input = $(this).closest('tr').find('.br_param').val();
 			    var isValid = /^\d+$/.test(input) && parseInt(input) >= 1;
 			    if (!isValid) {
 			      alert("1이상의 숫자만 입력해주세요.");
@@ -311,14 +311,6 @@ input:checked+.slider:before {
 				});
 			});
 		});
-		function validateInput() {
-		    var input = document.getElementById("param").value;
-		    var isValid = /^\d*$/.test(input) && (input === "" || parseInt(input) >= 1);
-		    if (!isValid) {
-		      alert("1이상의 숫자만 입력해주세요.");
-		      document.getElementById("param").value = 1;
-		    }
-		}
 	</script>
 </body>
 </html>
