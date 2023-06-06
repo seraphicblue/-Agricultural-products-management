@@ -225,7 +225,7 @@ thead {
 							</div>
 						<div class="card-body">
 							
-							<div class="chart-area" style="height: 260px;width: 520px">
+							<div class="chart-area" >
 
 								<canvas id="mymainChart"></canvas>
 							</div>

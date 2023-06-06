@@ -172,7 +172,7 @@ public class StockController {
 							  m.addAttribute("uid", userid);
 							  System.out.println("검색 결과 "+sList);
 							 
-						   return "company/search";
+						   return "company/stockmanage";
 						 
 						}	
 
