@@ -215,7 +215,7 @@
                     				document.getElementById("h"+i+"img").setAttribute("src", "../../market/img/cart/chilipepper.jpg");
                     			}else if(document.getElementById("h"+i+"name").value.includes("포도")){
                     				document.getElementById("h"+i+"img").setAttribute("src", "../../market/img/cart/grape.jpg");
-                    			}else if(document.getElementById("h"+i+"name").value.includes("메론")){
+                    			}else if(document.getElementById("h"+i+"name").value.includes("멜론")){
                     				document.getElementById("h"+i+"img").setAttribute("src", "../../market/img/cart/melon.jpg");
                     			}else if(document.getElementById("h"+i+"name").value.includes("호박")){
                     				document.getElementById("h"+i+"img").setAttribute("src", "../../market/img/cart/pumpkin.jpg");
