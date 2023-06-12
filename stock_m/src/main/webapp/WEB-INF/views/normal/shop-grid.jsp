@@ -180,7 +180,7 @@
                     				document.getElementById(i+"pimg").setAttribute("style", "background-image: url('../../market/img/product/chilipepper.jpg');");
                     			}else if(document.getElementById(i+"pname").textContent.includes("포도")){
                     				document.getElementById(i+"pimg").setAttribute("style", "background-image: url('../../market/img/product/grape.jpg');");
-                    			}else if(document.getElementById(i+"pname").textContent.includes("메론")){
+                    			}else if(document.getElementById(i+"pname").textContent.includes("멜론")){
                     				document.getElementById(i+"pimg").setAttribute("style", "background-image: url('../../market/img/product/melon.jpg');");
                     			}else if(document.getElementById(i+"pname").textContent.includes("호박")){
                     				document.getElementById(i+"pimg").setAttribute("style", "background-image: url('../../market/img/product/pumpkin.jpg');");

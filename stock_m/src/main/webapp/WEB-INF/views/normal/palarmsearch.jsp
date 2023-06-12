@@ -176,9 +176,9 @@ input:checked+.slider:before {
 				<div class="col-lg-12 text-center">
 					<%-- 장바구니 페이지의 중단부에 토마토 부분 --%>
 					<div class="breadcrumb__text">
-						<h2>유의 업체</h2>
+						<h2>상품 검색</h2>
 						<div class="breadcrumb__option">
-							<a href="/normal/market">홈</a> <span>유의 업체</span>
+							<a href="/normal/market">홈</a> <span>상품 검색</span>
 							<%-- MarketController에서 받은 userid를 받아놓은 부분 --%>
 							<input id="userid" value="${userid}" hidden="hidden">
 						</div>
@@ -246,7 +246,7 @@ input:checked+.slider:before {
 										<td class="pname">${pa.pname}</td>
 										<td class="pno" hidden>${pa.pno}</td>
 										<td>${pa.price}</td>
-										<td><input class="aprice" id="aprice" oninput="validateInput()"></td>
+										<td><input class="aprice" id="aprice"></td>
 										<td><button class="click">추가</button></td>
 									</tr>
 								</c:forEach>
@@ -285,7 +285,7 @@ input:checked+.slider:before {
 	<script>
 		$(document).ready(function() {
 			$(".click").click(function() {
-				var input = document.getElementById("aprice").value;
+				var input = $(this).closest('tr').find('.aprice').val();
 			    var isValid = /^\d+$/.test(input) && parseInt(input) >= 1;
 			    if (!isValid) {
 			      alert("1이상의 숫자만 입력해주세요.");
@@ -316,14 +316,6 @@ input:checked+.slider:before {
 				
 			});
 		});
-		function validateInput() {
-		    var input = document.getElementById("aprice").value;
-		    var isValid = /^\d*$/.test(input) && (input === "" || parseInt(input) >= 1);
-		    if (!isValid) {
-		      alert("1이상의 숫자만 입력해주세요.");
-		      document.getElementById("aprice").value = 1;
-		    }
-		}
 	</script>
 </body>
 </html>
