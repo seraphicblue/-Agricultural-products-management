@@ -22,7 +22,7 @@
 
         th {
             border: 1px solid black;
-            background-color: orange;
+            background-color: #7fad39;
             width: 150px;
         }
 
@@ -77,7 +77,7 @@
     <c:if test="${count != 0 }">
         <table>
             <tr>
-                <th>제목</th>
+                <th style="">제목</th>
                 <th>작성자</th>
                 <th>작성일</th>
                 <th>조회수</th>

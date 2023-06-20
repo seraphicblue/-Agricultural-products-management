@@ -8,14 +8,11 @@
    writer  : 김기덕
    api     : x
 --%>
-<<<<<<< HEAD
-<%@ page contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-=======
+
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
->>>>>>> refs/heads/choi
+
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -122,45 +119,11 @@ thead {
 </head>
 
 <body>
-<<<<<<< HEAD
-	<!-- Header Section Begin -->
-	<header class="header">
-=======
+
 <!-- Header Section Begin -->
     <header class="header">
     
-<input type="hidden" name="command" id="command" value="common">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3">
-                </div>
-                <div class="col-lg-3">
-                </div>
-                <div class="col-lg-6">
-                                   
-                    <div class="header__cart">
-                        <ul>
-                        <li>
-                         ${userid}님 안녕하세요
-                        </li>
-                            <li>       
-                            	<div class="header__top__right__auth">
-                            	<%-- logout기능 클릭시 MarketController에 logout메서드로 세션에 저장된 userid 정보를 삭제 --%>
-                               		<a href="/logout"><i class="fa fa-user"></i> 로그아웃</a> 
-                           	 	</div>
-                       		</li>
-                       		<%-- 장바구니에 저장된 상품수 출력 및 클릭시 MarketController에 cform메서드로 해당유저의 장바구니로 이동 --%>
-                            <li><a href="cart/${userid}"><i class="fa fa-shopping-bag"></i> <span id="ccount">${ccount}</span></a></li> 
-                        </ul>
-                        <%-- 장바구니에 저장된 상품들의 가격 총합 출력 --%>
-                        <div class="header__cart__price">총 액: <span id="cprice">${cprice}원</span></div>
-                    </div>
-                </div>
-            </div>            
-        </div>
-    </header>
     <!-- Header Section End -->
->>>>>>> refs/heads/choi
 
 		<input type="hidden" name="command" id="command" value="market">
 		<div class="container">
@@ -228,7 +191,7 @@ thead {
 								<button type="submit" class="site-btn">검색</button>
 							</form>
 
-<<<<<<< HEAD
+
 						</div>
 					</div>
 					<div class="hero__item set-bg"
@@ -255,7 +218,6 @@ thead {
 	<!-- Featured Section Begin -->
 
 	<!-- Featured Section End -->
-
 	<!-- Banner Begin -->
 	<div class="banner">
 		<div class="container">
@@ -300,12 +262,23 @@ thead {
 										<th class="m_content" data-c_userid="${management.c_userid}">${management.m_content}</th>
 										<th><c:set var="type" value="${management.m_val}" /> <c:choose>
 												<c:when test="${type}">
-=======
-    <!-- Banner Begin -->
-    <div class="banner">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-6">
+											관심 업체
+											</c:when>
+												<c:when test="${!type}">
+											유의 업체
+											</c:when>
+											</c:choose></th>
+											<th><button class="click">삭제</button></th>
+											<th><button class="click2">변경</button></th>
+										</tr>
+									</c:forEach>
+									</tbody>
+								</table>
+								<div class="header__cart"><div class="site-btn"><a href="interest" style="color: #fff;"> 전체 보기</a></div></div>
+                        </div>
+                    </div>
+                </div>
+                               <%--  <div class="col-lg-12 col-md-6 col-sm-6">
                 <div class="hero__categories">
                         <div class="hero__categories__box">
                    
@@ -371,54 +344,11 @@ thead {
     </table>
                         
                         </div>
-     <div class="header__cart"><div class="site-btn"><a href="list" style="color: black; text-decoration: underline;">
+     <div class="header__cart"><div class="site-btn"><a href="list" style="color: black; ">
         				<h6>더보기</h6>
     					</a></div></div>
                 </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                    <div class="hero__categories">
-                        <div class="hero__categories__box">
-                        <!--hero__categories__all 이 부분 변경 필요 -->
-                            <h4 align="center">관리 업체</h4>
-                        </div>
-                        <div class="shoping__cart__table">
-                        <table>
-									<thead>
-										<tr>
-											<th>no.</th>
-											<th>회사 이름</th>
-											<th> 관리 상태</th>
-											<th>삭제</th>
-											<th>상태 변경</th>
-										</tr>
-									</thead>
-									<c:forEach items="${mainList}" var="management"
-										varStatus="count">
-										<tr>
-											<th>${count.index+1}</th>
-											<th class="m_content">${management.m_content}</th>
-											<th> 
-											<c:set var="type" value="${management.m_val}" />
-											<c:choose>
-											<c:when test="${type}">
->>>>>>> refs/heads/choi
-											관심 업체
-											</c:when>
-												<c:when test="${!type}">
-											유의 업체
-											</c:when>
-											</c:choose></th>
-											<th><button class="click">삭제</button></th>
-											<th><button class="click2">변경</button></th>
-										</tr>
-									</c:forEach>
-									</tbody>
-								</table>
-								<div class="header__cart"><div class="site-btn"><a href="interest" style="color: #fff;"> 전체 보기</a></div></div>
-                        </div>
-                    </div>
-                </div>
+                </div> --%>
             </div>
         </div>
     </div>

@@ -22,7 +22,7 @@
 
         th {
             border: 1px solid black;
-            background-color: orange;
+            background-color: #7fad39;
             width: 150px;
         }
 
@@ -82,7 +82,7 @@
         <h1>게시글 목록</h1>
     </a>
     <div align="right">
-        <a href="/main">main</a>
+        <a href="/normal/market">main</a>
         <a href="qnawrite">새글 등록</a>
         <a href="list">자유 게시판</a>
     </div>

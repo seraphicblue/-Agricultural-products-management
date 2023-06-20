@@ -47,38 +47,25 @@ socket.onmessage = function(event) {
 		console.log("WebSocket message received:" + event.data);
 		if (sep == 'P') {
 			contents = '<h3>' + "(" + content + ")가 가격에 도달했습니다" + '</h3>';
-
-			const newWindow = window.open('', 'New Window', "top=1000,left=1500,width=400,height=100");
-			newWindow.document.write(contents);
-			newWindow.document.write("<br><button onclick='window.close()'>Close</button>");
-
 		}
 
 		else if (sep == 'S') {
 			var str = content + " 재고량이 위험 수치에 도달했습니다";
 			contents = '<h3>' + str + '</h3>';
 			stockMessage(sep, sentUserid, str + "_" + targetSno);
-			
-			const newWindowS = window.open('', 'New Window', "top=1000,left=1500,width=400,height=100");
-			newWindowS.document.write(contents);
-			newWindowS.document.write("<br><button onclick='window.close()'>Close</button>");
 		}
 		else if (sep == 'L') {
 			var str = " 한도가 위험 수치에 도달했습니다";
 			contents = '<h3>' + str + '</h3>';
 			stockMessage(sep, content, str + "_" + sentUserid + "_" + targetSno);
-			
-			const newWindowL = window.open('', 'New Window', "top=1000,left=1500,width=400,height=100");
-			newWindowL.document.write(contents);
-			newWindowL.document.write("<br><button onclick='window.close()'>Close</button>");
 		}
 		if (sep == 'M') {
 			contents = '<h3>' + sentUserid + "업체에서" + "(" + content + ")상품을 등록했습니다." + '</h3>';
-			
-			const newWindowM = window.open('', 'New Window', "top=1000,left=1500,width=400,height=100");
-			newWindowM.document.write(contents);
-			newWindowM.document.write("<br><button onclick='window.close()'>Close</button>");
 		}
+		
+		const newWindow = window.open('', 'New Window', "top=1000,left=1500,width=400,height=100");
+		newWindow.document.write(contents);
+		newWindow.document.write("<br><button onclick='window.close()'>Close</button>");
 
 	}
 

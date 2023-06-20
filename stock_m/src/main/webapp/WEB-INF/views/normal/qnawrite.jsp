@@ -6,7 +6,7 @@
 <head>
     <title>글쓰기</title>
     <style>
-        .orange{background-color: orange;}
+        .orange{background-color: #7fad39;}
         table{border-collapse : collapse;}
     </style>
 </head>

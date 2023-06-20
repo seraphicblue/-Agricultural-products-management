@@ -60,10 +60,7 @@
 				</div>
 			</a>
 
-
-
 			<!-- Sidebar Message -->
-
 
 		</ul>
 		<!-- End of Sidebar -->
@@ -165,7 +162,9 @@
 	<td><input type="text" id ="a_val"></td>
 	</tr>
     </table>
-     
+     <script type="text/javascript">
+     	console.log(document.getElementById("a_content").value)
+     </script>
    
    </div>
    <button class="btn btn-primary btn-icon-split click" style="width:45px;height:41px;float: right;">제출</button>

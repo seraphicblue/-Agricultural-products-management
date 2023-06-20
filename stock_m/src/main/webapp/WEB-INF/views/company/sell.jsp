@@ -89,7 +89,7 @@
 						<h6 class="collapse-header">발주 / 판매</h6>
 						<a class="collapse-item" href="/company/buy">발주</a> 
 						<a class="collapse-item" href="/company/sell">판매</a>
-					</div>
+					</div> 
 				</div></li>
 
 			<!-- Nav Item - Charts -->
