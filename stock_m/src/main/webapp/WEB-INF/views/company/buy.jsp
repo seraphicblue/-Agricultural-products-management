@@ -38,7 +38,7 @@
 
 			<!-- Sidebar - Brand -->
 			<!-- 홈화면 링크 부분-->
-
+			<input type="hidden" name="command" id="command" value="common">
 			<a href="/company/main" class="sidebar-brand d-flex align-items-center justify-content-center" > 
 
 				<div class="sidebar-brand-icon rotate-n-15">
@@ -374,6 +374,7 @@
 																$(".selectedvolume").trigger("change");
 																$(".selectedprice").trigger("change");
 																
+																sendMessage("L");
 																if (result == true) {
 																} else {
 																	alert("한도 부족입니다.");

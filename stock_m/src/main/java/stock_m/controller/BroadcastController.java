@@ -213,6 +213,14 @@ public class BroadcastController {
 		return "company/broadSelecPrice";
 	}
 	
+	@PostMapping("company/broadSelecPrice")
+	public void insertPb(@RequestParam("pno") int pno, @RequestParam("param") int param, HttpSession session) {
+	  System.out.println("여기에 도달하였습니다."+pno+"  "+param);
+	  String userid = (String) session.getAttribute("userid");
+	  broad_service.priceinsertAndUpdate(userid, pno, param);
+	 
+	}
+	
 	@GetMapping("/insertLimit")
 	@ResponseBody
 	public void insertAndUp(int limit, HttpSession session ) {
@@ -229,12 +237,6 @@ public class BroadcastController {
 	}
 	
 	
-	@GetMapping("/insertPricebroad")
-	public void insertPb(int pno, int param, HttpSession session) {
-		System.out.println(";;;;;여기기기기");
-		String userid = (String) session.getAttribute("userid");
-		System.out.println(";여기기기기");
-		broad_service.priceinsertAndUpdate(userid,pno,param);
-	}
+	
 
 }

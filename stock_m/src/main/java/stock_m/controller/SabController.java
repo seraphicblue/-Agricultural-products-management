@@ -43,7 +43,6 @@ public class SabController {
 	public String companyindex(Model m, HttpSession session) {
 		String userid = (String) session.getAttribute("userid");
 		List<AdminstockDto> adminstockList = stock_service.option();
-		System.out.println(adminstockList);
 		m.addAttribute("adminstockList", adminstockList);
 		List<NameAndPrice_sabDto> npList = sab_service.namePrice(userid);
 		m.addAttribute("npList", npList);

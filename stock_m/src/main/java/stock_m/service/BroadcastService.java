@@ -174,9 +174,9 @@ public class BroadcastService {
 	
 	
 	public void priceinsertAndUpdate(String userid,int pno, int param) {
-		System.out.println("thisssssssssssssssssss");
+		
 		int chk=Broadcast_dao.pbalarmCount(userid, pno);
-		System.out.println("thisssssssssssssssssss is	");
+		
 		if(chk>0) {
 			Broadcast_dao.pbaupdate(userid, pno, param);
 		}else {
