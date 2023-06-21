@@ -204,7 +204,7 @@
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">알림 선택</h1>
+						<h1 class="h3 mb-0 text-gray-800">가격 알림</h1>
 					</div>
 
 					<!-- Content Row -->
@@ -216,11 +216,11 @@
 								<div class="card-header py-3">
 									<h6 class="m-0 font-weight-bold text-primary">알림 등록</h6>
 								</div>
-								<form action="sell" method="post" id="sellform" onsubmit="return checkStock();">
+								<form id="sellform" onsubmit="return checkPrice();"><!-- 이부분 작성-->
 									<input type="hidden" name="sno" id="val" value=0> 
 									<input type="hidden" name="pname" id="pname"> 
 									<input type="hidden" name="uid" id="uid" value="${uid}"> 
-									<input type="hidden" name="command" id="command" value="common">
+									<input type="hidden" name="command" id="command" value="common">s
 									
 									<table class="table table-bordered dataTable copyright text-center my-auto"
 										id="dataTable" width="100%" cellspacing="0" role="grid"
@@ -234,9 +234,9 @@
 											<td>상품 선택</td>
 											<td><select id="scontent" onchange="check()">
 													<option>--------------------</option>
-													<c:forEach items="${npList}" var="np">
-														<option value="${np.s_volume}" id="${np.sno}">${np.scontent}</option>
-													</c:forEach>
+													<c:forEach var="priceData" items="${priceData}" varStatus="count">
+        												<option value = "${priceData.ano}" id = "${priceData.ano}">${priceData.acontent}</option>
+        											</c:forEach>
 											</select></td>
 										</tr>
 										<tr>
@@ -252,6 +252,7 @@
 						</div>
 					</div>
 				</div>
+				
 				<!-- /.container-fluid -->
 
 			</div>
@@ -328,7 +329,42 @@
 			<script src="../../../js/demo/chart-area-demo.js"></script>
 			<script src="../../../js/demo/chart-pie-demo.js"></script>
 			<script type="text/javascript">
-				function(){}
+			function checkPrice(){
+				validateInput();
+				var scontent = document.getElementById("val").value;
+				var param = document.getElementById("limit").value;
+
+				/* if (scontent.trim() === "--------------------") {
+					alert("물품 정보를 선택해주세요.");
+					return false;
+
+				} else if (stock <= 0 || document.getElementById("s_volume").value.trim() === "") {//s_volume
+					alert("수량 정보를 입력해주세요.");
+					return false;
+
+				} else { */
+					$.ajax({
+						type : 'Get',
+						url : '/company/insertPricebroad  ',
+						data : {
+								'pno' : scontent,
+								'param' : param
+						}
+					});
+					
+					
+				/* } */
+				
+			}
+			
+			function validateInput() {
+			    var input = document.getElementById("s_volume").value;
+			    var isValid = /^\d+$/.test(input) && parseInt(input) >= 1;
+			    if (!isValid) {
+			      alert("1이상의 숫자만 입력해주세요.");
+			      document.getElementById("s_volume").value = "";
+			    }
+			}
 			</script>
 			
 

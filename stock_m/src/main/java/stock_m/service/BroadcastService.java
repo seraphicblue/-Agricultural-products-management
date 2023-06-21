@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import stock_m.dao.BroadcastDao;
+import stock_m.dto.AdminstockDto;
 import stock_m.dto.Message;
 
 @Service
@@ -166,5 +167,21 @@ public class BroadcastService {
 		return userList;
 	}
 	
+	public List<AdminstockDto> returnAdmin() {
+		List<AdminstockDto> returnAdmin = Broadcast_dao.adminCheck();
+		return returnAdmin;
+	}
+	
+	
+	public void priceinsertAndUpdate(String userid,int pno, int param) {
+		System.out.println("thisssssssssssssssssss");
+		int chk=Broadcast_dao.pbalarmCount(userid, pno);
+		System.out.println("thisssssssssssssssssss is	");
+		if(chk>0) {
+			Broadcast_dao.pbaupdate(userid, pno, param);
+		}else {
+			Broadcast_dao.pbainsert(userid, pno, param);
+		}
+	}
 
 }
