@@ -15,7 +15,6 @@
 
 <!DOCTYPE html>
 <html lang="zxx">
-
 <head>
 <meta charset="UTF-8">
 <meta name="description" content="Ogani Template">
@@ -120,11 +119,8 @@ thead {
 
 <body>
 
-<!-- Header Section Begin -->
-    <header class="header">
-    
-    <!-- Header Section End -->
-
+	<!-- Header Section Begin -->
+	<header class="header">
 		<input type="hidden" name="command" id="command" value="market">
 		<div class="container">
 			<div class="row">
@@ -190,7 +186,6 @@ thead {
 								<input type="text" placeholder="검색할 상품명" name="pname">
 								<button type="submit" class="site-btn">검색</button>
 							</form>
-
 
 						</div>
 					</div>
@@ -261,6 +256,7 @@ thead {
 										<th>${count.index+1}</th>
 										<th class="m_content" data-c_userid="${management.c_userid}">${management.m_content}</th>
 										<th><c:set var="type" value="${management.m_val}" /> <c:choose>
+
 												<c:when test="${type}">
 											관심 업체
 											</c:when>
@@ -349,6 +345,7 @@ thead {
     					</a></div></div>
                 </div>
                 </div> --%>
+
             </div>
         </div>
     </div>
@@ -411,39 +408,30 @@ thead {
 							});
 				});
 
-		$(document)
-				.ready(
-						function() {
-							$('.click2')
-									.click(
-											function() {
-												var m_content = $(this)
-														.closest('tr').find(
-																'.m_content')
-														.text();
-												console.log(m_content);
-												$
-														.ajax({
-															type : 'POST',
-															url : '/normal/check2',
-															data : {
-																'm_content' : m_content
-															},
-															success : function(
-																	result) {
-																if (result == true) {
-																	location.href = "/normal/update?m_content="
-																			+ m_content;
-																} else {
-																	location.href = "/normal/update2?m_content="
-																			+ m_content;
-																}
-															}
+		$(document).ready(
+				function() {
+					$('.click2').click(
+							function() {
+								var m_content = $(this).closest('tr').find('.m_content').text();
+								console.log(m_content);
+									$.ajax({										
+										type : 'POST',
+										url : '/normal/check2',
+										data : {
+											'm_content' : m_content											
+											},
+										success :										
+											function(result) {
+												if (result == true) {
+													location.href = "/normal/update?m_content="+ m_content;													
+												} else {
+													location.href = "/normal/update2?m_content="+ m_content;
+												}												
+											}
 
-														});
-											});
-						});
-
+									});
+							});
+				});
 		/* $(document).ready(
 				function() {
 					$('.switch input').change(

@@ -242,7 +242,7 @@ input:checked+.slider:before {
 									<th>${count.index+1}</th>
 									<th class="pname">${pa.pname}</th>
 									<td class="pno" hidden>${pa.pno}</td>
-									<th><input class="br_param" id="param" value="${pa.br_param}">
+									<th><input class="br_param" id="param" value="${pa.param}" style="text-align: right;">
 									</th>
 									<th><button class="click2">변경</button></th>
 									<th><button class="click">삭제</button></th>
