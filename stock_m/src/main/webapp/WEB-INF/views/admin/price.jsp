@@ -59,7 +59,10 @@
 					관리해줘 <sup>admin</sup>
 				</div>
 			</a>
-
+			
+			<li class="nav-item"><a class="nav-link" href="/admin/change">
+					<i class="fas fa-fw fa-chart-area"></i> <span>변경</span>
+			</a></li>
 			<!-- Sidebar Message -->
 
 		</ul>

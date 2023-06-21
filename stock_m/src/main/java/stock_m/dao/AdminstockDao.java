@@ -15,5 +15,6 @@ public interface AdminstockDao {
 	List<AdminstockDto> option(Map<String, Object> m);
 	int admincheck(@Param("a_content") String a_content, @Param("a_val") int a_val);
 	int updatea(@Param("a_content")String a_content, @Param("a_val") int a_val, @Param("a_volum") int a_volum);
+	int updatep(@Param("ano")int ano,@Param("price") int price);
 
 }
