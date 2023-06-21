@@ -32,6 +32,8 @@
 
     <!-- Custom styles for this template -->
     <link href="../css/sb-admin-2.min.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="../../js/webSocket.js"></script>
 
     <!-- Custom styles for this page -->
      <!--<link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
