@@ -11,8 +11,9 @@ public class LoginUser extends User{
 	private UserDto user;
 	
 	public LoginUser(UserDto user) {
-	    super(user.getUserid(), "{noop}"+user.getUserpw(), AuthorityUtils.createAuthorityList(user.getRole().toString()));
-	    this.user = user;
+	    //super(user.getUserid(), "{noop}"+user.getUserpw(), AuthorityUtils.createAuthorityList(user.getRole().toString()));
+		super(user.getUserid(), user.getUserpw(), AuthorityUtils.createAuthorityList(user.getRole().toString()));
+		this.user = user;
 	}
 	
 	public static long getSerialversionuid() {

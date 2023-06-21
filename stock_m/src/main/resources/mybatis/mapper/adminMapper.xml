@@ -24,4 +24,8 @@
 	<select id ="option" resultType="Map">
 	select *  from adminstock
 	</select>
+	
+	<update id="updatep">
+	update adminstock set a_volume=#{price} where ano=#{ano}
+	</update>
 </mapper>

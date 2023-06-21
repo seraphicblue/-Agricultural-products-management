@@ -1,7 +1,7 @@
 package stock_m.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import stock_m.dao.UserDao;
@@ -13,8 +13,8 @@ public class LoginService {
 	@Autowired
 	UserDao dao;
 	
-	//@Autowired
-	//private PasswordEncoder encoder;
+	@Autowired
+	private PasswordEncoder encoder;
 	
 	public int checkId(String userid) {
 		return dao.checkId(userid);
@@ -23,9 +23,7 @@ public class LoginService {
 	public int insertUser(UserDto user) {
 		
 		//암호화(BCrypt 알고리즘 )
-		//users.setUserpw(encoder.encode(users.getUserpw()));
-	
-		//user.setRole(LoginRole.ROLE_ADMIN);
+		user.setUserpw(encoder.encode(user.getUserpw()));	
 		
 		int i = dao.insertUser(user);
 		if(user.getRole().toString().equals("ROLE_COMPANY")) {

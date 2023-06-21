@@ -10,10 +10,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
+import jakarta.servlet.http.HttpSession;
 import stock_m.component.KamisApiCaller;
+import stock_m.dto.AdminstockDto;
 import stock_m.dto.PriceDto;
 import stock_m.service.SabService;
+import stock_m.service.StockService;
 
 @Controller
 public class ApiController {
@@ -23,6 +27,10 @@ public class ApiController {
 	
 	@Autowired
 	SabService service;
+	
+	@Autowired
+	StockService stock_service;
+
 
 	@GetMapping("admin/price")
 	public String showPrice(Model model) throws Exception {
@@ -50,6 +58,22 @@ public class ApiController {
 	public int inserta(@RequestParam("a_content") String a_content, @RequestParam("a_val") int a_val, @RequestParam("a_volum") int a_volum) {	
 		int a =service.inserta(a_content, a_val, a_volum);
 		return a;
+	}
+	
+	@GetMapping("admin/change")
+	public String change(Model m, HttpSession session) {
+		String userid = (String) session.getAttribute("userid");
+		List<AdminstockDto> adminstockList = stock_service.option();
+		m.addAttribute("adminstockList",adminstockList);
+		m.addAttribute("uid", userid);
+		return "admin/change";
+	}
+	
+	@PostMapping("admin/updatep")
+	@ResponseBody
+	public int updatep(@RequestParam("ano") int ano, @RequestParam("price") int price) {
+		int b = service.updatep(ano,price);
+		return b;
 	}
 
 }

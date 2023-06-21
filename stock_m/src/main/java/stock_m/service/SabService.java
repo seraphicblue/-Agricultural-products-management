@@ -102,4 +102,11 @@ public class SabService {
 		}
 	}
 
+	public int updatep(int ano, int price) {
+		int b= admin_dao.updatep(ano,price);
+		return b;
+	}
+
+
+
 }
