@@ -230,7 +230,7 @@
 								<table class="table table-bordered dataTable copyright text-center my-auto" id="dataTable"
 									width="100%" cellspacing="0" role="grid"
 									aria-describedby="dataTable_info" style="width: 100%;">								
-									<thead>
+									<thead style="background-color: #E1F5A9">
 										<tr>
 											<th style="width: 150px">재고 번호</th>
 											<th style="width: 150px">수량</th>
@@ -238,7 +238,7 @@
 											<th>가격</th>
 										</tr>
 									</thead>
-									<tbody>
+									<tbody style="background-color: #F1F8E0">
 									<c:forEach items="${companybuyList}" var="cbl">
 										<tr>										
 											<td>${cbl.ano}</td>
