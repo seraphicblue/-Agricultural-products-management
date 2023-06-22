@@ -204,5 +204,13 @@ public class BroadcastService {
 		
 		return list;
 	}
+	
+	public List<Map<String, Object>> broadSelecStock(String userid){
+		return Broadcast_dao.broadSelecStock(userid);
+	}
+	
+	public List<Map<String, Object>> pricebroadcast(String userid){
+		return Broadcast_dao.pricebroadcast(userid);
+	}
 
 }

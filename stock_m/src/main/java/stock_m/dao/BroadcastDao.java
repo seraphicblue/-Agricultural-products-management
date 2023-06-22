@@ -118,4 +118,10 @@ public interface BroadcastDao {
 	
 	@Select("select userid from pricebroadcast where pno = #{pno} and param >= #{param}")
 	public List<String> abGet(@Param("pno") int pno, @Param("param")int param);
+	
+	@Select("select * from stockbroadcast inner join stock on stock_selec = sno where stock.userid = #{userid}")
+	public List<Map<String, Object>> broadSelecStock(String userid);
+	
+	@Select("select * from pricebroadcast inner join adminstock on pno = ano where userid = #{userid}")
+	public List<Map<String, Object>> pricebroadcast(String userid);
 }
