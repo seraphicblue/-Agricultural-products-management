@@ -241,7 +241,34 @@
 										</tr>
 									</table>
 									<input type="submit" class="btn btn-primary btn-icon-split" value="판매" style="width:70px;height:41px;float: right;" >
-								</form>						
+								</form>
+								<br>
+								<table class="table table-bordered dataTable copyright text-center my-auto" id="dataTable"
+									width="100%" cellspacing="0" role="grid"
+									aria-describedby="dataTable_info" style="width: 100%;">								
+									<thead style="background-color: #E1F5A9">
+										<tr>
+											<th style="width: 150px">재고 번호</th>
+											<th style="width: 150px">상품 번호</th>											
+											<th>재고 물품</th>
+											<th style="width: 150px">재고 수량</th>
+											<th style="width: 150px">상품 수량</th>
+											<th>상품 가격</th>											
+										</tr>
+									</thead>
+									<tbody style="background-color: #F1F8E0">
+									<c:forEach items="${companyproductList}" var="cpl">
+										<tr>										
+											<td>${cpl.sno}</td>
+											<td>${cpl.pno}</td>
+											<td>${cpl.pname}</td>
+											<td>${cpl.s_volume}</td>
+											<td style="vertical-align: middle;">${cpl.p_count}</td>
+											<td style="vertical-align: middle;">${cpl.price}</td>									
+										</tr>	
+									</c:forEach>									
+									</tbody>
+								</table>						
 							</div>
 	
 						</div>

@@ -201,7 +201,6 @@
 										</tr>
 									</thead>
 									<tbody>
-
 										<tr>
 											<td class="sno"></td>
 											<td style="padding-top: 12px">
@@ -224,7 +223,30 @@
 											<!-- <i class="fas fa-check" ></i> -->
 											<span>추가</span>
 											</button></td>
+										</tr>										
+									</tbody>
+								</table>
+								<br>
+								<table class="table table-bordered dataTable copyright text-center my-auto" id="dataTable"
+									width="100%" cellspacing="0" role="grid"
+									aria-describedby="dataTable_info" style="width: 100%;">								
+									<thead>
+										<tr>
+											<th style="width: 150px">재고 번호</th>
+											<th style="width: 150px">수량</th>
+											<th>재고 물품</th>
+											<th>가격</th>
 										</tr>
+									</thead>
+									<tbody>
+									<c:forEach items="${companybuyList}" var="cbl">
+										<tr>										
+											<td>${cbl.ano}</td>
+											<td>${cbl.s_volume}</td>
+											<td style="vertical-align: middle;">${cbl.acontent}</td>
+											<td style="vertical-align: middle;">${cbl.a_volume}</td>									
+										</tr>	
+									</c:forEach>									
 									</tbody>
 								</table>
 							</div>

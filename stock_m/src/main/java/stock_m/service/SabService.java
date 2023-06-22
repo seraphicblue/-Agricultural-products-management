@@ -11,6 +11,7 @@
 package stock_m.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,6 +106,14 @@ public class SabService {
 	public int updatep(int ano, int price) {
 		int b= admin_dao.updatep(ano,price);
 		return b;
+	}
+	
+	public List<Map<String,Object>> companybuy(String userid){
+		return product_dao.companybuy(userid);
+	}
+	
+	public List<Map<String,Object>> companyproduct(String userid){
+		return product_dao.companyproduct(userid);
 	}
 
 
