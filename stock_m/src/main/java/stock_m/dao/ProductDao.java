@@ -28,7 +28,7 @@ public interface ProductDao {
 	
 	public List<Map<String,Object>> palarmSearch(@Param("pname")String pname, @Param("start")int start, @Param("nuserid") List<String> nuserid);
 	
-	@Select("select m_content from management where userid like #{userid} and m_val = 0")
+	@Select("select c_userid from management where userid like #{userid} and m_val = 0")
 	public List<String> negativeUserid(String userid);
 	
 	//false인 업체(userid)를 제외하고 받아오기
