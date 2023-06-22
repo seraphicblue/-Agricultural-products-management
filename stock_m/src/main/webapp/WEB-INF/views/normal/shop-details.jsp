@@ -135,7 +135,11 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__pic">
-                        <div class="product__details__pic__item">
+                        <div class="product__details__pic__item">                        
+                        <c:if test="${!product.pname.contains(' ')}">
+                            <img class="product__details__pic__item--large"
+                                src="../../market/img/product/product-details-1.jpg" height="360" width="330"alt="">
+                        </c:if>
                         <c:if test="${product.pname.contains('감자')}">
                             <img class="product__details__pic__item--large"
                                 src="../../market/img/product/potato.jpg" height="360" width="330"alt="">
@@ -180,13 +184,41 @@
                             <img class="product__details__pic__item--large"
                                 src="../../market/img/product/melon.jpg" height="360" width="330"alt="">
                         </c:if>
-                        <c:if test="${product.pname.contains('호박')}">
+                        <c:if test="${product.pname.contains('고구마')}">
                             <img class="product__details__pic__item--large"
-                                src="../../market/img/product/pumpkin.jpg" height="360" width="330"alt="">
+                                src="../../market/img/product/sweet_potato.jpg" height="360" width="330"alt="">
                         </c:if>
                         <c:if test="${product.pname.contains('딸기')}">
                             <img class="product__details__pic__item--large"
                                 src="../../market/img/product/strawberry.jpg" height="360" width="330"alt="">
+                        </c:if>
+                        <c:if test="${product.pname.contains('수박')}">
+                            <img class="product__details__pic__item--large"
+                                src="../../market/img/product/watermelon.jpg" height="360" width="330"alt="">
+                        </c:if>
+                        <c:if test="${product.pname.contains('호박')}">
+                            <img class="product__details__pic__item--large"
+                                src="../../market/img/product/pumpkin.jpg" height="360" width="330"alt="">
+                        </c:if>
+                        <c:if test="${product.pname.contains('귤')}">
+                            <img class="product__details__pic__item--large"
+                                src="../../market/img/product/mandarin.jpg" height="360" width="330"alt="">
+                        </c:if>
+                        <c:if test="${product.pname.contains('나물')}">
+                            <img class="product__details__pic__item--large"
+                                src="../../market/img/product/herbs.jpg" height="360" width="330"alt="">
+                        </c:if>
+                        <c:if test="${product.pname.contains('파인애플')}">
+                            <img class="product__details__pic__item--large"
+                                src="../../market/img/product/fineapple.jpg" height="360" width="330"alt="">
+                        </c:if>
+                        <c:if test="${product.pname.contains('버섯')||product.pname.contains('표고')||product.pname.contains('양송이')}">
+                            <img class="product__details__pic__item--large"
+                                src="../../market/img/product/mushroom.jpg" height="360" width="330"alt="">
+                        </c:if>
+                        <c:if test="${product.pname.contains('복숭아')}">
+                            <img class="product__details__pic__item--large"
+                                src="../../market/img/product/peach.jpeg" height="360" width="330"alt="">
                         </c:if>
                         <c:if test="${product.pname.contains('수박')}">
                             <img class="product__details__pic__item--large"

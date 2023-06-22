@@ -182,12 +182,26 @@
                     				document.getElementById(i+"pimg").setAttribute("style", "background-image: url('../../market/img/product/grape.jpg');");
                     			}else if(document.getElementById(i+"pname").textContent.includes("멜론")){
                     				document.getElementById(i+"pimg").setAttribute("style", "background-image: url('../../market/img/product/melon.jpg');");
-                    			}else if(document.getElementById(i+"pname").textContent.includes("호박")){
-                    				document.getElementById(i+"pimg").setAttribute("style", "background-image: url('../../market/img/product/pumpkin.jpg');");
+                    			}else if(document.getElementById(i+"pname").textContent.includes("고구마")){
+                    				document.getElementById(i+"pimg").setAttribute("style", "background-image: url('../../market/img/product/sweet_potato.jpg');");
                     			}else if(document.getElementById(i+"pname").textContent.includes("딸기")){
                     				document.getElementById(i+"pimg").setAttribute("style", "background-image: url('../../market/img/product/strawberry.jpg');");
                     			}else if(document.getElementById(i+"pname").textContent.includes("수박")){
                     				document.getElementById(i+"pimg").setAttribute("style", "background-image: url('../../market/img/product/watermelon.jpg');");
+                    			}else if(document.getElementById(i+"pname").textContent.includes("귤")){
+                    				document.getElementById(i+"pimg").setAttribute("style", "background-image: url('../../market/img/product/mandarin.jpg');");
+                    			}else if(document.getElementById(i+"pname").textContent.includes("나물")){
+                    				document.getElementById(i+"pimg").setAttribute("style", "background-image: url('../../market/img/product/herbs.jpg');");
+                    			}else if(document.getElementById(i+"pname").textContent.includes("파인애플")){
+                    				document.getElementById(i+"pimg").setAttribute("style", "background-image: url('../../market/img/product/fineapple.jpg');");
+                    			}else if(document.getElementById(i+"pname").textContent.includes("호박")){
+                    				document.getElementById(i+"pimg").setAttribute("style", "background-image: url('../../market/img/product/pumpkin.jpg');");
+                    			}else if(document.getElementById(i+"pname").textContent.includes("버섯")||document.getElementById(i+"pname").textContent.includes("표고")||document.getElementById(i+"pname").textContent.includes("양송이")){
+                    				document.getElementById(i+"pimg").setAttribute("style", "background-image: url('../../market/img/product/mushroom.jpg');");
+                    			}else if(document.getElementById(i+"pname").textContent.includes("복숭아")){
+                    				document.getElementById(i+"pimg").setAttribute("style", "background-image: url('../../market/img/product/peach.jpeg');");
+                    			}else{
+                    				document.getElementById(i+"pimg").setAttribute("style", "background-image: url('../../market/img/product/product-details-1.jpg');");
                     			}
                     		}
                         }
