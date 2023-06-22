@@ -113,5 +113,9 @@ public interface BroadcastDao {
 	@Select("select * from adminstock")
 	public List<AdminstockDto> adminCheck();
 	
+	@Select("select count(*) from pricebroadcast where pno = #{pno} and param >= #{param}")
+	public int abCount(@Param("pno") int pno, @Param("param")int param);
 	
+	@Select("select userid from pricebroadcast where pno = #{pno} and param >= #{param}")
+	public List<String> abGet(@Param("pno") int pno, @Param("param")int param);
 }

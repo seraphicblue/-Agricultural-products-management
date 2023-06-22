@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -55,6 +56,15 @@ public class BroadcastService {
 			int volume = Integer.parseInt(content.split("_")[2]);
 			content = "현재 알림 수치는 " + volume + "원 이고 현재 잔고는 " + param + "원 으로 설정량의 "
 					+ (Math.round((param / (double) volume) * 100) / 100.0) * 100 + "% 입니다.";
+			Broadcast_dao.insertMessage(userid, sub, content);
+		}
+		else if (sep.equals("A")) {
+			System.out.println("this is :::::::" + content);
+			String sub = content.split("_")[0];
+			int sno = Integer.parseInt(content.split("_")[1]);
+			int param = sno;
+			content = "현재 금액이 " + param + "원 으로 설정 금액에 도달했습니다 ";
+					
 			Broadcast_dao.insertMessage(userid, sub, content);
 		}
 
@@ -182,6 +192,17 @@ public class BroadcastService {
 		}else {
 			Broadcast_dao.pbainsert(userid, pno, param);
 		}
+	}
+	public List<String> aPriceGet(int ano, int price) {
+		int pno=ano;
+		int param =price;
+		List<String> list =null;
+		int cnt=Broadcast_dao.abCount(pno, param);
+		if(cnt>0) {
+			list = Broadcast_dao.abGet(pno, param);
+		}
+		
+		return list;
 	}
 
 }

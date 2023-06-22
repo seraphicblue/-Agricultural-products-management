@@ -48,7 +48,7 @@
 
 		<!-- Sidebar -->
 		<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
+		<input type="hidden" name="command" id="command" value="A">
 			<!-- Sidebar - Brand -->
 			<!-- 홈화면 링크 부분-->
 			<a href="/admin/price" class="sidebar-brand d-flex align-items-center justify-content-center" > 
@@ -158,7 +158,7 @@
 										<tr>
 											<td class="sno"></td>
 												<td align="center">
-												<select class="navbar navbar-expand select_option" onchange="selectedoption(this)">
+												<select class="navbar navbar-expand select_option" id= "ano" onchange="selectedoption(this)">
 													<option value="">--------------------</option>
 													<c:forEach items="${adminstockList}" var="option">
 														<option value="${option.acontent}"
@@ -169,7 +169,7 @@
 											</select></td>
 											<td class="selectedvolume" style="vertical-align: middle;"></td><td style="padding-top: 12px">
 											<input type="text" class="price" value=0 size="10"
-											style="width:45px;height:41px;"
+											style="width:45px;height:41px;" id="price2"
 												onchange="changeprice(this)"></td>
 											<td><button class="btn btn-primary btn-icon-split click" style="width:45px;height:41px;align-items: center;">
 											<!-- <i class="fas fa-check" ></i> -->
@@ -276,10 +276,11 @@
 																'ano' : ano,
 															},
 															success : function(result) {
-																location.reload();
 																
 																if (result == true) {
 																	alert("변경 성공.");
+																	sendMessage2("A",ano);
+																	//location.reload();
 																} else {
 																	alert("변경 실패.");
 																}

@@ -72,7 +72,7 @@
 
 			<!-- Nav Item - Utilities Collapse Menu -->			
 
-			<!-- Divider -->
+			<!-- Divider --> 
 
 			<!-- Heading -->
 			<div class="sidebar-heading">Addons</div>

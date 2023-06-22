@@ -236,7 +236,13 @@ public class BroadcastController {
 		return broad_service.manageGet(userid);
 	}
 	
-	
+	@GetMapping("/Abroadprice")
+	@ResponseBody
+	public List<String> broadPrice(@RequestParam("ano") int ano, @RequestParam("price") int price, HttpSession session) {
+		String userid = (String) session.getAttribute("userid");
+		
+		return broad_service.aPriceGet(ano, price);
+	}
 	
 
 }

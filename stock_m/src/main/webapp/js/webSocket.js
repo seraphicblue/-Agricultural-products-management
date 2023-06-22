@@ -26,10 +26,12 @@ socket.onmessage = function(event) {
 			stockMessage(sep, sentUserid, contents + "_" + targetSno);
 		}
 
-		else if (sep == 'CP') {
+		else if (sep == 'A') {
 			contents = content + "가격 도달";
 			document.getElementById('position2').textContent = contents;
 			document.getElementById('position2').style.color = "#FF0000";
+			console.log(sep+"_"+targetSno + "_" + contents + "_" + sentUserid);
+			stockMessage(sep, targetSno, contents + "_" + sentUserid);
 		}
 
 		else if (sep == 'L') {
@@ -39,6 +41,7 @@ socket.onmessage = function(event) {
 			stockMessage(sep, content, contents + "_" + sentUserid + "_" + targetSno);
 			console.log(contents + "_" + sentUserid + "_" + targetSno);
 		}
+		
 
 
 
@@ -62,6 +65,10 @@ socket.onmessage = function(event) {
 		if (sep == 'M') {
 			contents = '<h3>' + sentUserid + "업체에서" + "(" + content + ")상품을 등록했습니다." + '</h3>';
 		}
+		if (sep == 'A') {
+			contents = '<h3>' + "(" + content + ")가 가격에 도달했습니다" + '</h3>';
+			stockMessage(sep, content, str + "_" + sentUserid + "_" + targetSno);
+		}
 		
 		const newWindow = window.open('', 'New Window', "top=1000,left=1500,width=400,height=100");
 		newWindow.document.write(contents);
@@ -76,8 +83,34 @@ socket.onclose = function(event) {
 	console.log("WebSocket is closed now.");
 };
 
-function sendMessage(te) {
 
+function sendMessage2(te,ano) {
+	if (document.getElementById('command').value == "A" ||te == "A") {
+		var scontent = document.getElementById('ano').value;
+		var price = document.getElementById('price2').value;
+		var ano =ano;
+		alert(ano+price)
+		$.ajax({
+			url: '/Abroadprice',
+			type: 'get',
+			data: { ano: ano, price: price},
+			dataType: 'json',
+			success: function(data) {
+				console.log(data)
+				for (var i = 0; i < data.length; i++) {
+					text = "/" + "Aprice" + '_' + data[i] + '_' + scontent+'_'+price;
+					socket.send(text); 
+				}
+			}
+
+		});
+	}
+}
+
+
+
+
+function sendMessage(te) {
 
 	if (document.getElementById('command').value == "price" || te == "P") {
 
@@ -113,6 +146,38 @@ function sendMessage(te) {
 
 		});
 	}
+	else if (document.getElementById('command').value == "A" ||te == "A") {
+		var scontent = document.getElementById('ano').value;
+		var price = document.getElementById('price2').value;
+		var ano = document.getElementById('ano').selectedIndex;
+		alert(ano+price)
+		$.ajax({
+			url: '/Abroadprice',
+			type: 'get',
+			data: { bno: ano, price: price},
+			dataType: 'text',
+			success: function(data) {
+				$.ajax({
+					url: '/Aselec',
+					type: 'get',
+					data: { userid: parseInt(data) },
+					dataType: 'json',
+					success: function(data) {
+						message = data;
+						for (var i = 0; i < data.length; i++) {
+							text = "/" + "price" + '_' + data[i] + '_' + scontent;
+
+							socket.send(text); 
+						}
+
+					}
+
+				})
+			}
+
+		});
+	}
+
 	else if (document.getElementById('command').value == "stock" || te == "S") {
 		var message = "";
 		var userid = "";
