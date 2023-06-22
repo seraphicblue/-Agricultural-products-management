@@ -1,6 +1,7 @@
 package stock_m.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,7 @@ import stock_m.dto.AdminstockDto;
 import stock_m.dto.BroadcastPriceDto;
 import stock_m.dto.NameAndPrice_sabDto;
 import stock_m.service.BroadcastService;
+import stock_m.service.MarketService;
 import stock_m.service.SabService;
 import stock_m.service.StockService;
 
@@ -33,6 +35,9 @@ public class SabController {
 
 	@Autowired
 	BroadcastService broad_service;
+	
+	@Autowired
+	MarketService market_service;
 
 	@GetMapping("event2")
 	public String event() {
@@ -92,8 +97,10 @@ public class SabController {
 	public String buy(Model model, HttpSession session) {
 		String userid = (String) session.getAttribute("userid");
 		List<AdminstockDto> adminstockList = stock_service.option();
+		List<Map<String,Object>> companybuyList = sab_service.companybuy(userid);
 		model.addAttribute("userid", userid);
 		model.addAttribute("adminstockList", adminstockList);
+		model.addAttribute("companybuyList", companybuyList);
 		return "company/buy";
 	}
 
@@ -101,8 +108,10 @@ public class SabController {
 	public String sellForm(Model m, HttpSession session) {
 		String userid = (String) session.getAttribute("userid");
 		List<NameAndPrice_sabDto> npList = sab_service.namePrice(userid);
+		List<Map<String,Object>> companyproductList = sab_service.companyproduct(userid);
 		m.addAttribute("npList", npList);
 		m.addAttribute("uid", userid);
+		m.addAttribute("companyproductList", companyproductList);
 		return "company/sell";
 	}
 

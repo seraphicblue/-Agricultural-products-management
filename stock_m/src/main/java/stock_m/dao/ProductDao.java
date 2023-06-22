@@ -101,6 +101,12 @@ public interface ProductDao {
 	
 	@Select("select pno from product where sno=#{sno}")
 	int broadprice(@Param("sno")int sno);
+	
+	@Select("select * from adminstock inner join buy inner join stock on ano = pno and scontent = acontent where buy.userid = #{userid}")
+	public List<Map<String,Object>> companybuy(@Param("userid") String userid);
+	
+	@Select("select * from product inner join stock on product.sno = stock.sno where userid = #{userid}")
+	public List<Map<String,Object>> companyproduct(@Param("userid") String userid);
 
 	
 }
