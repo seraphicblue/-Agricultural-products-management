@@ -246,10 +246,27 @@
 										
 									</table>
 									<input type="submit" class="btn btn-primary btn-icon-split" value="등록" style="width:70px;height:41px;float: right;" >
-								</form>	
-													
+								</form>
+								<br>
+								<table class="table table-bordered dataTable copyright text-center my-auto" id="dataTable"
+									width="100%" cellspacing="0" role="grid"
+									aria-describedby="dataTable_info" style="width: 100%;">								
+									<thead style="background-color: #E1F5A9">
+										<tr>										
+											<th>알림 상품</th>
+											<th>알림 금액</th>											
+										</tr>
+									</thead>
+									<tbody style="background-color: #F1F8E0">
+									<c:forEach items="${pricebroadcastList}" var="pbl">
+										<tr>					
+											<td>${pbl.acontent}</td>
+											<td>${pbl.param}</td>							
+										</tr>	
+									</c:forEach>									
+									</tbody>
+								</table>			
 							</div>
-	
 						</div>
 					</div>
 				</div>

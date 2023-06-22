@@ -179,9 +179,10 @@ public class BroadcastController {
 	public String broadSelM(HttpSession session, Model m) {
 		String userid = (String) session.getAttribute("userid");
 		List<NameAndPrice_sabDto> npList = sab_service.namePrice(userid);
+		List<Map<String, Object>> broadSelecStockList = broad_service.broadSelecStock(userid);
 		m.addAttribute("npList", npList);
 		m.addAttribute("uid", userid);
-		
+		m.addAttribute("broadSelecStockList", broadSelecStockList);
 		
 		return "company/broadSelecStock";
 	}
@@ -207,8 +208,10 @@ public class BroadcastController {
 	public String broadSelP(HttpSession session, Model m){
 		String userid = (String) session.getAttribute("userid");
 		List<AdminstockDto> priceData =broad_service.returnAdmin();
+		List<Map<String, Object>> pricebroadcastList = broad_service.pricebroadcast(userid);
 		m.addAttribute("uid", userid);
 		m.addAttribute("priceData", priceData);
+		m.addAttribute("pricebroadcastList", pricebroadcastList);
 		
 		return "company/broadSelecPrice";
 	}
@@ -217,8 +220,7 @@ public class BroadcastController {
 	public void insertPb(@RequestParam("pno") int pno, @RequestParam("param") int param, HttpSession session) {
 	  System.out.println("여기에 도달하였습니다."+pno+"  "+param);
 	  String userid = (String) session.getAttribute("userid");
-	  broad_service.priceinsertAndUpdate(userid, pno, param);
-	 
+	  broad_service.priceinsertAndUpdate(userid, pno, param);	 
 	}
 	
 	@GetMapping("/insertLimit")
