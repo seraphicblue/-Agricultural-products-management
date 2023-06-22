@@ -48,7 +48,7 @@
 
 		<!-- Sidebar -->
 		<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
+		<input type="hidden" name="command" id="command" value="common">
 			<!-- Sidebar - Brand -->
 			<!-- 홈화면 링크 부분-->
 			<a href="/admin/price" class="sidebar-brand d-flex align-items-center justify-content-center" > 
