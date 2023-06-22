@@ -247,7 +247,28 @@
 										
 									</table>
 									<input type="submit" class="btn btn-primary btn-icon-split" value="등록" style="width:70px;height:41px;float: right;" >
-								</form>						
+								</form>
+								<br>
+								<table class="table table-bordered dataTable copyright text-center my-auto" id="dataTable"
+									width="100%" cellspacing="0" role="grid"
+									aria-describedby="dataTable_info" style="width: 100%;">								
+									<thead style="background-color: #E1F5A9">
+										<tr>										
+											<th>재고 물품</th>
+											<th width="20%">재고 수량</th>
+											<th width="20%">알림 수량</th>											
+										</tr>
+									</thead>
+									<tbody style="background-color: #F1F8E0">
+									<c:forEach items="${broadSelecStockList}" var="bssl">
+										<tr>					
+											<td>${bssl.scontent}</td>
+											<td>${bssl.s_volume}</td>
+											<td style="vertical-align: middle;">${bssl.stock_param}</td>								
+										</tr>	
+									</c:forEach>									
+									</tbody>
+								</table>						
 							</div>
 	
 						</div>
