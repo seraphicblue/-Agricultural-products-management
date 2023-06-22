@@ -253,7 +253,6 @@
 														</c:if>
 													</tr>
 												</c:forEach>
-
 											</tbody>
 										
 									</table>
@@ -349,7 +348,9 @@
 					const style = "<style> body { background-color: #009900; } button { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -30%); width: 100px; height: 30px; } </style>";
 					const finalHtml = style + contents + buttonHtml;
 					newWindow.document.write(finalHtml);
+					location.reload();
 					}
+				
 				});
 
 		}
