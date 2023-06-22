@@ -29,10 +29,12 @@ public class MarketService {
 	
 	//pname(상품명)으로 상품 검색 pname : 검색 때 입력한 문자열, start : 시작할 상품순서, count : 한페이지에 보여줄 상품수 
 	public List<Map<String,Object>> searchPname(String pname, int start, List<String> nuserid) {
+		System.out.println("name");
 		return dao.searchPname(pname, start, nuserid);
 	}
 	
 	public List<Map<String,Object>> palarmSearch(String pname, int start, List<String> nuserid) {
+		System.out.println("parma");
 		return dao.palarmSearch(pname, start, nuserid);
 	}
 	
