@@ -31,17 +31,15 @@ import stock_m.dto.StockDto;
 @Mapper
 public interface RevenueDao {
 
-	
-
-	//userid의 현재 잔고를 확인
+	// userid의 현재 잔고를 확인
 	@Select("select profit from revenue where userid =#{userid}")
 	int checks(String userid);
-	
-	//userid의 정보를 가지고 장부 테이블의 잔고를 업데이트
+
+	// userid의 정보를 가지고 장부 테이블의 잔고를 업데이트
 	@Update("UPDATE revenue SET profit=profit-#{s_price} WHERE userid = #{userid}")
 	int updater(@Param("s_price") int s_price, @Param("userid") String userid);
-	
-	//구매가 이루어진다면 해당 param 값들을 이용해 저장
+
+	// 구매가 이루어진다면 해당 param 값들을 이용해 저장
 	@Insert("insert into buy(pno,userid,bdate,price,bcount) values(#{ano},#{userid},#{s_date},#{s_price},#{s_volume})")
 	int insertb(@Param("ano") int ano, @Param("userid") String userid, @Param("s_date") String s_date,
 			@Param("s_price") int s_price, @Param("s_volume") int s_volume);
@@ -73,12 +71,11 @@ public interface RevenueDao {
 	@Select("select * from sell where sno = #{sno}") // 글번호가 같다면 전부 select
 	SellDto selectsell(int sno);
 
-
 	// 구매//main코드 수정 23.05.23
 
 	@Insert("insert into buy (bno, pno, userid, bdate, price) values(#{bno}, #{pno}, #{userid}, now(), #{price})")
 	int rbuyinsert(BuyDto dto);
-	
+
 	@Select("select bno, acontent,DATE_FORMAT(bdate, \"%Y/%m/%d\") as bdate,price,bcount from (select * from buy where userid=#{userid}) a inner join adminstock on a.pno =adminstock.ano order by bdate desc, pno desc;")
 	List<Map<String, Object>> rbuyList(String userid);
 
@@ -100,13 +97,12 @@ public interface RevenueDao {
 	@Delete("delete from sell where sno=#{sno}")
 	int deletesell(int sno);
 
-	@Select("SELECT s.sno AS no, p.pname, DATE_FORMAT(s.sdate, \"%Y/%m/%d\") AS 'date', p.price, s.scount AS count, '판매' AS kind FROM sell s INNER JOIN product p ON s.pno = p.pno  UNION\r\n"
-			+ "SELECT a.bno AS no, adminstock.acontent,  DATE_FORMAT(a.bdate, \"%Y/%m/%d\") AS 'date', a.price, a.bcount AS count, '구매' AS kind FROM buy a\r\n"
-			+ "INNER JOIN adminstock ON a.pno = adminstock.ano\r\n"
-			+ "WHERE a.userid = #{userid}\r\n"
-			+ "ORDER BY date DESC, no DESC;")
+	@Select("SELECT s.sno AS no, p.pname, DATE_FORMAT(s.sdate, \"%Y/%m/%d\") AS 'date', p.price, s.scount AS count, '판매' AS kind FROM sell s INNER JOIN product p ON s.pno = p.pno WHERE s.userid = #{userid}"
+			+ " UNION"
+			+ " SELECT a.bno AS no, adminstock.acontent, DATE_FORMAT(a.bdate, \"%Y/%m/%d\") AS 'date', a.price, a.bcount AS count, '구매' AS kind FROM buy a INNER JOIN adminstock ON a.pno = adminstock.ano"
+			+ " WHERE a.userid = #{userid}" + " ORDER BY date DESC, no DESC;")
 	List<Map<String, Object>> totalList(String userid);
-	                                                                                                                                                                            
+
 	@Select("select *from sell,buy where pname=#{search}")
 	List<StockDto> searchrcontent(String search);
 
@@ -114,31 +110,29 @@ public interface RevenueDao {
 	int countb();
 
 	// chart
-		@Select("SELECT MONTH(sdate) AS month, SUM(price) AS sell_price FROM sell WHERE sdate BETWEEN #{startDate} AND #{endDate} GROUP BY MONTH(sdate) order by MONTH(sdate)")
-		List<Map<String, Object>> getFilteredData(Map<String, Object> m);
+	@Select("SELECT MONTH(sdate) AS month, SUM(price) AS sell_price FROM sell WHERE userid=#{userid} and sdate BETWEEN #{startDate} AND #{endDate} GROUP BY MONTH(sdate) order by MONTH(sdate)")
+	List<Map<String, Object>> getFilteredData(Map<String, Object> m);
 
-		@Select("SELECT MONTH(bdate) AS month, SUM(price) AS buy_price FROM buy WHERE bdate BETWEEN #{startDate} AND #{endDate} GROUP BY MONTH(bdate) order by MONTH(bdate)")
-		List<Map<String, Object>> getbuyData(Map<String, Object> m);
+	@Select("SELECT MONTH(bdate) AS month, SUM(price) AS buy_price FROM buy WHERE userid=#{userid} and bdate BETWEEN #{startDate} AND #{endDate} GROUP BY MONTH(bdate) order by MONTH(bdate)")
+	List<Map<String, Object>> getbuyData(Map<String, Object> m);
 
-		@Select("SELECT s.month, (s.total_price - b.total_price) AS profit FROM"
-				+ "  (SELECT MONTH(sdate) AS month, SUM(price) AS total_price FROM sell WHERE sdate BETWEEN  #{startDate} AND #{endDate} GROUP BY MONTH(sdate) order by MONTH(sdate)) AS s "
-				+ "JOIN "
-				+ "  (SELECT MONTH(bdate) AS month, SUM(price) AS total_price FROM buy WHERE bdate BETWEEN  #{startDate} AND #{endDate} GROUP BY MONTH(bdate) order by MONTH(bdate)) AS b "
-				+ "ON s.month = b.month")
-		List<Map<String, Object>> gettotalData(Map<String, Object> m);
+	@Select("SELECT s.month, (s.total_price - b.total_price) AS profit FROM"
+			+ "  (SELECT MONTH(sdate) AS month, SUM(price) AS total_price FROM sell WHERE userid=#{userid} and sdate BETWEEN  #{startDate} AND #{endDate} GROUP BY MONTH(sdate) order by MONTH(sdate)) AS s "
+			+ "JOIN "
+			+ "  (SELECT MONTH(bdate) AS month, SUM(price) AS total_price FROM buy WHERE userid=#{userid} and bdate BETWEEN  #{startDate} AND #{endDate} GROUP BY MONTH(bdate) order by MONTH(bdate)) AS b "
+			+ "ON s.month = b.month")
+	List<Map<String, Object>> gettotalData(Map<String, Object> m);
 
-		@Select("select sum(bcount) as bc, bdate from buy where userid=#{userid} group by bdate")
-		List<Map<String, Object>> getmainbuydata(String userid);
-		
-		@Select("select sum(scount) as sc, sdate from sell where userid=#{userid} group by sdate")
-		List<Map<String, Object>> getmainselldata(String userid);
-		
-		
-		@Select("select sum(bcount) as bc, bdate from buy group by bdate")
-		List<Map<String, Object>> getmainbuydata2();
-		
-		@Select("select sum(scount) as sc, sdate from sell group by sdate")
-		List<Map<String, Object>> getmainselldata2();
-		
-		
+	@Select("select sum(bcount) as bc, bdate from buy where userid=#{userid} group by bdate")
+	List<Map<String, Object>> getmainbuydata(String userid);
+
+	@Select("select sum(scount) as sc, sdate from sell where userid=#{userid} group by sdate")
+	List<Map<String, Object>> getmainselldata(String userid);
+
+	@Select("select sum(bcount) as bc, bdate from buy group by bdate")
+	List<Map<String, Object>> getmainbuydata2();
+
+	@Select("select sum(scount) as sc, sdate from sell group by sdate")
+	List<Map<String, Object>> getmainselldata2();
+
 }
