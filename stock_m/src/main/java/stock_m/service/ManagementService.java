@@ -80,7 +80,6 @@ public class ManagementService {
 		Map<String, Object> m = new HashMap<>();
 		m.put("mno", mno);
 		m.put("userid", userid);
-		System.out.println(mno);
 		return dao.delete(m);
 	}
 

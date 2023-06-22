@@ -230,7 +230,8 @@ input:checked+.slider:before {
                                 <tr>
                                     <th>${count.index+1}</th>
                                     <th class="m_content">${management.m_content}</th>
-                                    <th>${management.m_val}</th>
+                                    <th><c:if test="${management.m_val}==True">관심업체</c:if>
+                                    	<c:if test="${management.m_val}==false">유의업체</c:if></th>
                                     <th><button class="click"
                                             data-userid="${management.userid}">삭제</button></th>
                                     <th><button class="click2"

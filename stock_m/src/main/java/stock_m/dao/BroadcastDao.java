@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-
+import stock_m.dto.AdminstockDto;
 import stock_m.dto.Message;
 
 
@@ -99,4 +99,23 @@ public interface BroadcastDao {
 	
 	@Update("update stockbroadcast set stock_param = #{stock_param} where userid = #{userid} and stock_selec = #{stock_selec}")
 	public int saupdate(@Param("userid")String userid, @Param("stock_selec")int pstock_selecno, @Param("stock_param") int stock_param);
+	
+	
+	@Select("select count(*) from pricebroadcast where userid = #{userid} and pno = #{pno}")
+	public int pbalarmCount(@Param("userid") String userid, @Param("pno")int pno);
+	
+	@Insert("INSERT INTO pricebroadcast(userid,pno,param) values(#{userid},#{pno},#{param})")
+	public int pbainsert(@Param("userid")String userid,@Param("pno")int pno,@Param("param") int param);
+	
+	@Update("update pricebroadcast set param = #{param} where userid = #{userid} and pno = #{pno}")
+	public int pbaupdate(@Param("userid")String userid, @Param("pno")int pno, @Param("param") int param);
+	
+	@Select("select * from adminstock")
+	public List<AdminstockDto> adminCheck();
+	
+	@Select("select count(*) from pricebroadcast where pno = #{pno} and param >= #{param}")
+	public int abCount(@Param("pno") int pno, @Param("param")int param);
+	
+	@Select("select userid from pricebroadcast where pno = #{pno} and param >= #{param}")
+	public List<String> abGet(@Param("pno") int pno, @Param("param")int param);
 }

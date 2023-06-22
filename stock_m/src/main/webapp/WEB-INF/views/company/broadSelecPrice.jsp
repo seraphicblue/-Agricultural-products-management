@@ -204,7 +204,7 @@
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">알림 선택</h1>
+						<h1 class="h3 mb-0 text-gray-800">가격 알림</h1>
 					</div>
 
 					<!-- Content Row -->
@@ -216,8 +216,8 @@
 								<div class="card-header py-3">
 									<h6 class="m-0 font-weight-bold text-primary">알림 등록</h6>
 								</div>
-								<form action="sell" method="post" id="sellform" onsubmit="return checkStock();">
-									<input type="hidden" name="sno" id="val" value=0> 
+								<form method="Post" id="priceform" onsubmit="return checkPrice();">
+									<input type="hidden" name="val" id="val" value=0> 
 									<input type="hidden" name="pname" id="pname"> 
 									<input type="hidden" name="uid" id="uid" value="${uid}"> 
 									<input type="hidden" name="command" id="command" value="common">
@@ -232,11 +232,11 @@
 										
 										<tr>
 											<td>상품 선택</td>
-											<td><select id="scontent" onchange="check()">
+											<td><select id="scontent" >
 													<option>--------------------</option>
-													<c:forEach items="${npList}" var="np">
-														<option value="${np.s_volume}" id="${np.sno}">${np.scontent}</option>
-													</c:forEach>
+													<c:forEach var="priceData" items="${priceData}" varStatus="count">
+        												<option value = "${priceData.ano}" id = "${priceData.ano}">${priceData.acontent}</option>
+        											</c:forEach>
 											</select></td>
 										</tr>
 										<tr>
@@ -246,12 +246,14 @@
 										
 									</table>
 									<input type="submit" class="btn btn-primary btn-icon-split" value="등록" style="width:70px;height:41px;float: right;" >
-								</form>						
+								</form>	
+													
 							</div>
 	
 						</div>
 					</div>
 				</div>
+				
 				<!-- /.container-fluid -->
 
 			</div>
@@ -328,9 +330,42 @@
 			<script src="../../../js/demo/chart-area-demo.js"></script>
 			<script src="../../../js/demo/chart-pie-demo.js"></script>
 			<script type="text/javascript">
-				function(){}
-			</script>
-			
+			function checkPrice() {
+				  var pno = document.getElementById("scontent").value;
+				  var param = document.getElementById("limit").value;
+				 
+				  if (pno.trim() === "--------------------") {
+						alert("물품 정보를 선택해주세요.");
+						
 
+					} else if (param <=0 || param.trim() === "") {
+						alert("수량 정보를 입력해주세요.");
+						return false;
+					} else {
+						$.ajax({
+						    type: 'post',
+						    url: '/company/broadSelecPrice',
+						    data: {
+						      'pno': pno,
+						      'param': param
+						    },
+						    success: function(response) {
+						      console.log('요청이 성공적으로 완료되었습니다.');
+						      alert("입력에 성공헸습니다");
+						      location.reload();
+						    }
+						  }); 
+					}
+				}
+			
+			function validateInput() {
+			    var input = document.getElementById("limit").value;
+			    var isValid = /^\d+$/.test(input) && parseInt(input) >= 1;
+			    if (!isValid) {
+			      alert("1이상의 숫자만 입력해주세요.");
+			      document.getElementById("s_volume").value = "";
+			    }
+			}
+			</script>
 </body>
 </html>

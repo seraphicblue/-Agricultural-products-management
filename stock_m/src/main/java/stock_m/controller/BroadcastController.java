@@ -1,6 +1,7 @@
 package stock_m.controller;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import java.util.Map;
@@ -27,9 +28,10 @@ import stock_m.service.MarketService;
 
 
 import jakarta.servlet.http.HttpSession;
+import stock_m.dto.AdminstockDto;
 import stock_m.dto.Message;
 import stock_m.dto.NameAndPrice_sabDto;
-
+import stock_m.dto.PriceDto;
 import stock_m.service.BroadcastService;
 import stock_m.service.SabService;
 
@@ -39,7 +41,8 @@ public class BroadcastController {
 	
 	@Autowired
 	SabService sab_service;
-
+	
+	AdminstockDto adminstockDto;
 
 	@Autowired
 	BroadcastService broad_service;
@@ -201,13 +204,21 @@ public class BroadcastController {
 	}
 	
 	@GetMapping("company/broadSelecPrice")
-	public String broadSelP(HttpSession session, Model m) {
+	public String broadSelP(HttpSession session, Model m){
 		String userid = (String) session.getAttribute("userid");
-		List<NameAndPrice_sabDto> npList = sab_service.namePrice(userid);
-		m.addAttribute("npList", npList);
+		List<AdminstockDto> priceData =broad_service.returnAdmin();
 		m.addAttribute("uid", userid);
+		m.addAttribute("priceData", priceData);
 		
 		return "company/broadSelecPrice";
+	}
+	
+	@PostMapping("company/broadSelecPrice")
+	public void insertPb(@RequestParam("pno") int pno, @RequestParam("param") int param, HttpSession session) {
+	  System.out.println("여기에 도달하였습니다."+pno+"  "+param);
+	  String userid = (String) session.getAttribute("userid");
+	  broad_service.priceinsertAndUpdate(userid, pno, param);
+	 
 	}
 	
 	@GetMapping("/insertLimit")
@@ -223,6 +234,14 @@ public class BroadcastController {
 	public List<String> broadMange(HttpSession session ) {
 		String userid = (String) session.getAttribute("userid");
 		return broad_service.manageGet(userid);
+	}
+	
+	@GetMapping("/Abroadprice")
+	@ResponseBody
+	public List<String> broadPrice(@RequestParam("ano") int ano, @RequestParam("price") int price, HttpSession session) {
+		String userid = (String) session.getAttribute("userid");
+		
+		return broad_service.aPriceGet(ano, price);
 	}
 	
 
