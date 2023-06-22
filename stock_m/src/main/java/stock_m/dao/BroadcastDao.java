@@ -55,7 +55,7 @@ public interface BroadcastDao {
 	@Select("select count(userid) from message where userid=#{userid}")
 	int messageCount(@Param("userid") String userid);
 
-	@Select("select * from message where userid=#{userid}")
+	@Select("select * from message where userid=#{userid} order by mesno desc")
 	public List<Message> messageList(@Param("userid") String userid);
 
 	@Select("select stock_param from stockbroadcast where stock_selec=#{sno}")

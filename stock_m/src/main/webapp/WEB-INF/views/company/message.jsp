@@ -243,8 +243,14 @@
 
 												<c:forEach items="${page}" var="page" varStatus = "index">
 													<tr onclick="show(${page.mesno})">
-														<td >${index.index+1}</td>
+														<c:if test="${page.rcheck==false}">
+														<td style="color: red; background-color: yellow;"><b>${index.index+1}</b></td>
+														<td style="color: red; "><b>${page.sub}</b></td>
+														</c:if>
+														<c:if test="${page.rcheck==true}">
+														<td>${index.index+1}</td>
 														<td>${page.sub}</td>
+														</c:if>
 													</tr>
 												</c:forEach>
 
