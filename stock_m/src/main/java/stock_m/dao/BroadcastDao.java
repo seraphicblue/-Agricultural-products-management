@@ -20,7 +20,7 @@ public interface BroadcastDao {
 	@Select("select userid from pricebroadcast where pno = #{pno} AND param >= #{param}")
 	public List<String> broadPriceCheck(@Param("pno") int pno, @Param("param") int param);
 
-	@Select("select count(stock_selec) from stockbroadcast where ((select stock_param from stockbroadcast where stock_selec=#{sno}) >= ((select s_volume from stock where sno=#{sno}) -40)) AND userid=#{userid}")
+	@Select("select count(*) from stockbroadcast where (((select stock_param from stockbroadcast where stock_selec=#{sno}) >= ((select s_volume from stock where sno=#{sno}) -40)) AND userid=#{userid}) and stock_selec=#{sno}")
 	public int broadStock(@Param("sno") int sno, @Param("userid") String userid);
 
 	@Insert("insert into message(userid, sub,content) values(#{userid},#{sub}, #{content})")
