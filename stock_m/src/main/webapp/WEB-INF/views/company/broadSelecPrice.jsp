@@ -368,7 +368,7 @@
 						    },
 						    success: function(response) {
 						      console.log('요청이 성공적으로 완료되었습니다.');
-						      alert("입력에 성공헸습니다");
+						      alert("입력에 성공했습니다");
 						      location.reload();
 						    }
 						  }); 
