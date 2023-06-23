@@ -144,8 +144,10 @@ function appendToCanvas(ctx, scontents, backgroundColors) {
 // 색상을 동적으로 반환하는 함수
 function generateColors(length) {
   
+
 var colors = [
     '#e74a3b','#ff6347' ,'#f6c23e','#1cc88a','#36b9cc','#224abe','#7f00ff','#993399','#ff69b4' 
+
   ];
   var backgroundColors = [];
   for (var i = 0; i < length; i++) {
