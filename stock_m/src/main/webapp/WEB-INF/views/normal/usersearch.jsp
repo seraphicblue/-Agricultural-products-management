@@ -244,7 +244,7 @@ input:checked+.slider:before {
 								<c:forEach items="${mList}" var="user" varStatus="count">
 									<tr>
 										<td>${count.index+1}</td>
-										<td class="username" data-userid="${user.userid}">${user.username}</td>
+										<td class="username" data-userid="${user.userid}">${user.userid}</td>
 										<td>${user.gender}</td>
 										<td>${user.age}</td>
 										<td><button class="click">추가</button></td>

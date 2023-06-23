@@ -112,28 +112,27 @@ public class RevenueService {
 
 	}
 
-	public int sellinsert(String userid, String pno, int price, int scount) {
-		Map<String, Object> m = new HashMap<>();
+	public int sellinsert(String startDate,String userid, String pno, int price, int scount) {
+	      Map<String, Object> m = new HashMap<>();
+	        m.put("sdate", startDate);
+	      m.put("userid", userid);
+	      m.put("pno", pno);
+	      m.put("price", price);
+	      m.put("scount", scount);
+	      return dao.sellinsert(m);
 
-		m.put("userid", userid);
-		m.put("pno", pno);
-		m.put("price", price);
-		m.put("scount", scount);
-		return dao.sellinsert(m);
+	   }
 
-	}
+	   public int buyinsert(String startDate,String userid, String pno, int price, int bcount) {
+	      Map<String, Object> m = new HashMap<>();
+	        m.put("bdate", startDate);
+	      m.put("userid", userid);
+	      m.put("pno", pno);
+	      m.put("price", price);
+	      m.put("bcount", bcount);
+	      return dao.buyinsert(m);
 
-	public int buyinsert(String userid, String pno, int price, int bcount) {
-		Map<String, Object> m = new HashMap<>();
-
-		m.put("userid", userid);
-		m.put("pno", pno);
-		m.put("price", price);
-		m.put("bcount", bcount);
-		return dao.buyinsert(m);
-
-	}
-
+	   }
 	public String selectpname(int pno) {
 		return dao.selectpname(pno);
 

@@ -55,7 +55,7 @@ public class BroadcastService {
 			int param = sno;
 			int volume = Integer.parseInt(content.split("_")[2]);
 			content = "현재 알림 수치는 " + volume + "원 이고 현재 잔고는 " + param + "원 으로 설정량의 "
-					+ (Math.round((param / (double) volume) * 100) / 100.0) * 100 + "% 입니다.";
+					+ String.format("%.2f",(Math.round((param / (double) volume) * 100) / 100.0) * 100) + "% 입니다.";
 			Broadcast_dao.insertMessage(userid, sub, content);
 		}
 		else if (sep.equals("A")) {

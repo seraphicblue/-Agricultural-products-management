@@ -57,17 +57,18 @@ public class RevenueController {
 	@Autowired
 	RevenueService service;
  
-	  @GetMapping("/company/sellinsert") 
-	  public String sellwrite(HttpSession session ,@Param("pno")String pno ,@Param("price")int price, @Param("scount") int scount) {
-		  String userid = (String)session.getAttribute("userid");
-		  service.sellinsert(userid,pno,price,scount); 
-	  return "redirect:/company/confirm"; }
-	  
-	  @GetMapping("/company/buyinsert") 
-	  public String buywrite(HttpSession session ,@Param("pno")String pno ,@Param("price")int price, @Param("bcount") int bcount) {
-		  String userid = (String)session.getAttribute("userid");
-		  service.buyinsert(userid,pno,price,bcount); 
-	  return "redirect:/company/confirm"; }
+	@GetMapping("/company/sellinsert") 
+    public String sellwrite(HttpSession session ,@RequestParam("start-date") String startDate,@Param("pno")String pno ,@Param("price")int price, @Param("scount") int scount) {
+       String userid = (String)session.getAttribute("userid");
+       service.sellinsert(startDate,userid,pno,price,scount); 
+    return "redirect:/company/confirm"; }
+    
+    @GetMapping("/company/buyinsert") 
+    public String buywrite(HttpSession session ,@RequestParam("start-date") String startDate,@RequestParam("pno")String pno ,@RequestParam("price")int price, @RequestParam("bcount") int bcount) {
+       String userid = (String)session.getAttribute("userid");
+       System.out.println(startDate);
+       service.buyinsert(startDate,userid,pno,price,bcount); 
+    return "redirect:/company/confirm"; }
 	
 	//@ModelAttribute("user") MemDto dto) {//1.세션서장값 dto 에넘겨줌 2. 파라미터값 저장(id는 그대로) sesssion에 저장되 내용 바뀜=>db도업데이트 해줘야함
 	//dto에 아이디값은 포함되지않았음
@@ -152,7 +153,7 @@ public class RevenueController {
 				  System.out.println(sno);
 				  service.deletesell(sno);	
 				  System.out.println("this");
-				  return "/company/confirm";
+				  return "company/confirm";
 				  }
 			  
 			  @GetMapping("/company/revsellcheckdel")

@@ -56,6 +56,7 @@ public class ApiController {
 	@PostMapping("company/inserta")
 	@ResponseBody
 	public int inserta(@RequestParam("a_content") String a_content, @RequestParam("a_val") int a_val, @RequestParam("a_volum") int a_volum) {	
+		System.out.println(a_content+" "+a_val+" "+a_volum);
 		int a =service.inserta(a_content, a_val, a_volum);
 		return a;
 	}

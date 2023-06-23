@@ -85,12 +85,11 @@ public interface RevenueDao {
 	@Update("update sell set price=#{price} where sno=#{sno}")
 	int updatesell(List<SellDto> dto);
 
-	@Insert("insert into sell (userid,pno,price,sdate,scount) values(#{userid},#{pno},#{price},now(),#{scount})")
-	int sellinsert(Map<String, Object> m);
+	   @Insert("insert into sell (userid,pno,price,sdate,scount) values(#{userid},#{pno},#{price},#{sdate},#{scount})")
+	   int sellinsert(Map<String, Object> m);
 
-	@Insert("insert into buy (userid,pno,price,bdate,bcount) values(#{userid},#{pno},#{price},now(),#{bcount})")
-	int buyinsert(Map<String, Object> m);
-
+	   @Insert("insert into buy (userid,pno,price,bdate,bcount) values(#{userid},#{pno},#{price},#{bdate},#{bcount})")
+	   int buyinsert(Map<String, Object> m);
 	@Select("select pname from product, buy where buy.pno=product.pno and buy.pno={pno}")
 	String selectpname(int pno);
 

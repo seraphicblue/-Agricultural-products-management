@@ -242,7 +242,7 @@ input:checked+.slider:before {
 								<c:forEach items="${mList}" var="user" varStatus="count">
 									<tr>
 										<td>${count.index+1}</td>
-										<td class="username" data-userid="${user.userid}">${user.username}</td>
+										<td class="username" data-userid="${user.userid}">${user.userid}</td>
 										<td>${user.gender}</td>
 										<td>${user.age}</td>
 										<td><button class="click">추가</button></td>
@@ -275,6 +275,7 @@ input:checked+.slider:before {
 	<script src="../market/js/mixitup.min.js"></script>
 	<script src="../market/js/owl.carousel.min.js"></script>
 	<script src="../market/js/main.js"></script>
+	<script src="../../../js/webSocket.js"></script>
 	<!--js list made by kim -->
 	<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="../../js/priceWebSocket.js"></script>
