@@ -1,1 +1,1 @@
-# stock kd
+# stock
