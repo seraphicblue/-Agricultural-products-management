@@ -26,7 +26,7 @@ import stock_m.dto.StockDto;
 @Mapper
 public interface StockDao {
 	@Select("select s_val from stock where sno=#{sno}")
-	int selecSval(@Param("sno") int sno);
+	int selecSval(@Param("sno") int sno); 
 
 	@Select("select s_volume from stock where sno=#{sno}")
 	int selecSvol(int sno);

@@ -240,7 +240,7 @@
 											<td><input name="p_count" id="s_volume" placeholder="0"  style="text-align: right;"></td>
 										</tr>
 									</table>
-									<input type="submit" class="btn btn-primary btn-icon-split" value="판매" style="width:70px;height:41px;float: right;" >
+									<input id="button" type="submit" class="btn btn-primary btn-icon-split" value="판매" style="width:70px;height:41px;float: right;" >
 								</form>
 								<br>
 								<table class="table table-bordered dataTable copyright text-center my-auto" id="dataTable"

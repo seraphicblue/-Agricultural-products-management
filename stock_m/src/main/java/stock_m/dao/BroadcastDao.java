@@ -79,7 +79,7 @@ public interface BroadcastDao {
 	@Select("select count(*) from limitbroadcast where userid=#{userid}")
 	public int getlimitCount(@Param("userid") String userid);
 	
-	@Update("updatelimitbroadcast set limit=#{limit}  where userid=#{userid}")
+	@Update("update limitbroadcast set broadcastlimit=#{limit}  where userid=#{userid}")
 	public void updateLimit(@Param("userid") String userid,@Param("limit") int limit);
 
 	@Insert("insert into limitbroadcast(userid,broadcastlimit) values(#{userid},#{limit})")

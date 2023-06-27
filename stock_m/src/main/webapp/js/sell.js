@@ -37,7 +37,17 @@ function check() {
 				})
 					.done(function(response) {
 						selectedOption = selectedOption - parseInt(response);
-						document.getElementById("s_volume").value = selectedOption;
+						if(selectedOption<=0){
+							alert("재고량 부족!!!");
+							document.getElementById("s_volume").value =0;
+							document.getElementById("s_volume").disabled = true;
+							document.getElementById("button").disabled = true;
+						}
+						else{
+							document.getElementById("button").disabled = false;
+							document.getElementById("s_volume").disabled = false;
+							document.getElementById("s_volume").value = selectedOption;
+						}
 					})
 			}
 		})
