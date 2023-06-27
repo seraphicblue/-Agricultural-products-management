@@ -9,7 +9,7 @@
 		FROM product
 		INNER JOIN stock ON product.sno = stock.sno
 		WHERE (pname LIKE CONCAT('%', #{pname}, '%') OR p_val = #{p_val})
-		AND NOT userid IN
+		AND p_count > 0 AND NOT userid IN
 		<foreach item="item" index="index" collection="nuserid" open="(" separator="," close=")">
 		#{item}
 		</foreach>
@@ -20,7 +20,7 @@
 		FROM product
 		INNER JOIN stock ON product.sno = stock.sno
 		WHERE pname LIKE  concat('%',#{pname},'%')
-		AND NOT userid IN
+		AND p_count > 0 AND NOT userid IN
 		<foreach item="item" index="index" collection="nuserid" open="(" separator="," close=")">
 		#{item}
 		</foreach>
