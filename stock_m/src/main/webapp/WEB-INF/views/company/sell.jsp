@@ -240,6 +240,7 @@
 											<td><input name="p_count" id="s_volume" placeholder="0"  style="text-align: right;"></td>
 										</tr>
 									</table>
+									
 									<input id="button" type="submit" class="btn btn-primary btn-icon-split" value="판매" style="width:70px;height:41px;float: right;" >
 								</form>
 								<br>
@@ -344,11 +345,12 @@
 			<script src="../../../vendor/chart.js/Chart.min.js"></script>
 
 			<!-- Page level custom scripts -->
+			<script type="text/javascript">
+			function(){}
+			</script>
 
 	
 			<script src="../../../js/demo/chart-area-demo.js"></script>
 			<script src="../../../js/demo/chart-pie-demo.js"></script>
-			
-
 </body>
 </html>

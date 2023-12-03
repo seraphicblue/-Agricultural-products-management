@@ -80,7 +80,6 @@ public class SabController {
 	@GetMapping("/company/{sno}")
 	@ResponseBody // view없이 바로 보냄
 	public int snoCount(Model m, @PathVariable int sno) {
-
 		int count = sab_service.selecCount(sno);
 		return count;
 	}
@@ -89,7 +88,13 @@ public class SabController {
 	@ResponseBody // view없이 바로 보냄
 	public int snoSearch(Model m, @PathVariable int sno, @PathVariable int p_count) {
 		int Vol = sab_service.selecVol(sno);
-		return Vol;
+		if((sno-p_count)<=0) {
+			return 0;
+		}
+		else {
+			return Vol;
+		}
+		
 	}
 
 	@GetMapping("/company/buy")

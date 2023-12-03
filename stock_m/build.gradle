@@ -46,7 +46,7 @@ dependencies {
    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation
    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation'
    
-   //¿¢¼¿ gradle
+   //ï¿½ï¿½ï¿½ï¿½ gradle
    // https://mvnrepository.com/artifact/org.apache.poi/poi
    implementation group: 'org.apache.poi', name: 'poi', version: '5.2.3'
    // https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml
@@ -54,7 +54,7 @@ dependencies {
    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mail
    implementation 'org.springframework.boot:spring-boot-starter-mail'
    
-   //¼ÒÄÏ Ãß°¡
+   //ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-websocket
    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-websocket', version: '2.4.9'
 

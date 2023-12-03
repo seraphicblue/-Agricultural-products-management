@@ -9,7 +9,8 @@ $(document).ready(function() {
 			// submit 버튼 동작하지 않도록 설정
 			$('input[type=submit]').attr('disabled', 'disabled');
 			alert('숫자만 입력해주세요.');
-		} else {
+		}
+		else {
 			// submit 버튼 동작 가능하도록 설정
 			$('input[type=submit]').removeAttr('disabled');
 		}
@@ -36,17 +37,18 @@ function check() {
 					dataType: 'text'
 				})
 					.done(function(response) {
-						selectedOption = selectedOption - parseInt(response);
-						if(selectedOption<=0){
+						alert(response);
+						selectedOption2 = selectedOption - parseInt(response);
+						if (selectedOption2 <= 0) {
 							alert("재고량 부족!!!");
-							document.getElementById("s_volume").value =0;
+							document.getElementById("s_volume").value = 0;
 							document.getElementById("s_volume").disabled = true;
 							document.getElementById("button").disabled = true;
 						}
-						else{
+						else {
 							document.getElementById("button").disabled = false;
 							document.getElementById("s_volume").disabled = false;
-							document.getElementById("s_volume").value = selectedOption;
+							document.getElementById("s_volume").value = selectedOption2;
 						}
 					})
 			}
