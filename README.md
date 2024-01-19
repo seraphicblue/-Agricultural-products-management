@@ -11,7 +11,7 @@
 - **일반 사용자**: 온라인 쇼핑몰을 통해 농산물을 구매할 수 있습니다.
 
 ### 관리자 기능
-<img src = https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/d5ef0fa3-00a7-4923-9e8c-ecefd469fd97 width="700" height="400"/>
+<img src = https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/d5ef0fa3-00a7-4923-9e8c-ecefd469fd97 width="1000" height="400"/>
 - 농산물 발주 품목들의 일일 가격을 수정하고, 소매업자들에게 최신 발주 품목을 제공합니다.
 
 ### 소매업자 기능
