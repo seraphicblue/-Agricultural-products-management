@@ -1,8 +1,6 @@
 # 농산물 재고 관리 및 판매 시스템
 ## 프로젝트 소개
 <img src= https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/06e21942-aaab-49e9-88a2-4da0b8f6f4bb width="1000" height="400"/>
-<img src= https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/1658b5ea-9a6e-40ee-b95c-c51485174fbe width="1000" height="400"/>
-
 농산물 재고 관리 및 판매 시스템은 생산자, 소매업자 및 일반 사용자를 연결하는 플랫폼입니다. 이 시스템을 통해 생산자는 농산물을 발주하고, 소매업자는 재고를 관리 및 구매할 수 있으며, 일반 사용자는 온라인 쇼핑몰을 통해 농산물을 구매할 수 있습니다.
 
 ## 주요 기능
@@ -13,8 +11,8 @@
 - **일반 사용자**: 온라인 쇼핑몰을 통해 농산물을 구매할 수 있습니다.
 
 ### 관리자 기능
-![image](https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/73b41d68-fdca-41a2-a9b5-37ebb2d28a57)
-![image](https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/992f785b-4be8-4e47-bb87-6cc0102d4b1f)
+<img src= https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/73b41d68-fdca-41a2-a9b5-37ebb2d28a57 width="500" height="400"/>
+<img src= https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/992f785b-4be8-4e47-bb87-6cc0102d4b1f width="500" height="400"/>
 - 농산물 발주 품목들의 일일 가격을 수정하고, 소매업자들에게 최신 발주 품목을 제공합니다.
 
 ### 소매업자 기능
