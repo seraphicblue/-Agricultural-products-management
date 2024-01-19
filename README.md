@@ -15,10 +15,9 @@
 - 농산물 발주 품목들의 일일 가격을 수정하고, 소매업자들에게 최신 발주 품목을 제공합니다.
 
 ### 소매업자 기능
-<img src = https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/ff825fb3-361f-4e47-a6cc-9d2ddf6797b8  width="500" height="400"/>
-<img src = https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/701cbe94-6cd6-4088-babd-1e8badec226c width="500" height="400"/>
-<img src = https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/8fb7b799-73d8-440a-8979-181421bc32b0  width="500" height="400"/>
-- **농산물 구매및 판매**: 발주된 농산물을 구매하고 재고로 등록합니다. 재고로 등록된 기능을 
+<img src = https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/ff825fb3-361f-4e47-a6cc-9d2ddf6797b8  width="1000" height="200"/>
+<img src = https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/8fb7b799-73d8-440a-8979-181421bc32b0  width="1000" height="200"/>
+- **농산물 구매 및 판매**: 발주된 농산물을 구매하고 재고로 등록합니다. 재고로 등록된 농산물을 온라인쇼핑몰에 등록합니다 
 - ![image](https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/2ba85930-39d3-433f-b498-6895fbbd4e85)
 - ![image](https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/09597688-c55d-4a3a-8151-c1da6ce2ea4a)
 - **재고 관리 및 분석**: 재고 상태를 그래프를 통해 분석하고 관리합니다.
