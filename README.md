@@ -1,5 +1,7 @@
 # 농산물 재고 관리 및 판매 시스템
----------------------------
+
+![image](https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/06e21942-aaab-49e9-88a2-4da0b8f6f4bb)
+
 
 ## 프로젝트 소개
 
