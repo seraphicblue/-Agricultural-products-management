@@ -1,11 +1,7 @@
 # 농산물 재고 관리 및 판매 시스템
 
-<img src= https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/06e21942-aaab-49e9-88a2-4da0b8f6f4bb width="200" height="400"/>
-![image](https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/1658b5ea-9a6e-40ee-b95c-c51485174fbe)
-
-
-
-
+<img src= https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/06e21942-aaab-49e9-88a2-4da0b8f6f4bb width="400" height="400"/>
+<img src= https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/1658b5ea-9a6e-40ee-b95c-c51485174fbe width="400" height="400"/>
 ## 프로젝트 소개
 농산물 재고 관리 및 판매 시스템은 생산자, 소매업자 및 일반 사용자를 연결하는 플랫폼입니다. 이 시스템을 통해 생산자는 농산물을 발주하고, 소매업자는 재고를 관리 및 구매할 수 있으며, 일반 사용자는 온라인 쇼핑몰을 통해 농산물을 구매할 수 있습니다.
 
