@@ -18,8 +18,9 @@
 <img src = https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/ff825fb3-361f-4e47-a6cc-9d2ddf6797b8  width="1000" height="200"/>
 <img src = https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/8fb7b799-73d8-440a-8979-181421bc32b0  width="1000" height="200"/>
 - **농산물 구매 및 판매**: 발주된 농산물을 구매하고 재고로 등록합니다. 재고로 등록된 농산물을 온라인쇼핑몰에 등록합니다 
-- ![image](https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/2ba85930-39d3-433f-b498-6895fbbd4e85)
-- ![image](https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/09597688-c55d-4a3a-8151-c1da6ce2ea4a)
+<img src = https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/2ba85930-39d3-433f-b498-6895fbbd4e85 width="1000" height="200"/>
+<img src = https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/18c11ee6-a81e-4f6a-8f09-cdbfe9f2b091 width="1000" height="200"/>
+<img src = https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/09597688-c55d-4a3a-8151-c1da6ce2ea4a width="1000" height="200"/>
 - **재고 관리 및 분석**: 재고 상태를 그래프를 통해 분석하고 관리합니다.
 - ![image](https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/995f2f14-13df-46e6-a605-92e16e60a3b8)
 - **실시간 알림**: 자본금 한도, 재고 가격 변동, 재고 부족 등의 상황에 대한 알림을 받습니다.
