@@ -35,23 +35,37 @@
 <img src = https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/8fb7b799-73d8-440a-8979-181421bc32b0  width="1000" height="200"/>
 
 **재고 관리 및 분석**
-- 재고 상태를 그래프를 통해 분석하고 관리합니다.
+- 재고 내역을 확인하고  그래프를 통해 분석하고 관리합니다.
 <img src = https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/85550fbd-5f1d-4b77-85e2-cfaf75d9e125 width="1000" height="400"/>
 <img src = https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/396a4ab6-567a-4b74-8a0c-943d2ac16b3c width="1000" height="400"/>
 
+**장부 관리 및 분석**
+- 거래 현황을 장부를 통해 확인하고 그래프를 통해 분석하고 관리합니다.
+<img src = https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/c91b02d0-fd11-45c9-b955-fce7c874b949 width="1000" height="400"/>
+<img src = https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/c4e6cbf4-3036-45a9-adf5-eed20a26dd93 width="1000" height="400"/>
 
 **실시간 알림**
 - 자본금 한도, 재고 가격 변동, 재고 부족 등의 상황에 대한 알림을 받습니다.
-<img src = https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/995f2f14-13df-46e6-a605-92e16e60a3b8 width="1000" height="300"/>
+<img src = https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/995f2f14-13df-46e6-a605-92e16e60a3b8 width="1000" height="400"/>
 
 ### 일반 사용자 기능
 **온라인 쇼핑몰**
 - 다양한 농산물을 구매할 수 있는 플랫폼입니다.
-<img src = https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/c11bb62c-48c6-4045-9602-cb91fd07545a width="1000" height="400"/>
+<img src = https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/f21cf856-1360-4b2b-b455-57ebc41fe445 width="1000" height="400"/>
 
 **선호 업체 설정**
 - 선호하는 업체를 설정하여 그들의 제품만 보거나 비선호 업체를 차단할 수 있습니다.
-<img src = https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/21a18772-4254-46e5-a2f8-720b90d763d1 width="1000" height="400"/>
+<img src =![image](https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/49355150-e949-4233-b9fd-67fdaf3661c0)
+ width="1000" height="400"/>
+
+**상품 정보 제공 및 구매**
+<img src = https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/d1dc7ef4-189d-4334-a6ce-0bee8c3e592f  width="1000" height="400"/>
+
+**장바구니**
+- 장바구니에서 내역을 확인 및 수량의 총량을 계산할 수 있습니다.
+<img src = https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/84ee7243-39f6-45b4-81ea-5fa081b651f5 width="1000" height="400"/>
+
+
 
 
 
