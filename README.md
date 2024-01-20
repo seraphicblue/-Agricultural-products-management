@@ -36,7 +36,6 @@
 
 **재고 관리 및 분석**
 - 재고 상태를 그래프를 통해 분석하고 관리합니다.
-<img src = https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/450f57ad-ace4-43b7-b8b7-7346dcea7145 width="1000" height="400"/>
 <img src = https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/85550fbd-5f1d-4b77-85e2-cfaf75d9e125 width="1000" height="400"/>
 <img src = https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/af234358-ac1f-4e54-8000-da1a2a92de17 width="1000" height="400"/>
 
@@ -47,11 +46,11 @@
 ### 일반 사용자 기능
 **온라인 쇼핑몰**
 - 다양한 농산물을 구매할 수 있는 플랫폼입니다.
-<img src = https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/390d6309-7614-42d8-bae3-3abc92bd1e70 width="1000" height="300"/>
+<img src = https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/390d6309-7614-42d8-bae3-3abc92bd1e70 width="1000" height="400"/>
 
 **선호 업체 설정**
 - 선호하는 업체를 설정하여 그들의 제품만 보거나 비선호 업체를 차단할 수 있습니다.
-<img src = https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/21a18772-4254-46e5-a2f8-720b90d763d1 width="1000" height="300"/>
+<img src = https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/21a18772-4254-46e5-a2f8-720b90d763d1 width="1000" height="400"/>
 
 
 
