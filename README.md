@@ -51,14 +51,12 @@
 
 **선호 업체 설정**
 - 선호하는 업체를 설정하여 그들의 제품만 보거나 비선호 업체를 차단할 수 있습니다.
-<img src = https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/49355150-e949-4233-b9fd-67fdaf3661c0 width="1000" height="400"/>
+<img src = https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/49355150-e949-4233-b9fd-67fdaf3661c0 width="1000" height="600"/>
 
-**상품 정보 제공 및 구매**
-<img src = https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/d1dc7ef4-189d-4334-a6ce-0bee8c3e592f  width="1000" height="400"/>
 
 **장바구니**
 - 장바구니에서 내역을 확인 및 수량의 총량을 계산할 수 있습니다.
-<img src = https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/84ee7243-39f6-45b4-81ea-5fa081b651f5 width="1000" height="400"/>
+<img src = https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/84ee7243-39f6-45b4-81ea-5fa081b651f5 width="1000" height="600"/>
 
 
 
