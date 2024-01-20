@@ -34,14 +34,10 @@
 <img src = https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/ff825fb3-361f-4e47-a6cc-9d2ddf6797b8  width="1000" height="200"/>
 <img src = https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/8fb7b799-73d8-440a-8979-181421bc32b0  width="1000" height="200"/>
 
-**재고 관리 및 분석**
-- 재고 내역을 확인하고  그래프를 통해 분석하고 관리합니다.
+**재고,장부 관리 및 분석**
+- 재고 내역과 거래현황을 확인하고  그래프를 통해 분석하고 관리합니다.
 <img src = https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/85550fbd-5f1d-4b77-85e2-cfaf75d9e125 width="1000" height="400"/>
 <img src = https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/396a4ab6-567a-4b74-8a0c-943d2ac16b3c width="1000" height="400"/>
-
-**장부 관리 및 분석**
-- 거래 현황을 장부를 통해 확인하고 그래프를 통해 분석하고 관리합니다.
-<img src = https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/c91b02d0-fd11-45c9-b955-fce7c874b949 width="1000" height="400"/>
 <img src = https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/c4e6cbf4-3036-45a9-adf5-eed20a26dd93 width="1000" height="400"/>
 
 **실시간 알림**
@@ -55,8 +51,7 @@
 
 **선호 업체 설정**
 - 선호하는 업체를 설정하여 그들의 제품만 보거나 비선호 업체를 차단할 수 있습니다.
-<img src =![image](https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/49355150-e949-4233-b9fd-67fdaf3661c0)
- width="1000" height="400"/>
+<img src = https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/49355150-e949-4233-b9fd-67fdaf3661c0 width="1000" height="400"/>
 
 **상품 정보 제공 및 구매**
 <img src = https://github.com/seraphicblue/-Agricultural-products-management/assets/111176608/d1dc7ef4-189d-4334-a6ce-0bee8c3e592f  width="1000" height="400"/>
